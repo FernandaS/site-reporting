@@ -3,6 +3,11 @@
 {{year}}
 {{month}} -->
 <select ng-init='selectedYear = year' ng-options='value for value in years' ng-model='selectedYear'></select>
-{{selectedYear}}
-<select ng-init='selectedMonth = months[month]' ng-options='value for value in months' ng-model='selectedMonth'></select>
-{{selectedMonth}}
+<select ng-init='selectedMonth = months[month]' ng-options='value for value in months' ng-model='selectedMonth'></select><br>
+Individual reports for {{selectedMonth}}, {{selectedYear}}
+<br>
+<span ng-repeat='center in centers'>
+	<span ng-show='!reports[center.name]'>Not Reported</span>
+	<span ng-show='reports[center.name]'><a ng-href='/reports/{{reports[center.name][_id]}}'>Reported</a></span>
+	 | {{center.name}}
+</span>
