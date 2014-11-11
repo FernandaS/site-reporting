@@ -1,0 +1,8 @@
+<h1>Reports Route</h1>
+<!-- {{date}}
+{{year}}
+{{month}} -->
+<select ng-init='selectedYear = year' ng-options='value for value in years' ng-model='selectedYear'></select>
+{{selectedYear}}
+<select ng-init='selectedMonth = months[month]' ng-options='value for value in months' ng-model='selectedMonth'></select>
+{{selectedMonth}}
