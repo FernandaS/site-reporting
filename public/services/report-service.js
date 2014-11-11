@@ -22,12 +22,12 @@ function reportService($http){
 			url: '/api/reports/list'
 		})
 	}
-	this.getBy = function(){
-		return $http({
-			method: 'GET',
-			url: '/api/reports/' + /*ADD PARAMS HERE*/
-		})
-	}
+	// this.getBy = function(){
+	// 	return $http({
+	// 		method: 'GET',
+	// 		url: '/api/reports/' + /*ADD PARAMS HERE*/
+	// 	})
+	// }
 
 	this.create = function(){
 		return $http({

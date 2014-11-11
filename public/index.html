@@ -9,18 +9,31 @@
 
 	</head>
 <body>
-	<nav class="navbar navbar-default" role="navigation">
-	  <div class="container-fluid logo-bar">
-	    <div class="navbar-header">
-	      <h2>LDS Reporting</h2>
-	    </div>
-	  </div>
-	</nav>
+	<div id="wrapper">
+        <nav class="navbar navbar-default navbar-cls-top logo-bar" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+               <p>LDS Reporting</p> 
+            </div>
+
+        </nav>  
 
 
+           <!-- /. NAV TOP  -->
+         <!-- /. PAGE WRAPPER  -->
+       
+     <!-- /. WRAPPER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+ <!--    // <script src="assets/js/jquery-1.10.2.js"></script>
+    //   <!-- BOOTSTRAP SCRIPTS -->
+<!--     // <script src="assets/js/bootstrap.min.js"></script> -->
+     <!-- METISMENU SCRIPTS -->
+<!--     // <script src="assets/js/jquery.metisMenu.js"></script> --> 
+      <!-- CUSTOM SCRIPTS -->
+<!--     // <script src="assets/js/custom.js"></script> -->
 <div ng-view-"">
 
-<div>
+</div>
 
 
 
@@ -46,13 +59,17 @@
 <script src="views/manage/manageCtrl.js"></script>
 <script src="views/reports/reportsCtrl.js"></script>
 <script src="views/trends/trendsCtrl.js"></script>
-<script src="services/authService.js"></script>
-<script src="services/getDataService.js"></script>
-<script src="services/postDataService.js"></script>
+<script src="services/auth-service.js"></script>
+<script src="services/center-service.js"></script>
+<script src="services/report-service.js"></script>
+<script src="services/user-service.js"></script>
 
 
 </body>
 </html>
+
+
+
 
 
 

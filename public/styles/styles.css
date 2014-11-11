@@ -1,6 +1,32 @@
-.logo-bar {
-	background-color: #5393e4;
-	font-family: Roboto;
-	color: white;
+*.logo-bar {
+	background-color: #003366 !important;
+	font-family: Roboto !important;
+	color: #fff;
 	font-weight: strong;
 }
+
+.sidebar-content {
+	width: 20%;
+}
+
+.right-content {
+/*	float: right !important;*/
+	background-color: #4d6490;
+	height: 500px;
+/*	width: 75% !important;*/
+}
+
+.navList ul {
+	list-style-type: none;
+	background-color: #fff;
+} 
+
+.navList ul li {
+/*	padding: 5px 0;*/
+	margin: 25px 0;
+}
+
+.navList ul li a:hover {
+	text-decoration: none;
+}
+
