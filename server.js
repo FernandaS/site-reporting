@@ -19,7 +19,7 @@ var sequelize = new sql(dbName, dbUser, dbPass, {
 });
 
 // Move the middleware to ./middlware.js
-app.use(express.static(__dirname + '.public'));
+app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());
 app.use(session({ secret:  env.expressSecret, saveUninitialized: true, resave: true}));
 app.use(passport.initialize());
