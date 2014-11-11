@@ -4,7 +4,7 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.INTEGER(10),
       allowNull: false,
     },
-    reporter_id: {
+    user_id: {
       type: DataTypes.INTEGER(10),
       allowNull: false,
     },

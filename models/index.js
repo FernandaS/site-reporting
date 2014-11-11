@@ -12,3 +12,10 @@ var sequelize = new Sequelize(dbName, dbUser, dbPass, {
 var models = require('sequelize-import')(__dirname, sequelize, { 
     exclude: ['index.js'] 
 });
+
+/* Relationships
+one to many  -- one user to many reports
+one to many -- one user to many emails
+one to many -- one user to many centers
+many to one ---  many  reports to one center
+*/
