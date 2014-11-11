@@ -28,6 +28,7 @@ function reportService($http){
 			url: '/api/reports/' /*ADD PARAMS HERE*/
 		})
 	}
+
 	// this.getList = function(){
 	// 	return $http({
 	// 		method: 'GET',
@@ -40,6 +41,7 @@ function reportService($http){
 			url: '/api/reports/list' /*ADD PARAMS HERE*/
 		})
 	}
+>>>>>>> 7b7589c2265e337cba37b186c270015767e3cdf6
 
 	this.create = function(){
 		return $http({
