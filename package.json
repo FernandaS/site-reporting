@@ -1,0 +1,29 @@
+{
+  "name": "lds-reporting",
+  "version": "0.0.0",
+  "description": "App to report visitor and referral data for LDS visitor centers.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jasonalmaturner/lds-reporting"
+  },
+  "author": "Jacob Turner, Jason Turner, Aaron Rumery, Fernanda Guimaraes, Erin Knutson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jasonalmaturner/lds-reporting/issues"
+  },
+  "homepage": "https://github.com/jasonalmaturner/lds-reporting",
+  "dependencies": {
+    "body-parser": "^1.9.2",
+    "express": "^4.10.2",
+    "express-session": "^1.9.1",
+    "mysql": "^2.5.3",
+    "passport": "^0.2.1",
+    "passport-local": "^1.0.0",
+    "sequelize": "^2.0.0-rc2"
+  }
+}
