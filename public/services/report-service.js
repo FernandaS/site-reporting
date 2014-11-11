@@ -4,28 +4,41 @@ angular.module('lds-report')
 //ALL need testing
 
 function reportService($http){
-	this.getOne = function(id){
+	// this.getOne = function(id){
+	// 	return $http({
+	// 		method: 'GET',
+	// 		url: '/api/reports/' + id
+	// 	})
+	// }
+	this.getOneBy = function(center, month, year){
 		return $http({
 			method: 'GET',
-			url: '/api/reports/' + id
+			url: '/api/reports/' + center + '/'/*ADD PARAMS HERE*/
 		})
 	}
-	this.getAll = function(){
+	// this.getAll = function(){
+	// 	return $http({
+	// 		method: 'GET',
+	// 		url: '/api/reports/data'
+	// 	})
+	// }
+	this.getAllBy = function(month, year){
 		return $http({
 			method: 'GET',
-			url: '/api/reports/data'
+			url: '/api/reports/' /*ADD PARAMS HERE*/
 		})
 	}
-	this.getList = function(){
+
+	// this.getList = function(){
+	// 	return $http({
+	// 		method: 'GET',
+	// 		url: '/api/reports/list'
+	// 	})
+	// }
+	this.getListBy = function(month, year){
 		return $http({
 			method: 'GET',
-			url: '/api/reports/list'
-		})
-	}
-	this.getBy = function(){
-		return $http({
-			method: 'GET',
-			url: '/api/reports/'/*ADD PARAMS HERE*/
+			url: '/api/reports/list' /*ADD PARAMS HERE*/
 		})
 	}
 
