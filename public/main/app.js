@@ -2,18 +2,12 @@ var app = angular.module('lds-report', ['ngRoute']);
 
 app.config(['$routeProvider', function($routeProvider){
 	$routeProvider
-		.when('/', {
-			templateUrl: '/views/home/home.html',
-			controller: 'homeCtrl'
-		})
 		.when('/login', {
 			templateUrl: '/views/login/login.html',
 			controller: 'loginCtrl'
 		})
-		.when('/manage', {
-			templateUrl: '/views/manage/manage.html',
-			controller: 'manageCtrl'
-		})
+
+		//ADMIN
 		.when('/reports', {
 			templateUrl: '/views/reports/reports.html',
 			controller: 'reportsCtrl'
@@ -22,7 +16,19 @@ app.config(['$routeProvider', function($routeProvider){
 			templateUrl: '/views/trends/trends.html',
 			controller: 'trendCtrl'
 		})
+		.when('/manage', {
+			templateUrl: '/views/manage/manage.html',
+			controller: 'manageCtrl'
+		})
+
+		//DIRECTOR
+		.when('/director', {
+			templateUrl: '/views/director/director.html',
+			controller: 'directorCtrl'
+		})
+
+		
 		.otherwise({
-			redirectTo: '/'
+			redirectTo: '/reports'
 		})
 }])
