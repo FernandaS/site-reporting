@@ -25,7 +25,7 @@ function reportService($http){
 	this.getBy = function(){
 		return $http({
 			method: 'GET',
-			url: '/api/reports/' + /*ADD PARAMS HERE*/
+			url: '/api/reports/'/*ADD PARAMS HERE*/
 		})
 	}
 
