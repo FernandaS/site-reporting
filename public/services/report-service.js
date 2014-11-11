@@ -28,7 +28,6 @@ function reportService($http){
 			url: '/api/reports/' /*ADD PARAMS HERE*/
 		})
 	}
-
 	// this.getList = function(){
 	// 	return $http({
 	// 		method: 'GET',
