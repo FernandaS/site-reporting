@@ -3,18 +3,19 @@ module.exports = function(sequelize, DataTypes) {
     id: {
       type: DataTypes.INTEGER(10),
       allowNull: false,
+      autoIncrement: true
     },
     user_id: {
       type: DataTypes.INTEGER(10),
-      allowNull: false,
+      allowNull: false
     },
     center: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: false
     },
     alias: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: false
     },
     active: {
       type: DataTypes.ENUM('YES','NO'),
@@ -28,15 +29,15 @@ module.exports = function(sequelize, DataTypes) {
     },
     city: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: false
     },
     state: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: false
     },
     country: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: false
     }
   });
 };

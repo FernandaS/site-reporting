@@ -3,14 +3,15 @@ module.exports = function(sequelize, DataTypes) {
     id: {
       type: DataTypes.INTEGER(10),
       allowNull: false,
+      autoIncrement: true
     },
     center_id: {
       type: DataTypes.INTEGER(10),
-      allowNull: false,
+      allowNull: false
     },
     users_id: {
       type: DataTypes.INTEGER(10),
-      allowNull: false,
+      allowNull: false
     },
     date_submitted: {
       type: DataTypes.DATE,
@@ -19,39 +20,39 @@ module.exports = function(sequelize, DataTypes) {
     },
     month: {
       type: DataTypes.STRING(10),
-      allowNull: false,
+      allowNull: false
     },
     visitor_total: {
       type: DataTypes.STRING(20),
-      allowNull: false,
+      allowNull: false
     },
     visitor_tour: {
       type: DataTypes.STRING(20),
-      allowNull: false,
+      allowNull: false
     },
     visitor_tournonmember: {
       type: DataTypes.STRING(30),
-      allowNull: false,
+      allowNull: false
     },
     referral_cards: {
       type: DataTypes.STRING(20),
-      allowNull: false,
+      allowNull: false
     },
     referral_called: {
       type: DataTypes.STRING(20),
-      allowNull: false,
+      allowNull: false
     },
     referral_inbound: {
       type: DataTypes.STRING(20),
-      allowNull: false,
+      allowNull: false
     },
     referral_member: {
       type: DataTypes.STRING(30),
-      allowNull: false,
+      allowNull: false
     },
     comments: {
       type: DataTypes.TEXT,
-      allowNull: false,
+      allowNull: false
     }
   });
 };
