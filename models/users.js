@@ -4,10 +4,6 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.INTEGER(10),
       allowNull: false,
     },
-    center_id: {
-      type: DataTypes.INTEGER(10),
-      allowNull: false,
-    },
     username: {
       type: DataTypes.STRING(25),
       allowNull: false,
