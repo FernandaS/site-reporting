@@ -17,5 +17,5 @@ var models = require('sequelize-import')(__dirname, sequelize, {
 one to many  -- one user to many reports
 one to many -- one user to many emails
 one to many -- one user to many centers
-many to one ---  many  reports to one center
+many to one -- many reports to one center
 */
