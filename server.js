@@ -1,14 +1,14 @@
 var express = require('express'),
 	app = express(),
-	env = require('./env/vars'),
+	env = require('./server-assets/env/vars'),
 	sql = require('sequelize'),
 	session = require('express-session'),
 	passport = require('passport'),
 	bodyParser = require('body-parser'),
 	LocalStrategy = require('passport-local').Strategy,
 	port = env.expressPort,
-	centersCtrl = require('./controllers/centersCtrl'),
-	usersCtrl = require('./controllers/usersCtrl');
+	centersCtrl = require('./server-assets/controllers/centersCtrl'),
+	usersCtrl = require('./server-assets/controllers/usersCtrl');
 
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());
