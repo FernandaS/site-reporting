@@ -1,72 +1,57 @@
-var usersService = require('./services/usersService');
+var userService = require('./services/userService');
 
 module.exports = {
 // remove console.logs after endpoints are working.
-// rename usersService functions as necessary.
-// parse out the req into the obj once I get keys from Aaron
+// rename userService functions as necessary.
+// sending req.body object. Keys will have been established on the front end
 	getUser: function (req, res) {
-		var obj = {}
-		usersService.getReport(obj).then(function(err, res) {
-			if(err) {
-				console.log(err);
-				res.send(err);
-			} else {
-				console.log('getUser workedgit');
-				res.status(200).send(res);
-			};
-		});
+		userService.getReport(req.body).then(function(data){
+			console.log('getUser worked');
+			res.status(200).send(data);
+		}, function(err){
+			console.log(err);
+			res.send(err);
+		})
 	},
 
 	putUser: function (req, res) {
-		var obj = {};
-		usersService.putUser(obj).then(function(err, res) {
-			if(err) {
-				console.log(err);
-				res.send(err);
-			} else {
-				console.log('putUser worked');
-				res.status(200).send(res);
-			};
-		});
+		userService.putUser(req.body).then(function(data){
+			console.log('putUser worked');
+			res.status(200).send(data);
+		}, function(err){
+			console.log(err);
+			res.send(err);
+		})
 	},
 
 	addUser: function (req, res) {
-		var obj = {}
-		usersService.addUser(obj).then(function(err, res) {
-			if(err) {
-				console.log(err);
-				res.send(err);
-			} else {
-				console.log('deleteReport worked');
-				res.status(200).send(res);
-			};
-		});
+		userService.addUser(req.body).then(function(data){
+			console.log('addUser worked');
+			res.status(200).send(data);
+		}, function(err){
+			console.log(err);
+			res.send(err);
+		})
 	},
 
 	deleteUser: function (req, res) {
-		var obj = {}
-		usersService.deleteUser(obj).then(function(err, res) {
-			if(err) {
-				console.log(err);
-				res.send(err);
-			} else {
-				console.log('deleteUser worked');
-				res.status(200).send(res);
-			};
-		});
+		userService.deleteUser(req.body).then(function(data){
+			console.log('deleteUser worked');
+			res.status(200).send(data);
+		}, function(err){
+			console.log(err);
+			res.send(err);
+		})
 	},
 
 	getUsersList: function (req, res) {
-		var obj = {}
-		usersService.getUsersList(obj).then(function(err, res) {
-			if(err) {
-				console.log(err);
-				res.send(err);
-			} else {
-				console.log('getUsersList worked');
-				res.status(200).send(res);
-			};
-		});
-	}
+		userService.getUsersList(req.body).then(function(data){
+			console.log('getUsersList worked');
+			res.status(200).send(data);
+		}, function(err){
+			console.log(err);
+			res.send(err);
+		})
+	};
 
-}
+};
