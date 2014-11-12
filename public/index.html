@@ -1,22 +1,69 @@
 <!DOCTYPE html>
 <html ng-app="lds-report">
 <head>
-	<title>lds-reporting</title>
-	<link rel="stylesheet" type="text/css" href="styles/styles.css">
-	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
-	 <link href='//fonts.googleapis.com/css?family=Roboto:100' rel='stylesheet' type='text/css'>
-	<link rel="stylesheet" type="text/css" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"></link>
+  <title>lds-reporting</title>
+  
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
+   <link href='//fonts.googleapis.com/css?family=Roboto:100' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"></link>
+  <link rel="stylesheet" type="text/css" href="styles/styles.css">
 
-	</head>
+  </head>
 <body>
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+         
+          <a class="navbar-brand" href="#">LDS Reportings</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+           
+            <li><a href="#">Logout</a></li>
+          </ul>
+          
+        </div>
+      </div>
+  </nav>
 
-	<nav class="navbar navbar-default" role="navigation">
-	  <div class="container-fluid logo-bar">
-	    <div class="navbar-header">
-	      <h2>LDS Reporting</h2>
-	    </div>
-	  </div>
-	</nav>
+  <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+          <ul class="nav nav-sidebar">
+            <ul>
+                <li >
+                  <a  href="form.html"><i class="fa fa-edit fa-4x"></i> Reports </a>
+                </li>
+                <li >
+                  <a  href="chart.html"><i class="fa fa-bar-chart-o fa-5x"></i> Trends</a>
+                </li>
+                <li>
+                  <a  href="index.html"><i class="fa fa-dashboard fa-3x"></i> Manage </a>
+                </li>
+           </ul>
+          
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" >
+          <h1 class="page-header">Dashboard</h1>
+          <div ng-view=''>
+
+          </div>
+
+          
+
+          
+          </div>
+        </div>
+      </div>
+    </div>
+<!-- 
+  <nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid logo-bar">
+      <div class="navbar-header">
+        <h2>LDS Reporting</h2>
+      </div>
+    </div>
+  </nav>
 
 <div ng-view>
 </div>
@@ -37,12 +84,12 @@
                     </ul>       
               </nav>  
         </div>
-        <!-- /. NAV SIDE  -->
-          <div class="col-md-10 right-content">
+        <!- /. NAV SIDE  -->
+        <!--   <div class="col-md-10 right-content">
            <p>Testing the position</p>
             </div>
      </div>
-
+ -->
 
 <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.js"></script>
 <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular-resource.min.js"></script> -->
