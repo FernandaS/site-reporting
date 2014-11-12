@@ -9,9 +9,12 @@ app.controller('reportsCtrl', function($scope, reportService, centerService){
 	var date = new Date();
 	$scope.year = date.getFullYear();
 	$scope.month = date.getMonth();
-	// reportService.getListBy(month, year).then(function(data){
-	// 	$scope.reports = data.data;
-	// })
+	$scope.updateSelectDate = function(){
+		$scope.reportDate = $scope.selectedMonth + ' 1, ' + $scope.selectedYear
+		// reportService.getListBy($scope.updateSelectDate).then(function(data){
+		// 	$scope.reports = data.data;
+		// })
+	}
 	// centerService.getAll().then(function(data){
 	// 	$scope.centers = data.data;
 	// })
