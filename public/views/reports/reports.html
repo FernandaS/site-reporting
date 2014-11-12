@@ -5,7 +5,7 @@
 <select ng-init='selectedYear = year' ng-options='value for value in years' ng-model='selectedYear' ng-change='updateSelectDate()'></select>
 <select ng-init='selectedMonth = months[month]; updateSelectDate()' ng-options='value for value in months' ng-model='selectedMonth' ng-change="updateSelectDate()"></select><br>
 Individual reports for {{selectedMonth}}, {{selectedYear}}
-<br>{{reportDate}}
+<br>
 <span ng-repeat='center in centers'>
 	<span ng-show='!reports[center.name]'>Not Reported</span>
 	<span ng-show='reports[center.name]'><a ng-href='/reports/{{reports[center.name][_id]}}'>Reported</a></span>
