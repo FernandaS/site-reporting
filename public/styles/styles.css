@@ -38,3 +38,10 @@
 	border-radius: 8px;
 }
 
+.panel-heading {
+	border-bottom: 1px solid gray;
+	width: 100%;
+	height: 45px;
+}
+
+
