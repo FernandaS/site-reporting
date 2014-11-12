@@ -15,8 +15,6 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 //passport.use(new LocalStrategy());
-var test = require('./models/index');
-
 app.listen(port, function(){
 	console.log('Listening at ' + port);
 });

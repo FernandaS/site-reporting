@@ -1,7 +1,8 @@
 module.exports = function(sequelize, DataTypes) {
   return sequelize.define('reports', { 
-    month: {
-      type: DataTypes.STRING(10),
+    //when building date new Date(Date.parse("Jul 8, 2014"))
+    date: {
+      type: DataTypes.DATE,
       allowNull: false
     },
     visitor_total: {
