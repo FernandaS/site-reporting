@@ -23,14 +23,13 @@ function reportService($http){
 		})
 	}
 
-
-
 	this.getOneBy = function(center, date){
 		return $http({
 			method: 'GET',
 			url: '/api/reports/' + center + '/'/*ADD PARAMS HERE*/
 		})
 	}
+
 	this.create = function(){
 		return $http({
 			method: 'POST',

@@ -1,3 +1,61 @@
+  <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+     <div class="container-fluid">
+       <div class="navbar-header">
+        
+         <a class="navbar-brand" href="#">LDS Reportings</a>
+       </div>
+       <div id="navbar" class="navbar-collapse collapse">
+         <ul class="nav navbar-nav navbar-right">
+          
+           <li><a href="#">Logout</a></li>
+         </ul>
+         
+       </div>
+     </div>
+ </nav>
+
+ <div class="container-fluid">
+     <div class="row">
+       <div class="col-sm-3 col-md-2 sidebar">
+         <ul class="nav nav-sidebar">
+           <ul>
+               <li >
+                 <a  href="form.html"><i class="fa fa-edit fa-4x"></i> Reports </a>
+               </li>
+               <li >
+                 <a  href="chart.html"><i class="fa fa-bar-chart-o fa-5x"></i> Trends</a>
+               </li>
+               <li>
+                 <a  href="index.html"><i class="fa fa-dashboard fa-3x"></i> Manage </a>
+               </li>
+          </ul>
+         
+       </div>
+       <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" ng-view=''>
+         <h1 class="page-header">Dashboard</h1>
+
+         
+
+         <h2 class="sub-header">Section title</h2>
+         
+         </div>
+       </div>
+     </div>
+
+<!-- 	<div class="col-md-10 right-content">
+          	{{year}}
+				{{month}}
+				<select ng-init='selectedYear = year' ng-options='value for value in years' ng-model='selectedYear'></select>
+				<select ng-init='selectedMonth = months[month]' ng-options='value for value in months' ng-model='selectedMonth'></select><br>
+				Individual reports for {{selectedMonth}}, {{selectedYear}}
+				<br>
+				<span ng-repeat='center in centers'>
+					<span ng-show='!reports[center.name]'>Not Reported</span>
+					<span ng-show='reports[center.name]'><a ng-href='/reports/{{reports[center.name][_id]}}'>Reported</a></span>
+					 | {{center.name}}
+				</span>
+ -->
+
 <!-- <h1>Reports Route</h1> -->
 <!-- {{date}}
 {{year}}
