@@ -7,26 +7,26 @@ function reportService($http){
 	this.getAllBy = function(date){
 		return $http({
 			method: 'GET',
-			url: '/api/reports/' /*ADD PARAMS HERE*/
+			url: '/api/reports?month=' + date;
 		})
 	}
 	this.getAllFrom = function(start, end){
 		return $http({
 			method: 'GET',
-			url: '/api/reports/' /*ADD PARAMS HERE*/
+			url: '/api/reports?start=' + start + '&end=' + end
 		})
 	}
 	this.getListBy = function(date){
 		return $http({
 			method: 'GET',
-			url: '/api/reports/list' /*ADD PARAMS HERE*/
+			url: '/api/reports/list?month=' + date
 		})
 	}
 
 	this.getOneBy = function(center, date){
 		return $http({
 			method: 'GET',
-			url: '/api/reports/' + center + '/'/*ADD PARAMS HERE*/
+			url: '/api/reports/' + center + '?month=' + date
 		})
 	}
 
