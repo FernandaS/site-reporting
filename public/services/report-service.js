@@ -42,7 +42,6 @@ function reportService($http){
 		})
 	}
 
-
 	this.create = function(){
 		return $http({
 			method: 'POST',
