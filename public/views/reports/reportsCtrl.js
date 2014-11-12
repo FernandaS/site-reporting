@@ -4,8 +4,9 @@ app.controller('reportsCtrl', function($scope, reportService, centerService){
 	$scope.reports = [];
 	$scope.centers = [{name:'Temple Square'}];
 
-	$scope.years = [2011, 2012, 2013, 2014];
+	$scope.years = [2011, 2012, 2013, 2014, 2015];
 	$scope.months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+
 	var date = new Date();
 	$scope.year = date.getFullYear();
 	$scope.month = date.getMonth();
