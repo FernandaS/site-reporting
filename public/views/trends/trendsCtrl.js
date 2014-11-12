@@ -11,7 +11,8 @@ app.controller('trendsCtrl', function($scope){
 	$scope.year = date.getFullYear();
 	$scope.month = date.getMonth();
 
-	var start = 
+	var start = new Date($scope.year - 1, $scope.month);
+	var end = date;
 	// reportService.getAllLFrom(start, end).then(function(data){
 	// 	$scope.reports = data.data;
 	// })

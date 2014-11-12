@@ -14,7 +14,7 @@ app.config(['$routeProvider', function($routeProvider){
 		})
 		.when('/trends', {
 			templateUrl: '/views/trends/trends.html',
-			controller: 'trendCtrl'
+			controller: 'trendsCtrl'
 		})
 		.when('/manage', {
 			templateUrl: '/views/manage/manage.html',
