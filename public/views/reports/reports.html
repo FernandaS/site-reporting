@@ -2,16 +2,12 @@
 <!-- {{date}}
 {{year}}
 {{month}} -->
-<!-- <select ng-init='selectedYear = year' ng-options='value for value in years' ng-model='selectedYear'></select>
-<select ng-init='selectedMonth = months[month]' ng-options='value for value in months' ng-model='selectedMonth'></select><br>
+<select ng-init='selectedYear = year' ng-options='value for value in years' ng-model='selectedYear' ng-change='updateSelectDate()'></select>
+<select ng-init='selectedMonth = months[month]; updateSelectDate()' ng-options='value for value in months' ng-model='selectedMonth' ng-change="updateSelectDate()"></select><br>
 Individual reports for {{selectedMonth}}, {{selectedYear}}
-<br>
+<br>{{reportDate}}
 <span ng-repeat='center in centers'>
 	<span ng-show='!reports[center.name]'>Not Reported</span>
 	<span ng-show='reports[center.name]'><a ng-href='/reports/{{reports[center.name][_id]}}'>Reported</a></span>
 	 | {{center.name}}
-<<<<<<< HEAD
 </span>
-=======
-</span> -->
->>>>>>> a05c61d6b9e38d6f706732abe7150a9e4d2f3936
