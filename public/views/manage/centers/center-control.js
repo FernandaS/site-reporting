@@ -1,5 +1,5 @@
 angular.module('lds-report')
-	.controller('submitReportCtrl', submitReportCtrl)
+	.controller('centerCtrl', submitReportCtrl)
 
 function submitReportCtrl($scope, centerService){
 	$scope.test = 'Thisis a test.....'
