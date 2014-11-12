@@ -6,11 +6,6 @@
 }
 
 
-.login-box {
-	border: 1px solid gray;
-	border-radius: 8px;
-}
-
 .sidebar-content {
 	width: 20%;
 }
@@ -34,5 +29,12 @@
 
 .navList ul li a:hover {
 	text-decoration: none;
+}
+
+/*Login page styling*/
+
+.login-box {
+	border: 1px solid gray;
+	border-radius: 8px;
 }
 
