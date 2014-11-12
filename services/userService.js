@@ -6,9 +6,11 @@ var services = {
 	addUser: addUser
 };
 
-module.exports = function(){
-	return services;
-};
+// module.exports = function(){
+// 	return services;
+// };
+
+module.exports = services;
 
 //logic
 function addUser(uData){
