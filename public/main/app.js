@@ -26,6 +26,10 @@ app.config(['$routeProvider', function($routeProvider){
 			templateUrl: '/views/director/director.html',
 			controller: 'directorCtrl'
 		})
+		.when('/director/submit', {
+			templateUrl: '/views/submit-report/submit.html',
+			controller: 'submitReportCtrl'
+		})
 
 		
 		.otherwise({
