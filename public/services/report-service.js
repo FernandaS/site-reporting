@@ -28,6 +28,12 @@ function reportService($http){
 			url: '/api/reports/' /*ADD PARAMS HERE*/
 		})
 	}
+	this.getAllFrom = function(start, end){
+		return $http({
+			method: 'GET',
+			url: '/api/reports/' /*ADD PARAMS HERE*/
+		})
+	}
 
 	// this.getList = function(){
 	// 	return $http({
