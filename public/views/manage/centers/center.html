@@ -1,0 +1,21 @@
+<form>
+	<input type='text' ng-model='newCenter.center' placeholder='Center' />
+	<br>
+	<input type='text' ng-model='newCenter.alias' placeholder='Alias' />
+	<br>
+	<input type='text' ng-model='newCenter.type' placeholder='Type' />
+	<br>
+	<input type='text' ng-model='newCenter.city' placeholder='City' />
+	<br>
+	<input type='text' ng-model='newCenter.state' placeholder='state' />
+	<br>
+	<input type='text' ng-model='newCenter.country' placeholder='country'/>
+	<br>
+	Active:
+	<input type='radio' ng-model='newCenter.active' value='YES' checked>True</input>
+	<input type='radio' ng-model='newCenter.active' value='NO'>False</input>
+	<br>
+	<button ng-click='submitCenter()'>Submit</button><button ng-click='clearCenter()'>Clear</button>
+	<br>
+	<div ng-show='results' ng-style='resultsStyle'>{{results}}</div>
+</form>

@@ -17,10 +17,11 @@ function centerService($http){
 		})
 	}
 
-	this.create = function(){
+	this.create = function(data){
 		return $http({
 			method: 'POST',
-			url: '/api/centers'
+			url: '/api/centers',
+			data: data
 		})
 	}
 	this.edit = function(id, change){

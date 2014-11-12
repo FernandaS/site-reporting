@@ -6,9 +6,11 @@ var services = {
 	addEmail: addEmail
 };
 
-module.exports = function(){
-	return services;
-};
+// module.exports = function(){
+// 	return services;
+// };
+
+module.exports = services;
 
 //logic
 function addEmail(eData){

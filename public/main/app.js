@@ -20,12 +20,20 @@ app.config(['$routeProvider', function($routeProvider){
 			templateUrl: '/views/manage/manage.html',
 			controller: 'manageCtrl'
 		})
+		.when('/manage/centers', {
+			templateUrl: '/views/manage/centers/center.html',
+			controller: 'centerCtrl'
+		})
 
 		//DIRECTOR
 		.when('/director', {
 			templateUrl: '/views/director/director.html',
 			controller: 'directorCtrl'
 		})
+		// .when('/director/submit', {
+		// 	templateUrl: '/views/submit-report/submit.html',
+		// 	controller: 'submitReportCtrl'
+		// })
 
 		
 		.otherwise({
