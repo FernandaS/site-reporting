@@ -8,7 +8,9 @@ var express = require('express'),
 	LocalStrategy = require('passport-local').Strategy,
 	port = env.expressPort,
 	centersCtrl = require('./server-assets/controllers/centersCtrl'),
-	usersCtrl = require('./server-assets/controllers/usersCtrl');
+	usersCtrl = require('./server-assets/controllers/usersCtrl'),
+	reportsCtrl = require('./server-assets/controllers/reportsCtrl');
+	// authCtrl = require('./server-assets/controllers/authCtrl');
 
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());
@@ -30,9 +32,18 @@ app.post('/api/users', usersCtrl.addUser);
 app.put('/api/users/:id', usersCtrl.putUser);
 app.delete('/api/users/:id', usersCtrl.deleteUser);
 
-// Report apis
+// Report apis, will add the apis with params after I figure it out. Or Aaron figures it out.
+app.post('/api/reports', reportsCtrl.addReport);
+app.put('/api/reports/:id', reportsCtrl.editReport);
+app.delete('/api/reports/:id', reportsCtrl.deleteReport);
 
-
+// Auth apis
+// app.post('/api/login', authCtrl.login);
+// app.get('/api/user/me', authCtrl.getCurrentUser);
+app.post('/api/logout', function(req, res){
+	req.logout();
+	res.redirect('#/login');
+});
 
 //passport.use(new LocalStrategy());
 app.listen(port, function(){
