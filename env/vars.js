@@ -4,5 +4,5 @@ module.exports = {
 	dbHost: '104.236.13.205',
 	dbUser: 'lds',
 	dbPass: 'hartwell1',
-	dbName: 'visitorcenter'
-}
+	dbName: 'ldscenter'
+};
