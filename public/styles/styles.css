@@ -1,3 +1,27 @@
+.listGroupSiteNames{
+	overflow: scroll;
+	height: 200px;
+	width: 100%;
+}
+
+.listGroupSiteNamesButton{
+	float: right;
+}
+
+.globalReports{
+	display: flex;
+	background-color: #f5f5f5;
+}
+
+.globalReports p {
+	margin-right: 5%;
+	margin-left: 5%;
+}
+
+.globalReports p:hover {
+	text-decoration: underline;
+	font-weight: 700;
+}
 
 /**.logo-bar {
 

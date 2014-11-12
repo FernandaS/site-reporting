@@ -1,71 +1,108 @@
-  <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-     <div class="container-fluid">
-       <div class="navbar-header">
-        
-         <a class="navbar-brand" href="#">LDS Reportings</a>
-       </div>
-       <div id="navbar" class="navbar-collapse collapse">
-         <ul class="nav navbar-nav navbar-right">
-          
-           <li><a href="#">Logout</a></li>
-         </ul>
-         
-       </div>
-     </div>
- </nav>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Reports</h3>
+  </div>
+  <div class="panel-body">
+        <!-- <h1>Reports Route</h1> -->
+        <!-- {{date}}
+      {{year}}
+      {{month}} -->
+      Select month: <select ng-init='selectedMonth = months[month]; updateSelectDate()' ng-options='value for value in months' ng-model='selectedMonth' ng-change="updateSelectDate()"></select>
+      <select ng-init='selectedYear = year' ng-options='value for value in years' ng-model='selectedYear' ng-change='updateSelectDate()'></select><br/>
+      <hr/>
+      Individual reports for {{selectedMonth}}, {{selectedYear}}
+      <br>
 
- <div class="container-fluid">
-     <div class="row">
-       <div class="col-sm-3 col-md-2 sidebar">
-         <ul class="nav nav-sidebar">
-           <ul>
-               <li >
-                 <a  href="form.html"><i class="fa fa-edit fa-4x"></i> Reports </a>
-               </li>
-               <li >
-                 <a  href="chart.html"><i class="fa fa-bar-chart-o fa-5x"></i> Trends</a>
-               </li>
-               <li>
-                 <a  href="index.html"><i class="fa fa-dashboard fa-3x"></i> Manage </a>
-               </li>
-          </ul>
-         
-       </div>
-       <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" ng-view=''>
-         <h1 class="page-header">Dashboard</h1>
+<!-- ng-repeat for li items
+Set li class to "list-group-item-info" (blue) and show "view" button if report has been received
+Set li class to "list-group-item-danger" (red) and hide "view" button if report has not been received -->
 
-         
+      <div class="listGroupSiteNames">
+       <ul class="list-group">
+          <li class="list-group-item list-group-item-info">Kirtland<button class="btn btn-default listGroupSiteNamesButton" data-toggle="modal" data-target="#viewButtonModal">View</button></li>
+          <li class="list-group-item list-group-item-danger">Mormon Trail</li>
+          <li class="list-group-item list-group-item-info">Arizona Temple<button class="btn btn-default listGroupSiteNamesButton" data-toggle="modal" data-target="#viewButtonModal">View</button></li>
+          <li class="list-group-item list-group-item-info">Hawaii Temple<button class="btn btn-default listGroupSiteNamesButton" data-toggle="modal" data-target="#viewButtonModal">View</button></li>
+          <li class="list-group-item list-group-item-danger">Hill Cumorah</li>
+          <li class="list-group-item list-group-item-info">Idaho Falls<button class="btn btn-default listGroupSiteNamesButton" data-toggle="modal" data-target="#viewButtonModal">View</button></li>
+          <li class="list-group-item list-group-item-danger">Independence</li>
+        </ul>
+      </div>  
 
-         <h2 class="sub-header">Section title</h2>
-         
-         </div>
-       </div>
-     </div>
+      <br/>
+      <span ng-repeat='center in centers'>
+        <span ng-show='!reports[center.name]'>Not Reported</span>
+        <span ng-show='reports[center.name]'><a ng-href='/reports/{{reports[center.name][_id]}}'>Reported</a></span>
+         | {{center.name}}
+      </span>
+      <br/>
+        <div class="panel panel-default">
+          <div class="panel-body globalReports">
+            Global reports:<p>{{selectedMonth}}</p><p>Year through {{selectedYear}}</p><p>Grand totals for {{selectedMonth}}</p>
+          </div>
+        </div>
+        <div class="btn-group" role="group" aria-label="...">
+          <!-- Button trigger modal -->
+          <button type="button" class="btn btn-default" data-toggle="modal" data-target="#customSiteReportModal">Create Custom Site Report</button>
+          <!-- Button trigger modal -->
+          <button type="button" class="btn btn-default" data-toggle="modal" data-target="#addSiteMonthReportModal">Add Site Month Report</button>
+        </div>
+  </div>
+</div>
 
-<!-- 	<div class="col-md-10 right-content">
-          	{{year}}
-				{{month}}
-				<select ng-init='selectedYear = year' ng-options='value for value in years' ng-model='selectedYear'></select>
-				<select ng-init='selectedMonth = months[month]' ng-options='value for value in months' ng-model='selectedMonth'></select><br>
-				Individual reports for {{selectedMonth}}, {{selectedYear}}
-				<br>
-				<span ng-repeat='center in centers'>
-					<span ng-show='!reports[center.name]'>Not Reported</span>
-					<span ng-show='reports[center.name]'><a ng-href='/reports/{{reports[center.name][_id]}}'>Reported</a></span>
-					 | {{center.name}}
-				</span>
- -->
+<!-- View Button Modal -->
+<div class="modal fade" id="viewButtonModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">View Single Report</h4>
+      </div>
+      <div class="modal-body">
+        View report Modal      
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
 
-<!-- <h1>Reports Route</h1> -->
-<!-- {{date}}
-{{year}}
-{{month}} -->
-<select ng-init='selectedYear = year' ng-options='value for value in years' ng-model='selectedYear' ng-change='updateSelectDate()'></select>
-<select ng-init='selectedMonth = months[month]; updateSelectDate()' ng-options='value for value in months' ng-model='selectedMonth' ng-change="updateSelectDate()"></select><br>
-Individual reports for {{selectedMonth}}, {{selectedYear}}
-<br>
-<span ng-repeat='center in centers'>
-	<span ng-show='!reports[center.name]'>Not Reported</span>
-	<span ng-show='reports[center.name]'><a ng-href='/reports/{{reports[center.name][_id]}}'>Reported</a></span>
-	 | {{center.name}}
-</span>
+<!-- Create Custom Site Report Modal -->
+<div class="modal fade" id="customSiteReportModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        Custom Site Report Modal      
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Add Site Month Report Modal -->
+<div class="modal fade" id="addSiteMonthReportModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        Add Site Month Report Modal
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
