@@ -5,95 +5,73 @@ module.exports = {
 // rename reportService functions as necessary.
 // parse out the req into the obj once I get keys from Aaron
 	getReport: function (req, res) {
-		var obj = {}
-		reportsService.getReport(obj).then(function(err, res) {
-			if(err) {
-				console.log(err);
-				res.send(err);
-			} else {
-				console.log('getReport worked');
-				res.status(200).send(res);
-			};
-		});
+		reportService.getReport(req.body).then(function(data){
+			console.log('getReport worked');
+			res.status(200).send(data);
+		}, function(err){
+			console.log(err);
+			res.send(err);
+		})
 	},
 
 	addReport: function (req, res) {
-		var obj = {};
-		reportsService.addReport(obj).then(function(err, res) {
-			if(err) {
-				console.log(err);
-				res.send(err);
-			} else {
-				console.log('addReport worked');
-				res.status(200).send(res);
-			};
-		});
+		reportService.addReport(req.body).then(function(data){
+			console.log('addReport worked');
+			res.status(200).send(data);
+		}, function(err){
+			console.log(err);
+			res.send(err);
+		})
 	},
 
 	deleteReport: function (req, res) {
-		var obj = {}
-		reportsService.deleteReport(obj).then(function(err, res) {
-			if(err) {
-				console.log(err);
-				res.send(err);
-			} else {
-				console.log('deleteReport worked');
-				res.status(200).send(res);
-			};
-		});
+		reportService.deleteReport(req.body).then(function(data){
+			console.log('deleteReport worked');
+			res.status(200).send(data);
+		}, function(err){
+			console.log(err);
+			res.send(err);
+		})
 	},
-
 // may not use this function and just use getAllData
 	reportList: function (req, res) {
-		var obj = {}
-		reportsService.reportList(obj).then(function(err, res) {
-			if(err) {
-				console.log(err);
-				res.send(err);
-			} else {
-				console.log('reportList worked');
-				res.status(200).send(res);
-			};
-		});
+		reportService.reportList(req.body).then(function(data){
+			console.log('reportList worked');
+			res.status(200).send(data);
+		}, function(err){
+			console.log(err);
+			res.send(err);
+		})
 	},
 
 	getReportsList: function (req, res) {
-		var obj = {}
-		reportsService.getReportsList(obj).then(function(err, res) {
-			if(err) {
-				console.log(err);
-				res.send(err);
-			} else {
-				console.log('getReportsList worked');
-				res.status(200).send(res);
-			};
-		});
+		reportService.getReportsList(req.body).then(function(data){
+			console.log('getReportsList worked');
+			res.status(200).send(data);
+		}, function(err){
+			console.log(err);
+			res.send(err);
+		})
 	},
 
 	getAllData: function (req, res) {
-		var obj = {}
-		reportsService.getAllData(obj).then(function(err, res) {
-			if(err) {
-				console.log(err);
-				res.send(err);
-			} else {
-				console.log('getAllData worked');
-				res.status(200).send(res);
-			};
-		});
+		reportService.getAllData(req.body).then(function(data){
+			console.log('getAllData worked');
+			res.status(200).send(data);
+		}, function(err){
+			console.log(err);
+			res.send(err);
+		})
 	},
 
 	getRange: function (req, res) {
-		var obj = {}
-		reportsService.getRange(obj).then(function(err, res) {
-			if(err) {
-				console.log(err);
-				res.send(err);
-			} else {
-				console.log('getRange worked');
-				res.status(200).send(res);
-			};
-		});
+		reportService.getRange(req.body).then(function(data){
+			console.log('getRange worked');
+			res.status(200).send(data);
+		}, function(err){
+			console.log(err);
+			res.send(err);
+		})
 	};
 
 }
