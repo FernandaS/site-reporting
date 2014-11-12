@@ -1,4 +1,4 @@
-var reportService = require('./services/reportService');
+var reportService = require('../services/reportService');
 
 module.exports = {
 // remove console.logs after endpoints are working.
@@ -72,6 +72,6 @@ module.exports = {
 			console.log(err);
 			res.send(err);
 		})
-	};
+	}
 
 }
