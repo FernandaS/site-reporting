@@ -33,17 +33,17 @@ module.exports = {
 			res.send(err);
 		})
 	},
-// may not use this function and just use getAllData
-	reportList: function (req, res) {
-		reportService.reportList(req.body).then(function(data){
-			console.log('reportList worked');
+
+	editReport: function (req, res) {
+		reportService.editReport(req.body).then(function(data){
+			console.log('editReport worked');
 			res.status(200).send(data);
 		}, function(err){
 			console.log(err);
 			res.send(err);
 		})
 	},
-
+// may not use this function and just use getAllData
 	getReportsList: function (req, res) {
 		reportService.getReportsList(req.body).then(function(data){
 			console.log('getReportsList worked');
