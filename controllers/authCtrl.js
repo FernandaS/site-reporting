@@ -1,4 +1,4 @@
-var authService = require('./services/authService');
+var authService = require('../services/authService');
 
 module.exports = {
 // remove console.logs after endpoints are working.
@@ -32,6 +32,6 @@ module.exports = {
 			console.log(err);
 			res.send(err);
 		})
-	};
+	}
 
 }

@@ -1,4 +1,4 @@
-var userService = require('./services/userService');
+var userService = require('../services/userService');
 
 module.exports = {
 // remove console.logs after endpoints are working.
@@ -52,6 +52,6 @@ module.exports = {
 			console.log(err);
 			res.send(err);
 		})
-	};
+	}
 
 };
