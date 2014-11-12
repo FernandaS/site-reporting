@@ -37,6 +37,11 @@ app.post('/api/reports', reportsCtrl.addReport);
 app.put('/api/reports/:id', reportsCtrl.editReport);
 app.delete('/api/reports/:id', reportsCtrl.deleteReport);
 
+app.post('/api/test', function(req, res){
+	console.log(req.query.start, req.query.end);
+	res.end();
+})
+
 // Auth apis
 // app.post('/api/login', authCtrl.login);
 // app.get('/api/user/me', authCtrl.getCurrentUser);
