@@ -35,7 +35,7 @@ module.exports = {
 	},
 
 	deleteCenter: function (req, res) {
-		centerService.deleteCenter(req.body).then(function(data){
+		centerService.delCenter(req.body).then(function(data){
 			console.log('deleteCenter worked');
 			res.status(200).send(data);
 		}, function(err){

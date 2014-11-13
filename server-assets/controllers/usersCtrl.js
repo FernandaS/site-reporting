@@ -5,7 +5,7 @@ module.exports = {
 // rename userService functions as necessary.
 // sending req.body object. Keys will have been established on the front end
 	getUser: function (req, res) {
-		userService.getReport(req.body).then(function(data){
+		userService.getUser(req.body).then(function(data){
 			console.log('getUser worked');
 			res.status(200).send(data);
 		}, function(err){
@@ -35,7 +35,7 @@ module.exports = {
 	},
 
 	deleteUser: function (req, res) {
-		userService.deleteUser(req.body).then(function(data){
+		userService.delUser(req.body).then(function(data){
 			console.log('deleteUser worked');
 			res.status(200).send(data);
 		}, function(err){
