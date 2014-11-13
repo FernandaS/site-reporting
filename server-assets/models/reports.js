@@ -6,31 +6,31 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false
     },
     visitor_total: {
-      type: DataTypes.STRING(20),
+      type: DataTypes.INTEGER,
       allowNull: false
     },
     visitor_tour: {
-      type: DataTypes.STRING(20),
+      type: DataTypes.INTEGER,
       allowNull: false
     },
     visitor_tournonmember: {
-      type: DataTypes.STRING(30),
+      type: DataTypes.INTEGER,
       allowNull: false
     },
     referral_cards: {
-      type: DataTypes.STRING(20),
+      type: DataTypes.INTEGER,
       allowNull: false
     },
     referral_called: {
-      type: DataTypes.STRING(20),
+      type: DataTypes.INTEGER,
       allowNull: false
     },
     referral_inbound: {
-      type: DataTypes.STRING(20),
+      type: DataTypes.INTEGER,
       allowNull: false
     },
     referral_member: {
-      type: DataTypes.STRING(30),
+      type: DataTypes.INTEGER,
       allowNull: false
     },
     comments: {
