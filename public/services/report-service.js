@@ -5,6 +5,24 @@ angular.module('lds-report')
 //must be sent to server like the following string:
 //November 1, 2014
 
+/*
+When submitting a new center, the structure is as follows:
+
+var newReport = {
+  "date":"November 1, 2014",
+  "visitor_total":100,
+  "visitor_tour":20,
+  "visitor_tournonmember":18,
+  "referral_cards":35,
+  "referral_called":34,
+  "referral_inbound":35,
+  "referral_member":19,
+  "comments":"Such month, so goooood!"
+}
+
+*/
+
+
 function reportService($http){
 	this.getAllBy = function(date){
 		return $http({

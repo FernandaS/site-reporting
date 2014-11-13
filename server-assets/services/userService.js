@@ -33,4 +33,8 @@ function delUser(uData){
 	return Models.users.destroy({ id: uData.id});
 };
 
+function getUser(username){
+	return Models.users.find({where:{username: username}});
+};
+
 

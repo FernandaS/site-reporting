@@ -2,21 +2,22 @@ module.exports = function(sequelize, DataTypes) {
   return sequelize.define('centers', { 
     center: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      unique: true
     },
     alias: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: true
     },
     active: {
       type: DataTypes.ENUM('YES','NO'),
-      allowNull: false,
-      defaultValue: 'yes'
+      defaultValue: 'yes',
+      allowNull: true
     },
     type: {
       type: DataTypes.ENUM('CENTER','SITE'),
-      allowNull: false,
-      defaultValue: 'CENTER'
+      defaultValue: 'CENTER',
+      allowNull: true
     },
     city: {
       type: DataTypes.STRING,
