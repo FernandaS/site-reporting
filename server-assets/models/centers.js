@@ -2,7 +2,8 @@ module.exports = function(sequelize, DataTypes) {
   return sequelize.define('centers', { 
     center: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      unique: true
     },
     alias: {
       type: DataTypes.STRING,
