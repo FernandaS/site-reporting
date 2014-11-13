@@ -7,6 +7,7 @@ var express = require('express'),
 	bodyParser = require('body-parser'),
 	LocalStrategy = require('passport-local').Strategy,
 	port = env.expressPort,
+	User = require('./server-assets/models/users')
 	centersCtrl = require('./server-assets/controllers/centersCtrl'),
 	usersCtrl = require('./server-assets/controllers/usersCtrl'),
 	reportsCtrl = require('./server-assets/controllers/reportsCtrl');
@@ -18,10 +19,41 @@ app.use(session({ secret:  env.expressSecret, saveUninitialized: true, resave: t
 app.use(passport.initialize());
 app.use(passport.session());
 
-// Center apis
+passport.serializeUser(function(user, done) {
+	done(null, user.id);
+});
+
+passport.deserializeUser(function(id, done) {
+	 // User.find(id, function (err, user) {
+	 	done(err, user);
+	 // });
+});
+
+passport.use(new LocalStrategy(
+	function(username, password, done) {
+		User.find({ where: {username: username }}, function (err, user) {
+			if (err) {
+				return done(err);
+			} if (!user) {
+				return done(null, false, { message: 'Unkown user ' + username });
+			} if (!user.verifyPassword(password)) {
+				return done(null, false, { message: 'Invalid password' });
+			};
+		});
+	}));
+
+var requireAuth = function(req, res, next) {
+	if(!req.isAuthenticated()) {
+		return res.status(401).end();
+		res.redirect('#/login');
+	}
+	next();
+}
+
+// Center app
 app.get('/api/centers/:id', centersCtrl.getCenter);
 app.get('api/centers/', centersCtrl.centersList);
-app.post('/api/centers', centersCtrl.addCenter);
+app.post('/api/centers', passport.authenticate('local', { failureRedirect: '/login' }), centersCtrl.addCenter);
 app.put('/api/centers/:id', centersCtrl.putCenter);
 app.delete('/api/centers/:id', centersCtrl.deleteCenter);
 
