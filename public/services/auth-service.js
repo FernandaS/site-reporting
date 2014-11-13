@@ -14,7 +14,7 @@ app.service('authService', function($http){
 	this.getCurrentUser = function(){ 
 		return $http({
 			method: 'GET',
-			url: '/api/user/me'
+			url: '/api/users/me'
 		})
 	}
 	this.logout = function(){

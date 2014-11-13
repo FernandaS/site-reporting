@@ -6,7 +6,8 @@ var Promise = require('bluebird');
 var services = {
 	addUser: addUser,
 	putUser: putUser,
-	delUser: delUser
+	delUser: delUser,
+	getUser: getUser
 };
 
 module.exports = services;

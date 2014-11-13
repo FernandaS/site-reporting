@@ -13,7 +13,7 @@ module.exports = {
 			console.log(err);
 			res.send(err);
 		})
-	}/*,
+	},
 
 	getCurrentUser: function (req, res) {
 		authService.getCurrentUser(req.body).then(function(data){
@@ -24,5 +24,5 @@ module.exports = {
 			res.send(err);
 		})
 	}
-*/
+
 }
