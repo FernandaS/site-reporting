@@ -14,19 +14,39 @@ var express = require('express'),
 	reportsCtrl = require('./server-assets/controllers/reportsCtrl');
 	// authCtrl = require('./server-assets/controllers/authCtrl');
 
-passport.use(new LocalStrategy(
-	function(username, pass, done) {
-		userService.getUser(username).then(function (err, user) {
-			console.log(username);
-			if (err) {
-				return done(err);
-			} if (!user) {
-				return done(null, false, { message: 'Unknown user ' + username });
-			} if (user.password !== pass) {
-				return done(null, false, { message: 'Invalid password' });
-			};
-		});
-	}));
+app.use(express.static(__dirname + '/public'));
+app.use(bodyParser.json());
+app.use(session({ secret:  env.expressSecret, saveUninitialized: true, resave: true}));
+app.use(passport.initialize());
+app.use(passport.session());
+
+passport.serializeUser(function(user, done) {
+	console.log('serialize')
+	done(null, user.id);
+});
+
+passport.deserializeUser(function(id, done) {
+	console.log('Deserialize')
+	 User.find(id, function (err, user) {
+	 	done(err, user);
+	 });
+});
+
+passport.use(new LocalStrategy({
+	usernameField: 'username',
+	passwordField: 'password'
+},
+function(username, pass, done) {
+	userService.getUser(username).then(function (err, user) {
+		if (err) {
+			return done(err);
+		} if (!user) {
+			return done(null, false, { message: 'Unknown user ' + username });
+		} if (user.password !== pass) {
+			return done(null, false, { message: 'Invalid password' });
+		};
+	});
+}));
 
 var requireAuth = function(req, res, next) {
 	if(!req.isAuthenticated()) {
