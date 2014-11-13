@@ -21,7 +21,15 @@ app.use(passport.session());
 
 passport.session(new LocalStrategy(
 	function(username, password, done) {
-		User.
+		User.find({ where: {username: username }}, function (err, user) {
+			if (err) {
+				return done(err);
+			} if (!user) {
+				return done(null, false);
+			} if (!user.verifyPassword(password)) {
+				return done(null, false);
+			}
+		})
 	}))
 
 // Center apis
