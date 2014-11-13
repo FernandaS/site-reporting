@@ -8,7 +8,7 @@ var express = require('express'),
 	LocalStrategy = require('passport-local').Strategy,
 	port = env.expressPort,
 	userService = require('./server-assets/services/userService'),
-	authCtrl = require('./server-assets/controllers/authCtrl'),
+	// authCtrl = require('./server-assets/controllers/authCtrl'),
 	centersCtrl = require('./server-assets/controllers/centersCtrl'),
 	usersCtrl = require('./server-assets/controllers/usersCtrl'),
 	reportsCtrl = require('./server-assets/controllers/reportsCtrl');
@@ -61,6 +61,7 @@ app.put('/api/centers/:id', centersCtrl.putCenter);
 app.delete('/api/centers/:id', centersCtrl.deleteCenter);
 
 // User apis
+app.get('/api/users/me', usersCtrl.getCurrentUser);
 app.get('/api/users/:id', usersCtrl.getUser);
 app.get('/api/users', usersCtrl.getUsersList);
 app.post('/api/users', usersCtrl.addUser);
@@ -79,7 +80,7 @@ app.post('/api/test', function(req, res){
 })
 
 // Auth apis
-app.post('/api/login', passport.authenticate('local', { failureRedirect: '/login' }), authCtrl.login);
+app.post('/api/login', passport.authenticate('local', { failureRedirect: '/login' }), usersCtrl.getUser);
 // app.get('/api/user/me', authCtrl.getCurrentUser);
 app.post('/api/logout', function(req, res){
 	req.logout();
