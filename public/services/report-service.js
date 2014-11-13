@@ -1,13 +1,15 @@
 angular.module('lds-report')
 	.service('reportService', reportService);
 
-//ALL need testing
+//NOTE all date objects (date, start, end)
+//must be sent to server like the following string:
+//November 1, 2014
 
 function reportService($http){
 	this.getAllBy = function(date){
 		return $http({
 			method: 'GET',
-			url: '/api/reports?month=' + date;
+			url: '/api/reports?month=' + date
 		})
 	}
 	this.getAllFrom = function(start, end){
