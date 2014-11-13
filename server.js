@@ -25,9 +25,9 @@ passport.serializeUser(function(user, done) {
 });
 
 passport.deserializeUser(function(id, done) {
-	 // User.find(id, function (err, user) {
+	 User.find(id, function (err, user) {
 	 	done(err, user);
-	 // });
+	 });
 });
 
 passport.use(new LocalStrategy(
