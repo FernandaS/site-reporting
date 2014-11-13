@@ -3,7 +3,7 @@ var app = angular.module('lds-report');
 //ALL need testing
 
 app.service('authService', function($http){
-	this.login = function(creds){  
+	this.login = function(creds){
 		return $http({
 			method: 'POST',
 			url: '/api/login',
