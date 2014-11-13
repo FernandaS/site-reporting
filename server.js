@@ -51,7 +51,7 @@ var requireAuth = function(req, res, next) {
 }
 
 // Center app
-apis.get('/api/centers/:id', centersCtrl.getCenter);
+app.get('/api/centers/:id', centersCtrl.getCenter);
 app.get('api/centers/', centersCtrl.centersList);
 app.post('/api/centers', passport.authenticate('local', { failureRedirect: '/login' }), centersCtrl.addCenter);
 app.put('/api/centers/:id', centersCtrl.putCenter);
