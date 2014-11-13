@@ -19,23 +19,41 @@ app.use(session({ secret:  env.expressSecret, saveUninitialized: true, resave: t
 app.use(passport.initialize());
 app.use(passport.session());
 
-passport.session(new LocalStrategy(
+passport.serializeUser(function(user, done) {
+	done(null, user.id);
+});
+
+passport.deserializeUser(function(id, done) {
+	 // User.find(id, function (err, user) {
+	 	done(err, user);
+	 // });
+});
+
+passport.use(new LocalStrategy(
 	function(username, password, done) {
 		User.find({ where: {username: username }}, function (err, user) {
 			if (err) {
 				return done(err);
 			} if (!user) {
-				return done(null, false);
+				return done(null, false, { message: 'Unkown user ' + username });
 			} if (!user.verifyPassword(password)) {
-				return done(null, false);
-			}
-		})
-	}))
+				return done(null, false, { message: 'Invalid password' });
+			};
+		});
+	}));
 
-// Center apis
-app.get('/api/centers/:id', centersCtrl.getCenter);
+var requireAuth = function(req, res, next) {
+	if(!req.isAuthenticated()) {
+		return res.status(401).end();
+		res.redirect('#/login');
+	}
+	next();
+}
+
+// Center app
+apis.get('/api/centers/:id', centersCtrl.getCenter);
 app.get('api/centers/', centersCtrl.centersList);
-app.post('/api/centers', centersCtrl.addCenter);
+app.post('/api/centers', passport.authenticate('local', { failureRedirect: '/login' }), centersCtrl.addCenter);
 app.put('/api/centers/:id', centersCtrl.putCenter);
 app.delete('/api/centers/:id', centersCtrl.deleteCenter);
 
