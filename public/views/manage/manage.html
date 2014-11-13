@@ -4,8 +4,8 @@
 	   <div class="panel panel-default">
  		 <div class="panel-heading">
     	     <h3 class="panel-title iconi">Centers/Site 	
-    	     	<i class="fa fa-plus"></i>
-    	     	<i class="fa fa-pencil-square-o"></i>
+    	     	<i class="fa fa-plus" data-toggle="modal" data-target="#myModalEditDirector"></i>
+    	     	<i class="fa fa-pencil-square-o" data-toggle="modal" data-target="#EditCenter"></i>
     	     </h3>
          </div>
        		<div class="panel-body">
@@ -27,8 +27,8 @@
 	   <div class="panel panel-default">
  		 <div class="panel-heading">
     	     <h3 class="panel-title iconi">Director Profile
-    	    	<i class="fa fa-plus"></i>
-    	     	<i class="fa fa-pencil-square-o"></i>
+    	    	<i class="fa fa-plus" data-toggle="modal" data-target="#myModalDirectorPlus"></i>
+    	     	<i class="fa fa-pencil-square-o" data-toggle="modal" data-target="#myModalEditDirector"></i>
 			</h3>
          </div>
        		<div class="panel-body">
@@ -46,8 +46,8 @@
 		<div class="panel panel-default">
  		 <div class="panel-heading">
     	     <h3 class="panel-title iconi">Administrator
-    	    	<i class="fa fa-plus"></i>
-    	     	<i class="fa fa-pencil-square-o" data-toggle="modal" data-target="#myModal"></i>
+    	    	<i class="fa fa-plus" data-toggle="modal" data-target="#myModalAdminPlus"></i>
+    	     	<i class="fa fa-pencil-square-o" data-toggle="modal" data-target="#myModalAdminEdit"></i>
 			</h3>
          </div>
        		<div class="panel-body">
@@ -72,8 +72,8 @@
   Launch demo modal
 </button> -->
 
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<!-- Modal (edit) icon in the admin section-->
+<div class="modal fade" id="myModalAdminEdit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
           <div class="modal-header">
@@ -103,6 +103,181 @@
       	<button type="button" class="btn btn-primary">Delete Admin</button>
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal plus icon in the admin section-->
+<div class="modal fade" id="myModalAdminPlus" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+          <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">New Administrator</h4>
+      </div>
+      <div class="modal-body">
+     <form class="form-horizontal" role="form">
+			 <div class="form-group">
+			    <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+			    <div class="col-sm-6">
+			    <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+			    </div>
+			  </div>
+			   <div class="form-group">
+			    <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+			    <div class="col-sm-6">
+			    <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+			    </div>
+			  </div>
+
+			  <div class="form-group">
+			    <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+			    <div class="col-sm-6">
+			      <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
+			    </div>
+			 </div>
+  		</form>
+      </div>
+
+
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal (edit) icon in the Director Profile section-->
+<div class="modal fade" id="myModalEditDirector" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+          <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Edit Director Profile</h4>
+      </div>
+     <div class="modal-body">
+     
+      	<form class="form-horizontal" role="form">
+			  <div class="form-group">
+			    <label for="username" class="col-sm-2 control-label">Username</label>
+			    <div class="col-sm-6">
+			    <input type="username" class="form-control" id="username" placeholder="username">
+			    </div>
+			  </div>
+			   <div class="form-group">
+			    <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+			    <div class="col-sm-6">
+			    <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+			    </div>
+			  </div>
+
+			  <div class="form-group">
+			    <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+			    <div class="col-sm-6">
+			      <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
+			    </div>
+			  </div>
+  		</form>
+
+  		<div class="panel panel-default">
+	 		 <div class="panel-heading">
+	    	     <h3 class="panel-title iconi">Email
+	    	     </h3>
+	         </div>
+	       	 <div class="panel-body iconi">
+	    		<p>the added email goes here<i class="fa fa-times iconi"></i></p>
+	  		  </div>
+		</div>
+
+		<div class="form-group">
+			<div class="col-sm-5">
+				<input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+				<button type="button" class="btn btn-primary">Add Email</button>
+			</div>
+		</div>	
+
+
+
+ 	 </div>
+	<div class="modal-footer">
+      	<button type="button" class="btn btn-primary">Delete Director</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal (plus) icon in the Director Profile section-->
+
+<div class="modal fade" id="myModalDirectorPlus" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+          <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">New Director</h4>
+      </div>
+      <div class="modal-body">
+     <form class="form-horizontal" role="form">
+			 <div class="form-group">
+			    <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+			    <div class="col-sm-6">
+			    <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+			    </div>
+			  </div>
+			   <div class="form-group">
+			    <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+			    <div class="col-sm-6">
+			    <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+			    </div>
+			  </div>
+
+			  <div class="form-group">
+			    <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+			    <div class="col-sm-6">
+			      <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
+			    </div>
+			 </div>
+  		</form>
+      </div>
+
+
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal (Edit) icon in the center section-->
+
+<div class="modal fade" id="EditCenter" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+          <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Edit Center/Site</h4>
+      </div>
+      <div class="modal-body">
+     <form class="form-horizontal" role="form">
+			 <div class="form-group">
+			    <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+			    <div class="col-sm-6">
+			    <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+			    </div>
+  		</form>
+      </div>
+
+
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Submit</button>
       </div>
     </div>
   </div>
