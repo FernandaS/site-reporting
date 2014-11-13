@@ -4,7 +4,6 @@ var app = angular.module('lds-report');
 
 app.service('authService', function($http){
 	this.login = function(creds){
-		console.log(creds);
 		return $http({
 			method: 'POST',
 			url: '/api/login',
