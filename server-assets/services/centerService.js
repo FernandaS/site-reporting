@@ -26,16 +26,9 @@ function addCenter(cData){
 };
 
 function putCenter(cData){
-	return new Promise(function(resolve, reject){
-		Models.centers.find({where: {id: cData.userId}}).then(function(center){
-			return center.updateAttributes(cData.updatedValues);
-		}, function(err){
-			reject(err);
-		}).then(function(result){
-			resolve(result);
-		}, function(err){
-			reject(err);
-		});
-	}); 
+	return Models.centers.update(cData.updatedValues,
+ 	{
+    	where: { id: cData.id }
+ 	});
 };
 

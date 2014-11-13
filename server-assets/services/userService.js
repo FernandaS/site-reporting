@@ -21,17 +21,11 @@ function addUser(uData){
 	return user.save();
 };
 
-//updateAttributes will drop keys that are not columns in the database
 function putUser(uData){
-	return new Promise(function(resolve, reject){
-		Models.users.find({where: {id: uData.userId}}).then(function(user){
-			return user.updateAttributes(uData.updatedValues);
-		}, function(err){
-			reject(err);
-		}).then(function(result){
-			resolve(result);
-		}, function(err){
-			reject(err);
-		});
-	}); 
+	return Models.users.update(uData.updatedValues,
+ 	{
+    	where: { id: uData.id }
+ 	});
 };
+
+

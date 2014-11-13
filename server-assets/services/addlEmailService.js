@@ -20,16 +20,9 @@ function addEmail(eData){
 };
 
 function putAddlEmails(eData){
-	return new Promise(function(resolve, reject){
-		Models.addl_emails.find({where: {id: eData.emailId}}).then(function(center){
-			return center.updateAttributes(eData.updatedValues);
-		}, function(err){
-			reject(err);
-		}).then(function(result){
-			resolve(result);
-		}, function(err){
-			reject(err);
-		});
-	}); 
+	return Models.addl_emails.update(eData.updatedValues,
+ 	{
+    	where: { id: eData.id }
+ 	});
 };
 

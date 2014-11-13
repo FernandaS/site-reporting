@@ -27,17 +27,9 @@ function addReport(rData){
 	return report.save();
 };
 
-//updateAttributes will drop keys that are not columns in the database
 function putReport(rData){
-	return new Promise(function(resolve, reject){
-		Models.reports.find({where: {id: rData.reportId}}).then(function(report){
-			return report.updateAttributes(rData.updatedValues);
-		}, function(err){
-			reject(err);
-		}).then(function(result){
-			resolve(result);
-		}, function(err){
-			reject(err);
-		});
-	}); 
+	return Models.reports.update(rData.updatedValues,
+ 	{
+    	where: { id: rData.id }
+ 	});
 };
