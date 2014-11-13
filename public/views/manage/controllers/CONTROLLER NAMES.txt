@@ -13,3 +13,4 @@ report-create-custom-ctrl.js, 'reportCreateCustomCtrl'
 report-add-site-ctrl.js, 'reportAddSiteCtrl'
 
 ^^^WHAT DO YOU THINK OF THESE NAMES?
+^^^SOUNDS BRILLIANT TO ME!
