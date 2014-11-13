@@ -26,12 +26,12 @@ passport.use(new LocalStrategy(function(username, pass, done) {
 	});
 }));
 passport.serializeUser(function(user, done) {
-	console.log('serialize')
+	console.log(user);
+	console.log('are we human?');
 	done(null, user.id);
 });
 
 passport.deserializeUser(function(id, done) {
-	console.log('Deserialize')
 	 User.find(id, function (err, user) {
 	 	console.log(err, user)
 	 	done(err, user);
@@ -44,14 +44,19 @@ app.use(session({ secret:  env.expressSecret, saveUninitialized: true, resave: t
 app.use(passport.initialize());
 app.use(passport.session());
 
-
 var requireAuth = function(req, res, next) {
 	if(!req.isAuthenticated()) {
 		return res.status(401).end();
 		res.redirect('#/login');
 	}
 	next();
-}
+};
+
+app.use(express.static(__dirname + '/public'));
+app.use(bodyParser.json());
+app.use(session({ secret:  env.expressSecret, saveUninitialized: true, resave: true}));
+app.use(passport.initialize());
+app.use(passport.session());
 
 var authenticateUser = function(req, res, next) {
   passport.authenticate('local', function(err, user, info) {
@@ -72,7 +77,7 @@ app.put('/api/centers/:id', centersCtrl.putCenter);
 app.delete('/api/centers/:id', centersCtrl.deleteCenter);
 
 // User apis
-app.get('/api/users/me', usersCtrl.getCurrentUser);
+app.get('/api/users/me', passport.authenticate('local', { failureRedirect: '#/login' }), usersCtrl.getCurrentUser);
 app.get('/api/users/:id', usersCtrl.getUser);
 app.get('/api/users', usersCtrl.getUsersList);
 app.post('/api/users', usersCtrl.addUser);
