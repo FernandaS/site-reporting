@@ -1,20 +1,17 @@
-var database = require('../models/index');
-var models = database.models;
-var sequelize = database.sequelize;
-
+var Database = require('../models/index');
+var Models = Database.models;
+var Sequelize = Database.sequelize;
+var Promise = require('bluebird');
 var services = {
-	addReport: addReport
+	addReport: addReport,
+	putReport: putReport
 };
-
-// module.exports = function(){
-// 	return services;
-// };
 
 module.exports = services;
 
 //logic
 function addReport(rData){
-	var report = models.reports.build({
+	var report = Models.reports.build({
 		userId: rData.userId,
 		centerId: rData.centerId,
 		date: rData.date,
@@ -30,3 +27,17 @@ function addReport(rData){
 	return report.save();
 };
 
+//updateAttributes will drop keys that are not columns in the database
+function putReport(rData){
+	return new Promise(function(resolve, reject){
+		Models.reports.find({where: {id: rData.reportId}}).then(function(report){
+			return report.updateAttributes(rData.updatedValues);
+		}, function(err){
+			reject(err);
+		}).then(function(result){
+			resolve(result);
+		}, function(err){
+			reject(err);
+		});
+	}); 
+};
