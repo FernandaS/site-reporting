@@ -41,14 +41,165 @@ Set li class to "list-group-item-danger" (red) and hide "view" button if report 
             Global reports:<p>{{selectedMonth}}</p><p>Year through {{selectedYear}}</p><p>Grand totals for {{selectedMonth}}</p>
           </div>
         </div>
-        <div class="btn-group" role="group" aria-label="...">
-          <!-- Button trigger modal -->
-          <button type="button" class="btn btn-default" data-toggle="modal" data-target="#customSiteReportModal">Create Custom Site Report</button>
-          <!-- Button trigger modal -->
-          <button type="button" class="btn btn-default" data-toggle="modal" data-target="#addSiteMonthReportModal">Add Site Month Report</button>
+
+        <!-- Button trigger modal -->
+      <button type="button" class="btn btn-default" data-toggle="modal" data-target="#create">
+         Create Custom Report
+      </button>
+
+      <button type="button" class="btn btn-default" data-toggle="modal" data-target="#addSite">
+         Add Site Month Report
+      </button>
+
+<!-- Create Custom Modal -->
+      <div class="modal fade" id="create" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+              <h4 class="modal-title" id="myModalLabel">Create Custom Report</h4>
+            </div>
+            <div class="modal-body">
+              <div class="panel panel-default">
+                <div class="panel-body">
+                  Select sites to use in report:
+                    <div class="listGroupSiteNames">
+                       <ul class="list-group">
+                          <a href="#" class="list-group-item">Kirtland</a>
+                          <a href="#" class="list-group-item">Mormon Trail</a>
+                          <a href="#" class="list-group-item">Hawaii Temple</a>
+                          <a href="#" class="list-group-item">Hill Cumorah</a>
+                          <a href="#" class="list-group-item">Idaho Falls</a>
+                          <a href="#" class="list-group-item">Independence</a>
+                        </ul>
+                      </div>  
+                </div>
+              </div>
+              <div class="panel panel-default">
+                <div class="panel-body">
+                  Select metrics to support:
+                     <div class="listGroupSiteNames">
+                       <ul class="list-group">
+                          <a href="#" class="list-group-item">Referrals(inbound)</a>
+                          <a href="#" class="list-group-item">Referrals(members)</a>
+                          <a href="#" class="list-group-item">Referrals(cards)</a>
+                          <a href="#" class="list-group-item">Non-members on tours</a>
+                          <a href="#" class="list-group-item">Visitors on tours</a>
+                          <a href="#" class="list-group-item">Total visitors</a>
+                        </ul>
+                      </div> 
+                </div>
+              </div>
+              <div class="panel panel-default">
+                 <div class="panel-body">
+                  Select date range: <br/>Start month
+                    <!-- Single button -->
+                    <div class="btn-group dropup">
+                      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                        Month <span class="caret"></span>
+                      </button>
+                      <ul class="dropdown-menu" role="menu">
+                        <li><a href="#">January</a></li>
+                        <li><a href="#">February</a></li>
+                        <li><a href="#">March</a></li>
+                        <li><a href="#">April</a></li>
+                        <li><a href="#">May</a></li>
+                        <li><a href="#">June</a></li>
+                        <li><a href="#">July</a></li>
+                        <li><a href="#">August</a></li>
+                        <li><a href="#">September</a></li>
+                        <li><a href="#">October</a></li>
+                        <li><a href="#">November</a></li>
+                        <li><a href="#">December</a></li>
+                      </ul>
+                    </div>
+                    Year:
+                    <div class="btn-group dropup">
+                      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                        Year: <span class="caret"></span>
+                      </button>
+                      <ul class="dropdown-menu" role="menu">
+                        <li><a href="#">2009</a></li>
+                        <li><a href="#">2010</a></li>
+                        <li><a href="#">2011</a></li>
+                        <li><a href="#">2012</a></li>
+                        <li><a href="#">2013</a></li>
+                        <li><a href="#">2014</a></li>
+                        <li><a href="#">2015</a></li>
+                      </ul>
+                    </div>
+                    <br/>
+                    End month:
+                    <div class="btn-group dropup">
+                      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                        Month <span class="caret"></span>
+                      </button>
+                      <ul class="dropdown-menu" role="menu">
+                        <li><a href="#">January</a></li>
+                        <li><a href="#">February</a></li>
+                        <li><a href="#">March</a></li>
+                        <li><a href="#">April</a></li>
+                        <li><a href="#">May</a></li>
+                        <li><a href="#">June</a></li>
+                        <li><a href="#">July</a></li>
+                        <li><a href="#">August</a></li>
+                        <li><a href="#">September</a></li>
+                        <li><a href="#">October</a></li>
+                        <li><a href="#">November</a></li>
+                        <li><a href="#">December</a></li>
+                      </ul>
+                    </div>
+          
+                    Year:
+                    <div class="btn-group dropup">
+                      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                        Year: <span class="caret"></span>
+                      </button>
+                      <ul class="dropdown-menu" role="menu">
+                        <li><a href="#">2009</a></li>
+                        <li><a href="#">2010</a></li>
+                        <li><a href="#">2011</a></li>
+                        <li><a href="#">2012</a></li>
+                        <li><a href="#">2013</a></li>
+                        <li><a href="#">2014</a></li>
+                        <li><a href="#">2015</a></li>
+                      </ul>
+                    </div>
+                </div>
+              </div>
+            </div>
+            <div class="customReportButtons">
+                <button type="button" class="btn btn-default">Grand totals</button>
+                <button type="button" class="btn btn-default">Breakdown by month</button>
+                <button type="button" class="btn btn-default">Breakdown by year</button>
+            </div>    
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+              <button type="button" class="btn btn-primary">Export to Excel</button>
+            </div>
+          </div>
         </div>
-  </div>
-</div>
+      </div>
+
+<!-- Add Site Modal -->
+      <div class="modal fade" id="addSite" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+              <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+            </div>
+            <div class="modal-body">
+              Add site
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
 
 <!-- View Button Modal -->
 <div class="modal fade" id="viewButtonModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -164,40 +315,3 @@ Set li class to "list-group-item-danger" (red) and hide "view" button if report 
   </div>
 </div>
 
-<!-- Create Custom Site Report Modal -->
-<div class="modal fade" id="customSiteReportModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-      </div>
-      <div class="modal-body">
-        Custom Site Report Modal      
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Add Site Month Report Modal -->
-<div class="modal fade" id="addSiteMonthReportModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-      </div>
-      <div class="modal-body">
-        Add Site Month Report Modal
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>

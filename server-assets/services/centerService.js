@@ -1,20 +1,19 @@
-var database = require('../models/index');
-var models = database.models;
-var sequelize = database.sequelize;
+var Database = require('../models/index');
+var Models = Database.models;
+var Sequelize = Database.sequelize;
+var Promise = require('bluebird');
 
 var services = {
-	addCenter: addCenter
+	addCenter: addCenter,
+	putCenter: putCenter,
+	delCenter: delCenter
 };
-
-// module.exports = function(){
-// 	return services;
-// };
 
 module.exports = services;
 
 //logic
 function addCenter(cData){
-	var center = models.centers.build({
+	var center = Models.centers.build({
 		userId: cData.userId,
 		center: cData.center,
 		alias: cData.alias,
@@ -25,5 +24,16 @@ function addCenter(cData){
 		country: cData.country
 	});
 	return center.save();
+};
+
+function putCenter(cData){
+	return Models.centers.update(cData.updatedValues,
+ 	{
+    	where: { id: cData.id }
+ 	});
+};
+
+function delCenter(cData){
+	return Models.users.destroy({ id: cData.id});
 };
 
