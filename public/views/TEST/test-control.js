@@ -9,14 +9,14 @@ google.setOnLoadCallback(function() {
 function testCtrl($scope){
 	$scope.test = 'TESTTTTT'
 	var data = google.visualization.arrayToDataTable([
-        ['Year', 'Sales', 'Expenses'],
-        ['2004', 1000, 400],
-        ['2005', 1170, 460],
-        ['2006', 660, 1120],
-        ['2007', 1030, 540]
+        ['Year', 'Visitors'],
+        ['2004', 100],
+        ['2005', 125],
+        ['2006', 250],
+        ['2007', 225]
       ]);
       var options = {
-        title: 'Company Performance'
+        title: 'Site Visitation'
       };
       var chart = new google.visualization.LineChart(document.getElementById('chartdiv'));
  

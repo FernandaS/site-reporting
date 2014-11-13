@@ -7,7 +7,8 @@ var express = require('express'),
 	bodyParser = require('body-parser'),
 	LocalStrategy = require('passport-local').Strategy,
 	port = env.expressPort,
-	User = require('./server-assets/models/users')
+	userService = require('./server-assets/services/userService'),
+	// authCtrl = require('./server-assets/controllers/authCtrl'),
 	centersCtrl = require('./server-assets/controllers/centersCtrl'),
 	usersCtrl = require('./server-assets/controllers/usersCtrl'),
 	reportsCtrl = require('./server-assets/controllers/reportsCtrl');
@@ -24,22 +25,24 @@ passport.serializeUser(function(user, done) {
 });
 
 passport.deserializeUser(function(id, done) {
-	 // User.find(id, function (err, user) {
+	 User.find(id, function (err, user) {
 	 	done(err, user);
-	 // });
+	 });
 });
 
 passport.use(new LocalStrategy(
-	function(username, password, done) {
-		User.find({ where: {username: username }}, function (err, user) {
+	function(username, pass, done) {
+		console.log('did i get this far?');
+		userService.getUser(username), function (err, user) {
+			console.log(username);
 			if (err) {
 				return done(err);
 			} if (!user) {
-				return done(null, false, { message: 'Unkown user ' + username });
-			} if (!user.verifyPassword(password)) {
+				return done(null, false, { message: 'Unknown user ' + username });
+			} if (user.password !== pass) {
 				return done(null, false, { message: 'Invalid password' });
 			};
-		});
+		};
 	}));
 
 var requireAuth = function(req, res, next) {
@@ -53,11 +56,12 @@ var requireAuth = function(req, res, next) {
 // Center app
 app.get('/api/centers/:id', centersCtrl.getCenter);
 app.get('api/centers/', centersCtrl.centersList);
-app.post('/api/centers', passport.authenticate('local', { failureRedirect: '/login' }), centersCtrl.addCenter);
+app.post('/api/centers', /*passport.authenticate('local', { failureRedirect: '/noworkieforyou' }),*/ centersCtrl.addCenter);
 app.put('/api/centers/:id', centersCtrl.putCenter);
 app.delete('/api/centers/:id', centersCtrl.deleteCenter);
 
 // User apis
+app.get('/api/users/me', usersCtrl.getCurrentUser);
 app.get('/api/users/:id', usersCtrl.getUser);
 app.get('/api/users', usersCtrl.getUsersList);
 app.post('/api/users', usersCtrl.addUser);
@@ -76,7 +80,7 @@ app.post('/api/test', function(req, res){
 })
 
 // Auth apis
-// app.post('/api/login', authCtrl.login);
+app.post('/api/login', passport.authenticate('local', { failureRedirect: '/login' }), usersCtrl.getUser);
 // app.get('/api/user/me', authCtrl.getCurrentUser);
 app.post('/api/logout', function(req, res){
 	req.logout();
