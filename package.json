@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/jasonalmaturner/lds-reporting",
   "dependencies": {
+    "bluebird": "^2.3.11",
     "body-parser": "^1.9.2",
     "express": "^4.10.2",
     "express-session": "^1.9.1",

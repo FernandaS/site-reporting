@@ -1,20 +1,18 @@
-var database = require('../models/index');
-var models = database.models;
-var sequelize = database.sequelize;
-
+var Database = require('../models/index');
+var Models = Database.models;
+var Sequelize = Database.sequelize;
+var Promise = require('bluebird');
 var services = {
-	addReport: addReport
+	addReport: addReport,
+	putReport: putReport,
+	delReport: delReport
 };
-
-// module.exports = function(){
-// 	return services;
-// };
 
 module.exports = services;
 
 //logic
 function addReport(rData){
-	var report = models.reports.build({
+	var report = Models.reports.build({
 		userId: rData.userId,
 		centerId: rData.centerId,
 		date: rData.date,
@@ -30,3 +28,13 @@ function addReport(rData){
 	return report.save();
 };
 
+function putReport(rData){
+	return Models.reports.update(rData.updatedValues,
+ 	{
+    	where: { id: rData.id }
+ 	});
+};
+
+function delReport(rData){
+	return Models.reports.destroy({ id: rData.id});
+};

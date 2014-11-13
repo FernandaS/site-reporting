@@ -1,20 +1,19 @@
-var database = require('../models/index');
-var models = database.models;
-var sequelize = database.sequelize;
+var Database = require('../models/index');
+var Models = Database.models;
+var Sequelize = Database.sequelize;
+var Promise = require('bluebird');
 
 var services = {
-	addUser: addUser
+	addUser: addUser,
+	putUser: putUser,
+	delUser: delUser
 };
-
-// module.exports = function(){
-// 	return services;
-// };
 
 module.exports = services;
 
 //logic
 function addUser(uData){
-	var user = models.users.build({
+	var user = Models.users.build({
 		username: uData.username,
 		password: uData.password,
 		role: uData.role,
@@ -22,3 +21,16 @@ function addUser(uData){
 	});
 	return user.save();
 };
+
+function putUser(uData){
+	return Models.users.update(uData.updatedValues,
+ 	{
+    	where: { id: uData.id }
+ 	});
+};
+
+function delUser(uData){
+	return Models.users.destroy({ id: uData.id});
+};
+
+

@@ -1,23 +1,33 @@
-var database = require('../models/index');
-var models = database.models;
-var sequelize = database.sequelize;
+var Database = require('../models/index');
+var Models = Database.models;
+var Sequelize = Database.sequelize;
+var Promise = require('bluebird');
 
 var services = {
-	addEmail: addEmail
+	addEmail: addEmail,
+	putEmail: putAddlEmails,
+	delEmail: delAddlEmail
 };
-
-// module.exports = function(){
-// 	return services;
-// };
 
 module.exports = services;
 
 //logic
 function addEmail(eData){
-	var email = models.addl_emails.build({
+	var email = Models.addl_emails.build({
 		userId: eData.userId,
 		email: eData.email
 	});
 	return email.save();
+};
+
+function putAddlEmails(eData){
+	return Models.addl_emails.update(eData.updatedValues,
+ 	{
+    	where: { id: eData.id }
+ 	});
+};
+
+function delAddlEmail(eData){
+	return Models.users.destroy({ id: eData.id});
 };
 
