@@ -2,8 +2,10 @@ angular.module('lds-report')
 	.service('reportService', reportService);
 
 //NOTE all date objects (date, start, end)
-//must be sent to server like the following string:
-//November 1, 2014
+//must be sent to server like the following three numbers(yyyy m d):
+//2014 10 01 <--
+//This is November 1, 2014.  The month is in base 0 (so, jan - 0,
+//dec - 11, etc.)
 
 /*
 When submitting a new center, the structure is as follows:
