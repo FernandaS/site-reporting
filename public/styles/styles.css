@@ -119,6 +119,7 @@
 
 .sidebar li {
 	list-style-type: none;
+	margin-bottom: 35px;
 }
 
 .page-header {
@@ -132,3 +133,13 @@
 	float: right;
 	margin-right: 5px;
 }
+
+
+/**{
+	border:1px solid red;
+}*/
+
+.form-pad {
+	margin-bottom: 30px;
+}
+
