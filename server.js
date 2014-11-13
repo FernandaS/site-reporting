@@ -32,7 +32,7 @@ passport.serializeUser(function(user, done) {
 });
 
 passport.deserializeUser(function(id, done) {
-	 User.find(id, function (err, user) {
+	 User.find({body: id}, function (err, user) {
 	 	console.log(err, user)
 	 	done(err, user);
 	 });
@@ -77,7 +77,7 @@ app.put('/api/centers/:id', centersCtrl.putCenter);
 app.delete('/api/centers/:id', centersCtrl.deleteCenter);
 
 // User apis
-app.get('/api/users/me', passport.authenticate('local', { failureRedirect: '#/login' }), usersCtrl.getCurrentUser);
+app.get('/api/users/me', usersCtrl.getCurrentUser);
 app.get('/api/users/:id', usersCtrl.getUser);
 app.get('/api/users', usersCtrl.getUsersList);
 app.post('/api/users', usersCtrl.addUser);
