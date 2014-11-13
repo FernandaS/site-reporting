@@ -134,7 +134,9 @@
 
 .iconi i {
 	float: right;
-	margin-right: 5px;
+	margin-right: 10px;
+	font-size: 25px;
+	padding: auto;
 }
 
 
@@ -144,5 +146,12 @@
 
 .form-pad {
 	margin-bottom: 30px;
+}
+
+.logo-church {
+	height:67px;
+	width: 125px;
+	margin-top: 125px;
+	margin-right: auto;
 }
 
