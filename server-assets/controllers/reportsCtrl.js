@@ -25,7 +25,7 @@ module.exports = {
 	},
 
 	deleteReport: function (req, res) {
-		reportService.deleteReport(req.body).then(function(data){
+		reportService.delReport(req.body).then(function(data){
 			console.log('deleteReport worked');
 			res.status(200).send(data);
 		}, function(err){
@@ -35,7 +35,7 @@ module.exports = {
 	},
 
 	editReport: function (req, res) {
-		reportService.editReport(req.body).then(function(data){
+		reportService.putReport(req.body).then(function(data){
 			console.log('editReport worked');
 			res.status(200).send(data);
 		}, function(err){
