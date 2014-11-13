@@ -7,6 +7,7 @@ var express = require('express'),
 	bodyParser = require('body-parser'),
 	LocalStrategy = require('passport-local').Strategy,
 	port = env.expressPort,
+	User = require('./server-assets/models/users')
 	centersCtrl = require('./server-assets/controllers/centersCtrl'),
 	usersCtrl = require('./server-assets/controllers/usersCtrl'),
 	reportsCtrl = require('./server-assets/controllers/reportsCtrl');
@@ -17,6 +18,11 @@ app.use(bodyParser.json());
 app.use(session({ secret:  env.expressSecret, saveUninitialized: true, resave: true}));
 app.use(passport.initialize());
 app.use(passport.session());
+
+passport.session(new LocalStrategy(
+	function(username, password, done) {
+		User.
+	}))
 
 // Center apis
 app.get('/api/centers/:id', centersCtrl.getCenter);
