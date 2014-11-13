@@ -7,7 +7,8 @@ var services = {
 	addUser: addUser,
 	putUser: putUser,
 	delUser: delUser,
-	getUser: getUser
+	getUser: getUser,
+	getUserById: getUserById
 };
 
 module.exports = services;
@@ -38,4 +39,6 @@ function getUser(username){
 	return Models.users.find({where:{username: username}});
 };
 
-
+function getUserById(id){
+	return Models.users.find({wher:{id:id}});
+}
