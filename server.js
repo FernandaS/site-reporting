@@ -25,14 +25,13 @@ passport.use(new LocalStrategy(function(username, pass, done) {
 		};
 	});
 }));
+
 passport.serializeUser(function(user, done) {
-	console.log(user);
-	console.log('are we human?');
 	done(null, user.id);
 });
 
 passport.deserializeUser(function(id, done) {
-	 User.find({body: id}, function (err, user) {
+	userService.getUserById({body:id}).then(id, function (err, user) {
 	 	console.log(err, user)
 	 	done(err, user);
 	 });
