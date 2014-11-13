@@ -54,7 +54,7 @@ Set li class to "list-group-item-danger" (red) and hide "view" button if report 
 <div class="modal fade" id="viewButtonModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header">
+      <div class="modal-header list-group-item-info">
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
         <h4 class="modal-title" id="myModalLabel">View Single Report</h4>
       </div>
@@ -65,34 +65,96 @@ Set li class to "list-group-item-danger" (red) and hide "view" button if report 
           </div>
           <div class="panel-body">
               <div class="panel panel-default">
-                <div class="panel-body">
+                <div class="panel-body monthlyReportBox">
                   Visitors Summary
-                  <ul>
+                 
                     <li>Total number of meaningful contacts:</li>
                     <li>Total number of people who took tours:</li>
                     <li>Total number of non-members who took tours:</li>
-                  </ul>
+                
                 </div>
               </div>
               <div class="panel panel-default">
-                <div class="panel-body">
+                <div class="panel-body monthlyReportBox">
                   Referrals Summary
-                    <ul>
                       <li>Those referring at the site:</li>
                       <li>Those referring when called after visiting the site:</li>
                       <li>Those referring with inbound calls:</li>
                       <li>Those referring whose names came from members:</li>
                       <li>Total referrals:</li>
-                  </ul>
+                 
                 </div>
               </div>
               <div class="panel panel-default">
                 <div class="panel-body">
                   Comments:
                 </div>
-              </div>     
+              </div> 
+              <div class="btn-group" role="group" aria-label="...">
+                <button type="button" class="btn btn-default">Print</button>
+                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#viewButtonNestedModalEdit">Edit</button>
+                <button type="button" class="btn btn-default">Delete</button>
+                <button type="button" class="btn btn-default">Close</button>
+              </div>    
           </div>
         </div>   
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- View Button Nested Modal Edit -->
+<div class="modal fade" id="viewButtonNestedModalEdit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header list-group-item-danger">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Edit Report</h4>
+      </div>
+      <div class="modal-body">
+              <div class="modal-body">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Visitors Center and Historic Site Monthly Report for: {{site.name}}</h3>
+          </div>
+          <div class="panel-body">
+              <div class="panel panel-default">
+                <div class="panel-body monthlyReportBox">
+                  Visitors Summary
+                 
+                    <li>Total number of meaningful contacts:<input class="inputFieldEdit" type="number"></li>
+                    <li>Total number of people who took tours:<input class="inputFieldEdit" type="number"></li>
+                    <li>Total number of non-members who took tours:<input class="inputFieldEdit" type="number"></li>
+                  
+                </div>
+              </div>
+              <div class="panel panel-default">
+                <div class="panel-body monthlyReportBox">
+                  Referrals Summary
+                   
+                      <li>Those referring at the site:<input class="inputFieldEdit" type="number"></li>
+                      <li>Those referring when called after visiting the site:<input class="inputFieldEdit" type="number"></li>
+                      <li>Those referring with inbound calls:<input class="inputFieldEdit" type="number"></li>
+                      <li>Those referring whose names came from members:<input class="inputFieldEdit" type="number"></li>
+                      <li>Total referrals:<input class="inputFieldEdit" type="number"></li>
+                  
+                </div>
+              </div>
+              <div class="panel panel-default">
+                <div class="panel-body">
+                  Comments:<input class="inputFieldEditComments" type="text">
+                </div>
+              </div> 
+              <div class="btn-group" role="group" aria-label="...">
+                <button type="button" class="btn btn-default">Cancel</button>
+                <button type="button" class="btn btn-default">Submit</button>
+              </div>    
+          </div>
+        </div>        
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

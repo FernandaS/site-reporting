@@ -23,6 +23,26 @@
 	font-weight: 700;
 }
 
+.monthlyReportBox li{
+	list-style-type: none;
+	padding: 1%;
+	line-height: 1.5;
+}
+
+.monthlyReportBox input {
+	width: 50px;
+
+}
+
+.inputFieldEdit {
+	float: right;
+}
+
+.inputFieldEditComments {
+	width: 95%;
+	height: 100px;
+}
+
 /**.logo-bar {
 
 	background-color: #003366 !important;
