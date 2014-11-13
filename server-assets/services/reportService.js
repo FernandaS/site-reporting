@@ -4,7 +4,8 @@ var Sequelize = Database.sequelize;
 var Promise = require('bluebird');
 var services = {
 	addReport: addReport,
-	putReport: putReport
+	putReport: putReport,
+	delReport: delReport
 };
 
 module.exports = services;
@@ -32,4 +33,8 @@ function putReport(rData){
  	{
     	where: { id: rData.id }
  	});
+};
+
+function delReport(rData){
+	return Models.reports.destroy({ id: rData.id});
 };

@@ -5,7 +5,8 @@ var Promise = require('bluebird');
 
 var services = {
 	addCenter: addCenter,
-	putCenter: putCenter
+	putCenter: putCenter,
+	delCenter: delCenter
 };
 
 module.exports = services;
@@ -30,5 +31,9 @@ function putCenter(cData){
  	{
     	where: { id: cData.id }
  	});
+};
+
+function delCenter(cData){
+	return Models.users.destroy({ id: cData.id});
 };
 

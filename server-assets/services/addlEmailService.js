@@ -5,7 +5,8 @@ var Promise = require('bluebird');
 
 var services = {
 	addEmail: addEmail,
-	putEmail: putAddlEmails
+	putEmail: putAddlEmails,
+	delEmail: delAddlEmail
 };
 
 module.exports = services;
@@ -24,5 +25,9 @@ function putAddlEmails(eData){
  	{
     	where: { id: eData.id }
  	});
+};
+
+function delAddlEmail(eData){
+	return Models.users.destroy({ id: eData.id});
 };
 
