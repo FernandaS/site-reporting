@@ -2,6 +2,15 @@ angular.module('lds-report')
 	.service('userService', userService);
 
 //ALL need testing
+/*
+When submitting a new user, the structure is as follows:
+var newUser = {
+  "username":"Enoch",
+  "password":"iRoq",
+  "role":"ADMIN",
+  "email":"enoch@zion.org"  
+}
+*/
 
 function userService($http){
 	this.getOne = function(id){
