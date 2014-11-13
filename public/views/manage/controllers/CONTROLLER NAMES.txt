@@ -7,9 +7,4 @@ site-edit-ctrl.js 'siteEditCtrl'
 
 ^^FOR YOU, FERNANDA AND ERIN
 
-report-add-ctrl.js, 'reportAddCtrl'
-report-edit-ctrl.js, 'reportEditCtrl'
-report-create-custom-ctrl.js, 'reportCreateCustomCtrl'
-report-add-site-ctrl.js, 'reportAddSiteCtrl'
 
-^^^WHAT DO YOU THINK OF THESE NAMES?
