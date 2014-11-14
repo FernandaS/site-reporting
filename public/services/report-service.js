@@ -3,12 +3,11 @@ angular.module('lds-report')
 
 //NOTE all date objects (date, start, end)
 //must be sent to server like the following three numbers(yyyy m d):
-//2014 10 01 <--
-//This is November 1, 2014.  The month is in base 0 (so, jan - 0,
-//dec - 11, etc.)
+//%Y-%m-%d
+//for example 2014-12-01 is December 1, 2014
 
 /*
-When submitting a new center, the structure is as follows:
+When submitting a new report, the structure is as follows:
 
 var newReport = {
   "date":"November 1, 2014",
@@ -36,12 +35,6 @@ function reportService($http){
 		return $http({
 			method: 'GET',
 			url: '/api/reports?start=' + start + '&end=' + end
-		})
-	}
-	this.getListBy = function(date){
-		return $http({
-			method: 'GET',
-			url: '/api/reports/list?month=' + date
 		})
 	}
 

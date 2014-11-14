@@ -44,9 +44,9 @@ module.exports = {
 		})
 	},
 
-	getUsersList: function (req, res) {
-		userService.getUsersList(req.body).then(function(data){
-			console.log('getUsersList worked');
+	getAllUsers: function (req, res) {
+		userService.getAllUsers().then(function(data){
+			console.log('getAllUsers worked');
 			res.status(200).send(data);
 		}, function(err){
 			console.log(err);

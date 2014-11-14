@@ -6,7 +6,7 @@ google.setOnLoadCallback(function() {
 		.controller('testCtrl', testCtrl);
 });
 
-function testCtrl($scope){
+function testCtrl($scope, userService){
 	$scope.test = 'TESTTTTT'
 	var data = google.visualization.arrayToDataTable([
         ['Year', 'Visitors'],
