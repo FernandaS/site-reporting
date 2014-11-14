@@ -32,6 +32,7 @@ function addReport(rData){
 };
 
 function putReport(rData){
+  console.log(rData);
 	return Models.reports.update(rData.updatedValues,
  	{
     	where: { id: rData.id }

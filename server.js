@@ -16,13 +16,13 @@ var express = require('express'),
 
 passport.use(new LocalStrategy(function(username, pass, done) {
 	userService.getUser(username).then(function (user) {
-		if (user) {
-			return done(null, user);
-		} if (!user) {
+		if (!user) {
 			return done(null, false, { message: 'Unknown user ' + username });
-		} if (user.password !== pass) {
+		}
+		if (user.password !== pass){
 			return done(null, false, { message: 'Invalid password' });
-		};
+		}
+		return done(null, user);
 	});
 }));
 
@@ -45,24 +45,25 @@ app.use(passport.session());
 // Center app
 app.get('/api/centers/:id', centersCtrl.getCenter);
 app.get('api/centers/', centersCtrl.centersList);
-app.post('/api/centers', /*passport.authenticate('local', { failureRedirect: '/noworkieforyou' }),*/ centersCtrl.addCenter);
+app.post('/api/centers', centersCtrl.addCenter);
 app.put('/api/centers/:id', centersCtrl.putCenter);
 app.delete('/api/centers/:id', centersCtrl.deleteCenter);
 
 // User apis
-// app.get('/api/users/me', usersCtrl.getCurrentUser);
 app.get('/api/users/me', function(req, res){
-	console.log('ME!')
 	res.json(req.user);
 });
 app.get('/api/users/:id', usersCtrl.getUser);
-app.get('/api/users', usersCtrl.getUsersList);
+app.get('/api/users', usersCtrl.getAllUsers);
 app.post('/api/users', usersCtrl.addUser);
 app.put('/api/users/:id', usersCtrl.putUser);
 app.delete('/api/users/:id', usersCtrl.deleteUser);
 
 // Report apis, will add the apis with params after I figure it out. Or Aaron figures it out.
-// app.get('/api/reports', )
+
+app.get('/api/reports/allBy', reportsCtrl.getAllBy); //month
+app.get('/api/reports/allFrom', reportsCtrl.getAllFrom); //month
+app.get('/api/reports/oneBy/:id', reportsCtrl.getOneBy); //center and month
 app.post('/api/reports', reportsCtrl.addReport);
 app.put('/api/reports/:id', reportsCtrl.editReport);
 app.delete('/api/reports/:id', reportsCtrl.deleteReport);
