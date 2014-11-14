@@ -20,9 +20,24 @@ app.controller('reportsCtrl', function($scope, reportService, centerService){
 	// centerService.getAll().then(function(data){
 	// 	$scope.centers = data.data;
 	// })
+	
+	var getAllCenters = function(){
+		centerService.getAll()
+			.then(function(response){
+				$scope.centers = response.data;
+			})
+	}
 
+	getAllCenters();
 
 	$scope.deleteReport = function(){
 		$scope.deleteReportWarning = !$scope.deleteReportWarning;
 	}
+
+	// $scope.getOneBy = function(center, date){
+	// 	reportService.getOneBy($scope.center, $scope.date)
+	// 		.then(function(response){
+	// 			$scope.monthlyReport = response.data;
+	// 		})
+	// }
 });
