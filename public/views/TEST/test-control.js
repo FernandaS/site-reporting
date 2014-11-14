@@ -22,10 +22,10 @@ function testCtrl($scope, userService){
  
       chart.draw(data, options);
       var newUser = {
-        username:"aaron",
+        username:"ean",
         password:"hartwell1",
         role:"ADMIN",
-        email:"aaron@gmail.com"  
+        email:"ean@gmail.com"  
       }
       userService.create(newUser).then(function(data){
         console.log(data);

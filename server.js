@@ -60,7 +60,7 @@ app.put('/api/users/:id', usersCtrl.putUser);
 app.delete('/api/users/:id', usersCtrl.deleteUser);
 
 // Report apis, will add the apis with params after I figure it out. Or Aaron figures it out.
-app.get('/api/reports', )
+// app.get('/api/reports', )
 app.post('/api/reports', reportsCtrl.addReport);
 app.put('/api/reports/:id', reportsCtrl.editReport);
 app.delete('/api/reports/:id', reportsCtrl.deleteReport);
