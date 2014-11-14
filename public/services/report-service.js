@@ -31,6 +31,7 @@ function reportService($http){
 			url: '/api/reports?date=' + date
 		})
 	}
+
 	this.getAllFrom = function(start, end){
 		return $http({
 			method: 'GET',
@@ -45,12 +46,14 @@ function reportService($http){
 		})
 	}
 
-	this.create = function(){
+	this.create = function(data){
 		return $http({
 			method: 'POST',
-			url: '/api/reports'
+			url: '/api/reports',
+			data: data
 		})
 	}
+
 	this.edit = function(id, change){
 		return $http({
 			method: 'PUT',
@@ -58,6 +61,7 @@ function reportService($http){
 			data: change
 		})
 	}
+
 	this.delete = function(id){
 		return $http({
 			method: 'DELETE',
