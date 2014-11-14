@@ -1,8 +1,8 @@
 var app = angular.module('lds-report');
 
-app.controller('siteAddCtrl', function($scope,centerService){
+app.controller('siteAddCtrl', submitReportCtrl)
 
-	function submitReportCtrl($scope, centerService){
+function submitReportCtrl($scope, centerService){
 	$scope.yes = 'YES';
 	$scope.no = 'NO';
 	$scope.newCenter = {};
@@ -14,7 +14,4 @@ app.controller('siteAddCtrl', function($scope,centerService){
 		})
 		// console.log($scope.newCenter)
 	}
-
-
-
-});
+}
