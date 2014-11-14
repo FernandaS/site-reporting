@@ -13,15 +13,17 @@
       Individual reports for {{selectedMonth}}, {{selectedYear}}
       <br>
 
-      <!-- ng-repeat for li items
-      Set li class to "list-group-item-info" (blue) and show "view" button if report has been received
-      Set li class to "list-group-item-danger" (red) and hide "view" button if report has not been received -->
-
-      <div class="listGroupSiteNames">
+     <!--  <div class="listGroupSiteNames">
         <ul class="list-group">
           <li class="list-group-item" ng-repeat="center in centers">{{center.name}}<button class="btn btn-default listGroupSiteNamesButton" data-toggle="modal" data-target="#viewButtonModal">View</button></li>
         </ul>
-      </div>  
+      </div>   -->
+
+       <div class="listGroupSiteNames">
+        <ul class="list-group">
+          <li class="list-group-item" ng-init='selectedCenter = center' ng-options='value for value in centers' ng-model='selectedCenter'><button class="btn btn-default listGroupSiteNamesButton" data-toggle="modal" data-target="#viewButtonModal">View</button></li>
+        </ul>
+      </div> 
 
       <br/>
       
@@ -61,14 +63,7 @@
               <div class="panel panel-default">
                 <div class="panel-body">
                     Select sites to use in report:
-                      <select class="selectpicker">
-                        <option>Kirtland</option>
-                        <option>Mormon Trail</option>
-                        <option>Hawaii Temple</option>
-                        <option>Hill Cumorah</option>
-                        <option>Idaho Falls</option>
-                        <option>Independence</option>
-                      </select>
+                      <select ng-init='selectedCenter = center' ng-options='value for value in centers' ng-model='newReport.center'></select>
                 </div>
               </div>
               <div class="panel panel-default">
@@ -167,17 +162,16 @@
             <div class="modal-body">
                 <div class="panel panel-default">
                 <div class="panel-heading">
-                  <h3 class="panel-title">Visitors Center and Historic Site Monthly Report for: {{site.name}}</h3><br/>
+                  <h3 class="panel-title">Visitors Center and Historic Site Monthly Report for: {{center.name}}</h3><br/>
                       Choose site:
-                      <select class="selectpicker">
-                        <option ng-repeat="center in centers" ng-model="newReport.center"></option>
-                      </select>
+                      <select ng-init='selectedCenter = center' ng-options='value for value in centers' ng-model='newReport.center'></select>
+                       
                        Month:
-                      <select class="selectpicker" ng-init='selectedMonth = months[month]' ng-options='value for value in months'></select> 
+                      <select ng-init='selectedMonth = months[month]' ng-options='value for value in months' ng-model='newReport.selectedMonth'></select>
                   
                       Date:
-                      <select class="selectpicker" ng-init='selectedYear = year' ng-options='value for value in years'>
-                      </select>
+                      <select ng-init='selectedYear = year' ng-options='value for value in years' ng-model='newReport.selectedYear'></select>
+                      
                 </div>
                 <div class="panel-body">
                     <div class="panel panel-default">
@@ -198,7 +192,7 @@
                             <li>Those referring when called after visiting the site:<input class="inputFieldEdit" type="number" min="0" ng-model="newReport.referral_called"></li>
                             <li>Those referring with inbound calls:<input class="inputFieldEdit" type="number" min="0" ng-model="newReport.referral_inbound"></li>
                             <li>Those referring whose names came from members:<input class="inputFieldEdit" type="number" min="0" ng-model="newReport.referral_member"></li>
-                            <li>Total referrals:<input class="inputFieldEdit" type="number" min="0"></li>
+                        <!--     <li>Total referrals:<input class="inputFieldEdit" type="number" min="0"></li> -->
                         
                       </div>
                     </div>
@@ -231,47 +225,46 @@
             <div class="modal-body">
               <div class="panel panel-default">
                 <div class="panel-heading">
-                  <h3 class="panel-title">Visitors Center and Historic Site Monthly Report for: {{site.name}}</h3>
+                  <h3 class="panel-title">Visitors Center and Historic Site Monthly Report for: {{center.name}}{{$parent.selectedMonth}}, {{$parent.selectedYear}}</h3>
                 </div>
                 <div class="panel-body">
                     <div class="panel panel-default">
                       <div class="panel-body monthlyReportBox">
                         Visitors Summary
                        
-                          <li>Total number of meaningful contacts:</li>
-                          <li>Total number of people who took tours:</li>
-                          <li>Total number of non-members who took tours:</li>
+                          <li>Total number of meaningful contacts:</li>{{report.visitor_total}}
+                          <li>Total number of people who took tours:</li>{{report.visitor_tour}}
+                          <li>Total number of non-members who took tours:</li>{{report.visitor_tournonmember}}
                       
                       </div>
                     </div>
                     <div class="panel panel-default">
                       <div class="panel-body monthlyReportBox">
                         Referrals Summary
-                            <li>Those referring at the site:</li>
-                            <li>Those referring when called after visiting the site:</li>
-                            <li>Those referring with inbound calls:</li>
-                            <li>Those referring whose names came from members:</li>
-                            <li>Total referrals:</li>
+                            <li>Those referring at the site:</li>{{report.referral_cards}}
+                            <li>Those referring when called after visiting the site:</li>{{report.referral_called}}
+                            <li>Those referring with inbound calls:</li>{{report.referral_inbound}}
+                            <li>Those referring whose names came from members:</li>{{report.referral_member}}
+                          <!--   <li>Total referrals:</li> -->
                        
                       </div>
                     </div>
                     <div class="panel panel-default">
                       <div class="panel-body">
-                        Comments:
+                        Comments:{{report.comments}}
                       </div>
                     </div> 
                       <button type="button" class="btn btn-default">Print</button>
                       <button type="button" class="btn btn-default" data-toggle="modal" data-target="#viewButtonModalEdit" data-dismiss="modal">Edit</button>
                       <button type="button" class="btn btn-default" ng-click="deleteReport()">Delete</button><br/>
                   
-                     <div class="alert alert-danger" role="alert" ng-show="deleteReportWarning">Are you sure you want to delete this report? This action cannot be undone.<button type="button" class="btn btn-default">Yes, I want to delete this report</button><br/>
+                     <div class="alert alert-danger" role="alert" ng-show="deleteReportWarningAlert">Are you sure you want to delete this report? This action cannot be undone.<button type="button" class="btn btn-default">Yes, I want to delete this report</button><br/>
                      </div>    
                 </div>
               </div>   
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Save changes</button>
             </div>
           </div>
         </div>
