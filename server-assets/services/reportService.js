@@ -5,7 +5,8 @@ var Promise = require('bluebird');
 var services = {
 	addReport: addReport,
 	putReport: putReport,
-	delReport: delReport
+	delReport: delReport,
+	getOneByMonth: getOneByMonth
 };
 
 module.exports = services;
@@ -37,4 +38,27 @@ function putReport(rData){
 
 function delReport(rData){
 	return Models.reports.destroy({ id: rData.id});
+};
+
+function getOneByMonth(rData){
+	return Models.centers.find({
+		where: {id: rData.id},
+  		include: [{ 
+  			model: Models.reports, 
+  			as: 'Reports', 
+  			where: { 'Reports.date': rData.date },
+  			attributes: [
+  				'id', 
+  				'visitor_total', 
+  				'visitor_tour', 
+  				'visitor_tournonmember', 
+  				'referral_cards', 
+  				'referral_called', 
+  				'referral_inbound', 
+  				'referral_member',
+  				'comments',
+  				[Sequelize.fn('date_format', Sequelize.col('Reports.date'), '%Y-%m-%d'), 'date']
+  			]
+  	  	}]
+	}, {raw: true});
 };

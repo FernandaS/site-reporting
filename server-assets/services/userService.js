@@ -6,7 +6,8 @@ var Promise = require('bluebird');
 var services = {
 	addUser: addUser,
 	putUser: putUser,
-	delUser: delUser
+	delUser: delUser,
+	getAllUsers, getAllUsers
 };
 
 module.exports = services;
@@ -35,6 +36,10 @@ function delUser(uData){
 
 function getUser(username){
 	return Models.users.find({where:{username: username}});
+};
+
+function getAllUsers(){
+	return Models.users.findAll({attributes: ['id', 'username', 'role', 'email'], where: {role: 'DIRECTOR'}}, {raw: true});
 };
 
 

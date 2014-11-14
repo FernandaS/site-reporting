@@ -83,6 +83,7 @@ app.post('/api/logout', function(req, res){
 	res.redirect('#/login');
 });
 
+
 //passport.use(new LocalStrategy());
 app.listen(port, function(){
 	console.log('Listening at ' + port);
