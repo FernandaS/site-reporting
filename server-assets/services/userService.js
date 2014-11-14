@@ -48,4 +48,3 @@ function getUserById(id){
 function getAllUsers(){
 	return Models.users.findAll({ attributes: ['id', 'username', 'role', 'email']}, { raw: true });
 };
-
