@@ -6,7 +6,7 @@ google.setOnLoadCallback(function() {
 		.controller('testCtrl', testCtrl);
 });
 
-function testCtrl($scope){
+function testCtrl($scope, userService){
 	$scope.test = 'TESTTTTT'
 	var data = google.visualization.arrayToDataTable([
         ['Year', 'Visitors'],
@@ -21,4 +21,7 @@ function testCtrl($scope){
       var chart = new google.visualization.LineChart(document.getElementById('chartdiv'));
  
       chart.draw(data, options);
+      userService.getOne(4).then(function(data){
+        console.log(data);
+      })
 }
