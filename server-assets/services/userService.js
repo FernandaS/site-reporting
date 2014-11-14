@@ -33,6 +33,7 @@ function putUser(uData){
 };
 
 function delUser(uData){
+	console.log(uData.id);
 	return Models.users.destroy({ id: uData.id });
 };
 

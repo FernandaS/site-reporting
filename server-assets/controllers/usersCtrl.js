@@ -14,7 +14,10 @@ module.exports = {
 	},
 
 	putUser: function (req, res) {
-		userService.putUser(req.body).then(function(data){
+		userService.putUser({
+			updatedValues: req.body,
+			id: req.params.id
+		}).then(function(data){
 			console.log('putUser worked');
 			res.status(200).send(data);
 		}, function(err){
@@ -34,7 +37,8 @@ module.exports = {
 	},
 
 	deleteUser: function (req, res) {
-		userService.delUser(req.body).then(function(data){
+		if(!req.params.id) res.status(500).end();
+		userService.delUser({id: req.params.id}).then(function(data){
 			console.log('deleteUser worked');
 			res.status(200).send(data);
 		}, function(err){
