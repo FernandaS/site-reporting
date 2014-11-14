@@ -28,6 +28,6 @@ function putAddlEmails(eData){
 };
 
 function delAddlEmail(eData){
-	return Models.users.destroy({ id: eData.id});
+	return Models.users.destroy({ where: { id: eData.id } });
 };
 
