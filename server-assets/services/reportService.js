@@ -62,3 +62,26 @@ function getOneByMonth(rData){
   	  	}]
 	}, {raw: true});
 };
+
+function getAllByMonth(rData){
+	return Models.centers.findAll({
+  		include: [{ 
+  			model: Models.reports, 
+  			as: 'Reports', 
+  			where: { 'Reports.date': rData.date },
+  			attributes: [
+  				'id', 
+  				'visitor_total', 
+  				'visitor_tour', 
+  				'visitor_tournonmember', 
+  				'referral_cards', 
+  				'referral_called', 
+  				'referral_inbound', 
+  				'referral_member',
+  				'comments',
+  				[Sequelize.fn('date_format', Sequelize.col('Reports.date'), '%Y-%m-%d'), 'date']
+  			]
+  	  	}]
+	}, {raw: true});
+};
+
