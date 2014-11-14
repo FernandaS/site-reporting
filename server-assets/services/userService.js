@@ -40,5 +40,5 @@ function getUser(username){
 };
 
 function getUserById(id){
-	return Models.users.find({wher:{id:id}});
-}
+	return Models.users.find({where:{id:id}});
+};
