@@ -31,9 +31,8 @@ passport.serializeUser(function(user, done) {
 });
 
 passport.deserializeUser(function(id, done) {
-	userService.getUserById({body:id}).then(id, function (err, user) {
-	 	console.log(err, user)
-	 	done(err, user);
+	userService.getUserById(id).then(function (user) {
+	 	done(null, user);
 	 });
 });
 
@@ -76,7 +75,11 @@ app.put('/api/centers/:id', centersCtrl.putCenter);
 app.delete('/api/centers/:id', centersCtrl.deleteCenter);
 
 // User apis
-app.get('/api/users/me', usersCtrl.getCurrentUser);
+// app.get('/api/users/me', usersCtrl.getCurrentUser);
+app.get('/api/users/me', function(req, res){
+	console.log('ME!')
+	res.json(req.user);
+});
 app.get('/api/users/:id', usersCtrl.getUser);
 app.get('/api/users', usersCtrl.getUsersList);
 app.post('/api/users', usersCtrl.addUser);
