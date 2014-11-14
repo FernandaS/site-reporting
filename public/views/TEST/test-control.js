@@ -23,30 +23,30 @@ function testCtrl($scope, userService, reportService){
 
   chart.draw(data, options);
   // var newUser = {
-  //   username:"ean",
+  //   username:"jake",
   //   password:"hartwell1",
-  //   role:"ADMIN",
-  //   email:"ean@gmail.com"  
+  //   role:"DIRECTOR",
+  //   email:"jake@gmail.com"  
   // }
   // userService.create(newUser).then(function(data){
   //   console.log(data);
   // })
-  var newReport = {
-    date:"2014-09-01",
-    visitor_total:500,
-    visitor_tour:20,
-    visitor_tournonmember:18,
-    referral_cards:35,
-    referral_called:34,
-    referral_inbound:35,
-    referral_member:19,
-    comments:"Such month, so goooood!",
-    centerId: 3
-  }
-  var change = {
-    visitor_total: 9001
-  }
-  reportService.delete(11).then(function(data){
-    console.log(data);
-  })
+  // var newReport = {
+  //   date:"2014-09-01",
+  //   visitor_total:500,
+  //   visitor_tour:20,
+  //   visitor_tournonmember:18,
+  //   referral_cards:35,
+  //   referral_called:34,
+  //   referral_inbound:35,
+  //   referral_member:19,
+  //   comments:"Such month, so goooood!",
+  //   centerId: 3
+  // }
+  // var change = {
+  //   visitor_total: 15
+  // }
+  // reportService.edit(9, change).then(function(data){
+  //   console.log(data);
+  // })
 }
