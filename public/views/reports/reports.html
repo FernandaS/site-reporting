@@ -19,13 +19,7 @@
 
       <div class="listGroupSiteNames">
         <ul class="list-group">
-          <li class="list-group-item list-group-item-info">Kirtland<button class="btn btn-default listGroupSiteNamesButton" data-toggle="modal" data-target="#viewButtonModal">View</button></li>
-          <li class="list-group-item list-group-item-danger">Mormon Trail</li>
-          <li class="list-group-item list-group-item-info">Arizona Temple<button class="btn btn-default listGroupSiteNamesButton" data-toggle="modal" data-target="#viewButtonModal">View</button></li>
-          <li class="list-group-item list-group-item-info">Hawaii Temple<button class="btn btn-default listGroupSiteNamesButton" data-toggle="modal" data-target="#viewButtonModal">View</button></li>
-          <li class="list-group-item list-group-item-danger">Hill Cumorah</li>
-          <li class="list-group-item list-group-item-info">Idaho Falls<button class="btn btn-default listGroupSiteNamesButton" data-toggle="modal" data-target="#viewButtonModal">View</button></li>
-          <li class="list-group-item list-group-item-danger">Independence</li>
+          <li class="list-group-item" ng-repeat="center in centers">{{center.name}}<button class="btn btn-default listGroupSiteNamesButton" data-toggle="modal" data-target="#viewButtonModal">View</button></li>
         </ul>
       </div>  
 
@@ -56,7 +50,7 @@
       </button>
 
       <!-- Create Custom Modal -->
-      <div class="modal fade" id="create" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal fade" id="create" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" ng-controller="reportCreateCustomCtrl">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header list-group-item-info">
@@ -163,7 +157,7 @@
 
 
       <!-- Add Site Modal -->
-      <div class="modal fade" id="addSite" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal fade" id="addSite" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" ng-controller="reportAddSiteCtrl">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header list-group-item-info">
@@ -249,7 +243,7 @@
 
 
       <!-- View Button Modal -->
-      <div class="modal fade" id="viewButtonModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal fade" id="viewButtonModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" ng-controller="reportViewCtrl">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header list-group-item-info">
@@ -307,7 +301,7 @@
       </div>
 
       <!-- View Button Modal Edit -->
-      <div class="modalEdit fade" id="viewButtonModalEdit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modalEdit fade" id="viewButtonModalEdit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" ng-controller="reportEditCtrl">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header list-group-item-danger">
