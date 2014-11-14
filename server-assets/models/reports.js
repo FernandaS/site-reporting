@@ -1,8 +1,8 @@
 module.exports = function(sequelize, DataTypes) {
+  DataTypes.DATEONLY = 'DATE';
   return sequelize.define('reports', { 
-    //when building date new Date(Date.parse("Jul 8, 2014"))
     date: {
-      type: DataTypes.DATE,
+      type: DataTypes.DATEONLY,
       allowNull: false
     },
     visitor_total: {
