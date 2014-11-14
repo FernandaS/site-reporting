@@ -33,6 +33,7 @@ function putUser(uData){
 };
 
 function delUser(uData){
+	console.log(uData.id);
 	return Models.users.destroy({ id: uData.id });
 };
 
@@ -47,3 +48,4 @@ function getUserById(id){
 function getAllUsers(){
 	return Models.users.findAll({ attributes: ['id', 'username', 'role', 'email'], where: {role: 'DIRECTOR'} }, { raw: true });
 };
+

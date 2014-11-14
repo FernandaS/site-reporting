@@ -7,7 +7,8 @@ var services = {
 	putReport: putReport,
 	delReport: delReport,
 	getOneByMonth: getOneByMonth,
-	getAllByMonth: getAllByMonth
+	getAllByMonth: getAllByMonth,
+	getAllByRange: getAllByRange
 };
 
 module.exports = services;
@@ -38,7 +39,7 @@ function putReport(rData){
 };
 
 function delReport(rData){
-	return Models.reports.destroy({ id: rData.id});
+	return Models.reports.destroy({ where: { id: rData.id } });
 };
 
 function getOneByMonth(rData){
@@ -70,6 +71,28 @@ function getAllByMonth(rData){
   			model: Models.reports, 
   			as: 'Reports', 
   			where: { 'Reports.date': rData.date },
+  			attributes: [
+  				'id', 
+  				'visitor_total', 
+  				'visitor_tour', 
+  				'visitor_tournonmember', 
+  				'referral_cards', 
+  				'referral_called', 
+  				'referral_inbound', 
+  				'referral_member',
+  				'comments',
+  				[Sequelize.fn('date_format', Sequelize.col('Reports.date'), '%Y-%m-%d'), 'date']
+  			]
+  	  	}]
+	}, {raw: true});
+};
+
+function getAllByRange(rData){
+	return Models.centers.findAll({
+  		include: [{ 
+  			model: Models.reports, 
+  			as: 'Reports', 
+  			where: { 'Reports.date': { between: [rData.start, rData.end] } },
   			attributes: [
   				'id', 
   				'visitor_total', 
