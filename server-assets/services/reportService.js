@@ -6,7 +6,8 @@ var services = {
 	addReport: addReport,
 	putReport: putReport,
 	delReport: delReport,
-	getOneByMonth: getOneByMonth
+	getOneByMonth: getOneByMonth,
+	getAllByMonth: getAllByMonth
 };
 
 module.exports = services;
