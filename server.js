@@ -45,12 +45,11 @@ app.use(passport.session());
 // Center app
 app.get('/api/centers/:id', centersCtrl.getCenter);
 app.get('api/centers/', centersCtrl.centersList);
-app.post('/api/centers', /*passport.authenticate('local', { failureRedirect: '/noworkieforyou' }),*/ centersCtrl.addCenter);
+app.post('/api/centers', centersCtrl.addCenter);
 app.put('/api/centers/:id', centersCtrl.putCenter);
 app.delete('/api/centers/:id', centersCtrl.deleteCenter);
 
 // User apis
-// app.get('/api/users/me', usersCtrl.getCurrentUser);
 app.get('/api/users/me', function(req, res){
 	console.log('ME!')
 	res.json(req.user);
@@ -62,7 +61,7 @@ app.put('/api/users/:id', usersCtrl.putUser);
 app.delete('/api/users/:id', usersCtrl.deleteUser);
 
 // Report apis, will add the apis with params after I figure it out. Or Aaron figures it out.
-// app.get('/api/reports', )
+app.get('/api/reports', )
 app.post('/api/reports', reportsCtrl.addReport);
 app.put('/api/reports/:id', reportsCtrl.editReport);
 app.delete('/api/reports/:id', reportsCtrl.deleteReport);

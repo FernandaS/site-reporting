@@ -43,16 +43,6 @@ module.exports = {
 			res.send(err);
 		})
 	},
-// may not use this function and just use getAllData
-	getReportsList: function (req, res) {
-		reportService.getReportsList(req.body).then(function(data){
-			console.log('getReportsList worked');
-			res.status(200).send(data);
-		}, function(err){
-			console.log(err);
-			res.send(err);
-		})
-	},
 
 	getAllData: function (req, res) {
 		reportService.getAllData(req.body).then(function(data){
