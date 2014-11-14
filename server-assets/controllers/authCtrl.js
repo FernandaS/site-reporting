@@ -23,6 +23,17 @@ module.exports = {
 			console.log(err);
 			res.send(err);
 		})
+	},
+
+	authenticateUser: function(req, res, next) {
+	  passport.authenticate('local', function(err, user, info) {
+	    if (!user) {
+	      return res.status(401).end();
+	    }
+	    req.logIn(user, function(err) {
+	      return res.status(200).end();
+	    });
+	  })(req, res, next);
 	}
 
 }
