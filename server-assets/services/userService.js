@@ -33,18 +33,18 @@ function putUser(uData){
 };
 
 function delUser(uData){
-	return Models.users.destroy({ id: uData.id});
+	return Models.users.destroy({ id: uData.id });
 };
 
 function getUser(username){
-	return Models.users.find({ where: { username: username } });
+	return Models.users.find(where: { username: username } }, { raw: true });
 };
 
 function getUserById(id){
-	return Models.users.find({ where: {id:id} });
+	return Models.users.find(where: { id: id }}, {raw: true});
 };
 
 function getAllUsers(){
-	return Models.users.findAll({attributes: ['id', 'username', 'role', 'email'], where: {role: 'DIRECTOR'}}, {raw: true});
+	return Models.users.findAll({ attributes: ['id', 'username', 'role', 'email'], where: {role: 'DIRECTOR'} }, { raw: true });
 };
 
