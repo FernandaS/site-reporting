@@ -44,7 +44,7 @@ app.use(passport.session());
 
 // Center app
 app.get('/api/centers/:id', centersCtrl.getCenter);
-app.get('api/centers/', centersCtrl.centersList);
+app.get('/api/centers/', centersCtrl.getAll);
 app.post('/api/centers', centersCtrl.addCenter);
 app.put('/api/centers/:id', centersCtrl.putCenter);
 app.delete('/api/centers/:id', centersCtrl.deleteCenter);

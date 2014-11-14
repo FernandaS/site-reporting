@@ -5,7 +5,7 @@ module.exports = {
 // rename reportService functions as necessary.
 // parse out the req into the obj once I get keys from Aaron
 	getCenter: function (req, res) {
-		centerService.getCenter(req.body).then(function(data){
+		centerService.getOne(req.params.id).then(function(data){
 			console.log('getCenter worked');
 			res.status(200).send(data);
 		}, function(err){
@@ -15,7 +15,11 @@ module.exports = {
 	},
 
 	putCenter: function (req, res) {
-		centerService.putCenter(req.body).then(function(data){
+		var obj = {
+			id: req.params.id,
+			updatedValues: req.body
+		}
+		centerService.putCenter(obj).then(function(data){
 			console.log('putCenter worked');
 			res.status(200).send(data);
 		}, function(err){
@@ -35,7 +39,7 @@ module.exports = {
 	},
 
 	deleteCenter: function (req, res) {
-		centerService.delCenter(req.body).then(function(data){
+		centerService.delCenter({id: req.params.id}).then(function(data){
 			console.log('deleteCenter worked');
 			res.status(200).send(data);
 		}, function(err){
@@ -44,9 +48,9 @@ module.exports = {
 		})
 	},
 
-	centersList: function (req, res) {
-		centerService.centersList(req.body).then(function(data){
-			console.log('centersList worked');
+	getAll: function (req, res) {
+		centerService.getAllCenters().then(function(data){
+			console.log('getAll worked');
 			res.status(200).send(data);
 		}, function(err){
 			console.log(err);
