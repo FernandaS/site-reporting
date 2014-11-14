@@ -28,29 +28,32 @@ function reportService($http){
 	this.getAllBy = function(date){
 		return $http({
 			method: 'GET',
-			url: '/api/reports?date=' + date
+			url: '/api/reports/allBy?date=' + date
 		})
 	}
+
 	this.getAllFrom = function(start, end){
 		return $http({
 			method: 'GET',
-			url: '/api/reports?start=' + start + '&end=' + end
+			url: '/api/reports/allFrom?start=' + start + '&end=' + end
 		})
 	}
 
 	this.getOneBy = function(center, date){
 		return $http({
 			method: 'GET',
-			url: '/api/reports/' + center + '?date=' + date
+			url: '/api/reports/oneBy/' + center + '?date=' + date
 		})
 	}
 
-	this.create = function(){
+	this.create = function(data){
 		return $http({
 			method: 'POST',
-			url: '/api/reports'
+			url: '/api/reports',
+			data: data
 		})
 	}
+
 	this.edit = function(id, change){
 		return $http({
 			method: 'PUT',
@@ -58,6 +61,7 @@ function reportService($http){
 			data: change
 		})
 	}
+
 	this.delete = function(id){
 		return $http({
 			method: 'DELETE',
