@@ -55,6 +55,14 @@
 .selectpicker {
 	font-size: 16px;
 }
+.radioTrends {
+	float: right;
+}
+.radioTrends input{
+	font-size: 16px;
+	padding: 15px;
+	margin: 10px 15px;
+}
 
 
 
