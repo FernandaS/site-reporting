@@ -1,4 +1,5 @@
-var userService = require('../services/userService');
+var userService = require('../services/userService'),
+	passport = require('passport');
 
 module.exports = {
 // remove console.logs after endpoints are working.
@@ -26,6 +27,9 @@ module.exports = {
 	},
 
 	authenticateUser: function(req, res, next) {
+	  if(req.logout){
+	  	req.logout();
+	  }
 	  passport.authenticate('local', function(err, user, info) {
 	    if (!user) {
 	      return res.status(401).end();

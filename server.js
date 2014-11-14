@@ -16,13 +16,13 @@ var express = require('express'),
 
 passport.use(new LocalStrategy(function(username, pass, done) {
 	userService.getUser(username).then(function (user) {
-		if (user) {
-			return done(null, user);
-		} if (!user) {
+		if (!user) {
 			return done(null, false, { message: 'Unknown user ' + username });
-		} if (user.password !== pass) {
+		}
+		if (user.password !== pass){
 			return done(null, false, { message: 'Invalid password' });
-		};
+		}
+		return done(null, user);
 	});
 }));
 
@@ -60,9 +60,10 @@ app.put('/api/users/:id', usersCtrl.putUser);
 app.delete('/api/users/:id', usersCtrl.deleteUser);
 
 // Report apis, will add the apis with params after I figure it out. Or Aaron figures it out.
-app.get('/api/reports/allBy', reportsCtrl.getAllBy);
-app.get('/api/reports/allFrom', reportsCtrl.getAllFrom);
-app.get('/api/reports/oneBy/:id', reportsCtrl.getOneBy);
+
+app.get('/api/reports/allBy', reportsCtrl.getAllBy); //month
+app.get('/api/reports/allFrom', reportsCtrl.getAllFrom); //month
+app.get('/api/reports/oneBy/:id', reportsCtrl.getOneBy); //center and month
 app.post('/api/reports', reportsCtrl.addReport);
 app.put('/api/reports/:id', reportsCtrl.editReport);
 app.delete('/api/reports/:id', reportsCtrl.deleteReport);

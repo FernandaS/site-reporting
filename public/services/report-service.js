@@ -10,7 +10,7 @@ angular.module('lds-report')
 When submitting a new report, the structure is as follows:
 
 var newReport = {
-  "date":"November 1, 2014",
+  "date":"2014-12-01",
   "visitor_total":100,
   "visitor_tour":20,
   "visitor_tournonmember":18,
@@ -25,28 +25,28 @@ var newReport = {
 
 
 function reportService($http){
-	this.getAllBy = function(date){
+	this.getAllBy = function(date){ //WORKS
 		return $http({
 			method: 'GET',
 			url: '/api/reports/allBy?date=' + date
 		})
 	}
 
-	this.getAllFrom = function(start, end){
+	this.getAllFrom = function(start, end){ //WORKS
 		return $http({
 			method: 'GET',
 			url: '/api/reports/allFrom?start=' + start + '&end=' + end
 		})
 	}
 
-	this.getOneBy = function(center, date){
+	this.getOneBy = function(center, date){ //WORKS
 		return $http({
 			method: 'GET',
 			url: '/api/reports/oneBy/' + center + '?date=' + date
 		})
 	}
 
-	this.create = function(data){
+	this.create = function(data){  //WORKS
 		return $http({
 			method: 'POST',
 			url: '/api/reports',
@@ -54,41 +54,18 @@ function reportService($http){
 		})
 	}
 
-	this.edit = function(id, change){
-		return $http({
-			method: 'PUT',
+	this.edit = function(id, change){  //DOESN'T WORK
+		return $http({ //Needs mySQL magic done
+			method: 'PUT', //Aaron is fixing
 			url: '/api/reports/' + id,
 			data: change
 		})
 	}
 
-	this.delete = function(id){
-		return $http({
+	this.delete = function(id){ //WORKS BUT doesn't pass back data.
+		return $http({ //Assume it works on request for now.
 			method: 'DELETE',
 			url: '/api/reports/' + id
 		})
 	}
-
-
-
-	// this.getOne = function(id){
-	// 	return $http({
-	// 		method: 'GET',
-	// 		url: '/api/reports/' + id
-	// 	})
-	// }
-
-	// this.getAll = function(){
-	// 	return $http({
-	// 		method: 'GET',
-	// 		url: '/api/reports/data'
-	// 	})
-	// }
-
-	// this.getList = function(){
-	// 	return $http({
-	// 		method: 'GET',
-	// 		url: '/api/reports/list'
-	// 	})
-	// }
 }

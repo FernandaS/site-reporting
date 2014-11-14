@@ -65,6 +65,7 @@ module.exports = {
 	deleteReport: function (req, res) {
 		reportService.delReport(req.params).then(function(data){
 			console.log('deleteReport worked');
+			console.log(data);
 			res.status(200).send(data);
 		}, function(err){
 			console.log(err);
