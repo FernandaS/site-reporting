@@ -6,28 +6,29 @@ google.setOnLoadCallback(function() {
 		.controller('testCtrl', testCtrl);
 });
 
-function testCtrl($scope, userService){
+function testCtrl($scope, userService, reportService){
 	$scope.test = 'TESTTTTT'
 	var data = google.visualization.arrayToDataTable([
-        ['Year', 'Visitors'],
-        ['2004', 100],
-        ['2005', 125],
-        ['2006', 250],
-        ['2007', 225]
-      ]);
-      var options = {
-        title: 'Site Visitation'
-      };
-      var chart = new google.visualization.LineChart(document.getElementById('chartdiv'));
- 
-      chart.draw(data, options);
-      var newUser = {
-        username:"ean",
-        password:"hartwell1",
-        role:"ADMIN",
-        email:"ean@gmail.com"  
-      }
-      userService.create(newUser).then(function(data){
-        console.log(data);
-      })
+    ['Year', 'Visitors'],
+    ['2004', 100],
+    ['2005', 125],
+    ['2006', 250],
+    ['2007', 225]
+  ]);
+  var options = {
+    title: 'Site Visitation'
+  };
+  var chart = new google.visualization.LineChart(document.getElementById('chartdiv'));
+
+  chart.draw(data, options);
+  // var newUser = {
+  //   username:"ean",
+  //   password:"hartwell1",
+  //   role:"ADMIN",
+  //   email:"ean@gmail.com"  
+  // }
+  // userService.create(newUser).then(function(data){
+  //   console.log(data);
+  // })
+  
 }
