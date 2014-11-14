@@ -51,11 +51,10 @@ app.delete('/api/centers/:id', centersCtrl.deleteCenter);
 
 // User apis
 app.get('/api/users/me', function(req, res){
-	console.log('ME!')
 	res.json(req.user);
 });
 app.get('/api/users/:id', usersCtrl.getUser);
-app.get('/api/users', usersCtrl.getUsersList);
+app.get('/api/users', usersCtrl.getAllUsers);
 app.post('/api/users', usersCtrl.addUser);
 app.put('/api/users/:id', usersCtrl.putUser);
 app.delete('/api/users/:id', usersCtrl.deleteUser);
