@@ -31,8 +31,8 @@
          </div>
        		<div class="panel-body">
     			<div class="col-md-8">
-	    			<select class="form-control scroll-list">
-						  <option value="1">1</option>
+	    			<select class="form-control scroll-list" ng-model="director" ng-options="user.username for user in directors">
+						 
 
 					</select>
 				</div>
@@ -42,13 +42,13 @@
  		 <div class="panel-heading">
     	     <h3 class="panel-title iconi">Administrator
     	    	<i class="fa fa-plus" data-toggle="modal" data-target="#myModalAdminPlus"></i>
-    	     	<i class="fa fa-pencil-square-o" data-toggle="modal" data-target="#myModalAdminEdit"></i>
+    	     	<i class="fa fa-pencil-square-o" data-toggle="modal" data-target="#myModalAdminEdit" ng-click="editAdmin()"></i>
 			</h3>
          </div>
        		<div class="panel-body">
     			<div class="col-md-8">
-	    			<select class="form-control scroll-list">
-						  <option value="1">1</option>
+	    			<select class="form-control scroll-list" ng-model="admin" ng-options="user.username for user in administrators">
+						  
 
 					</select>
 				</div>
@@ -67,7 +67,7 @@
     <div class="modal-content">
           <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title" id="myModalLabel">New Administrator</h4>
+        <h4 class="modal-title" id="myModalLabel">Edit Administrator</h4>
       </div>
       <div class="modal-body">
      	  <form class="form-horizontal" role="form">
@@ -125,23 +125,24 @@
       </div>
       <div class="modal-body">
      <form class="form-horizontal" role="form">
+     <b ng-if="error">{{error}}</b>
 			 <div class="form-group">
 			    <label for="username" class="col-sm-2 control-label">Username</label>
 			    <div class="col-sm-6">
-			    <input type="usrname" class="form-control" id="username" placeholder="Username">
+			    <input type="usrname" class="form-control" id="username" placeholder="Username" ng-model="admin.username">
 			    </div>
 			  </div>
 			   <div class="form-group">
 			    <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
 			    <div class="col-sm-6">
-			    <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+			    <input type="email" class="form-control" id="inputEmail3" placeholder="Email" ng-model="admin.email">
 			    </div>
 			  </div>
 
 			  <div class="form-group">
 			    <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
 			    <div class="col-sm-6">
-			      <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
+			      <input type="password" class="form-control" id="inputPassword3" placeholder="Password" ng-model="admin.password">
 			    </div>
 			 </div>
   		</form>
@@ -151,7 +152,7 @@
 
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Submit</button>
+        <button type="button" class="btn btn-primary" ng-click="createAdmin(admin)">Submit</button>
       </div>
     </div>
   </div>
@@ -233,20 +234,20 @@
 			 <div class="form-group">
 			    <label for="" class="col-sm-2 control-label">Username</label>
 			    <div class="col-sm-6">
-			    <input type="username" class="form-control" id="" placeholder="Username">
+			    <input type="username" class="form-control" id="" placeholder="Username" ng-model="director.username">
 			    </div>
 			  </div>
 			   <div class="form-group">
 			    <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
 			    <div class="col-sm-6">
-			    <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+			    <input type="email" class="form-control" id="inputEmail3" placeholder="Email" ng-model="director.email">
 			    </div>
 			  </div>
 
 			  <div class="form-group">
 			    <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
 			    <div class="col-sm-6">
-			      <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
+			      <input type="password" class="form-control" id="inputPassword3" placeholder="Password" ng-model="director.password">
 			    </div>
 			 </div>
   		</form>
@@ -256,7 +257,7 @@
 
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Submit</button>
+        <button type="button" class="btn btn-primary" ng-click="createDirector(director)">Submit</button>
       </div>
     </div>
   </div>
