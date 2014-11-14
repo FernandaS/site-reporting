@@ -37,11 +37,11 @@ function delUser(uData){
 };
 
 function getUser(username){
-	return Models.users.find(where: { username: username } }, { raw: true });
+	return Models.users.find({ where: { username: username } }, { raw: true });
 };
 
 function getUserById(id){
-	return Models.users.find(where: { id: id }}, {raw: true});
+	return Models.users.find({where: { id: id }}, {raw: true});
 };
 
 function getAllUsers(){
