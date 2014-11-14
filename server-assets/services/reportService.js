@@ -32,7 +32,8 @@ function addReport(rData){
 };
 
 function putReport(rData){
-  console.log(rData);
+  console.log(typeof rData);
+  console.log(rData.updatedValues);
 	return Models.reports.update(rData.updatedValues,
  	{
     	where: { id: rData.id }
@@ -110,3 +111,6 @@ function getAllByRange(rData){
 	}, {raw: true});
 };
 
+// putReport({id: 9, updatedValues:{visitor_total: 9001}}).then(function(data){
+//   console.log(data);
+// })

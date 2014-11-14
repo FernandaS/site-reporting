@@ -40,7 +40,6 @@ module.exports = {
 
 	addReport: function (req, res) {
 		reportService.addReport(req.body).then(function(data){
-			console.log('addReport worked');
 			res.status(200).send(data);
 		}, function(err){
 			console.log(err);
@@ -50,9 +49,10 @@ module.exports = {
 
 	editReport: function (req, res) {
 		var obj = {
-			id: req.params.id,
-			udpatedValues: req.body
+			id: Number(req.params.id),
+			updatedValues: req.body
 		};
+		console.log({id: 9, updatedValues:{visitor_total: 9001}});
 		reportService.putReport(obj).then(function(data){
 			console.log('editReport worked');
 			res.status(200).send(data);
