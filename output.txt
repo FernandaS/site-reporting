@@ -1,0 +1,40 @@
+Listening at 9001
+Executing (default): CREATE TABLE IF NOT EXISTS `users` (`id` INTEGER NOT NULL auto_increment , `username` VARCHAR(25) NOT NULL UNIQUE, `password` VARCHAR(30) NOT NULL, `role` ENUM('ADMIN', 'DIRECTOR') NOT NULL, `email` VARCHAR(50) NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, PRIMARY KEY (`id`)) ENGINE=InnoDB;
+Executing (default): SELECT `id`, `center`, `alias`, `active`, `type`, `city`, `state`, `country`, `createdAt`, `updatedAt`, `userId` FROM `centers` AS `centers` WHERE `centers`.`id`=2;
+Executing (default): SHOW INDEX FROM `users`
+Executing (default): SELECT `id`, `date`, `visitor_total`, `visitor_tour`, `visitor_tournonmember`, `referral_cards`, `referral_called`, `referral_inbound`, `referral_member`, `comments`, `createdAt`, `updatedAt`, `userId`, `centerId` FROM `reports` AS `reports` WHERE (`reports`.`centerId` = 2 AND 1=1 AND `reports`.`id`=2);
+Executing (default): CREATE TABLE IF NOT EXISTS `addl_emails` (`id` INTEGER NOT NULL auto_increment , `email` VARCHAR(50) NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `userId` INTEGER, PRIMARY KEY (`id`), FOREIGN KEY (`userId`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE) ENGINE=InnoDB;
+[ { id: 2,
+    date: Tue Sep 11 2012 18:00:00 GMT-0600 (MDT),
+    visitor_total: 200,
+    visitor_tour: 200,
+    visitor_tournonmember: 100,
+    referral_cards: 100,
+    referral_called: 100,
+    referral_inbound: 100,
+    referral_member: 100,
+    comments: 'Not so many this month :(',
+    createdAt: Wed Nov 12 2014 17:00:00 GMT-0700 (MST),
+    updatedAt: Wed Nov 12 2014 17:00:00 GMT-0700 (MST),
+    userId: 2,
+    centerId: 2 } ]
+[ { id: 2,
+    date: Tue Sep 11 2012 18:00:00 GMT-0600 (MDT),
+    visitor_total: 200,
+    visitor_tour: 200,
+    visitor_tournonmember: 100,
+    referral_cards: 100,
+    referral_called: 100,
+    referral_inbound: 100,
+    referral_member: 100,
+    comments: 'Not so many this month :(',
+    createdAt: Wed Nov 12 2014 17:00:00 GMT-0700 (MST),
+    updatedAt: Wed Nov 12 2014 17:00:00 GMT-0700 (MST),
+    userId: 2,
+    centerId: 2 } ]
+Executing (default): SHOW INDEX FROM `addl_emails`
+Executing (default): CREATE TABLE IF NOT EXISTS `centers` (`id` INTEGER NOT NULL auto_increment , `center` VARCHAR(255) NOT NULL UNIQUE, `alias` VARCHAR(255), `active` ENUM('YES', 'NO') DEFAULT 'yes', `type` ENUM('CENTER', 'SITE') DEFAULT 'CENTER', `city` VARCHAR(255) NOT NULL, `state` VARCHAR(255) NOT NULL, `country` VARCHAR(255) NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `userId` INTEGER, PRIMARY KEY (`id`), FOREIGN KEY (`userId`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE) ENGINE=InnoDB;
+Executing (default): SHOW INDEX FROM `centers`
+Executing (default): CREATE TABLE IF NOT EXISTS `reports` (`id` INTEGER NOT NULL auto_increment , `date` DATETIME NOT NULL, `visitor_total` INTEGER NOT NULL, `visitor_tour` INTEGER NOT NULL, `visitor_tournonmember` INTEGER NOT NULL, `referral_cards` INTEGER NOT NULL, `referral_called` INTEGER NOT NULL, `referral_inbound` INTEGER NOT NULL, `referral_member` INTEGER NOT NULL, `comments` TEXT NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `userId` INTEGER, `centerId` INTEGER, PRIMARY KEY (`id`), FOREIGN KEY (`userId`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE, FOREIGN KEY (`centerId`) REFERENCES `centers` (`id`) ON DELETE SET NULL ON UPDATE CASCADE) ENGINE=InnoDB;
+Executing (default): SHOW INDEX FROM `reports`
+Database synced
