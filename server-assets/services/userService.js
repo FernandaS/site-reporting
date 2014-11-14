@@ -40,11 +40,6 @@ function getUser(username){
 };
 
 function getUserById(id){
-<<<<<<< HEAD
-	return Models.users.find({where:{id:id}});
-};
-=======
 	console.log(id);
 	return Models.users.find({where:{id:id}});
-}
->>>>>>> 25c83d5b882d472fc3a699482ea23f79b2928142
+};
