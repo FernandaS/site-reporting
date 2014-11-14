@@ -13,7 +13,7 @@ var newUser = {
 */
 
 function userService($http){
-	this.getOne = function(id){ 
+	this.getOne = function(id){ //WORKS
 		return $http({
 			method: 'GET',
 			url: '/api/users/' + id

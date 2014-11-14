@@ -21,4 +21,7 @@ function testCtrl($scope, userService){
       var chart = new google.visualization.LineChart(document.getElementById('chartdiv'));
  
       chart.draw(data, options);
+      userService.getOne(4).then(function(data){
+        console.log(data);
+      })
 }

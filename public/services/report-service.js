@@ -28,7 +28,7 @@ function reportService($http){
 	this.getAllBy = function(date){
 		return $http({
 			method: 'GET',
-			url: '/api/reports?month=' + date
+			url: '/api/reports?date=' + date
 		})
 	}
 	this.getAllFrom = function(start, end){
@@ -41,7 +41,7 @@ function reportService($http){
 	this.getOneBy = function(center, date){
 		return $http({
 			method: 'GET',
-			url: '/api/reports/' + center + '?month=' + date
+			url: '/api/reports/' + center + '?date=' + date
 		})
 	}
 
