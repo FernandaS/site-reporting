@@ -8,11 +8,11 @@ var express = require('express'),
 	LocalStrategy = require('passport-local').Strategy,
 	port = env.expressPort,
 	userService = require('./server-assets/services/userService'),
-	// authCtrl = require('./server-assets/controllers/authCtrl'),
 	centersCtrl = require('./server-assets/controllers/centersCtrl'),
 	usersCtrl = require('./server-assets/controllers/usersCtrl'),
-	reportsCtrl = require('./server-assets/controllers/reportsCtrl');
-	// authCtrl = require('./server-assets/controllers/authCtrl');
+	reportsCtrl = require('./server-assets/controllers/reportsCtrl'),
+	middleware = require('./server-assets/middleware/middleware');
+	authCtrl = require('./server-assets/controllers/authCtrl');
 
 passport.use(new LocalStrategy(function(username, pass, done) {
 	userService.getUser(username).then(function (user) {
@@ -41,31 +41,6 @@ app.use(bodyParser.json());
 app.use(session({ secret:  env.expressSecret, saveUninitialized: true, resave: true}));
 app.use(passport.initialize());
 app.use(passport.session());
-
-var requireAuth = function(req, res, next) {
-	if(!req.isAuthenticated()) {
-		return res.status(401).end();
-		res.redirect('#/login');
-	}
-	next();
-};
-
-app.use(express.static(__dirname + '/public'));
-app.use(bodyParser.json());
-app.use(session({ secret:  env.expressSecret, saveUninitialized: true, resave: true}));
-app.use(passport.initialize());
-app.use(passport.session());
-
-var authenticateUser = function(req, res, next) {
-  passport.authenticate('local', function(err, user, info) {
-    if (!user) {
-      return res.status(401).end();
-    }
-    req.logIn(user, function(err) {
-      return res.status(200).end();
-    });
-  })(req, res, next);
-}
 
 // Center app
 app.get('/api/centers/:id', centersCtrl.getCenter);
@@ -107,7 +82,6 @@ app.post('/api/logout', function(req, res){
 	req.logout();
 	res.redirect('#/login');
 });
-
 
 //passport.use(new LocalStrategy());
 app.listen(port, function(){
