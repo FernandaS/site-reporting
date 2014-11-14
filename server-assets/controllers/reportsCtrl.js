@@ -4,8 +4,8 @@ module.exports = {
 // remove console.logs after endpoints are working.
 // rename reportService functions as necessary.
 // parse out the req into the obj once I get keys from Aaron
-	getReport: function (req, res) {
-		reportService.getReport(req.body).then(function(data){
+	getAllReports: function (req, res) {
+		reportService.getReport(req.query.date).then(function(data){
 			console.log('getReport worked');
 			res.status(200).send(data);
 		}, function(err){
@@ -43,16 +43,6 @@ module.exports = {
 			res.send(err);
 		})
 	},
-// may not use this function and just use getAllData
-	getReportsList: function (req, res) {
-		reportService.getReportsList(req.body).then(function(data){
-			console.log('getReportsList worked');
-			res.status(200).send(data);
-		}, function(err){
-			console.log(err);
-			res.send(err);
-		})
-	},
 
 	getAllData: function (req, res) {
 		reportService.getAllData(req.body).then(function(data){
@@ -65,7 +55,7 @@ module.exports = {
 	},
 
 	getRange: function (req, res) {
-		reportService.getRange(req.body).then(function(data){
+		reportService.getRange(req.query.start, req.query.end).then(function(data){
 			console.log('getRange worked');
 			res.status(200).send(data);
 		}, function(err){
