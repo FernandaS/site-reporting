@@ -76,7 +76,7 @@ app.post('/api/test', function(req, res){
 // app.post('/api/login', passport.authenticate('local', { failureRedirect: '/login' }), function(req, res){
 // 	res.send(req.user);
 // });
-app.post('/api/login', authenticateUser);
+app.post('/api/login', authCtrl.authenticateUser);
 // app.get('/api/user/me', authCtrl.getCurrentUser);
 app.post('/api/logout', function(req, res){
 	req.logout();
