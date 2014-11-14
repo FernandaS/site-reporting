@@ -24,6 +24,10 @@ app.config(['$routeProvider', function($routeProvider){
 			templateUrl: '/views/manage/centers/center.html',
 			controller: 'centerCtrl'
 		})
+		.when('/test', {
+			templateUrl: '/views/TEST/test-page.html',
+			controller: 'testCtrl'
+		})
 
 		//DIRECTOR
 		.when('/director', {

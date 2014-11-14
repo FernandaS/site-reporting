@@ -1,14 +1,20 @@
-.listGroupSiteNames{
+.listGroupSiteNames {
 	overflow: scroll;
 	height: 200px;
 	width: 100%;
 }
 
-.listGroupSiteNamesButton{
+.listGroupSiteNamesButton {
 	float: right;
 }
 
-.globalReports{
+.listGroupSiteNamesTrends {
+	width: 20%;
+	overflow: scroll;
+	height: 200px;
+}
+
+.globalReports {
 	display: flex;
 	background-color: #f5f5f5;
 }
@@ -31,7 +37,6 @@
 
 .monthlyReportBox input {
 	width: 50px;
-
 }
 
 .inputFieldEdit {
@@ -45,6 +50,10 @@
 
 .customReportButtons{
 	text-align: center;
+}
+
+.selectpicker {
+	font-size: 16px;
 }
 
 
@@ -119,6 +128,7 @@
 
 .sidebar li {
 	list-style-type: none;
+	margin-bottom: 35px;
 }
 
 .page-header {
@@ -130,5 +140,24 @@
 
 .iconi i {
 	float: right;
-	margin-right: 5px;
+	margin-right: 10px;
+	font-size: 25px;
+	padding: auto;
 }
+
+
+/**{
+	border:1px solid red;
+}*/
+
+.form-pad {
+	margin-bottom: 30px;
+}
+
+.logo-church {
+	height:67px;
+	width: 125px;
+	margin-top: 125px;
+	margin-right: auto;
+}
+

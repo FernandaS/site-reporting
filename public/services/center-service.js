@@ -2,6 +2,18 @@ angular.module('lds-report')
 	.service('centerService', centerService);
 
 //ALL need testing
+/*
+When submitting a new center, the structure is as follows:
+
+var newCenter = {
+  "center":"Provo",
+  "city":"Provo",
+  "state":"Utah",
+  "country":"USA",
+  "userId":1 //The Id of whoever is submitting (logged in)
+}
+
+*/
 
 function centerService($http){
 	this.getOne = function(id){

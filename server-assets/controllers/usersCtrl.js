@@ -52,6 +52,11 @@ module.exports = {
 			console.log(err);
 			res.send(err);
 		})
+	},
+
+	getCurrentUser: function (req, res) {
+		console.log(req.user);
+		res.json(req.user);
 	}
 
 };
