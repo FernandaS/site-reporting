@@ -170,46 +170,23 @@
                   <h3 class="panel-title">Visitors Center and Historic Site Monthly Report for: {{site.name}}</h3><br/>
                       Choose site:
                       <select class="selectpicker">
-                        <option>Kirtland</option>
-                        <option>Mormon Trail</option>
-                        <option>Hawaii Temple</option>
-                        <option>Hill Cumorah</option>
-                        <option>Idaho Falls</option>
-                        <option>Independence</option>
+                        <option ng-repeat="center in centers" ng-model="newReport.center"></option>
                       </select>
                        Month:
-                      <select class="selectpicker">
-                          <option>January</option>
-                          <option>February</option>
-                          <option>April</option>
-                          <option>May</option>
-                          <option>June</option>
-                          <option>July</option>
-                          <option>August</option>
-                          <option>September</option>
-                          <option>October</option>
-                          <option>November</option>
-                          <option>December</option>
-                        </select>
-                        Date:
-                        <select class="selectpicker">
-                          <option>2009</option>
-                          <option>2010</option>
-                          <option>2011</option>
-                          <option>2012</option>
-                          <option>2013</option>
-                          <option>2014</option>
-                          <option>2015</option>
-                        </select>
+                      <select class="selectpicker" ng-init='selectedMonth = months[month]' ng-options='value for value in months'></select> 
+                  
+                      Date:
+                      <select class="selectpicker" ng-init='selectedYear = year' ng-options='value for value in years'>
+                      </select>
                 </div>
                 <div class="panel-body">
                     <div class="panel panel-default">
                       <div class="panel-body monthlyReportBox">
                         Visitors Summary
                        
-                          <li>Total number of meaningful contacts:<input class="inputFieldEdit" min="0" type="number"></li>
-                          <li>Total number of people who took tours:<input class="inputFieldEdit" min="0" type="number"></li>
-                          <li>Total number of non-members who took tours:<input class="inputFieldEdit" min="0" type="number"></li>
+                          <li>Total number of meaningful contacts:<input class="inputFieldEdit" min="0" type="number" ng-model="newReport.visitor_total"></li>
+                          <li>Total number of people who took tours:<input class="inputFieldEdit" min="0" type="number" ng-model="newReport.visitor_tour"></li>
+                          <li>Total number of non-members who took tours:<input class="inputFieldEdit" min="0" type="number" ng-model="newReport.visitor_tournonmember"></li>
                         
                       </div>
                     </div>
@@ -217,17 +194,17 @@
                       <div class="panel-body monthlyReportBox">
                         Referrals Summary
                          
-                            <li>Those referring at the site:<input class="inputFieldEdit" type="number" min="0"></li>
-                            <li>Those referring when called after visiting the site:<input class="inputFieldEdit" type="number" min="0"></li>
-                            <li>Those referring with inbound calls:<input class="inputFieldEdit" type="number" min="0"></li>
-                            <li>Those referring whose names came from members:<input class="inputFieldEdit" type="number" min="0"></li>
+                            <li>Those referring at the site:<input class="inputFieldEdit" type="number" min="0" ng-model="newReport.referral_cards"></li>
+                            <li>Those referring when called after visiting the site:<input class="inputFieldEdit" type="number" min="0" ng-model="newReport.referral_called"></li>
+                            <li>Those referring with inbound calls:<input class="inputFieldEdit" type="number" min="0" ng-model="newReport.referral_inbound"></li>
+                            <li>Those referring whose names came from members:<input class="inputFieldEdit" type="number" min="0" ng-model="newReport.referral_member"></li>
                             <li>Total referrals:<input class="inputFieldEdit" type="number" min="0"></li>
                         
                       </div>
                     </div>
                     <div class="panel panel-default">
                       <div class="panel-body">
-                        Comments:<textarea class="form-control inputFieldEditComments" rows="3"></textarea>
+                        Comments:<textarea class="form-control inputFieldEditComments" rows="3" ng-model="newReport.comments"></textarea>
                       </div>
                     </div>   
                 </div>
@@ -235,7 +212,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Save changes</button>
+              <button type="button" class="btn btn-primary" ng-click="addNewSiteReport()">Save changes</button>
             </div>
           </div>
         </div>
