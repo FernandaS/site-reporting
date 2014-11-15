@@ -44,8 +44,8 @@ function centerService($http){
 		})
 	}
 	this.delete = function(id){ //WORKS
-		return $http({ //Does not pass back data. Assume it works
-			method: 'DELETE',//on request
+		return $http({ //Does not pass back data.
+			method: 'DELETE',//Assume it works on request.
 			url: '/api/centers/' + id
 		})
 	}

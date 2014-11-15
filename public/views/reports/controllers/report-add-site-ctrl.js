@@ -10,7 +10,14 @@ app.controller('reportAddSiteCtrl', function($scope, reportService, centerServic
 	// $scope.newReport.date = $scope.selectedMonth + ' 1, ' + $scope.selectedYear
 	// 		console.log($scope.newReport.date);
 	// 	}
-
+/*
+The getAllCenters could possibly happen in reportsCtrl.
+That way the centers can be shared between all of the controllers
+on the reports page.  The reportCreatCustomCtrl and
+reportAddSiteCtrl will inherit the scope from reportsCtrl and
+have access to the center data.  It might make it a tad bit
+cleaner.
+*/
 	var getAllCenters = function(){
 		centerService.getAll()
 			.then(function(response){
@@ -22,9 +29,18 @@ app.controller('reportAddSiteCtrl', function($scope, reportService, centerServic
 	getAllCenters();
 
 	$scope.addNewSiteReport = function(newReport){
-		reportService.create($scope.newReport)
 		console.log($scope.newReport);
-		$scope.newReport = "";
+		reportService.create($scope.newReport).then(function(data){
+			console.log(data);
+			$scope.newReport = "";
+		})
 	}
+	
+	/*
+	When creating a new report, the for which the report
+	is being created needs to be sent along with the report.
+	See reportService for the model.
+	*/
+
 
 });

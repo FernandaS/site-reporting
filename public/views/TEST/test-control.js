@@ -49,10 +49,10 @@ function testCtrl($scope, userService, reportService, centerService){
   // reportService.edit(9, change).then(function(data){
   //   console.log(data);
   // })
-  var centerChange = {
-    city: 'Orem'
-  }
-  centerService.delete(6).then(function(data){
-    console.log(data);
-  })
+  // var centerChange = {
+  //   city: 'Orem'
+  // }
+  // centerService.delete(6).then(function(data){
+  //   console.log(data);
+  // })
 }
