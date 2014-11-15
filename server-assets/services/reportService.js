@@ -2,7 +2,6 @@ var Database = require('../models/index');
 var Models = Database.models;
 var Sequelize = Database.sequelize;
 var Promise = require('bluebird');
-var _ = require('underscore');
 var services = {
 	addReport: addReport,
 	putReport: putReport,
@@ -119,7 +118,7 @@ function getAllByRange(rData){
                       visitor_total: report['Reports.visitor_total'],
                       visitor_tour: report['Reports.visitor_tour'],
                       visitor_tournonmember: report['Reports.visitor_tournonmember'],
-                      referral_cards: report['Reports.report_cards'],
+                      referral_cards: report['Reports.referral_cards'],
                       referral_called: report['Reports.referral_called'],
                       referral_inbound: report['Reports.referral_inbound'],
                       referral_member: report['Reports.referral_member'],
@@ -135,3 +134,5 @@ function getAllByRange(rData){
     });
   });
 };
+
+
