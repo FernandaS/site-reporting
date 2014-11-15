@@ -1,7 +1,25 @@
 var app = angular.module('lds-report');
 
-app.controller('directorAddCtrl', function($scope){
+app.controller('directorAddCtrl', function($scope, userService){
 
-
+$scope.createDirector = function(director){
+	$scope.erro = '';
+	director.role = "DIRECTOR";
+	userService.create(director).then(function(res){
+		console.log(res);
+		if(res.data.message){
+			$scope.error = res.data.message;
+		} else {
+			$scope.director = '';
+		}
+	})
+}
 
 });
+
+
+
+
+
+
+

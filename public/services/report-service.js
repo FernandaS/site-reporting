@@ -54,9 +54,9 @@ function reportService($http){
 		})
 	}
 
-	this.edit = function(id, change){  //DOESN'T WORK
-		return $http({ //Needs mySQL magic done
-			method: 'PUT', //Aaron is fixing
+	this.edit = function(id, change){ //WORKS
+		return $http({ 
+			method: 'PUT',
 			url: '/api/reports/' + id,
 			data: change
 		})
