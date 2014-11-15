@@ -7,7 +7,8 @@ var services = {
 	addCenter: addCenter,
 	putCenter: putCenter,
 	delCenter: delCenter,
-	getAllCenters: getAllCenters
+	getAllCenters: getAllCenters,
+	getOne: getOne
 };
 
 module.exports = services;
@@ -35,8 +36,13 @@ function putCenter(cData){
 };
 
 function delCenter(cData){
-	return Models.users.destroy({ where: { id: cData.id } });
+	console.log(cData);
+	return Models.centers.destroy({ where: { id: cData.id } });
 };
+
+function getOne(id){
+	return Models.centers.find({where: {id: id}})
+}
 
 function getAllCenters(){
 	return Models.centers.findAll();

@@ -6,7 +6,7 @@ google.setOnLoadCallback(function() {
 		.controller('testCtrl', testCtrl);
 });
 
-function testCtrl($scope, userService, reportService){
+function testCtrl($scope, userService, reportService, centerService){
 	$scope.test = 'TESTTTTT'
 	var data = google.visualization.arrayToDataTable([
     ['Year', 'Visitors'],
@@ -47,6 +47,12 @@ function testCtrl($scope, userService, reportService){
   //   visitor_total: 15
   // }
   // reportService.edit(9, change).then(function(data){
+  //   console.log(data);
+  // })
+  // var centerChange = {
+  //   city: 'Orem'
+  // }
+  // centerService.delete(6).then(function(data){
   //   console.log(data);
   // })
 }

@@ -16,36 +16,36 @@ var newCenter = {
 */
 
 function centerService($http){
-	this.getOne = function(id){
+	this.getOne = function(id){ //WORKS
 		return $http({
 			method: 'GET',
 			url: '/api/centers/' + id
 		})
 	}
-	this.getAll = function(){
+	this.getAll = function(){ //WORKS
 		return $http({
 			method: 'GET',
 			url: '/api/centers'
 		})
 	}
 
-	this.create = function(data){
+	this.create = function(data){ //WORKS
 		return $http({
 			method: 'POST',
 			url: '/api/centers',
 			data: data
 		})
 	}
-	this.edit = function(id, change){
+	this.edit = function(id, change){ //WORKS
 		return $http({
 			method: 'PUT',
 			url: '/api/centers/' + id,
 			data: change
 		})
 	}
-	this.delete = function(id){
-		return $http({
-			method: 'DELETE',
+	this.delete = function(id){ //WORKS
+		return $http({ //Does not pass back data.
+			method: 'DELETE',//Assume it works on request.
 			url: '/api/centers/' + id
 		})
 	}
