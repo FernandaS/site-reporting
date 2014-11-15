@@ -1,27 +1,96 @@
 'use strict';
 
-google.load('visualization', '1.0', {'packages':['corechart']});
-google.setOnLoadCallback(function() {
 	angular.module('lds-report')
 		.controller('testCtrl', testCtrl);
-});
 
 function testCtrl($scope, userService, reportService, centerService){
 	$scope.test = 'TESTTTTT'
-	var data = google.visualization.arrayToDataTable([
-    ['Year', 'Visitors'],
-    ['2004', 100],
-    ['2005', 125],
-    ['2006', 250],
-    ['2007', 225]
-  ]);
+  $scope.chartType = 'line';
+  $scope.chartConfig = {
+    title: 'Visitors Report'
+  }
+  $scope.chartData = {
+    series: [],
+    data: [{
+      x: [],
+      y: [],
+      tooltip: "This is a tooltip"
+    }]
+  }
 
-  var options = {
-    title: 'Site Visitation'
-  };
-  var chart = new google.visualization.LineChart(document.getElementById('chartdiv'));
+// $scope.chartData = {
+//     series: ['Sales', 'Income', '<i>Expense</i>', 'Laptops', 'Keyboards'], //CENTERS
+//     data: [{
+//       x: "Sales", //MONTH
+//       y: [100, 500, 0], //NUMBER OF VISITORS
+//       tooltip: "this is tooltip"
+//     }, {
+//       x: "Not Sales",
+//       y: [300, 100, 100]
+//     }, {
+//       x: "Tax",
+//       y: [351]
+//     }, {
+//       x: "Not Tax",
+//       y: [54, 0, 879]
+//     }]
+//   };
+// $scope.chartConfig = {
+//     labels: false,
+//     title: "Products",
+//     legend: {
+//       display: true,
+//       position: 'left'
+//     },
+//     innerRadius: 0
+//   };
 
-  chart.draw(data, options);
+  // reportService.getAllFrom('2014-01-01', '2014-12-01').then(function(data){
+  //   console.log(data);
+  //   var reportsObject = data.data;
+  //   for(var key in reportsObject){
+  //     var toPush = {
+  //       x: [],
+  //       y: [],
+  //       tooltip: reportsObject[key].center
+  //     };
+  //     for (var i = reportsObject[key].reports.length - 1; i >= 0; i--) {
+  //       toPush.y.push(reportsObject[key].reports[i].visitor_total);
+  //       toPush.x.push(reportsObject[key].reports[i].date);
+  //     };
+  //     $scope.chartData.data.push(toPush);
+  //     console.log(toPush);
+  //   }
+  // })
+
+
+  reportService.getAllFrom('2014-01-01', '2014-12-01').then(function(data){
+    var chartData = {
+      data: [],
+      series: []
+    };
+    console.log(data);
+    var reportsObject = data.data;
+    var eventualData = [];
+    for(var key in reportsObject){
+      chartData.series.push(reportsObject[key].center)
+      for (var i = reportsObject[key].reports.length - 1; i >= 0; i--) {
+        var toPush = {
+          y: [reportsObject[key].reports[i].visitor_total],
+          x: reportsObject[key].reports[i].date.split('-')[1],
+          tooltip: reportsObject[key].center
+        };
+        chartData.data.push(toPush);
+        // console.log(toPush);
+      };
+    }
+    console.log(chartData);
+    $scope.chartData = chartData;
+  });
+
+
+
+  //FOR POPULATING THE DATABASE 
   // var newUser = {
   //   username:"jake",
   //   password:"hartwell1",

@@ -7,59 +7,50 @@
   <link href='//fonts.googleapis.com/css?family=Roboto:100' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" type="text/css" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"></link>
   <link rel="stylesheet" type="text/css" href="styles/styles.css">
-  <script type="text/javascript" src="https://www.google.com/jsapi"></script><!-- Google Charts script -->
+  <link rel='stylesheet' type='text/css' href='assets/angular-charts/dist/chart-style.css'></link>
+  <!-- <script type="text/javascript" src="https://www.google.com/jsapi"></script> Google Charts script -->
 
-  </head>
+
+
+</head>
 <body ng-controller="mainCtrl">
-<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-      <div class="container-fluid">
-        <div class="navbar-header">
-         
-          <a class="navbar-brand" href="#">LDS Reportings</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav navbar-right">
-           
-            <li><a href="#">Logout</a></li>
-          </ul>
-          
-        </div>
+  <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+      <div class="navbar-header">
+
+        <a class="navbar-brand" href="#">LDS Reportings</a>
       </div>
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-right">
+
+          <li><a href="#">Logout</a></li>
+        </ul>
+        
+      </div>
+    </div>
   </nav>
 
-  <div class="container-fluid">
-      <div class="row">
-        <div class="col-sm-3 col-md-2 sidebar">
-          <ul class="nav nav-sidebar">
-            <ul>
-                <li >
-                  <a  href="/#/reports"><i class="fa fa-edit fa-4x"></i> Reports </a>
-                </li>
-                <li >
-                  <a  href="/#/trends"><i class="fa fa-bar-chart-o fa-4x"></i> Trends</a>
-                </li>
-                <li>
-
-                  <a  href="/#/manage"><i class="fa fa-dashboard fa-4x"></i> Manage </a>
-
-                </li>
-
-
-
-           </ul>
-         <!--   <img class="logo-church" src="Logo_Church.svg.png"> -->
-          
+  <div  class="container-fluid">
+    <div class="row">
+      <div class="col-sm-3 col-md-2 sidebar">
+        <ul class="nav nav-sidebar">
+          <ul>
+            <li >
+              <a  href="/#/reports"><i class="fa fa-edit fa-4x"></i> Reports </a>
+            </li>
+            <li >
+              <a  href="/#/trends"><i class="fa fa-bar-chart-o fa-4x"></i> Trends</a>
+            </li>
+            <li>
+              <a  href="/#/manage"><i class="fa fa-dashboard fa-4x"></i> Manage </a>
+            </li>
+          </ul>
+          <!--   <img class="logo-church" src="Logo_Church.svg.png"> -->
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" >
           <h1 class="page-header">Dashboard</h1>
 
-<div ng-view>
-</div>
-          </div>
-
-          
-
-          
+          <div ng-view>
           </div>
         </div>
       </div>
@@ -97,50 +88,52 @@
            <p>Testing the position</p>
             </div>
      </div>
- -->
+   -->
 
 
-<script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.js"></script>
-<!-- <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular-resource.min.js"></script> -->
-<script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular-route.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+   <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.js"></script>
+   <script src='//cdnjs.cloudflare.com/ajax/libs/d3/3.4.13/d3.min.js'></script>
+   <script src='assets/angular-charts/dist/angular-charts.js' type='text/javascript'></script>
+   <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular-resource.min.js"></script> -->
+   <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular-route.js"></script>
+   <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 
 
-<script src="main/app.js"></script>
-<script src='main/main-control.js'></script>
+   <script src="main/app.js"></script>
+   <script src='main/main-control.js'></script>
 
-<script src="services/auth-service.js"></script>
-<script src="services/center-service.js"></script>
-<script src="services/report-service.js"></script>
-<script src="services/user-service.js"></script>
+   <script src="services/auth-service.js"></script>
+   <script src="services/center-service.js"></script>
+   <script src="services/report-service.js"></script>
+   <script src="services/user-service.js"></script>
 
-<script src="views/director/directorCtrl.js"></script>
-<script src="views/login/loginCtrl.js"></script>
-<script src="views/manage/manageCtrl.js"></script>
-<script src="views/reports/reportsCtrl.js"></script>
-<script src="views/trends/trendsCtrl.js"></script>
-<script src='views/manage/centers/center-control.js'></script>
+   <script src="views/director/directorCtrl.js"></script>
+   <script src="views/login/loginCtrl.js"></script>
+   <script src="views/manage/manageCtrl.js"></script>
+   <script src="views/reports/reportsCtrl.js"></script>
+   <script src="views/trends/trendsCtrl.js"></script>
+   <script src='views/manage/centers/center-control.js'></script>
 
-<script src='views/manage/controllers/director-add-ctrl.js'></script>
-<script src='views/manage/controllers/director-edit-ctrl.js'></script>
-<script src='views/manage/controllers/admin-add-ctrl.js'></script>
-<script src='views/manage/controllers/admin-edit-ctrl.js'></script>
-<script src='views/manage/controllers/site-add-ctrl.js'></script>
-<script src='views/manage/controllers/site-edit-ctrl.js'></script>
+   <script src='views/manage/controllers/director-add-ctrl.js'></script>
+   <script src='views/manage/controllers/director-edit-ctrl.js'></script>
+   <script src='views/manage/controllers/admin-add-ctrl.js'></script>
+   <script src='views/manage/controllers/admin-edit-ctrl.js'></script>
+   <script src='views/manage/controllers/site-add-ctrl.js'></script>
+   <script src='views/manage/controllers/site-edit-ctrl.js'></script>
 
-<script src="views/reports/controllers/report-add-site-ctrl.js"></script> 
-<script src="views/reports/controllers/report-create-custom-ctrl.js"></script> 
-<script src="views/reports/controllers/report-edit-ctrl.js"></script> 
-<script src="views/reports/controllers/report-view-ctrl.js"></script> 
+   <script src="views/reports/controllers/report-add-site-ctrl.js"></script> 
+   <script src="views/reports/controllers/report-create-custom-ctrl.js"></script> 
+   <script src="views/reports/controllers/report-edit-ctrl.js"></script> 
+   <script src="views/reports/controllers/report-view-ctrl.js"></script> 
 
-<script src='views/TEST/test-control.js'></script>
-
-
+   <script src='views/TEST/test-control.js'></script>
 
 
-</body>
-</html>
+
+
+ </body>
+ </html>
 
 
 
