@@ -1,4 +1,4 @@
-var app = angular.module('lds-report', ['ngRoute']);
+var app = angular.module('lds-report', ['ngRoute', 'nvd3ChartDirectives']);
 
 app.config(['$routeProvider', function($routeProvider){
 	$routeProvider
