@@ -1,27 +1,21 @@
 'use strict';
 
-google.load('visualization', '1.0', {'packages':['corechart']});
-google.setOnLoadCallback(function() {
 	angular.module('lds-report')
 		.controller('testCtrl', testCtrl);
-});
 
 function testCtrl($scope, userService, reportService, centerService){
-	$scope.test = 'TESTTTTT'
-	var data = google.visualization.arrayToDataTable([
-    ['Year', 'Visitors'],
-    ['2004', 100],
-    ['2005', 125],
-    ['2006', 250],
-    ['2007', 225]
-  ]);
+  $scope.exampleData = [
+      {
+          "key": "Series 1",
+          "values": [ 
+          [ 1025409600000 , 0] , 
+          [ 1028088000000 , -6.3382185140371] , 
+          [ 1030766400000 , -5.9507873460847] , 
+          [ 1033358400000 , -11.569146943813] , 
+          [ 1036040400000 , -5.4767332317425]]
+      }];
 
-  var options = {
-    title: 'Site Visitation'
-  };
-  var chart = new google.visualization.LineChart(document.getElementById('chartdiv'));
-
-  chart.draw(data, options);
+  //FOR POPULATING THE DATABASE 
   // var newUser = {
   //   username:"jake",
   //   password:"hartwell1",
