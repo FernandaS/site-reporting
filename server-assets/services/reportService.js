@@ -88,24 +88,51 @@ function getAllByMonth(rData){
 };
 
 function getAllByRange(rData){
-	return Models.centers.findAll({
-  		include: [{ 
-  			model: Models.reports, 
-  			as: 'Reports', 
-  			where: { 'Reports.date': { between: [rData.start, rData.end] } },
-  			attributes: [
-  				'id', 
-  				'visitor_total', 
-  				'visitor_tour', 
-  				'visitor_tournonmember', 
-  				'referral_cards', 
-  				'referral_called', 
-  				'referral_inbound', 
-  				'referral_member',
-  				'comments',
-  				[Sequelize.fn('date_format', Sequelize.col('Reports.date'), '%Y-%m-%d'), 'date']
-  			]
-  	  	}]
-	}, {raw: true});
+  	return new Promise(function(resolve, reject){
+      Models.centers.findAll({
+        include: [{ 
+          model: Models.reports, 
+          as: 'Reports', 
+          where: { 'Reports.date': { between: [rData.start, rData.end] } },
+          attributes: [
+            'id', 
+            'visitor_total', 
+            'visitor_tour', 
+            'visitor_tournonmember', 
+            'referral_cards', 
+            'referral_called', 
+            'referral_inbound', 
+            'referral_member',
+            'comments',
+            [Sequelize.fn('date_format', Sequelize.col('Reports.date'), '%Y-%m-%d'), 'date']
+          ]
+          }]
+    }, {raw: true}).then(function(reports){
+      var organizedReports = Sequelize.Utils._.chain(reports)
+      .groupBy('center')
+      .map(function(value, key){
+        return {  center: key, 
+                  reports:  Sequelize.Utils._.map(value, function(report){
+                    return {
+                      id: report['Reports.id'],
+                      visitor_total: report['Reports.visitor_total'],
+                      visitor_tour: report['Reports.visitor_tour'],
+                      visitor_tournonmember: report['Reports.visitor_tournonmember'],
+                      referral_cards: report['Reports.referral_cards'],
+                      referral_called: report['Reports.referral_called'],
+                      referral_inbound: report['Reports.referral_inbound'],
+                      referral_member: report['Reports.referral_member'],
+                      comments: report['Reports.comments'],
+                      date: report['Reports.date']
+                    }
+                })
+               }
+      }).value();
+      resolve(organizedReports);
+    }, function(err){
+      reject(err);
+    });
+  });
 };
+
 

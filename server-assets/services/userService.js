@@ -46,6 +46,5 @@ function getUserById(id){
 };
 
 function getAllUsers(){
-	return Models.users.findAll({ attributes: ['id', 'username', 'role', 'email'], where: {role: 'DIRECTOR'} }, { raw: true });
+	return Models.users.findAll({ attributes: ['id', 'username', 'role', 'email']}, { raw: true });
 };
-
