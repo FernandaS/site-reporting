@@ -4,16 +4,68 @@
 		.controller('testCtrl', testCtrl);
 
 function testCtrl($scope, userService, reportService, centerService){
-  $scope.exampleData = [
-      {
-          "key": "Series 1",
-          "values": [ 
-          [ 1025409600000 , 0] , 
-          [ 1028088000000 , -6.3382185140371] , 
-          [ 1030766400000 , -5.9507873460847] , 
-          [ 1033358400000 , -11.569146943813] , 
-          [ 1036040400000 , -5.4767332317425]]
-      }];
+  $scope.xAxisTickFormatFunction = function(){
+    return function(d){
+      return d3.time.format('%x')(new Date(d)); //uncomment for date format
+    }
+  }
+
+  // $scope.exampleData = [
+      // {
+      //     "key": "Series 1",
+      //     "values": [ 
+      //     [ 1 , 0] , 
+      //     [ 2 , 5] , 
+      //     [ 3 , 7] , 
+      //     [ 4 , 10] , 
+      //     [ 5 , 12]
+      //     ]
+      // },
+      // {
+      //     "key": "Series 2",
+      //     "values": [ 
+      //     [ 1 , 5] , 
+      //     [ 2 , 7] , 
+      //     [ 3 , 9] , 
+      //     [ 4 , 10] , 
+      //     [ 5 , 11]
+      //     ]
+      // }
+      // ];
+  function compare(a,b) {
+    if (a[0] < b[0])
+       return -1;
+    if (a[0] > b[0])
+      return 1;
+    return 0;
+  }
+  reportService.getAllFrom('2013-01-01', '2014-11-01').then(function(data){
+    $scope.exampleData = [];
+    var reports = data.data;
+    console.log(reports);
+    for (var i = reports.length - 1; i >= 0; i--) {
+      var toPush = {
+        "key": reports[i].center,
+        "values": []
+      }
+      for (var j = reports[i].reports.length - 1; j >= 0; j--) {
+        reports[i].reports[j].date = reports[i].reports[j].date.split('-');
+        console.log(reports[i].reports[j].date.join('-'))
+        reports[i].reports[j].date[2] = Number(reports[i].reports[j].date[2]) + 1;
+        reports[i].reports[j].date = new Date(reports[i].reports[j].date.join('-'));
+        console.log(reports[i].reports[j].date);
+        toPush.values.push([
+          reports[i].reports[j].date,
+          reports[i].reports[j].visitor_total
+          ])
+      };
+      $scope.exampleData.push(toPush);
+      };
+    for (var i = $scope.exampleData.length - 1; i >= 0; i--) {
+      $scope.exampleData[i].values.sort(compare);
+    };
+    console.log($scope.exampleData);
+  })
 
   //FOR POPULATING THE DATABASE 
   // var newUser = {
