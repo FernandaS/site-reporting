@@ -49,30 +49,30 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Center app
-app.get('/api/centers/:id', centersCtrl.getCenter);
-app.get('/api/centers/', centersCtrl.getAll);
-app.post('/api/centers', centersCtrl.addCenter);S
-app.put('/api/centers/:id', centersCtrl.putCenter);
-app.delete('/api/centers/:id', centersCtrl.deleteCenter);
+app.get('/api/centers/:id', middleware.requireAuth, centersCtrl.getCenter);
+app.get('/api/centers/', middleware.requireAuth, middleware.ensureAdmin, centersCtrl.getAll);
+app.post('/api/centers', middleware.requireAuth, middleware.ensureAdmin, centersCtrl.addCenter);
+app.put('/api/centers/:id', middleware.requireAuth, middleware.ensureAdmin, centersCtrl.putCenter);
+app.delete('/api/centers/:id', middleware.requireAuth, middleware.ensureAdmin, centersCtrl.deleteCenter);
 
 // User apis
 app.get('/api/users/me', function(req, res){
 	res.json(req.user);
 });
-app.get('/api/users/:id', usersCtrl.getUser);
-app.get('/api/users', usersCtrl.getAllUsers);
-app.post('/api/users', usersCtrl.addUser);
-app.put('/api/users/:id', usersCtrl.putUser);
-app.delete('/api/users/:id', usersCtrl.deleteUser);
+app.get('/api/users/:id', middleware.requireAuth, usersCtrl.getUser);
+app.get('/api/users', middleware.requireAuth, middleware.ensureAdmin, usersCtrl.getAllUsers);
+app.post('/api/users', middleware.requireAuth, middleware.ensureAdmin, usersCtrl.addUser);
+app.put('/api/users/:id', middleware.requireAuth, usersCtrl.putUser);
+app.delete('/api/users/:id', middleware.requireAuth, middleware.ensureAdmin, usersCtrl.deleteUser);
 
 // Report apis, will add the apis with params after I figure it out. Or Aaron figures it out.
 
-app.get('/api/reports/allBy', reportsCtrl.getAllBy); //month
-app.get('/api/reports/allFrom', reportsCtrl.getAllFrom); //month
-app.get('/api/reports/oneBy/:id', reportsCtrl.getOneBy); //center and month
-app.post('/api/reports', reportsCtrl.addReport);
-app.put('/api/reports/:id', reportsCtrl.editReport);
-app.delete('/api/reports/:id', reportsCtrl.deleteReport);
+app.get('/api/reports/allBy', middleware.requireAuth, middleware.ensureAdmin, reportsCtrl.getAllBy); //month
+app.get('/api/reports/allFrom', middleware.requireAuth, middleware.ensureAdmin, reportsCtrl.getAllFrom); //month
+app.get('/api/reports/oneBy/:id', middleware.requireAuth, reportsCtrl.getOneBy); //center and month
+app.post('/api/reports', middleware.requireAuth, reportsCtrl.addReport);
+app.put('/api/reports/:id', middleware.requireAuth, reportsCtrl.editReport);
+app.delete('/api/reports/:id', middleware.requireAuth, middleware.ensureAdmin, reportsCtrl.deleteReport);
 
 app.post('/api/test', function(req, res){
 	console.log(req.query.start, req.query.end);
