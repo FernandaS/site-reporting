@@ -69,5 +69,34 @@ function checkUser(uData){
 };
 
 function getAllUsers(){
-	return Models.users.findAll({ attributes: ['id', 'username', 'role', 'email']}, { raw: true });
+	return new Promise(function(resolve, reject){
+
+		Models.users.findAll({ attributes: ['id', 'username', 'role', 'email'], 
+		include: [{ 
+  			model: Models.addl_emails, 
+  			as: 'secondaryEmails'
+		}]}, { raw: true }).then(function(users){
+			var organizedUsers = Sequelize.Utils._.chain(users).groupBy('username').map(function(value, key){
+			var emailArray = [];
+			emailArray.push(value[0].email || null);
+			Sequelize.Utils._.map(value, function(email){
+				var obj = {
+					id: email['secondaryEmails.id'],
+					email: email['secondaryEmails.email']
+				};
+				emailArray.push(obj);
+			});
+			return {
+				id: value[0].id,
+				username: value[0].username,
+				role: value[0].role,
+				email: value[0].email,
+				secondaryEmails: emailArray.slice(1)
+			}
+			}).value();
+			resolve(organizedUsers);
+		}, function(err){
+			reject(err);
+		});
+	});
 };
