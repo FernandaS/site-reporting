@@ -49,30 +49,32 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Center app
-app.get('/api/centers/:id', middleware.requireAuth, centersCtrl.getCenter);
-app.get('/api/centers/', middleware.requireAuth, middleware.ensureAdmin, centersCtrl.getAll);
-app.post('/api/centers', /*middleware.requireAuth, middleware.ensureAdmin, */centersCtrl.addCenter);
-app.put('/api/centers/:id', middleware.requireAuth, middleware.ensureAdmin, centersCtrl.putCenter);
-app.delete('/api/centers/:id', middleware.requireAuth, middleware.ensureAdmin, centersCtrl.deleteCenter);
+
+app.get('/api/centers/:id'/*, middleware.requireAuth,*/ centersCtrl.getCenter);
+app.get('/api/centers/'/*, middleware.requireAuth, middleware.ensureAdmin*/, centersCtrl.getAll);
+app.post('/api/centers'/*, middleware.requireAuth, middleware.ensureAdmin*/, centersCtrl.addCenter);
+app.put('/api/centers/:id'/*, middleware.requireAuth, middleware.ensureAdmin*/, centersCtrl.putCenter);
+app.delete('/api/centers/:id'/*, middleware.requireAuth, middleware.ensureAdmin*/, centersCtrl.deleteCenter);
 
 // User apis
 app.get('/api/users/me', function(req, res){
 	res.json(req.user);
 });
-app.get('/api/users/:id', middleware.requireAuth, usersCtrl.getUser);
-app.get('/api/users', middleware.requireAuth, middleware.ensureAdmin, usersCtrl.getAllUsers);
-app.post('/api/users', middleware.requireAuth, middleware.ensureAdmin, usersCtrl.addUser);
-app.put('/api/users/:id', middleware.requireAuth, usersCtrl.putUser);
-app.delete('/api/users/:id', middleware.requireAuth, middleware.ensureAdmin, usersCtrl.deleteUser);
+app.get('/api/users/:id'/*, middleware.requireAuth*/, usersCtrl.getUser);
+app.get('/api/users'/*, middleware.requireAuth, middleware.ensureAdmin*/, usersCtrl.getAllUsers);
+app.post('/api/users'/*, middleware.requireAuth, middleware.ensureAdmin*/, usersCtrl.addUser);
+app.put('/api/users/:id'/*, middleware.requireAuth*/, usersCtrl.putUser);
+app.delete('/api/users/:id'/*, middleware.requireAuth, middleware.ensureAdmin*/, usersCtrl.deleteUser);
 
 // Report apis, will add the apis with params after I figure it out. Or Aaron figures it out.
 
-app.get('/api/reports/allBy', /*middleware.requireAuth, middleware.ensureAdmin,*/ reportsCtrl.getAllBy); //month
-app.get('/api/reports/allFrom', /*middleware.requireAuth, middleware.ensureAdmin,*/ reportsCtrl.getAllFrom); //month
-app.get('/api/reports/oneBy/:id', middleware.requireAuth, reportsCtrl.getOneBy); //center and month
-app.post('/api/reports', /*middleware.requireAuth,*/ reportsCtrl.addReport);
-app.put('/api/reports/:id', middleware.requireAuth, reportsCtrl.editReport);
-app.delete('/api/reports/:id', middleware.requireAuth, middleware.ensureAdmin, reportsCtrl.deleteReport);
+app.get('/api/reports/allBy'/*, middleware.requireAuth, middleware.ensureAdmin*/, reportsCtrl.getAllBy); //month
+app.get('/api/reports/allFrom'/*, middleware.requireAuth, middleware.ensureAdmin*/, reportsCtrl.getAllFrom); //month
+app.get('/api/reports/oneBy/:id'/*, middleware.requireAuth*/, reportsCtrl.getOneBy); //center and month
+app.post('/api/reports'/*, middleware.requireAuth*/, reportsCtrl.addReport);
+app.put('/api/reports/:id'/*, middleware.requireAuth*/, reportsCtrl.editReport);
+app.delete('/api/reports/:id'/*, middleware.requireAuth, middleware.ensureAdmin*/, reportsCtrl.deleteReport);
+
 
 app.post('/api/test', function(req, res){
 	console.log(req.query.start, req.query.end);
@@ -89,7 +91,7 @@ app.post('/api/logout', function(req, res){
 	req.logout();
 	res.redirect('#/login');
 });
-app.get('/download', middleware.requireAuth, middleware.ensureAdmin, reportsCtrl.sendReport);
+app.get('/download'/*, middleware.requireAuth, middleware.ensureAdmin*/, reportsCtrl.sendReport);
 //passport.use(new LocalStrategy());
 app.listen(port, function(){
 	console.log('Listening at ' + port);
