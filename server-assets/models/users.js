@@ -1,4 +1,4 @@
-var bcrypt = require('bcrypt');
+// var bcrypt = require('bcrypt');
 module.exports = function(sequelize, DataTypes) {
   return sequelize.define('users', { 
     username: {
@@ -23,12 +23,12 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false
     }
   }, {
-     // instanceMethods: {
-     //    verifyPassword: function(password, done) {
-     //      return bcrypt.compare(password, this.password, function(err, res){
-     //        return done(err, res);
-     //      });
-     //    }
-     // }
+     instanceMethods: {
+        verifyPassword: function(password, done) {
+          return bcrypt.compare(password, this.password, function(err, res){
+            return done(err, res);
+          });
+        }
+     }
   });
 };
