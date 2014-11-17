@@ -1,4 +1,7 @@
 var reportService = require('../services/reportService');
+var phantom = require('phantom-render-stream');
+var fs = require('fs');
+var render = phantom();
 
 module.exports = {
 // remove console.logs after endpoints are working.
@@ -72,4 +75,8 @@ module.exports = {
 			res.send(err);
 		});
 	},
-}
+	sendReport: function (req, res) {
+		res.type("application/pdf");
+		render('http://www.google.com', {format:'pdf', width: 1280, height: 960}).pipe(res);
+	}
+};

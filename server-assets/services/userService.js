@@ -34,7 +34,7 @@ function putUser(uData){
 };
 
 function delUser(uData){
-	return Models.users.destroy({ id: uData.id });
+	return Models.users.destroy({ where: { id: uData.id } });
 };
 
 function getUser(username){
@@ -48,8 +48,7 @@ function getUserById(id){
 //Creating additional function to prevent breakage elsewhere. We can use this function 
 //entirely when we transition to it with passport and our controllers.
 function checkUser(uData){
-	return new Promise(function(resolve, reject){
-		
+	return new Promise(function(resolve, reject){	
 		Models.users.find({ where: { username: uData.username } }).then(function(user){
 			var done = function(err, res){
 				if(err) return reject(err);
@@ -72,12 +71,5 @@ function checkUser(uData){
 function getAllUsers(){
 	return Models.users.findAll({ attributes: ['id', 'username', 'role', 'email']}, { raw: true });
 };
-
-checkUser({
-	username: 'aaronR',
-	password: 'hartwell1',
-}).then(function(result){
-	console.log(result);
-});
 
 
