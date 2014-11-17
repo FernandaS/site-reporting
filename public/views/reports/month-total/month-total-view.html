@@ -40,7 +40,36 @@
 				<th>{{date | date: 'MMMM yyyy'}}</th>
 		<th>{{lastYear | date: 'MMMM yyyy'}}</th>
 		<th>% Change</th>
-
+	</tr>
+	<tr ng-repeat='report in reports'>
+		<td colspan='3'>{{report.center}}</td>
+		<td>{{report['Reports.visitor_total']}}</td>
+		<td></td>
+		<td></td>
+		<td>{{report['Reports.visitor_tour']}}</td>
+		<td></td>
+		<td></td>
+		<td>{{report['Reports.visitor_tournonmember']}}</td>
+		<td></td>
+		<td></td>
+		<td>{{report['Reports.referral_cards']}}</td>
+		<td></td>
+		<td></td>
+		<td>{{report['Reports.referral_called']}}</td>
+		<td></td>
+		<td></td>
+		<td>{{report['Reports.referral_inbound']}}</td>
+		<td></td>
+		<td></td>
+		<td>{{report['Reports.referral_member']}}</td>
+		<td></td>
+		<td></td>
+		<td>{{report['Reports.referral_cards']
+		 + report['Reports.referral_called']
+		 + report['Reports.referral_inbound']
+		 + report['Reports.referral_member']}}</td>
+		<td></td>
+		<td></td>
 	</tr>
 </table>
 
