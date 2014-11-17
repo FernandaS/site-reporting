@@ -89,7 +89,7 @@ app.post('/api/logout', function(req, res){
 	req.logout();
 	res.redirect('#/login');
 });
-
+app.get('/download', reportsCtrl.sendReport);
 //passport.use(new LocalStrategy());
 app.listen(port, function(){
 	console.log('Listening at ' + port);
