@@ -39,34 +39,33 @@ function testCtrl($scope, userService, reportService, centerService){
       return 1;
     return 0;
   }
-  reportService.getAllFrom('2013-01-01', '2014-11-01').then(function(data){
-    $scope.exampleData = [];
-    var reports = data.data;
-    console.log(reports);
-    for (var i = reports.length - 1; i >= 0; i--) {
-      var toPush = {
-        "key": reports[i].center,
-        "values": []
-      }
-      for (var j = reports[i].reports.length - 1; j >= 0; j--) {
-        reports[i].reports[j].date = reports[i].reports[j].date.split('-');
-        console.log(reports[i].reports[j].date.join('-'))
-        reports[i].reports[j].date[2] = Number(reports[i].reports[j].date[2]) + 1;
-        reports[i].reports[j].date = new Date(reports[i].reports[j].date.join('-'));
-        console.log(reports[i].reports[j].date);
-        toPush.values.push([
-          reports[i].reports[j].date,
-          reports[i].reports[j].visitor_total
-          ])
+  $scope.generateChart = function generateChart(from, to, params, centers){
+    reportService.getAllFrom(from, to).then(function(data){
+      $scope.exampleData = [];
+      var reports = data.data;
+      for (var i = reports.length - 1; i >= 0; i--) {
+        var toPush = {
+          "key": reports[i].center,
+          "values": []
+        }
+        for (var j = reports[i].reports.length - 1; j >= 0; j--) {
+          reports[i].reports[j].date = reports[i].reports[j].date.split('-');
+          reports[i].reports[j].date[2] = Number(reports[i].reports[j].date[2]) + 1;
+          reports[i].reports[j].date = new Date(reports[i].reports[j].date.join('-'));
+          toPush.values.push([
+            reports[i].reports[j].date,
+            reports[i].reports[j][params]
+            ])
+        };
+        $scope.exampleData.push(toPush);
+        };
+      for (var i = $scope.exampleData.length - 1; i >= 0; i--) {
+        $scope.exampleData[i].values.sort(compare);
       };
-      $scope.exampleData.push(toPush);
-      };
-    for (var i = $scope.exampleData.length - 1; i >= 0; i--) {
-      $scope.exampleData[i].values.sort(compare);
-    };
-    console.log($scope.exampleData);
-  })
-
+      console.log($scope.exampleData);
+    })
+  }
+  $scope.generateChart('2013-01-01', '2014-12-31', 'visitor_total')
   //FOR POPULATING THE DATABASE 
   // var newUser = {
   //   username:"jake",
@@ -77,28 +76,36 @@ function testCtrl($scope, userService, reportService, centerService){
   // userService.create(newUser).then(function(data){
   //   console.log(data);
   // })
-  // var newReport = {
-  //   date:"2014-09-01",
-  //   visitor_total:500,
-  //   visitor_tour:20,
-  //   visitor_tournonmember:18,
-  //   referral_cards:35,
-  //   referral_called:34,
-  //   referral_inbound:35,
-  //   referral_member:19,
-  //   comments:"Such month, so goooood!",
-  //   centerId: 3
-  // }
+  var newReport = {
+    date:"2014-12-01",
+    visitor_total:90,
+    visitor_tour:20,
+    visitor_tournonmember:18,
+    referral_cards:35,
+    referral_called:34,
+    referral_inbound:35,
+    referral_member:19,
+    comments:"Such month, so goooood!",
+    centerId: 3
+  }
   // var change = {
   //   visitor_total: 15
   // }
-  // reportService.edit(9, change).then(function(data){
-  //   console.log(data);
-  // })
+  reportService.create(newReport).then(function(data){
+    console.log(data);
+  })
   // var centerChange = {
   //   city: 'Orem'
   // }
-  // centerService.delete(6).then(function(data){
+
+  // var newCenter = {
+  //   "center":"Temple Square",
+  //   "city":"Salt Lake City",
+  //   "state":"Utah",
+  //   "country":"USA",
+  //   "userId":3 //The Id of whoever is submitting (logged in)
+  // }
+  // centerService.create(newCenter).then(function(data){
   //   console.log(data);
   // })
 }
