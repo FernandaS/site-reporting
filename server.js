@@ -11,19 +11,25 @@ var express = require('express'),
 	centersCtrl = require('./server-assets/controllers/centersCtrl'),
 	usersCtrl = require('./server-assets/controllers/usersCtrl'),
 	reportsCtrl = require('./server-assets/controllers/reportsCtrl'),
-	middleware = require('./server-assets/middleware/middleware');
+	middleware = require('./server-assets/middleware/middleware'),
 	authCtrl = require('./server-assets/controllers/authCtrl');
 
 passport.use(new LocalStrategy(function(username, pass, done) {
-	userService.getUser(username).then(function (user) {
-		if (!user) {
-			return done(null, false, { message: 'Unknown user ' + username });
-		}
-		if (user.password !== pass){
-			return done(null, false, { message: 'Invalid password' });
-		}
-		return done(null, user);
-	});
+		userService.checkUser(username).then(function (obj) {
+			console.log(obj);
+			return done(null, obj);
+		}, function(err) {
+			return done(err);
+		});
+	// userService.getUser(username).then(function (user) {
+	// 	if (!user) {
+	// 		return done(null, false, { message: 'Unknown user ' + username });
+	// 	}
+	// 	if (user.password !== pass){
+	// 		return done(null, false, { message: 'Invalid password' });
+	// 	}
+	// 	return done(null, user);
+	// });
 }));
 
 passport.serializeUser(function(user, done) {
@@ -83,7 +89,7 @@ app.post('/api/logout', function(req, res){
 	req.logout();
 	res.redirect('#/login');
 });
-
+app.get('/download', reportsCtrl.sendReport);
 //passport.use(new LocalStrategy());
 app.listen(port, function(){
 	console.log('Listening at ' + port);
