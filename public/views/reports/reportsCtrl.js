@@ -2,7 +2,6 @@ var app = angular.module('lds-report');
 
 app.controller('reportsCtrl', function($scope, reportService, centerService){
 	$scope.reports = [];
-	// $scope.centers = [{name:'Temple Square'}];
 
 	$scope.years = [2011, 2012, 2013, 2014, 2015];
 	$scope.months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
@@ -14,11 +13,9 @@ app.controller('reportsCtrl', function($scope, reportService, centerService){
 		$scope.reportDate = $scope.selectedMonth + ' 1, ' + $scope.selectedYear
 		// reportService.getListBy($scope.updateSelectDate).then(function(data){
 		// 	$scope.reports = data.data;
+		console.log($scope.reportDate)
 		// })
 	}
-	// centerService.getAll().then(function(data){
-	// 	$scope.centers = data.data;
-	// })
 	
 	var getAllCenters = function(){
 		centerService.getAll()
@@ -30,4 +27,18 @@ app.controller('reportsCtrl', function($scope, reportService, centerService){
 
 	getAllCenters();
 
+	$scope.viewSingleReport = function(id){
+		for(var i = 0; i < $scope.months.length; i++){
+			if($scope.months[i] === $scope.selectedMonth){
+				var newMonth = i;
+				var date = $scope.selectedYear + "-" + newMonth + "-01";
+				reportService.getOneBy(id, date)
+					.then(function(response){
+						$scope.report = response.data;
+							console.log($scope.report);
+						})
+					}
+
+			}
+		}
 });

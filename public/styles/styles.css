@@ -68,6 +68,10 @@
 	margin: 10px 15px;
 }
 
+.list-group-item:last-child {
+	border-bottom: 10px solid gray;
+}
+
 
 
 /**.logo-bar {
@@ -173,3 +177,14 @@
 	margin-right: auto;
 }
 
+/*
+THIS IS FOR JACOB'S TABLE.
+If it breaks anything, it's Jason's fault.
+*/
+
+.table-header-3 {
+	font-size: 1.2rem;
+}
+th {
+	text-align: center;
+}

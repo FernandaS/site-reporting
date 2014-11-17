@@ -12,6 +12,10 @@ app.config(['$routeProvider', function($routeProvider){
 			templateUrl: '/views/reports/reports.html',
 			controller: 'reportsCtrl'
 		})
+		.when('/reports/:month', {
+			templateUrl: '/views/reports/month-total/month-total-view.html',
+			controller: 'monthTotalCtrl'
+		})
 		.when('/trends', {
 			templateUrl: '/views/trends/trends.html',
 			controller: 'trendsCtrl'

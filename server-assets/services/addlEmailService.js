@@ -12,6 +12,7 @@ var services = {
 module.exports = services;
 
 //logic
+
 function addEmail(eData){
 	var email = Models.addl_emails.build({
 		userId: eData.userId,
