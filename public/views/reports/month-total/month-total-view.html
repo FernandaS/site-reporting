@@ -19,50 +19,50 @@
 		<th>{{date | date: 'MMMM yyyy'}}</th>
 		<th>{{lastYear | date: 'MMMM yyyy'}}</th>
 		<th>% Change</th>
-				<th>{{date | date: 'MMMM yyyy'}}</th>
+		<th>{{date | date: 'MMMM yyyy'}}</th>
 		<th>{{lastYear | date: 'MMMM yyyy'}}</th>
 		<th>% Change</th>
-				<th>{{date | date: 'MMMM yyyy'}}</th>
+		<th>{{date | date: 'MMMM yyyy'}}</th>
 		<th>{{lastYear | date: 'MMMM yyyy'}}</th>
 		<th>% Change</th>
-				<th>{{date | date: 'MMMM yyyy'}}</th>
+		<th>{{date | date: 'MMMM yyyy'}}</th>
 		<th>{{lastYear | date: 'MMMM yyyy'}}</th>
 		<th>% Change</th>
-				<th>{{date | date: 'MMMM yyyy'}}</th>
+		<th>{{date | date: 'MMMM yyyy'}}</th>
 		<th>{{lastYear | date: 'MMMM yyyy'}}</th>
 		<th>% Change</th>
-				<th>{{date | date: 'MMMM yyyy'}}</th>
+		<th>{{date | date: 'MMMM yyyy'}}</th>
 		<th>{{lastYear | date: 'MMMM yyyy'}}</th>
 		<th>% Change</th>
-				<th>{{date | date: 'MMMM yyyy'}}</th>
+		<th>{{date | date: 'MMMM yyyy'}}</th>
 		<th>{{lastYear | date: 'MMMM yyyy'}}</th>
 		<th>% Change</th>
-				<th>{{date | date: 'MMMM yyyy'}}</th>
+		<th>{{date | date: 'MMMM yyyy'}}</th>
 		<th>{{lastYear | date: 'MMMM yyyy'}}</th>
 		<th>% Change</th>
 	</tr>
-	<tr ng-repeat='report in reports'>
-		<td colspan='3'>{{report.center}}</td>
-		<td>{{report['Reports.visitor_total']}}</td>
+	<tr ng-repeat='(key, obj) in reports'>
+		<td colspan='3'>{{key}}</td>
+		<td>{{obj.thisYear.visitor_total}}</td>
+		<td>{{obj.lastYear.visitor_total}}</td>
 		<td></td>
+		<td>{{obj.thisYear.visitor_tour}}</td>
+		<td>{{obj.lastYear.visitor_tour}}</td>
 		<td></td>
-		<td>{{report['Reports.visitor_tour']}}</td>
+		<td>{{obj.thisYear.visitor_tournonmember}}</td>
+		<td>{{obj.lastYear.visitor_tournonmember}}</td>
 		<td></td>
+		<td>{{obj.thisYear.referral_cards}}</td>
+		<td>{{obj.lastYear.referral_cards}}</td>
 		<td></td>
-		<td>{{report['Reports.visitor_tournonmember']}}</td>
+		<td>{{obj.thisYear.referral_called}}</td>
+		<td>{{obj.lastYear.referral_called}}</td>
 		<td></td>
+		<td>{{obj.thisYear.referral_inbound}}</td>
+		<td>{{obj.lastYear.referral_inbound}}</td>
 		<td></td>
-		<td>{{report['Reports.referral_cards']}}</td>
-		<td></td>
-		<td></td>
-		<td>{{report['Reports.referral_called']}}</td>
-		<td></td>
-		<td></td>
-		<td>{{report['Reports.referral_inbound']}}</td>
-		<td></td>
-		<td></td>
-		<td>{{report['Reports.referral_member']}}</td>
-		<td></td>
+		<td>{{obj.thisYear.referral_member}}</td>
+		<td>{{obj.lastYear.referral_member}}</td>
 		<td></td>
 		<td>{{report['Reports.referral_cards']
 		 + report['Reports.referral_called']

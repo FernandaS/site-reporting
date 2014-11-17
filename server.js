@@ -51,7 +51,7 @@ app.use(passport.session());
 // Center app
 app.get('/api/centers/:id', middleware.requireAuth, centersCtrl.getCenter);
 app.get('/api/centers/', middleware.requireAuth, middleware.ensureAdmin, centersCtrl.getAll);
-app.post('/api/centers', middleware.requireAuth, middleware.ensureAdmin, centersCtrl.addCenter);
+app.post('/api/centers', /*middleware.requireAuth, middleware.ensureAdmin, */centersCtrl.addCenter);
 app.put('/api/centers/:id', middleware.requireAuth, middleware.ensureAdmin, centersCtrl.putCenter);
 app.delete('/api/centers/:id', middleware.requireAuth, middleware.ensureAdmin, centersCtrl.deleteCenter);
 
@@ -67,10 +67,10 @@ app.delete('/api/users/:id', middleware.requireAuth, middleware.ensureAdmin, use
 
 // Report apis, will add the apis with params after I figure it out. Or Aaron figures it out.
 
-app.get('/api/reports/allBy', middleware.requireAuth, middleware.ensureAdmin, reportsCtrl.getAllBy); //month
-app.get('/api/reports/allFrom', middleware.requireAuth, middleware.ensureAdmin, reportsCtrl.getAllFrom); //month
+app.get('/api/reports/allBy', /*middleware.requireAuth, middleware.ensureAdmin,*/ reportsCtrl.getAllBy); //month
+app.get('/api/reports/allFrom', /*middleware.requireAuth, middleware.ensureAdmin,*/ reportsCtrl.getAllFrom); //month
 app.get('/api/reports/oneBy/:id', middleware.requireAuth, reportsCtrl.getOneBy); //center and month
-app.post('/api/reports', middleware.requireAuth, reportsCtrl.addReport);
+app.post('/api/reports', /*middleware.requireAuth,*/ reportsCtrl.addReport);
 app.put('/api/reports/:id', middleware.requireAuth, reportsCtrl.editReport);
 app.delete('/api/reports/:id', middleware.requireAuth, middleware.ensureAdmin, reportsCtrl.deleteReport);
 
