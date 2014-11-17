@@ -177,3 +177,14 @@
 	margin-right: auto;
 }
 
+/*
+THIS IS FOR JACOB'S TABLE.
+If it breaks anything, it's Jason's fault.
+*/
+
+.table-header-3 {
+	font-size: 1.2rem;
+}
+th {
+	text-align: center;
+}
