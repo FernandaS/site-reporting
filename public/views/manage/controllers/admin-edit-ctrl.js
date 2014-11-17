@@ -16,6 +16,7 @@ $scope.deleteAdmin = function(){
 	userService.delete($scope.admin.id)
 	.then(function(res){
 		console.log(res)
+	
 
 	})
 }
@@ -24,6 +25,7 @@ $scope.editAdmin = function(){
 	console.log($scope.admin);
 	userService.edit($scope.admin.id, $scope.admin)
 	.then(function(res){
+		
 		//todo User feedback was the change saved successfully
 	});
 }

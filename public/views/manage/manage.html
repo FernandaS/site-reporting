@@ -171,20 +171,20 @@
 			  <div class="form-group">
 			    <label for="username" class="col-sm-2 control-label">Username</label>
 			    <div class="col-sm-6">
-			    <input type="username" class="form-control" id="username" placeholder="username">
+			    <input type="username" class="form-control" id="username" placeholder="username" ng-model="director.username">
 			    </div>
 			  </div>
 			   <div class="form-group">
 			    <label for="" class="col-sm-2 control-label">Email</label>
 			    <div class="col-sm-6">
-			    <input type="" class="form-control" id="" placeholder="Email">
+			    <input type="" class="form-control" id="" placeholder="Email" ng-model="director.email">
 			    </div>
 			  </div>
 
 			  <div class="form-group">
 			    <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
 			    <div class="col-sm-6">
-			      <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
+			      <input type="password" class="form-control" id="inputPassword3" placeholder="Password" ng-model="director.password">
 			    </div>
 			  </div>
   		</form>
@@ -195,16 +195,16 @@
 	    	     </h3>
 	         </div>
 	       	 <div class="panel-body iconi">
-	    		<p>the added email goes here<i class="fa fa-times iconi"></i></p>
+	    		<p>{{}}<i class="fa fa-times iconi"></i></p>
 	  		  </div>
 		</div>
 
 		<div class="form-group form-pad">
 			<div class="col-sm-12">
 				<div class="col-md-6 ">
-					<input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+					<input type="email" class="form-control" id="inputEmail3" placeholder="Email" ng-model="newEmail">
 				</div>
-				<butteon type="button" class="btn btn-primary pull-right">Add Email</button>
+				<butteon type="button" class="btn btn-primary pull-right" ng-click="addDirectorEmail(addEmail)">Add Email</button>
 			</div>
 		</div>	<br>
 
@@ -212,9 +212,9 @@
 
  	 </div>
 	<div class="modal-footer">
-      	<button type="button" class="btn btn-primary">Delete Director</button>
+      	<button type="button" class="btn btn-primary" ng-click="deleteDirector()">Delete Director</button>
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-primary" ng-click="editDirector()">Save changes</button>
       </div>
     </div>
   </div>
@@ -277,7 +277,7 @@
 			<div class="form-group">
 		    	<label class="col-sm-4 control-label">Center Name</label>
 		    	<div class="col-sm-5">
-		      	<input class="form-control"/>
+		      	<input class="form-control" ng-model="center.center"/>
 		    	</div>
 		  	</div>
    
@@ -291,19 +291,19 @@
 		    </div>
 		  </div>
 			<div class="form-group">
-		    <label for="" class="col-sm-4 control-label">Select Center Profile</label>
+		    <label for="" class="col-sm-4 control-label">Select Reporter Profile</label>
 		    <div class="col-sm-5">
-				<select class="form-control">	  
-					  <option>Visitor's Center</option>
-					  <option>Historical Site</option>
+				<select class="form-control" ng-model="director" ng-options="user.username for user in directors">	  
+					 
 				 </select>
 		    </div>
 		    <div class="form-group">
-			    <label for="" class="col-sm-4 control-label">Active</label>
+			    <label for="" class="col-sm-4 control-label" >Active</label>
 			    <div class="col-sm-5">
 					<div class="checkbox">
 				  <label>
-				    <input type="checkbox" id="blankCheckbox" value="option1" aria-label="">
+				    <input type="checkbox" id="blankCheckbox" value="YES" aria-label="" ng-checked="is_active_yes" ng-model="center.active">
+				 
 				  </label>
 				</div>
 		    </div>
@@ -312,9 +312,9 @@
   		</form>
 	 </div>
 			<div class="modal-footer">
-	        <button type="button" class="btn btn-primary">Delete Center</button>
+	        <button type="button" class="btn btn-primary" ng-click="deleteCenter()">Delete Center</button>
 	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-	        <button type="button" class="btn btn-primary">Submit</button>
+	        <button type="button" class="btn btn-primary" ng-click="editCenter()">Submit</button>
 	      </div>
 	    </div>
 	  </div>
@@ -331,32 +331,31 @@
     <div class="modal-content">
           <div class="modal-header">
 	        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-	        <h4 class="modal-title" id="myModalLabel">Edit Center/Site</h4>
+	        <h4 class="modal-title" id="myModalLabel">Add Center/Site</h4>
       	  </div>
       <div class="modal-body">
      	<form class="form-horizontal" role="form">
 					<div class="form-group">
 				    		<label class="col-sm-4 control-label">Center Name</label>
 				    	<div class="col-sm-5">
-				      		<input class="form-control" ng-model="newCenter.center"/>
+				      		<input class="form-control" ng-model="center.center"/>
 				    	</div>
 				  	</div>
 		   
 					<div class="form-group">
 				    		<label for="" class="col-sm-4 control-label">Center Type</label>
 				    	<div class="col-sm-5">
-							<select class="form-control" ng-model="newCenter.type">	  
+							<select class="form-control" ng-model="center.type">	  
 								  <option value="type">Visitor's Center</option>
 								  <option value="type">Historical Site</option>
 							 </select>
 				    	</div>
 				     </div>
 					<div class="form-group">
-				    	<label for="inputPassword" class="col-sm-4 control-label">Select Director Profile</label>
+				    	<label for="inputPassword" class="col-sm-4 control-label">Select Reporter Profile</label>
 					    <div class="col-sm-5">
-							<select class="form-control">	  
-								  <option>Visitor's Center</option>
-								  <option>Historical Site</option>
+							<select class="form-control" ng-model="director" ng-options="user.username for user in directors">	  
+								 
 							 </select>
 					    </div>
 					 </div>
@@ -364,21 +363,21 @@
 				    <div class="form-group">
 				    		<label class="col-sm-4 control-label" >City</label>
 				    	<div class="col-sm-5">
-				      		<input class="form-control" ng-model="newCenter.city"/>
+				      		<input class="form-control" ng-model="center.city"/>
 				    	</div>
 				  	</div>
 
 				  	<div class="form-group">
 				    	<label class="col-sm-4 control-label" >State</label>
 				    	<div class="col-sm-5">
-				      		<input class="form-control"ng-model="newCenter.state" />
+				      		<input class="form-control"ng-model="center.state" />
 				    	</div>
 				  	</div>
 
 				  	<div class="form-group">
-				    	<label class="col-sm-4 control-label" >Countrt</label>
+				    	<label class="col-sm-4 control-label" >Country</label>
 				    	<div class="col-sm-5">
-				      		<input class="form-control" ng-model="newCenter.country"/>
+				      		<input class="form-control" ng-model="center.country"/>
 				    	</div>
 				  	</div>
 				  	<div class="form-group">
@@ -386,10 +385,10 @@
 					<div class="col-sm-5">
 						<div class="radio">
 					  	<label class="radio-inline">
-						  	<input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" ng-model='newCenter.active' alue='YES' checked> True
+						  	<input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" ng-model='center.active' value='YES' checked> True
 						</label>
 						<label class="radio-inline">
-						  	<input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2" ng-model='newCenter.active'alue='NO' checked> False
+						  	<input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2" ng-model='center.active' value='NO' checked> False
 						</label>
 						</div>
 					</div>		  
