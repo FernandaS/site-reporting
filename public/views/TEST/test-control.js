@@ -4,6 +4,7 @@
 		.controller('testCtrl', testCtrl);
 
 function testCtrl($scope, $timeout, userService, reportService, centerService){
+
 /*
 NOTES: The chart is working!  Yay!
 So, everything from lines 12 to 61 need to be included in wherever this chart goes.
@@ -45,6 +46,7 @@ but it's just too many lines to re-write right now.
   }
   $scope.generateChart = function generateChart(from, to, params, centers){
     reportService.getAllFrom(from, to).then(function(data){
+      console.log(data);
       $scope.reportData = [];
       var reports = data.data;
       for (var i = reports.length - 1; i >= 0; i--) {
@@ -93,6 +95,8 @@ but it's just too many lines to re-write right now.
       }, 5000)
     }, 5000)
   }, 5000)
+
+
   //FOR POPULATING THE DATABASE 
   // var newUser = {
   //   username:"jake",

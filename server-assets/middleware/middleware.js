@@ -10,7 +10,7 @@ module.exports = {
 
 	ensureAdmin: function(req, res, next) {
 		console.log(req.user);
-		if(req.user && req.user.admin === true){
+		if(req.user && req.user.role === 'ADMIN'){
 			next();		
 		} else {
 			res.send(403);
