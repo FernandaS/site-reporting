@@ -28,12 +28,17 @@ app.controller('reportsCtrl', function($scope, reportService, centerService){
 	getAllCenters();
 
 	$scope.viewSingleReport = function(id){
-		var date = $scope.year + "-" + $scope.month + "-01";
-		reportService.getOneBy(id, date)
-			.then(function(response){
-				$scope.report = response.data;
-				console.log($scope.report);
-			})
-	}
+		for(var i = 0; i < $scope.months.length; i++){
+			if($scope.months[i] === $scope.selectedMonth){
+				var newMonth = i;
+				var date = $scope.selectedYear + "-" + newMonth + "-01";
+				reportService.getOneBy(id, date)
+					.then(function(response){
+						$scope.report = response.data;
+							console.log($scope.report);
+						})
+					}
 
+			}
+		}
 });
