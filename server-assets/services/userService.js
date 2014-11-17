@@ -49,13 +49,19 @@ function getUserById(id){
 //entirely when we transition to it with passport and our controllers.
 function checkUser(uData){
 	return new Promise(function(resolve, reject){
-		var done = function(err, res){
-			if(err) reject(err);
-			else if(res !== undefined){
-				resolve(res);
-			}
-		};
+		
 		Models.users.find({ where: { username: uData.username } }).then(function(user){
+			var done = function(err, res){
+				if(err) return reject(err);
+				else if(res !== undefined){
+					var obj = {
+						id: user.id,
+						role: user.role,
+						auth: res
+					};
+					return resolve(obj);
+				}
+			};
 			user.verifyPassword(uData.password, done);
 		}, function(err){
 			reject(err);
@@ -66,3 +72,12 @@ function checkUser(uData){
 function getAllUsers(){
 	return Models.users.findAll({ attributes: ['id', 'username', 'role', 'email']}, { raw: true });
 };
+
+checkUser({
+	username: 'aaronR',
+	password: 'hartwell1',
+}).then(function(result){
+	console.log(result);
+});
+
+
