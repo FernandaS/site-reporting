@@ -177,9 +177,11 @@
 THIS IS FOR JACOB'S TABLE.
 If it breaks anything, it's Jason's fault.
 */
-
-.table-header-3 {
+.table-header-2 {
 	font-size: 1.2rem;
+}
+.table-header-3 {
+	font-size: 1rem;
 }
 th {
 	text-align: center;
