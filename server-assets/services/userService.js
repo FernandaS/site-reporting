@@ -71,5 +71,3 @@ function checkUser(uData){
 function getAllUsers(){
 	return Models.users.findAll({ attributes: ['id', 'username', 'role', 'email']}, { raw: true });
 };
-
-
