@@ -2,7 +2,7 @@ var app = angular.module('lds-report');
 
 app.controller('siteAddCtrl', submitReportCtrl)
 
-function submitReportCtrl($scope, centerService){
+function submitReportCtrl($scope, centerService, userService){
 	$scope.yes = 'YES';
 	$scope.no = 'NO';
 	$scope.newCenter = {};
@@ -12,6 +12,15 @@ function submitReportCtrl($scope, centerService){
 		centerService.create($scope.newCenter).then(function(data){
 			console.log(data);
 		})
-		// console.log($scope.newCenter)
+		console.log($scope.newCenter)
 	}
 }
+
+var getDirector = function(){
+	userService.getAll()
+	.then(function(users){
+		$scope.reporterProfile = user.data;
+		console.log($scope.reporterProfile);
+	})
+}
+
