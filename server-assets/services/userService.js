@@ -9,7 +9,8 @@ var services = {
 	delUser: delUser,
 	getUser: getUser,
 	getUserById: getUserById,
-	getAllUsers: getAllUsers
+	getAllUsers: getAllUsers,
+	checkUser: checkUser
 };
 
 module.exports = services;
@@ -33,7 +34,6 @@ function putUser(uData){
 };
 
 function delUser(uData){
-	console.log(uData.id);
 	return Models.users.destroy({ id: uData.id });
 };
 
@@ -43,6 +43,24 @@ function getUser(username){
 
 function getUserById(id){
 	return Models.users.find({where: { id: id }}, {raw: true});
+};
+
+//Creating additional function to prevent breakage elsewhere. We can use this function 
+//entirely when we transition to it with passport and our controllers.
+function checkUser(uData){
+	return new Promise(function(resolve, reject){
+		var done = function(err, res){
+			if(err) reject(err);
+			else if(res !== undefined){
+				resolve(res);
+			}
+		};
+		Models.users.find({ where: { username: uData.username } }).then(function(user){
+			user.verifyPassword(uData.password, done);
+		}, function(err){
+			reject(err);
+		});
+	});
 };
 
 function getAllUsers(){
