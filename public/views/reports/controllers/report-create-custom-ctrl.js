@@ -14,17 +14,6 @@ reportAddSiteCtrl will inherit the scope from reportsCtrl and
 have access to the center data.  It might make it a tad bit
 cleaner.
 */
-	var getAllCenters = function(){
-		centerService.getAll()
-			.then(function(response){
-				$scope.centers = response.data;
-				console.log($scope.centers);
-			})
-	}
-
-	getAllCenters();
-
-
 
 });
 
