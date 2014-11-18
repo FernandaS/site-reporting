@@ -31,10 +31,9 @@ function monthTotalCtrl($scope, $routeParams, reportService){
 			}
 		}
 		$scope.thisYearReports = data.data;
-		console.log($scope.thisYearReports);
 		$scope.reports = {};
 		for (var i = $scope.thisYearReports.length - 1; i >= 0; i--) {
-			$scope.reports[$scope.thisYearReports[i]['center']] = {
+			$scope.reports[$scope.thisYearReports[i]['center']] = { //Putting this year's report into that center's object, under the 'thisYear' key
 				thisYear: {
 					comments: $scope.thisYearReports[i]['Reports.comments'],
 					date: $scope.thisYearReports[i]['Reports.date'],
@@ -48,7 +47,7 @@ function monthTotalCtrl($scope, $routeParams, reportService){
 					visitor_tournonmember: $scope.thisYearReports[i]['Reports.visitor_tournonmember']
 				}
 			};
-				$scope.totals.thisYear.visitor_total += $scope.thisYearReports[i]['Reports.visitor_total'];
+				$scope.totals.thisYear.visitor_total += $scope.thisYearReports[i]['Reports.visitor_total']; //Adding to grand total for this year
 				$scope.totals.thisYear.visitor_tour += $scope.thisYearReports[i]['Reports.visitor_tour'];
 				$scope.totals.thisYear.visitor_tournonmember += $scope.thisYearReports[i]['Reports.visitor_tournonmember'];
 				$scope.totals.thisYear.referral_member += $scope.thisYearReports[i]['Reports.referral_member'];
@@ -62,7 +61,7 @@ function monthTotalCtrl($scope, $routeParams, reportService){
 		reportService.getAllBy(lastYear).then(function(data){
 			$scope.lastYearReports = data.data;
 			for (var i = $scope.lastYearReports.length - 1; i >= 0; i--) {
-				$scope.reports[$scope.lastYearReports[i]['center']].lastYear = {
+				$scope.reports[$scope.lastYearReports[i]['center']].lastYear = { //Putting last year's report into that center's object, under the 'lastYear' key
 					comments: $scope.lastYearReports[i]['Reports.comments'],
 					date: $scope.lastYearReports[i]['Reports.date'],
 					id: $scope.lastYearReports[i]['Reports.id'],
@@ -74,7 +73,7 @@ function monthTotalCtrl($scope, $routeParams, reportService){
 					visitor_tour: $scope.lastYearReports[i]['Reports.visitor_tour'],
 					visitor_tournonmember: $scope.lastYearReports[i]['Reports.visitor_tournonmember']
 				}
-				$scope.totals.lastYear.visitor_total += $scope.lastYearReports[i]['Reports.visitor_total'];
+				$scope.totals.lastYear.visitor_total += $scope.lastYearReports[i]['Reports.visitor_total']; //Adding to grandtotal for this year.
 				$scope.totals.lastYear.visitor_tour += $scope.lastYearReports[i]['Reports.visitor_tour'];
 				$scope.totals.lastYear.visitor_tournonmember += $scope.lastYearReports[i]['Reports.visitor_tournonmember'];
 				$scope.totals.lastYear.referral_member += $scope.lastYearReports[i]['Reports.referral_member'];
@@ -82,12 +81,18 @@ function monthTotalCtrl($scope, $routeParams, reportService){
 				$scope.totals.lastYear.referral_cards += $scope.lastYearReports[i]['Reports.referral_cards'];
 				$scope.totals.lastYear.referral_called += $scope.lastYearReports[i]['Reports.referral_called'];
 			};
-			console.log($scope.reports);
+			$scope.totals.change = {
+				visitor_total: Math.round(($scope.totals.thisYear.visitor_total - $scope.totals.lastYear.visitor_total) / $scope.totals.thisYear.visitor_total * 100),
+				visitor_tour: Math.round(($scope.totals.thisYear.visitor_tour - $scope.totals.lastYear.visitor_tour) / $scope.totals.thisYear.visitor_tour * 100),
+				visitor_tournonmember: Math.round(($scope.totals.thisYear.visitor_tournonmember - $scope.totals.lastYear.visitor_tournonmember) / $scope.totals.thisYear.visitor_tournonmember * 100),
+				referral_member: Math.round(($scope.totals.thisYear.referral_member - $scope.totals.lastYear.referral_member) / $scope.totals.thisYear.referral_member * 100),
+				referral_inbound: Math.round(($scope.totals.thisYear.referral_inbound - $scope.totals.lastYear.referral_inbound) / $scope.totals.thisYear.referral_inbound * 100),
+				referral_cards: Math.round(($scope.totals.thisYear.referral_cards - $scope.totals.lastYear.referral_cards) / $scope.totals.thisYear.referral_cards * 100),
+				referral_called: Math.round(($scope.totals.thisYear.referral_called - $scope.totals.lastYear.referral_called) / $scope.totals.thisYear.referral_called * 100)
+			}
 			console.log($scope.totals);
 		})
 	})
-	$scope.hideTrimmings = true;
-
 
 
 	$scope.addTo = function(data, year, key){
