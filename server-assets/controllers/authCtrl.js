@@ -35,6 +35,7 @@ module.exports = {
 	      return res.status(401).end();
 	    }
 	    req.logIn(user, function(err) {
+	    	console.log('Am I here?');
 	      return res.status(200).end();
 	    });
 	  })(req, res, next);

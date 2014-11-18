@@ -12,10 +12,11 @@ var express = require('express'),
 	usersCtrl = require('./server-assets/controllers/usersCtrl'),
 	reportsCtrl = require('./server-assets/controllers/reportsCtrl'),
 	middleware = require('./server-assets/middleware/middleware'),
-	authCtrl = require('./server-assets/controllers/authCtrl');
+	authCtrl = require('./server-assets/controllers/authCtrl'),
+	emailsCtrl = require('./server-assets/controllers/emailsCtrl');
 
 passport.use(new LocalStrategy(function(username, pass, done) {
-		userService.checkUser(username).then(function (obj) {
+		userService.checkUser({username: username, password: pass}).then(function (obj) {
 			console.log(obj);
 			return done(null, obj);
 		}, function(err) {
@@ -74,13 +75,18 @@ app.post('/api/reports'/*, middleware.requireAuth*/, reportsCtrl.addReport);
 app.put('/api/reports/:id'/*, middleware.requireAuth*/, reportsCtrl.editReport);
 app.delete('/api/reports/:id'/*, middleware.requireAuth, middleware.ensureAdmin*/, reportsCtrl.deleteReport);
 
+// Additional emails
+app.post('/api/addlEmails/:id', emailsCtrl.addEmail);
+app.put('/api/addlEmails/:id', emailsCtrl.putAddlEmails);
+app.delete('/api/addlEmails/:id', emailsCtrl.delAddlEmail);
+
 app.post('/api/test', function(req, res){
 	console.log(req.query.start, req.query.end);
 	res.end();
 })
 
 // Auth apis
-// app.post('/api/login', passport.authenticate('local', { failureRedirect: '/login' }), function(req, res){
+// app.post('/api/login', passport.authenticate('local', { failureRedirect: '#/login' }), function(req, res){
 // 	res.send(req.user);
 // });
 app.post('/api/login', authCtrl.authenticateUser);
