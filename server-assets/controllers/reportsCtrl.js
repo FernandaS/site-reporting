@@ -77,9 +77,10 @@ module.exports = {
 		});
 	},
 	sendReport: function (req, res) {
-		var filename = 'awesome'; //dynamically create filename based on request
+		var filename = 'report'; //dynamically create filename based on request
 		res.setHeader('Content-disposition', 'attachment; filename=' + filename);
 		res.type("application/pdf");
-		render('http://www.google.com', {format:'pdf', width: 1280, height: 960, printMedia: true}).pipe(res);
+		render('http://localhost:9001/#/reports/2014-11-01', {format:'pdf', width: '100px', margin: '30px', orientation: 'landscape'})
+		.pipe(res) || res.status(500).end();
 	}
 };
