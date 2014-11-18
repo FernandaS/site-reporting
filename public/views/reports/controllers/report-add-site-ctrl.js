@@ -21,8 +21,17 @@ app.controller('reportAddSiteCtrl', function($scope, reportService, centerServic
 					centerId: $scope.selectedCenter.id
 				})
 				.then(function(response){
-					console.log(response);
-
+					$scope.visitor_total = "";
+					$scope.visitor_tour = "",
+					$scope.visitor_tournonmember = "",
+					$scope.referral_cards = "",
+					$scope.referral_called = "",
+					$scope.referral_inbound = "",
+					$scope.referral_member = "",
+					$scope.comments = ""
+					$scope.selectedYear = "";
+					$scope.selectedMonth = "";
+					$scope.selectedCenter = "";
 				})
 
 			}					

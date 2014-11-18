@@ -25,7 +25,7 @@ app.controller('reportViewCtrl', function($scope, reportService, centerService){
 
 	$scope.deleteSingleReport = function(id){
 		reportService.delete(id)
-		console.log('Deleted');
+		$scope.deleteReportWarningAlert = false;
 	}
 
 });
