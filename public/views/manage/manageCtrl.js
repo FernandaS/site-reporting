@@ -2,15 +2,16 @@ var app = angular.module('lds-report');
 
 app.controller('manageCtrl', function($scope, centerService, userService){
 
-// var allCenters = function(){
-// 	centerService.getAll().
-// 	then(function(centers){
-// 		$scope.centers = centers.data
-// 		console.log($scope.centers);
-// 	})
-// }
+var allCenters = function(){
+	centerService.getAll().
+	then(function(centers){
+		$scope.centers = centers.data
+		console.log($scope.centers);
+	})
+}
 
-// allCenters();
+allCenters();
+
 var administrators = [];
 var directors = [];
 
