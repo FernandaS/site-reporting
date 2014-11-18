@@ -45,23 +45,25 @@ function getUserById(id){
 	return Models.users.find({where: { id: id }}, {raw: true});
 };
 
-//Creating additional function to prevent breakage elsewhere. We can use this function 
-//entirely when we transition to it with passport and our controllers.
 function checkUser(uData){
 	return new Promise(function(resolve, reject){	
 		Models.users.find({ where: { username: uData.username } }).then(function(user){
-			var done = function(err, res){
-				if(err) return reject(err);
-				else if(res !== undefined){
-					var obj = {
-						id: user.id,
-						role: user.role,
-						auth: res
-					};
-					return resolve(obj);
-				}
-			};
-			user.verifyPassword(uData.password, done);
+			if(user){
+				var done = function(err, res){
+					if(err) return reject(err);
+					else if(res !== undefined){
+						var obj = {
+							id: user.id,
+							role: user.role,
+							auth: res
+						};
+						return resolve(obj);
+					}
+				};
+				user.verifyPassword(uData.password, done);
+			} else {
+				resolve({id: null, role: null, auth: false});
+			}
 		}, function(err){
 			reject(err);
 		});
@@ -70,7 +72,6 @@ function checkUser(uData){
 
 function getAllUsers(){
 	return new Promise(function(resolve, reject){
-
 		Models.users.findAll({ attributes: ['id', 'username', 'role', 'email'], 
 		include: [{ 
   			model: Models.addl_emails, 

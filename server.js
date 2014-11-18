@@ -49,6 +49,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Center app
+
 app.get('/api/centers/:id'/*, middleware.requireAuth,*/, centersCtrl.getCenter);
 app.get('/api/centers/'/*, middleware.requireAuth, middleware.ensureAdmin*/, centersCtrl.getAll);
 app.post('/api/centers'/*, middleware.requireAuth, middleware.ensureAdmin*/, centersCtrl.addCenter);
@@ -73,6 +74,7 @@ app.get('/api/reports/oneBy/:id'/*, middleware.requireAuth*/, reportsCtrl.getOne
 app.post('/api/reports'/*, middleware.requireAuth*/, reportsCtrl.addReport);
 app.put('/api/reports/:id'/*, middleware.requireAuth*/, reportsCtrl.editReport);
 app.delete('/api/reports/:id'/*, middleware.requireAuth, middleware.ensureAdmin*/, reportsCtrl.deleteReport);
+
 
 app.post('/api/test', function(req, res){
 	console.log(req.query.start, req.query.end);
