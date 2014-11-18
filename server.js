@@ -49,7 +49,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Center app
-app.get('/api/centers/:id'/*, middleware.requireAuth,*/ centersCtrl.getCenter);
+app.get('/api/centers/:id'/*, middleware.requireAuth,*/, centersCtrl.getCenter);
 app.get('/api/centers/'/*, middleware.requireAuth, middleware.ensureAdmin*/, centersCtrl.getAll);
 app.post('/api/centers'/*, middleware.requireAuth, middleware.ensureAdmin*/, centersCtrl.addCenter);
 app.put('/api/centers/:id'/*, middleware.requireAuth, middleware.ensureAdmin*/, centersCtrl.putCenter);

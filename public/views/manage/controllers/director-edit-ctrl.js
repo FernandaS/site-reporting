@@ -21,8 +21,26 @@ $scope.editDirector = function(){
 	})
 }
 
-// $scope.addDirectorEmail = function(){
-	
-// }
+$scope.addDirectorEmail = function(email){
+	console.log($scope.director)
+	var obj = {
+		email: email
+	}
+	$scope.director.secondaryEmails.push(obj)
+	userService.edit($scope.director.id, $scope.director)
+	.then(function(res){
+		console.log(res);
+
+	})
+
+
+}
+
+$scope.removeEmail = function(){
+
+}
+
+
+
 
 });
