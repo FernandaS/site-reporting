@@ -86,6 +86,7 @@ function monthTotalCtrl($scope, $routeParams, reportService){
 			console.log($scope.totals);
 		})
 	})
+	$scope.hideTrimmings = true;
 
 
 
