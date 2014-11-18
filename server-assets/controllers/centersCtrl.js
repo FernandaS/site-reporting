@@ -41,6 +41,7 @@ module.exports = {
 	deleteCenter: function (req, res) {
 		centerService.delCenter({id: req.params.id}).then(function(data){
 			console.log('deleteCenter worked');
+			data = {delete: data};
 			res.status(200).send(data);
 		}, function(err){
 			console.log(err);

@@ -13,7 +13,8 @@ var express = require('express'),
 	reportsCtrl = require('./server-assets/controllers/reportsCtrl'),
 	middleware = require('./server-assets/middleware/middleware'),
 	authCtrl = require('./server-assets/controllers/authCtrl'),
-	emailsCtrl = require('./server-assets/controllers/emailsCtrl');
+	emailsCtrl = require('./server-assets/controllers/emailsCtrl'),
+	bcrypt = require('bcrypt');
 
 passport.use(new LocalStrategy(function(username, pass, done) {
 		userService.checkUser({username: username, password: pass}).then(function (obj) {
@@ -30,6 +31,17 @@ passport.use(new LocalStrategy(function(username, pass, done) {
 	// 		return done(null, false, { message: 'Invalid password' });
 	// 	}
 	// 	return done(null, user);
+	// });
+	// userService.getUser(username).then(function (user) {
+	// 	if (!user) {
+	// 		return done(null, false, { message: 'Unknown user ' + username });
+	// 	}
+	// 	else {
+	// 		return bcrypt.compare(pass, user.password, function(err, res) {
+	// 			console.log(user);
+	// 			return done(err, res);
+	// 		});
+	// 	}
 	// });
 }));
 
