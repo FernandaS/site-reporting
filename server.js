@@ -13,8 +13,8 @@ usersCtrl = require('./server-assets/controllers/usersCtrl'),
 reportsCtrl = require('./server-assets/controllers/reportsCtrl'),
 middleware = require('./server-assets/middleware/middleware'),
 authCtrl = require('./server-assets/controllers/authCtrl'),
-emailsCtrl = require('./server-assets/controllers/emailsCtrl'),
-bcrypt = require('bcrypt');
+emailsCtrl = require('./server-assets/controllers/emailsCtrl');
+// bcrypt = require('bcrypt');
 
 passport.use(new LocalStrategy(function(username, pass, done) {
 	userService.getUser(username).then(function (user) {
