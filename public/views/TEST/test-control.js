@@ -118,12 +118,12 @@ but it's just too many lines to re-write right now.
   //   comments:"Such month, so goooood!",
   //   centerId: 1
   // }
-  // var change = {
-  //   visitor_total: 15
-  // }
-  // reportService.create(newReport).then(function(data){
-  //   console.log(data);
-  // })
+  var change = {
+    visitor_total: 15
+  }
+  reportService.edit(2, change).then(function(data){
+    console.log(data);
+  })
   // var centerChange = {
   //   city: 'Orem'
   // }
