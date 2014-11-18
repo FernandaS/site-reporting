@@ -1,48 +1,33 @@
 var express = require('express'),
-	app = express(),
-	env = require('./server-assets/env/vars'),
-	sql = require('sequelize'),
-	session = require('express-session'),
-	passport = require('passport'),
-	bodyParser = require('body-parser'),
-	LocalStrategy = require('passport-local').Strategy,
-	port = env.expressPort,
-	userService = require('./server-assets/services/userService'),
-	centersCtrl = require('./server-assets/controllers/centersCtrl'),
-	usersCtrl = require('./server-assets/controllers/usersCtrl'),
-	reportsCtrl = require('./server-assets/controllers/reportsCtrl'),
-	middleware = require('./server-assets/middleware/middleware'),
-	authCtrl = require('./server-assets/controllers/authCtrl'),
-	emailsCtrl = require('./server-assets/controllers/emailsCtrl'),
-	bcrypt = require('bcrypt');
+app = express(),
+env = require('./server-assets/env/vars'),
+sql = require('sequelize'),
+session = require('express-session'),
+passport = require('passport'),
+bodyParser = require('body-parser'),
+LocalStrategy = require('passport-local').Strategy,
+port = env.expressPort,
+userService = require('./server-assets/services/userService'),
+centersCtrl = require('./server-assets/controllers/centersCtrl'),
+usersCtrl = require('./server-assets/controllers/usersCtrl'),
+reportsCtrl = require('./server-assets/controllers/reportsCtrl'),
+middleware = require('./server-assets/middleware/middleware'),
+authCtrl = require('./server-assets/controllers/authCtrl'),
+emailsCtrl = require('./server-assets/controllers/emailsCtrl'),
+bcrypt = require('bcrypt');
 
 passport.use(new LocalStrategy(function(username, pass, done) {
-		userService.checkUser({username: username, password: pass}).then(function (obj) {
-			console.log(obj);
-			return done(null, obj);
-		}, function(err) {
-			return done(err);
-		});
-	// userService.getUser(username).then(function (user) {
-	// 	if (!user) {
-	// 		return done(null, false, { message: 'Unknown user ' + username });
-	// 	}
-	// 	if (user.password !== pass){
-	// 		return done(null, false, { message: 'Invalid password' });
-	// 	}
-	// 	return done(null, user);
-	// });
-	// userService.getUser(username).then(function (user) {
-	// 	if (!user) {
-	// 		return done(null, false, { message: 'Unknown user ' + username });
-	// 	}
-	// 	else {
-	// 		return bcrypt.compare(pass, user.password, function(err, res) {
-	// 			console.log(user);
-	// 			return done(err, res);
-	// 		});
-	// 	}
-	// });
+	userService.getUser(username).then(function (user) {
+		if (!user) {
+			return done(null, false, { message: 'Unknown user ' + username });
+		}
+		bcrypt.compare(pass, user.password, function(err, res) {
+			if (!res){
+				return done(null, false, { message: 'Invalid password' });
+			}
+			return done(null, user);			
+		})
+	});
 }));
 
 passport.serializeUser(function(user, done) {
@@ -51,8 +36,8 @@ passport.serializeUser(function(user, done) {
 
 passport.deserializeUser(function(id, done) {
 	userService.getUserById(id).then(function (user) {
-	 	done(null, user);
-	 });
+		done(null, user);
+	});
 });
 
 app.use(express.static(__dirname + '/public'));
