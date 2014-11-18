@@ -34,7 +34,14 @@
 				comments: $scope.report['Reports.comments']
 			})
 			.then(function(response){
-				console.log(response);
+				$scope.report['Reports.visitor_total'] = "";
+				$scope.report['Reports.visitor_tour'] = "";
+				$scope.report['Reports.visitor_tournonmember'] = "";
+				$scope.report['Reports.referral_cards'] = "";
+				$scope.report['Reports.referral_called'] = "";
+				referral_inbound: $scope.report['Reports.referral_inbound'] = "";
+				$scope.report['Reports.referral_member'] = "";
+				$scope.report['Reports.comments'] = "";
 			});
 		}
 

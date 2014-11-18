@@ -113,7 +113,7 @@
             <div class="modal-body">
                 <div class="panel panel-default">
                 <div class="panel-heading">
-                  <h3 class="panel-title">Visitors Center and Historic Site Monthly Report for: {{selectedCenter.center}} {{selectedMonth}} {{selectedYear}}</h3><br/>
+                  <h3 class="panel-title">Visitors Center and Historic Site Monthly Report for: </br> {{selectedCenter.center}} {{selectedMonth}} {{selectedYear}}</h3><br/>
                       Choose site:
                       <select ng-init='selectedCenter = center' ng-options='center.center for center in $parent.centers' ng-model='selectedCenter'></select>
                        
@@ -157,7 +157,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary" ng-click="addNewSiteReport()">Save changes</button>
+              <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="addNewSiteReport()">Save changes</button>
             </div>
           </div>
         </div>
@@ -209,7 +209,7 @@
                       <button type="button" class="btn btn-default" data-toggle="modal" data-target="#viewButtonModalEdit" data-dismiss="modal" ng-click="getSingleReportEdit(report['Reports.id'])">Edit</button>
                       <button type="button" class="btn btn-default" ng-click="deleteReportWarning()">Delete</button><br/>
                   
-                     <div class="alert alert-danger" role="alert" ng-show="deleteReportWarningAlert">Are you sure you want to delete this report? This action cannot be undone.<button type="button" class="btn btn-default" ng-click="deleteSingleReport(report['Reports.id'])">Yes, I want to delete this report</button><br/>
+                     <div class="alert alert-danger" role="alert" ng-show="deleteReportWarningAlert">Are you sure you want to delete this report? This action cannot be undone.<button type="button" class="btn btn-default" data-dismiss="modal" ng-click="deleteSingleReport(report['Reports.id'])">Yes, I want to delete this report</button><br/>
                      </div>    
                 </div>
               </div>   
@@ -268,7 +268,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary" ng-click="editSingleReport()">Save changes</button>
+              <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="editSingleReport()">Save changes</button>
             </div>
           </div>
         </div>
