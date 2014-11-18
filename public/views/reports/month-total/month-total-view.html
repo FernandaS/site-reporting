@@ -19,57 +19,129 @@
 		<th>{{date | date: 'MMMM yyyy'}}</th>
 		<th>{{lastYear | date: 'MMMM yyyy'}}</th>
 		<th>% Change</th>
-				<th>{{date | date: 'MMMM yyyy'}}</th>
+		<th>{{date | date: 'MMMM yyyy'}}</th>
 		<th>{{lastYear | date: 'MMMM yyyy'}}</th>
 		<th>% Change</th>
-				<th>{{date | date: 'MMMM yyyy'}}</th>
+		<th>{{date | date: 'MMMM yyyy'}}</th>
 		<th>{{lastYear | date: 'MMMM yyyy'}}</th>
 		<th>% Change</th>
-				<th>{{date | date: 'MMMM yyyy'}}</th>
+		<th>{{date | date: 'MMMM yyyy'}}</th>
 		<th>{{lastYear | date: 'MMMM yyyy'}}</th>
 		<th>% Change</th>
-				<th>{{date | date: 'MMMM yyyy'}}</th>
+		<th>{{date | date: 'MMMM yyyy'}}</th>
 		<th>{{lastYear | date: 'MMMM yyyy'}}</th>
 		<th>% Change</th>
-				<th>{{date | date: 'MMMM yyyy'}}</th>
+		<th>{{date | date: 'MMMM yyyy'}}</th>
 		<th>{{lastYear | date: 'MMMM yyyy'}}</th>
 		<th>% Change</th>
-				<th>{{date | date: 'MMMM yyyy'}}</th>
+		<th>{{date | date: 'MMMM yyyy'}}</th>
 		<th>{{lastYear | date: 'MMMM yyyy'}}</th>
 		<th>% Change</th>
-				<th>{{date | date: 'MMMM yyyy'}}</th>
+		<th>{{date | date: 'MMMM yyyy'}}</th>
 		<th>{{lastYear | date: 'MMMM yyyy'}}</th>
 		<th>% Change</th>
 	</tr>
-	<tr ng-repeat='report in reports'>
-		<td colspan='3'>{{report.center}}</td>
-		<td>{{report['Reports.visitor_total']}}</td>
-		<td></td>
-		<td></td>
-		<td>{{report['Reports.visitor_tour']}}</td>
-		<td></td>
-		<td></td>
-		<td>{{report['Reports.visitor_tournonmember']}}</td>
-		<td></td>
-		<td></td>
-		<td>{{report['Reports.referral_cards']}}</td>
-		<td></td>
-		<td></td>
-		<td>{{report['Reports.referral_called']}}</td>
-		<td></td>
-		<td></td>
-		<td>{{report['Reports.referral_inbound']}}</td>
-		<td></td>
-		<td></td>
-		<td>{{report['Reports.referral_member']}}</td>
-		<td></td>
-		<td></td>
-		<td>{{report['Reports.referral_cards']
-		 + report['Reports.referral_called']
-		 + report['Reports.referral_inbound']
-		 + report['Reports.referral_member']}}</td>
-		<td></td>
-		<td></td>
+	<tr ng-repeat='(key, obj) in reports'>
+		<td colspan='3'>{{key}}</td>
+		<td>{{obj.thisYear.visitor_total}}</td>
+		<td>{{obj.lastYear.visitor_total}}</td>
+		<td>{{((obj.thisYear.visitor_total - obj.lastYear.visitor_total) / obj.thisYear.visitor_total * 100)}}</td>
+		<td>{{obj.thisYear.visitor_tour}}</td>
+		<td>{{obj.lastYear.visitor_tour}}</td>
+		<td>{{(obj.thisYear.visitor_tour - obj.lastYear.visitor_tour) / obj.thisYear.visitor_tour * 100}}</td>
+		<td>{{obj.thisYear.visitor_tournonmember}}</td>
+		<td>{{obj.lastYear.visitor_tournonmember}}</td>
+		<td>{{(obj.thisYear.visitor_tournonmember - obj.lastYear.visitor_tournonmember) / obj.thisYear.visitor_tournonmember * 100}}</td>
+		<td>{{obj.thisYear.referral_cards}}</td>
+		<td>{{obj.lastYear.referral_cards}}</td>
+		<td>{{(obj.thisYear.referral_cards - obj.lastYear.referral_cards) / obj.thisYear.referral_cards * 100}}</td>
+		<td>{{obj.thisYear.referral_called}}</td>
+		<td>{{obj.lastYear.referral_called}}</td>
+		<td>{{(obj.thisYear.referral_called - obj.lastYear.referral_called) / obj.thisYear.referral_called * 100}}</td>
+		<td>{{obj.thisYear.referral_inbound}}</td>
+		<td>{{obj.lastYear.referral_inbound}}</td>
+		<td>{{(obj.thisYear.referral_inbound - obj.lastYear.referral_inbound) / obj.thisYear.referral_inbound * 100}}</td>
+		<td>{{obj.thisYear.referral_member}}</td>
+		<td>{{obj.lastYear.referral_member}}</td>
+		<td>{{(obj.thisYear.referral_member - obj.lastYear.referral_member) / obj.thisYear.referral_member * 100}}</td>
+		<td>{{
+		   obj.thisYear.referral_cards
+		 + obj.thisYear.referral_called
+		 + obj.thisYear.referral_inbound
+		 + obj.thisYear.referral_member
+		 }}</td>
+		<td>{{
+		   obj.lastYear.referral_cards
+		 + obj.lastYear.referral_called
+		 + obj.lastYear.referral_inbound
+		 + obj.lastYear.referral_member
+		 }}</td>
+		<td>{{
+		((obj.thisYear.referral_cards
+		 + obj.thisYear.referral_called
+		 + obj.thisYear.referral_inbound
+		 + obj.thisYear.referral_member) - 
+		 (obj.lastYear.referral_cards
+		 + obj.lastYear.referral_called
+		 + obj.lastYear.referral_inbound
+		 + obj.lastYear.referral_member)) /
+		 (obj.thisYear.referral_cards
+		 + obj.thisYear.referral_called
+		 + obj.thisYear.referral_inbound
+		 + obj.thisYear.referral_member) 
+		  * 100
+		}}</td>
+	</tr>
+	<tr>
+		<td colspan='3'>Totals:</td>
+		<td>{{totals.thisYear.visitor_total}}</td>
+		<td>{{totals.lastYear.visitor_total}}</td>
+		<td>{{(totals.thisYear.visitor_total - totals.lastYear.visitor_total) / totals.thisYear.visitor_total * 100}}</td>
+		<td>{{totals.thisYear.visitor_tour}}</td>
+		<td>{{totals.lastYear.visitor_tour}}</td>
+		<td>{{(totals.thisYear.visitor_tour - totals.lastYear.visitor_tour) / totals.thisYear.visitor_tour * 100}}</td>
+		<td>{{totals.thisYear.visitor_tournonmember}}</td>
+		<td>{{totals.lastYear.visitor_tournonmember}}</td>
+		<td>{{(totals.thisYear.visitor_tournonmember - totals.lastYear.visitor_tournonmember) / totals.thisYear.visitor_tournonmember * 100}}</td>
+		<td>{{totals.thisYear.referral_cards}}</td>
+		<td>{{totals.lastYear.referral_cards}}</td>
+		<td>{{(totals.thisYear.referral_cards - totals.lastYear.referral_cards) / totals.thisYear.referral_cards * 100}}</td>
+		<td>{{totals.thisYear.referral_called}}</td>
+		<td>{{totals.lastYear.referral_called}}</td>
+		<td>{{(totals.thisYear.referral_called - totals.lastYear.referral_called) / totals.thisYear.referral_called * 100}}</td>
+		<td>{{totals.thisYear.referral_inbound}}</td>
+		<td>{{totals.lastYear.referral_inbound}}</td>
+		<td>{{(totals.thisYear.referral_inbound - totals.lastYear.referral_inbound) / totals.thisYear.referral_inbound * 100}}</td>
+		<td>{{totals.thisYear.referral_member}}</td>
+		<td>{{totals.lastYear.referral_member}}</td>
+		<td>{{(totals.thisYear.referral_member - totals.lastYear.referral_member) / totals.thisYear.referral_member * 100}}</td>
+		<td>{{
+		  totals.thisYear.referral_cards
+		+ totals.thisYear.referral_called
+		+ totals.thisYear.referral_inbound
+		+ totals.thisYear.referral_member
+		}}</td>
+		<td>{{
+		  totals.lastYear.referral_cards
+		+ totals.lastYear.referral_called
+		+ totals.lastYear.referral_inbound
+		+ totals.lastYear.referral_member			
+		}}</td>
+		<td>{{
+		((totals.thisYear.referral_cards
+		 + totals.thisYear.referral_called
+		 + totals.thisYear.referral_inbound
+		 + totals.thisYear.referral_member) - 
+		 (totals.lastYear.referral_cards
+		 + totals.lastYear.referral_called
+		 + totals.lastYear.referral_inbound
+		 + totals.lastYear.referral_member)) /
+		 (totals.thisYear.referral_cards
+		 + totals.thisYear.referral_called
+		 + totals.thisYear.referral_inbound
+		 + totals.thisYear.referral_member) 
+		  * 100
+		}}</td>
 	</tr>
 </table>
 

@@ -46,7 +46,6 @@ but it's just too many lines to re-write right now.
   }
   $scope.generateChart = function generateChart(from, to, params, centers){
     reportService.getAllFrom(from, to).then(function(data){
-      console.log(data);
       $scope.reportData = [];
       var reports = data.data;
       for (var i = reports.length - 1; i >= 0; i--) {
@@ -83,13 +82,13 @@ but it's just too many lines to re-write right now.
       }
     };
   }
-  $scope.generateChart('2013-01-01', '2014-12-31', 'visitor_total', ['Provo', 'Almo'])
+  $scope.generateChart('2013-01-01', '2014-12-31', 'visitor_total')
 
 
   $timeout(function(){ //This is a test, changing the centers displayed Every 5 seconds.
     $scope.displayCenters(['Provo']); // Cool, eh? :)
     $timeout(function(){
-      $scope.displayCenters(['Almo']);
+      $scope.displayCenters(['Almo Outpost']);
       $timeout(function(){
         $scope.displayCenters();
       }, 5000)
@@ -108,8 +107,8 @@ but it's just too many lines to re-write right now.
   //   console.log(data);
   // })
   // var newReport = {
-  //   date:"2014-12-01",
-  //   visitor_total:90,
+  //   date:"2013-12-01",
+  //   visitor_total:850,
   //   visitor_tour:20,
   //   visitor_tournonmember:18,
   //   referral_cards:35,
@@ -117,24 +116,24 @@ but it's just too many lines to re-write right now.
   //   referral_inbound:35,
   //   referral_member:19,
   //   comments:"Such month, so goooood!",
-  //   centerId: 3
+  //   centerId: 1
   // }
-  // var change = {
-  //   visitor_total: 15
-  // }
-  // reportService.create(newReport).then(function(data){
-  //   console.log(data);
-  // })
+  var change = {
+    visitor_total: 15
+  }
+  reportService.edit(2, change).then(function(data){
+    console.log(data);
+  })
   // var centerChange = {
   //   city: 'Orem'
   // }
 
   // var newCenter = {
-  //   "center":"Temple Square",
-  //   "city":"Salt Lake City",
-  //   "state":"Utah",
+  //   "center":"Almo Outpost",
+  //   "city":"Almo",
+  //   "state":"Idaho",
   //   "country":"USA",
-  //   "userId":3 //The Id of whoever is submitting (logged in)
+  //   "userId":19 //The Id of whoever is submitting (logged in)
   // }
   // centerService.create(newCenter).then(function(data){
   //   console.log(data);

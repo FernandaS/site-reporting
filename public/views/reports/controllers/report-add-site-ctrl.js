@@ -2,21 +2,19 @@ var app = angular.module('lds-report');
 
 app.controller('reportAddSiteCtrl', function($scope, reportService, centerService){
 
-	$scope.centers = $scope.$parent.centers; 
-
-	$scope.addNewSiteReport = function(newReport){
-		console.log($scope.newReport);
-		reportService.create($scope.newReport).then(function(data){
-			console.log(data);
-			$scope.newReport = "";
-		})
-	}
-	
-	/*
-	When creating a new report, the for which the report
-	is being created needs to be sent along with the report.
-	See reportService for the model.
-	*/
-
+	// $scope.addNewSiteReport = function(){
+	// 	reportService.create({
+	// 		$scope.visitor_total = visitor_total,
+	// 		$scope.visitor_tour = visitor_tour,
+	// 		$scope.visitor_tournonmember = visitor_tournonmember,
+	// 		$scope.referral_cards = referral_cards,
+	// 		$scope.referral_called = referral_called,
+	// 		$scope.referral_inbound = referral_inbound,
+	// 		$scope.referral_member = referral_member
+	// 	}).then(function(data){
+	// 		console.log(data);
+	// 		$scope.newReport = "";
+	// 	})
+	// }
 
 });
