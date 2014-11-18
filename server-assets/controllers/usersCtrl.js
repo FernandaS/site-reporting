@@ -40,6 +40,7 @@ module.exports = {
 		if(!req.params.id) res.status(500).end();
 		userService.delUser({id: req.params.id}).then(function(data){
 			console.log('deleteUser worked');
+			data = {delete: data};
 			res.status(200).send(data);
 		}, function(err){
 			console.log(err);
