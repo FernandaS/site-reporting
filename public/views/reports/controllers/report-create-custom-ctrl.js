@@ -3,9 +3,7 @@ var app = angular.module('lds-report');
 app.controller('reportCreateCustomCtrl', function($scope, reportService, centerService){
 
 	$scope.reports = [];
-	$scope.months = $scope.$parent.months;	
-	$scope.years = $scope.$parent.years;	
-	$scope.centers = [{name:'Temple Square'}];
+	$scope.metrics = ['Referrals(inbound)', 'Referrals(members)', 'Referrals(cards)', 'Non-members on tours', 'Visitors on tours', 'Total visitors']	
 
 });
 
