@@ -22,7 +22,7 @@ passport.use(new LocalStrategy(function(username, pass, done) {
 			return done(null, obj);
 		}, function(err) {
 			return done(err);
-		// });
+		});
 	// userService.getUser(username).then(function (user) {
 	// 	if (!user) {
 	// 		return done(null, false, { message: 'Unknown user ' + username });
