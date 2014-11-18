@@ -12,11 +12,11 @@ app.controller('reportViewCtrl', function($scope, reportService, centerService){
 
 	$scope.refreshModalClose = function(){
 		centerService.getAll()
-			.then(function(response){
-				$scope.centers = response.data;
-				$scope.deleteReportWarningAlert = false;
-				console.log($scope.centers);
-			})
+		.then(function(response){
+			$scope.centers = response.data;
+			$scope.deleteReportWarningAlert = false;
+			console.log($scope.centers);
+		})
 	}
 
 	$scope.deleteReportWarning = function(){
@@ -25,7 +25,7 @@ app.controller('reportViewCtrl', function($scope, reportService, centerService){
 
 	$scope.deleteSingleReport = function(id){
 		reportService.delete(id)
-		console.log('Deleted');
+		$scope.deleteReportWarningAlert = false;
 	}
 
 });

@@ -34,6 +34,7 @@ module.exports = {
 		addlEmailService.delEmail(req.params).then(function(data){
 			console.log('delAddlEmail worked');
 			console.log(data);
+			data = {delete: data};
 			res.status(200).send(data);
 		}, function(err){
 			console.log(err);
