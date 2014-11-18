@@ -74,6 +74,7 @@ app.post('/api/reports'/*, middleware.requireAuth*/, reportsCtrl.addReport);
 app.put('/api/reports/:id'/*, middleware.requireAuth*/, reportsCtrl.editReport);
 app.delete('/api/reports/:id'/*, middleware.requireAuth, middleware.ensureAdmin*/, reportsCtrl.deleteReport);
 
+
 app.post('/api/test', function(req, res){
 	console.log(req.query.start, req.query.end);
 	res.end();
