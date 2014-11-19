@@ -3,14 +3,14 @@ module.exports = function(sequelize, DataTypes) {
   return sequelize.define('reports', { 
     date: {
       type: DataTypes.DATEONLY,
-      allowNull: false
+      allowNull: false,
       validation: {
         isDate: true
       }
     },
     visitor_total: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: false,
       validation: {
         isNumeric: true
       }

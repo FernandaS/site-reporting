@@ -3,7 +3,7 @@ module.exports = function(sequelize, DataTypes) {
     center: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true
+      unique: true,
       validation: {
         isAlpha: true
       }

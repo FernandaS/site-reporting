@@ -5,7 +5,7 @@ module.exports = function(sequelize, DataTypes) {
     username: {
       type: DataTypes.STRING(25),
       allowNull: false,
-      unique: true
+      unique: true,
       validation: {
         isAlphanumeric: true
       }
