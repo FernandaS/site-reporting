@@ -14,7 +14,7 @@ reportsCtrl = require('./server-assets/controllers/reportsCtrl'),
 middleware = require('./server-assets/middleware/middleware'),
 authCtrl = require('./server-assets/controllers/authCtrl'),
 emailsCtrl = require('./server-assets/controllers/emailsCtrl'),
-keyIndicatorCtrl = require('./server-assets/controllers/keyIndicatorCtrl')
+keyIndicatorCtrl = require('./server-assets/controllers/keyIndicatorCtrl'),
 bcrypt = require('bcrypt');
 
 passport.use(new LocalStrategy(function(username, pass, done) {
