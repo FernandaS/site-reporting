@@ -1,3 +1,4 @@
 node_modules/
 jacob-readme.txt
 npm-debug.log
+build/
