@@ -103,8 +103,12 @@ app.post('/api/logout', function(req, res){
 	req.logout();
 	res.redirect('#/login');
 });
-app.get('/download'/*, middleware.requireAuth, middleware.ensureAdmin*/, reportsCtrl.sendReport);
+
+// Download APIS
+app.get('/api/download/site/:date'/*, middleware.requireAuth, middleware.ensureAdmin*/, reportsCtrl.sendReport);
 //passport.use(new LocalStrategy());
+app.get('/api/download/ki/:date'/*, middleware.requireAuth, middleware.ensureAdmin*/, reportsCtrl.sendKiReport);
+
 app.listen(port, function(){
 	console.log('Listening at ' + port);
 });
