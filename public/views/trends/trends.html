@@ -4,29 +4,34 @@
   </button>
 	  <ul class="dropdown-menu" role="menu">
 	    	<li><a href="#">Kirtland</a></li>
-	        <li><a href="#">Mormon Trail</a></li>
-	        <li><a href="#">Arizona Temple</a></li>
-	        <li><a href="#">Hawaii Temple</a></li>
-	        <li><a href="#">Hill Cumorah</a></li>
-	        <li><a href="#">Independence</a></li>
 	  </ul>
 </div>
 
+<div class='btn-group'>
+	<button class="btn btn-default btn dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+		Visitor trends <span class="caret"></span>
+	</button>
+	<ul class="dropdown-menu" role="menu">
+		<li><a href="#">Visitor trends</a></li>
+		<li><a href="#">Referral trends</a></li>
+		<li><a href="#">Referral breakdown</a></li>
+	</ul>
+</div>
+<input type='checkbox' ng-repeat='center in centers'>{{center.center}}</input>
 
-  <button class="btn btn-default btn dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
-   Visitor trends <span class="caret"></span>
-  </button>
-	  <ul class="dropdown-menu" role="menu">
-	    <li><a href="#">Visitor trends</a></li>
-	    <li><a href="#">Referral trends</a></li>
-	    <li><a href="#">Referral breakdown</a></li>
-	  </ul>
-
-<div class="radioTrends">
+<!-- <div class="radioTrends">
 	<label>Line<input type="radio" name="graphView" value="Line"/></label>
 	<label>Bar<input type="radio" name="graphView" value="Bar"/></label>
+</div> -->
+
+<div id='my-chart'>
+    <nvd3-line-chart
+        data="chartData"
+        showXAxis="true"
+        showYAxis="true"
+        tooltips="true"
+        interactive="true"
+        xAxisTickFormat='xAxisTickFormatFunction()'
+        objectEquality='true'>
+    </nvd3-line-chart>
 </div>
-
-
-
-

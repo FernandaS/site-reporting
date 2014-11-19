@@ -14,9 +14,11 @@ var models = require('sequelize-import')(__dirname, sequelize, {
 });
 
 models.users.hasMany(models.reports, { as: 'Reports'});
+models.users.hasMany(models.keyindicators, { as: 'Indicators'});
 models.users.hasMany(models.addl_emails, { as: 'secondaryEmails'});
 models.users.hasMany(models.centers, { as: 'Centers'});
 models.centers.hasMany(models.reports, { as: 'Reports'});
+models.centers.hasMany(models.keyindicators, { as: 'Indicators'});
 
 sequelize.sync().then(function() {
   console.log('Database synced');

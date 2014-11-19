@@ -12,7 +12,7 @@ app.config(['$routeProvider', function($routeProvider){
 			templateUrl: '/views/reports/reports.html',
 			controller: 'reportsCtrl'
 		})
-		.when('/reports/:month', {
+		.when('/reports/site/:month', {
 			templateUrl: '/views/reports/month-total/month-total-view.html',
 			controller: 'monthTotalCtrl'
 		})

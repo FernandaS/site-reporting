@@ -57,15 +57,38 @@
             <div class="modal-body">
               <div class="panel panel-default">
                 <div class="panel-body">
-                    Select sites to use in report:
-                      <select ng-init='selectedCenter = center' ng-options='center.center for center in $parent.centers' ng-model='selectedCenter'></select>
+                    Select sites to use in report:<br/>
+
+                    <!-- First site selection -->
+                     <select ng-init='selectedCenter1 = center' ng-options='center.center for center in $parent.centers' ng-model='selectedCenter1'></select>
+
+                    <!-- Second site selection -->
+                      <select ng-init='selectedCenter2 = center' ng-options='center.center for center in $parent.centers' ng-model='selectedCenter2'></select>
+
+
+                    <!-- Third site selection -->
+                   <select ng-init='selectedCenter3 = center' ng-options='center.center for center in $parent.centers' ng-model='selectedCenter3'></select>
+
                 </div>
+
+<!-- <select multiple ng-model="selectedValues" ng-change="testNgChange()">
+    <option value="Draft" ng-selected="">Draft</option>
+    <option value="Pending" ng-selected="">Pending</option>
+    <option value="Live" ng-selected="">Live</option>
+    <option value="Archived" ng-selected="">Archived</option>
+    <option value="Deleted" ng-selected="">Deleted</option>
+</select> {{selectedValues}} -->
+
               </div>
               <div class="panel panel-default">
                 <div class="panel-body">
                   Select metrics to support:
-                    <select ng-init='selectedMonth = metrics[metric]' ng-options='metric for metric in metrics'ng-model='selectedMonth'>
+                    <select ng-init='selectedMetric1 = metrics[metric]' ng-options='metric for metric in metrics'ng-model='selectedMetric1'>
                     </select>
+
+                    <select ng-init='selectedMetric2 = metrics[metric]' ng-options='metric for metric in metrics'ng-model='selectedMetric2'>
+                    </select>
+
                 </div>
               </div>
 
@@ -89,9 +112,9 @@
                 </div>
               </div>
               <div class="customReportButtons">
-                <button type="button" class="btn btn-default">Grand totals</button>
-                <button type="button" class="btn btn-default">Breakdown by month</button>
-                <button type="button" class="btn btn-default">Breakdown by year</button>
+                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#reportsByMonth" data-dismiss="modal">Grand totals</button>
+                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#reportsGrandTotal" data-dismiss="modal">Breakdown by month</button>
+                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#reportsByYear" data-dismiss="modal">Breakdown by year</button>
             </div>    
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
@@ -101,6 +124,63 @@
         </div>
       </div>
 
+
+    <!-- Grand Totals Modal-->
+      <div class="modal fade" id="reportsGrandTotal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+              <h4 class="modal-title" id="myModalLabel">Grand Totals</h4>
+            </div>
+            <div class="modal-body">
+              Grand totals
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+ <!-- Breakdown By Month Modal-->
+     <div class="modal fade" id="reportsByMonth" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+              <h4 class="modal-title" id="myModalLabel">Breakdown by Year</h4>
+            </div>
+            <div class="modal-body">
+              Breakdown by month
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+          </div>
+        </div>
+      </div>    
+
+ <!-- Breakdown By Year Modal-->
+     <div class="modal fade" id="reportsByYear" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+              <h4 class="modal-title" id="myModalLabel">Breakdown by Year</h4>
+            </div>
+            <div class="modal-body">
+              Breakdown by year
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+          </div>
+        </div>
+      </div>    
 
       <!-- Add Site Modal -->
       <div class="modal fade" id="addSite" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" ng-controller="reportAddSiteCtrl">
@@ -162,7 +242,6 @@
           </div>
         </div>
       </div>
-
 
       <!-- View Button Modal -->
       <div class="modal fade" id="viewButtonModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" ng-controller="reportViewCtrl">

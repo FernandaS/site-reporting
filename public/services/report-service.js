@@ -25,6 +25,7 @@ var newReport = {
 
 
 function reportService($http){
+	//SITE REPORTS
 	this.getAllBy = function(date){ //WORKS
 		return $http({
 			method: 'GET',
@@ -68,4 +69,50 @@ function reportService($http){
 			url: '/api/reports/' + id
 		})
 	}
+
+
+	//KEY INDICATORS
+	this.getAllKiBy = function(date){ //WORKS
+		return $http({
+			method: 'GET',
+			url: '/api/reports/ki/allBy?date=' + date
+		})
+	}
+
+	this.getAllKiFrom = function(start, end){ //WORKS
+		return $http({
+			method: 'GET',
+			url: '/api/reports/ki/allFrom?start=' + start + '&end=' + end
+		})
+	}
+
+	this.getOneKiBy = function(center, date){ //WORKS
+		return $http({
+			method: 'GET',
+			url: '/api/reports/ki/oneBy/' + center + '?date=' + date
+		})
+	}
+
+	this.createKi = function(data){  //WORKS
+		return $http({
+			method: 'POST',
+			url: '/api/reports/ki',
+			data: data
+		})
+	}
+
+	this.editKi = function(id, change){ //WORKS
+		return $http({ 
+			method: 'PUT',
+			url: '/api/reports/ki/' + id,
+			data: change
+		})
+	}
+
+	this.deleteKi = function(id){ //WORKS BUT doesn't pass back data.
+		return $http({ //Assume it works on request for now.
+			method: 'DELETE',
+			url: '/api/reports/ki/' + id
+		})
+	}	
 }

@@ -1,48 +1,36 @@
 var express = require('express'),
-	app = express(),
-	env = require('./server-assets/env/vars'),
-	sql = require('sequelize'),
-	session = require('express-session'),
-	passport = require('passport'),
-	bodyParser = require('body-parser'),
-	LocalStrategy = require('passport-local').Strategy,
-	port = env.expressPort,
-	userService = require('./server-assets/services/userService'),
-	centersCtrl = require('./server-assets/controllers/centersCtrl'),
-	usersCtrl = require('./server-assets/controllers/usersCtrl'),
-	reportsCtrl = require('./server-assets/controllers/reportsCtrl'),
-	middleware = require('./server-assets/middleware/middleware'),
-	authCtrl = require('./server-assets/controllers/authCtrl'),
-	emailsCtrl = require('./server-assets/controllers/emailsCtrl'),
-	bcrypt = require('bcrypt');
+app = express(),
+env = require('./server-assets/env/vars'),
+sql = require('sequelize'),
+session = require('express-session'),
+passport = require('passport'),
+bodyParser = require('body-parser'),
+LocalStrategy = require('passport-local').Strategy,
+port = env.expressPort,
+userService = require('./server-assets/services/userService'),
+centersCtrl = require('./server-assets/controllers/centersCtrl'),
+usersCtrl = require('./server-assets/controllers/usersCtrl'),
+reportsCtrl = require('./server-assets/controllers/reportsCtrl'),
+middleware = require('./server-assets/middleware/middleware'),
+authCtrl = require('./server-assets/controllers/authCtrl'),
+emailsCtrl = require('./server-assets/controllers/emailsCtrl'),
+keyIndicatorCtrl = require('./server-assets/controllers/keyIndicatorCtrl')
+bcrypt = require('bcrypt');
 
 passport.use(new LocalStrategy(function(username, pass, done) {
-		userService.checkUser({username: username, password: pass}).then(function (obj) {
-			console.log(obj);
-			return done(null, obj);
-		}, function(err) {
-			return done(err);
-		});
-	// userService.getUser(username).then(function (user) {
-	// 	if (!user) {
-	// 		return done(null, false, { message: 'Unknown user ' + username });
-	// 	}
-	// 	if (user.password !== pass){
-	// 		return done(null, false, { message: 'Invalid password' });
-	// 	}
-	// 	return done(null, user);
-	// });
-	// userService.getUser(username).then(function (user) {
-	// 	if (!user) {
-	// 		return done(null, false, { message: 'Unknown user ' + username });
-	// 	}
-	// 	else {
-	// 		return bcrypt.compare(pass, user.password, function(err, res) {
-	// 			console.log(user);
-	// 			return done(err, res);
-	// 		});
-	// 	}
-	// });
+	userService.getUser(username).then(function (user) {
+		if (!user) {
+			console.log('Unknown user' + username);
+			return done(null, false, { message: 'Unknown user ' + username });
+		}
+		bcrypt.compare(pass, user.password, function(err, res) {
+			if (!res){
+				console.log('Invalid password');
+				return done(null, false, { message: 'Invalid password' });
+			}
+			return done(null, user);			
+		})
+	});
 }));
 
 passport.serializeUser(function(user, done) {
@@ -51,8 +39,8 @@ passport.serializeUser(function(user, done) {
 
 passport.deserializeUser(function(id, done) {
 	userService.getUserById(id).then(function (user) {
-	 	done(null, user);
-	 });
+		done(null, user);
+	});
 });
 
 app.use(express.static(__dirname + '/public'));
@@ -80,13 +68,20 @@ app.put('/api/users/:id'/*, middleware.requireAuth*/, usersCtrl.putUser);
 app.delete('/api/users/:id'/*, middleware.requireAuth, middleware.ensureAdmin*/, usersCtrl.deleteUser);
 
 // Report apis, will add the apis with params after I figure it out. Or Aaron figures it out.
-
 app.get('/api/reports/allBy'/*, middleware.requireAuth, middleware.ensureAdmin*/, reportsCtrl.getAllBy); //month
 app.get('/api/reports/allFrom'/*, middleware.requireAuth, middleware.ensureAdmin*/, reportsCtrl.getAllFrom); //month
 app.get('/api/reports/oneBy/:id'/*, middleware.requireAuth*/, reportsCtrl.getOneBy); //center and month
 app.post('/api/reports'/*, middleware.requireAuth*/, reportsCtrl.addReport);
 app.put('/api/reports/:id'/*, middleware.requireAuth*/, reportsCtrl.editReport);
 app.delete('/api/reports/:id'/*, middleware.requireAuth, middleware.ensureAdmin*/, reportsCtrl.deleteReport);
+
+// key indicator apis
+app.get('/api/reports/ki/allBy'/*, middleware.requireAuth, middleware.ensureAdmin*/, keyIndicatorCtrl.getAllBy); //month
+app.get('/api/reports/ki/allFrom'/*, middleware.requireAuth, middleware.ensureAdmin*/, keyIndicatorCtrl.getAllFrom); //month
+app.get('/api/reports/ki/oneBy/:id'/*, middleware.requireAuth*/, keyIndicatorCtrl.getOneBy); //center and month
+app.post('/api/reports/ki'/*, middleware.requireAuth*/, keyIndicatorCtrl.addReport);
+app.put('/api/reports/ki/:id'/*, middleware.requireAuth*/, keyIndicatorCtrl.editReport);
+app.delete('/api/reports/ki/:id'/*, middleware.requireAuth, middleware.ensureAdmin*/, keyIndicatorCtrl.deleteReport);
 
 // Additional emails
 app.post('/api/addlEmails/:id', emailsCtrl.addEmail);

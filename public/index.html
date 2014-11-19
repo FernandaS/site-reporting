@@ -16,7 +16,7 @@
 
 </head>
 <body ng-controller="mainCtrl">
-  <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" ng-if='currentPath !== "/reports/2014-11-01"'>
+  <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation"ng-if='path !== "downloads"'>
     <div class="container-fluid">
       <div class="navbar-header">
 
@@ -34,7 +34,7 @@
 
   <div  class="container-fluid">
     <div class="row">
-      <div class="col-sm-3 col-md-2 sidebar" ng-if='currentPath !== "/reports/2014-11-01"'>
+      <div class="col-sm-3 col-md-2 sidebar" ng-if='path !== "downloads"'>
         <ul class="nav nav-sidebar">
           <ul>
             <li >
@@ -49,8 +49,8 @@
           </ul>
           <!--   <img class="logo-church" src="Logo_Church.svg.png"> -->
         </div>
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" >
-          <h1 class="page-header">Dashboard</h1>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+          <h1 class="page-header" ng-if='path !== "downloads"'>Dashboard</h1>
 
           <div ng-view>
           </div>
@@ -128,9 +128,13 @@
    <script src='views/manage/controllers/site-edit-ctrl.js'></script>
 
    <script src="views/reports/controllers/report-add-site-ctrl.js"></script> 
-   <script src="views/reports/controllers/report-create-custom-ctrl.js"></script> 
+   <script src="views/reports/controllers/report-create-custom-ctrl.js"></script>
    <script src="views/reports/controllers/report-edit-ctrl.js"></script> 
    <script src="views/reports/controllers/report-view-ctrl.js"></script> 
+
+    <script src="views/reports/controllers/report-grand-totals-ctrl.js"></script>
+    <script src="views/reports/controllers/report-breakdown-by-year-ctrl.js"></script> 
+    <script src="views/reports/controllers/report-breakdown-by-month-ctrl.js"></script> 
 
    <script src='views/TEST/test-control.js'></script>
 
