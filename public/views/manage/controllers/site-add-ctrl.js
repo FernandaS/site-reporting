@@ -12,19 +12,20 @@ function submitReportCtrl($scope, centerService, userService){
 
 
 $scope.submitCenter = function(){
-	centerService.create($scope.center).
-	then(function(res){
-		console.log(res);
-
+	centerService.create($scope.center)
+	.then(function(res){
+		if (res.data.message){
+			$scope.error = res.data.message;
+		} else {
+			swal("Success!", "Your center has been created!", "success");
+			$scope.center = '';
+		}
 	})
+}
 
 	
-}
 
-
-
-
-}
+};
 
 
 
