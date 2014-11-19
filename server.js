@@ -105,9 +105,9 @@ app.post('/api/logout', function(req, res){
 });
 
 // Download APIS
-app.get('/download/site/:date'/*, middleware.requireAuth, middleware.ensureAdmin*/, reportsCtrl.sendReport);
+app.get('/api/download/site/:date'/*, middleware.requireAuth, middleware.ensureAdmin*/, reportsCtrl.sendReport);
 //passport.use(new LocalStrategy());
-app.get('/download/ki/:date'/*, middleware.requireAuth, middleware.ensureAdmin*/, reportsCtrl.sendKiReport);
+app.get('/api/download/ki/:date'/*, middleware.requireAuth, middleware.ensureAdmin*/, reportsCtrl.sendKiReport);
 
 app.listen(port, function(){
 	console.log('Listening at ' + port);
