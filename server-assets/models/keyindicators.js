@@ -25,7 +25,7 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.INTEGER,
       allowNull: false
     },
-     new_investigators: {
+    new_investigators: {
       type: DataTypes.INTEGER,
       allowNull: false
     },
