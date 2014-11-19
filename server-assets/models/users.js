@@ -1,17 +1,14 @@
-<<<<<<< HEAD
-var bcrypt = require('bcrypt');
-=======
-
 var bcrypt = require('bcrypt');
 
-
->>>>>>> upstream/master
 module.exports = function(sequelize, DataTypes) {
   return sequelize.define('users', { 
     username: {
       type: DataTypes.STRING(25),
       allowNull: false,
       unique: true
+      validation: {
+        isAlphanumeric: true
+      }
     },
     password: {
       type: DataTypes.STRING,
@@ -19,6 +16,11 @@ module.exports = function(sequelize, DataTypes) {
       set:  function(pass) {
             var hash = bcrypt.hashSync(pass, 10);
             this.setDataValue('password', hash);
+      },
+      validation: {
+        len: [8, 20],
+        notEmpty: true,
+        isAlphanumeric: true
       }
     },
     role: {
@@ -27,7 +29,10 @@ module.exports = function(sequelize, DataTypes) {
     },
     email: {
       type: DataTypes.STRING(50),
-      allowNull: false
+      allowNull: false,
+      validation: {
+        isEmail: true
+      }
     }
   }, {
      instanceMethods: {
