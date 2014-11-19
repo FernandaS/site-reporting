@@ -42,7 +42,7 @@
 				referral_inbound: $scope.report['Reports.referral_inbound'] = "";
 				$scope.report['Reports.referral_member'] = "";
 				$scope.report['Reports.comments'] = "";
+				// getEditedReports()
 			});
-		}
-
-	});
+		}	 
+});
