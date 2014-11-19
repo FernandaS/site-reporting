@@ -1,12 +1,11 @@
 var app = angular.module('lds-report');
 
-app.controller('manageCtrl', function($scope, centerService, userService){
+app.controller('manageCtrl', function($scope, centerService, userService, nzSwal){
 
 var allCenters = function(){
 	centerService.getAll().
 	then(function(centers){
 		$scope.centers = centers.data
-		console.log($scope.centers);
 	})
 }
 
@@ -15,7 +14,8 @@ allCenters();
 var administrators = [];
 var directors = [];
 
-var getAllAdmin = function(){
+$scope.getAllUsers = function(){
+	console.log("got here");
 	userService.getAll()
 	.then(function(response){
 		for(var i = 0; i < response.data.length; i++){
@@ -28,7 +28,7 @@ var getAllAdmin = function(){
 		} else {
 			directors.push(response.data[i]);
 			$scope.directors = directors;
-			console.log($scope.directors)
+
 		}
 		
 	}
@@ -37,7 +37,11 @@ var getAllAdmin = function(){
 
 
 
-getAllAdmin();
+$scope.getAllUsers();
+
+$scope.test = function(director){
+ 	console.log(director);
+}
 
 });
 

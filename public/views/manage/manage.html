@@ -1,58 +1,58 @@
 <div class="container">
 	<div class="col-md-5">
 		<h2>Centers</h2>
-	   <div class="panel panel-primary">
- 		 <div class="panel-heading">
-    	     <h3 class="panel-title iconi">Centers/Site 	
-    	     	<i class="fa fa-plus" data-toggle="modal" data-target="#ModaladdCenter"></i>
-    	     	<i class="fa fa-pencil-square-o" data-toggle="modal" data-target="#editCenter"></i>
-    	     </h3>
-         </div>
-       		<div class="panel-body">
-	       		<div class="col-md-8">
-	    			<select class="form-control scroll-list" ng-model="center" ng-options="center.center for center in centers" >
-						  
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<h3 class="panel-title iconi">Centers/Site 	
+					<i class="fa fa-plus" data-toggle="modal" data-target="#ModaladdCenter"></i>
+					<i class="fa fa-pencil-square-o" data-toggle="modal" data-target="#editCenter"></i>
+				</h3>
+			</div>
+			<div class="panel-body">
+				<div class="col-md-8">
+					<select class="form-control scroll-list" ng-model="center" ng-options="center.center for center in centers" >
+
 
 					</select>
 				</div>
 
-  			</div>
+			</div>
 		</div>
 	</div>
 
 	<div class="col-md-5">
 		<h2>Users</h2>
-	   <div class="panel panel-primary">
- 		 <div class="panel-heading">
-    	     <h3 class="panel-title iconi">Director Profile
-    	    	<i class="fa fa-plus" data-toggle="modal" data-target="#myModalDirectorPlus"></i>
-    	     	<i class="fa fa-pencil-square-o" data-toggle="modal" data-target="#myModalEditDirector"></i>
-			</h3>
-         </div>
-       		<div class="panel-body">
-    			<div class="col-md-8">
-	    			<select class="form-control scroll-list" ng-model="director" ng-options="user.username for user in directors">
-						 
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<h3 class="panel-title iconi">Director Profile
+					<i class="fa fa-plus" data-toggle="modal" data-target="#myModalDirectorPlus"></i>
+					<i class="fa fa-pencil-square-o" data-toggle="modal" data-target="#myModalEditDirector"></i>
+				</h3>
+			</div>
+			<div class="panel-body">
+				<div class="col-md-8">
+				<select class="form-control scroll-list" ng-model="director" ng-change="test(director)"ng-options="user.username for user in directors">
+
 
 					</select>
 				</div>
-  			</div>
+			</div>
 		</div>
 		<div class="panel panel-primary">
- 		 <div class="panel-heading">
-    	     <h3 class="panel-title iconi">Administrator
-    	    	<i class="fa fa-plus" data-toggle="modal" data-target="#myModalAdminPlus"></i>
-    	     	<i class="fa fa-pencil-square-o" data-toggle="modal" data-target="#myModalAdminEdit" ng-click="editAdmin()"></i>
-			</h3>
-         </div>
-       		<div class="panel-body">
-    			<div class="col-md-8">
-	    			<select class="form-control scroll-list" ng-model="admin" ng-options="user.username for user in administrators">
-						  
+			<div class="panel-heading">
+				<h3 class="panel-title iconi">Administrator
+					<i class="fa fa-plus" data-toggle="modal" data-target="#myModalAdminPlus"></i>
+					<i class="fa fa-pencil-square-o" data-toggle="modal" data-target="#myModalAdminEdit" ng-click="editAdmin()"></i>
+				</h3>
+			</div>
+			<div class="panel-body">
+				<div class="col-md-8">
+					<select class="form-control scroll-list" ng-model="admin" ng-options="user.username for user in administrators">
+
 
 					</select>
 				</div>
-  			</div>
+			</div>
 		</div>
 	</div>
 </div>
@@ -63,262 +63,262 @@
 
 <!-- Modal (edit) icon in the admin section-->
 <div class="modal fade" id="myModalAdminEdit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" ng-controller="adminEditCtrl">
-  <div class="modal-dialog">
-    <div class="modal-content">
-          <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title" id="myModalLabel">Edit Administrator</h4>
-      </div>
-      <div class="modal-body">
-     	  <form class="form-horizontal" role="form">
-      		<div class="form-group">
-			    	<label for="username" class="col-sm-2 control-label">Username</label>
-			    <div class="col-sm-6">
-			    	<input type="text" class="form-control" id="username" placeholder="Username" ng-model="admin.username">
-			    </div>
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+				<h4 class="modal-title" id="myModalLabel">Edit Administrator</h4>
+			</div>
+			<div class="modal-body">
+				<form class="form-horizontal" role="form">
+					<div class="form-group">
+						<label for="username" class="col-sm-2 control-label">Username</label>
+						<div class="col-sm-6">
+							<input type="text" class="form-control" id="username" placeholder="Username" ng-model="admin.username">
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+						<div class="col-sm-6">
+							<input type="email" class="form-control" id="inputEmail3" ng-model="admin.email" placeholder="Email">
+						</div>
+					</div>
+					<strong> Leave blank if you do not wish to change password</strong><br />
+
+					<div class="form-group">
+						<label for="inputPassword3" class="col-sm-2 control-label">Change Password</label>
+						<div class="col-sm-6">
+							<input type="password" class="form-control" id="inputPassword3" placeholder="Password">
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="inputPassword3" class="col-sm-2 control-label"></label>
+						<div class="col-sm-6">
+							<input type="password" class="form-control" id="inputPassword3" placeholder="Password">
+						</div>
+					</div>
+				</form>
+
 			</div>
 
-			<div class="form-group">
-			    	<label for="inputEmail3" class="col-sm-2 control-label">Email</label>
-			  	<div class="col-sm-6">
-			   		 <input type="email" class="form-control" id="inputEmail3" ng-model="admin.email" placeholder="Email">
-			    </div>
+
+
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" ng-click="deleteAdmin(admin.id)">Delete Admin</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-primary" ng-click="editAdmin()">Save changes</button>
 			</div>
-    		<strong> Leave blank if you do not wish to change password</strong><br />
-    		
-    		<div class="form-group">
-			      <label for="inputPassword3" class="col-sm-2 control-label">Change Password</label>
-			    <div class="col-sm-6">
-			      <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
-			    </div>
-			</div>
-
-			<div class="form-group">
-			      <label for="inputPassword3" class="col-sm-2 control-label"></label>
-			    <div class="col-sm-6">
-			      <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
-			    </div>
-			</div>
-		</form>
-
-      </div>
-
-
-
-      <div class="modal-footer">
-      	<button type="button" class="btn btn-primary" ng-click="deleteAdmin(admin.id)">Delete Admin</button>
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" ng-click="editAdmin()">Save changes</button>
-      </div>
-    </div>
-  </div>
+		</div>
+	</div>
 </div>
 
 
 <!-- Modal plus icon in the admin section-->
 <div class="modal fade" id="myModalAdminPlus" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" ng-controller="adminAddCtrl">
-  <div class="modal-dialog">
-    <div class="modal-content">
-          <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title" id="myModalLabel">New Administrator</h4>
-      </div>
-      <div class="modal-body">
-     <form class="form-horizontal" role="form">
-     <b ng-if="error">{{error}}</b>
-			 <div class="form-group">
-			    <label for="username" class="col-sm-2 control-label">Username</label>
-			    <div class="col-sm-6">
-			    <input type="usrname" class="form-control" id="username" placeholder="Username" ng-model="admin.username">
-			    </div>
-			  </div>
-			   <div class="form-group">
-			    <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
-			    <div class="col-sm-6">
-			    <input type="email" class="form-control" id="inputEmail3" placeholder="Email" ng-model="admin.email">
-			    </div>
-			  </div>
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+				<h4 class="modal-title" id="myModalLabel">New Administrator</h4>
+			</div>
+			<div class="modal-body">
+				<form class="form-horizontal" role="form">
+					<b ng-if="error">{{error}}</b>
+					<div class="form-group">
+						<label for="username" class="col-sm-2 control-label">Username</label>
+						<div class="col-sm-6">
+							<input type="usrname" class="form-control" id="username" placeholder="Username" ng-model="admin.username">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+						<div class="col-sm-6">
+							<input type="email" class="form-control" id="inputEmail3" placeholder="Email" ng-model="admin.email">
+						</div>
+					</div>
 
-			  <div class="form-group">
-			    <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
-			    <div class="col-sm-6">
-			      <input type="password" class="form-control" id="inputPassword3" placeholder="Password" ng-model="admin.password">
-			    </div>
-			 </div>
-  		</form>
-      </div>
+					<div class="form-group">
+						<label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+						<div class="col-sm-6">
+							<input type="password" class="form-control" id="inputPassword3" placeholder="Password" ng-model="admin.password">
+						</div>
+					</div>
+				</form>
+			</div>
 
 
 
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" ng-click="createAdmin(admin)">Submit</button>
-      </div>
-    </div>
-  </div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-primary" ng-click="createAdmin(admin)">Submit</button>
+			</div>
+		</div>
+	</div>
 </div>
 <!-- Modal (edit) icon in the Director Profile section-->
 <div class="modal fade" id="myModalEditDirector" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" ng-controller="directorEditCtrl">
-  <div class="modal-dialog">
-    <div class="modal-content">
-          <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title" id="myModalLabel">Edit Director Profile</h4>
-      </div>
-     <div class="modal-body">
-     
-      	<form class="form-horizontal" role="form">
-			  <div class="form-group">
-			    <label for="username" class="col-sm-2 control-label">Username</label>
-			    <div class="col-sm-6">
-			    <input type="username" class="form-control" id="username" placeholder="username" ng-model="director.username">
-			    </div>
-			  </div>
-			   <div class="form-group">
-			    <label for="" class="col-sm-2 control-label">Email</label>
-			    <div class="col-sm-6">
-			    <input type="" class="form-control" id="" placeholder="Email" ng-model="director.email">
-			    </div>
-			  </div>
-
-			  <div class="form-group">
-			    <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
-			    <div class="col-sm-6">
-			      <input type="password" class="form-control" id="inputPassword3" placeholder="Password" ng-model="director.password">
-			    </div>
-			  </div>
-  		</form>
-
-  		<div class="panel panel-default">
-	 		 <div class="panel-heading">
-	    	     <h3 class="panel-title iconi">Email
-	    	     </h3>
-	         </div>
-	       	 <div class="panel-body iconi" ng-repeat="email in director.secondaryEmails">
-	    		<p ng-hide="email.email == null">{{email.email}}<i class="fa fa-times iconi" ng-click="removeEmail(email)"></i></p>
-
-	  		  </div>
-		</div>
-
-		<div class="form-group form-pad">
-			<div class="col-sm-12">
-				<div class="col-md-6 ">
-					<input type="email" class="form-control" id="inputEmail3" placeholder="Email" ng-model="newEmail">
-				</div>
-				<butteon type="button" class="btn btn-primary pull-right" ng-click="addDirectorEmail()">Add Email</button>
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+				<h4 class="modal-title" id="myModalLabel">Edit Director Profile</h4>
 			</div>
-		</div>	<br>
+			<div class="modal-body">
+
+				<form class="form-horizontal" role="form">
+					<div class="form-group">
+						<label for="username" class="col-sm-2 control-label">Username</label>
+						<div class="col-sm-6">
+							<input type="username" class="form-control" id="username" placeholder="username" ng-model="director.username">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="" class="col-sm-2 control-label">Email</label>
+						<div class="col-sm-6">
+							<input type="" class="form-control" id="" placeholder="Email" ng-model="director.email">
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+						<div class="col-sm-6">
+							<input type="password" class="form-control" id="inputPassword3" placeholder="Password" ng-model="director.password">
+						</div>
+					</div>
+				</form>
+
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title iconi">Additional Email
+						</h3>
+					</div>
+					<div class="panel-body iconi" ng-repeat="email in director.secondaryEmails">
+						<p ng-hide="email.email == null">{{email.email}}<i class="fa fa-times iconi" ng-click="removeEmail(email)"></i></p>
+
+					</div>
+				</div>
+
+				<div class="form-group form-pad">
+					<div class="col-sm-12">
+						<div class="col-md-6 ">
+							<input type="email" class="form-control" id="inputEmail3" placeholder="Email" ng-model="newEmail">
+						</div>
+						<butteon type="button" class="btn btn-primary pull-right" ng-click="addDirectorEmail()">Add Email</button>
+						</div>
+					</div>	<br>
 
 
 
- 	 </div>
-	<div class="modal-footer">
-      	<button type="button" class="btn btn-primary" ng-click="deleteDirector()">Delete Director</button>
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" ng-click="editDirector()">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" ng-click="deleteDirector()">Delete Director</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary" ng-click="editDirector()">Save changes</button>
+				</div>
+			</div>
+		</div>
+	</div>
 
 <!-- Modal (plus) icon in the Director Profile section-->
 
 <div class="modal fade" id="myModalDirectorPlus" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" ng-controller="directorAddCtrl">
-  <div class="modal-dialog">
-    <div class="modal-content">
-          <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title" id="myModalLabel">New Director</h4>
-      </div>
-      <div class="modal-body">
-     <form class="form-horizontal" role="form">
-			 <div class="form-group">
-			    <label for="" class="col-sm-2 control-label">Username</label>
-			    <div class="col-sm-6">
-			    <input type="username" class="form-control" id="" placeholder="Username" ng-model="director.username">
-			    </div>
-			  </div>
-			   <div class="form-group">
-			    <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
-			    <div class="col-sm-6">
-			    <input type="email" class="form-control" id="inputEmail3" placeholder="Email" ng-model="director.email">
-			    </div>
-			  </div>
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+				<h4 class="modal-title" id="myModalLabel">New Director</h4>
+			</div>
+			<div class="modal-body">
+				<form class="form-horizontal" role="form">
+					<div class="form-group">
+						<label for="" class="col-sm-2 control-label">Username</label>
+						<div class="col-sm-6">
+							<input type="username" class="form-control" id="" placeholder="Username" ng-model="director.username">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+						<div class="col-sm-6">
+							<input type="email" class="form-control" id="inputEmail3" placeholder="Email" ng-model="director.email">
+						</div>
+					</div>
 
-			  <div class="form-group">
-			    <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
-			    <div class="col-sm-6">
-			      <input type="password" class="form-control" id="inputPassword3" placeholder="Password" ng-model="director.password">
-			    </div>
-			 </div>
-  		</form>
-      </div>
+					<div class="form-group">
+						<label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+						<div class="col-sm-6">
+							<input type="password" class="form-control" id="inputPassword3" placeholder="Password" ng-model="director.password">
+						</div>
+					</div>
+				</form>
+			</div>
 
 
 
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" ng-click="createDirector(director)">Submit</button>
-      </div>
-    </div>
-  </div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-primary" ng-click="createDirector(director)">Submit</button>
+			</div>
+		</div>
+	</div>
 </div>
 
 <!-- Modal (Edit) icon in the site section-->
 
 <div class="modal fade" id="editCenter" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" ng-controller="siteEditCtrl">
-   <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title" id="myModalLabel">Edit Center/Site</h4>
-      </div>
-      <div class="modal-body">
-     	<form class="form-horizontal" role="form">
-			<div class="form-group">
-		    	<label class="col-sm-4 control-label">Center Name</label>
-		    	<div class="col-sm-5">
-		      	<input class="form-control" ng-model="center.center"/>
-		    	</div>
-		  	</div>
-   
-			  <div class="form-group">
-		    <label for="inputPassword" class="col-sm-4 control-label">Center Type</label>
-		    <div class="col-sm-5">
-				<select class="form-control">	  
-					  <option>Visitor's Center</option>
-					  <option>Historical Site</option>
-				 </select>
-		    </div>
-		  </div>
-			<div class="form-group">
-		    <label for="" class="col-sm-4 control-label">Select Reporter Profile</label>
-		    <div class="col-sm-5">
-				<select class="form-control" ng-model="director" ng-options="user.username for user in directors">	  
-					 
-				 </select>
-		    </div>
-		    <div class="form-group">
-			    <label for="" class="col-sm-4 control-label" >Active</label>
-			    <div class="col-sm-5">
-					<div class="checkbox">
-				  <label>
-				    <input type="checkbox" id="blankCheckbox" value="YES" aria-label="" ng-checked="is_active_yes" ng-model="center.active">
-				 
-				  </label>
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+				<h4 class="modal-title" id="myModalLabel">Edit Center/Site</h4>
+			</div>
+			<div class="modal-body">
+				<form class="form-horizontal" role="form">
+					<div class="form-group">
+						<label class="col-sm-4 control-label">Center Name</label>
+						<div class="col-sm-5">
+							<input class="form-control" ng-model="center.center"/>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="inputPassword" class="col-sm-4 control-label">Center Type</label>
+						<div class="col-sm-5">
+							<select class="form-control">	  
+								<option>Visitor's Center</option>
+								<option>Historical Site</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="" class="col-sm-4 control-label">Select Reporter Profile</label>
+						<div class="col-sm-5">
+							<select class="form-control" ng-model="director" ng-options="user.username for user in directors">	  
+
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="" class="col-sm-4 control-label" >Active</label>
+							<div class="col-sm-5">
+								<div class="checkbox">
+									<label>
+										<input type="checkbox" id="blankCheckbox" value="YES" aria-label="" ng-checked="center.active" ng-model="center.active">
+
+									</label>
+								</div>
+							</div>
+
+						</div>		  
+					</form>
 				</div>
-		    </div>
-		    
-		  </div>		  
-  		</form>
-	 </div>
-			<div class="modal-footer">
-	        <button type="button" class="btn btn-primary" ng-click="deleteCenter()">Delete Center</button>
-	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-	        <button type="button" class="btn btn-primary" ng-click="editCenter()">Submit</button>
-	      </div>
-	    </div>
-	  </div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" ng-click="deleteCenter()">Delete Center</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary" ng-click="editCenter()">Submit</button>
+				</div>
+			</div>
+		</div>
 	</div>
 </div>
 
@@ -328,78 +328,78 @@
 
 
 <div class="modal fade" id="ModaladdCenter" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" ng-controller="siteAddCtrl">
-  <div class="modal-dialog">
-    <div class="modal-content">
-          <div class="modal-header">
-	        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-	        <h4 class="modal-title" id="myModalLabel">Add Center/Site</h4>
-      	  </div>
-      <div class="modal-body">
-     	<form class="form-horizontal" role="form">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+				<h4 class="modal-title" id="myModalLabel">Add Center/Site</h4>
+			</div>
+			<div class="modal-body">
+				<form class="form-horizontal" role="form">
 					<div class="form-group">
-				    		<label class="col-sm-4 control-label">Center Name</label>
-				    	<div class="col-sm-5">
-				      		<input class="form-control" ng-model="center.center"/>
-				    	</div>
-				  	</div>
-		   
-					<div class="form-group">
-				    		<label for="" class="col-sm-4 control-label">Center Type</label>
-				    	<div class="col-sm-5">
-							<select class="form-control" ng-model="center.type">	  
-								  <option value="type">Visitor's Center</option>
-								  <option value="type">Historical Site</option>
-							 </select>
-				    	</div>
-				     </div>
-					<div class="form-group">
-				    	<label for="inputPassword" class="col-sm-4 control-label">Select Reporter Profile</label>
-					    <div class="col-sm-5">
-							<select class="form-control" ng-model="director" ng-options="user.username for user in directors">	  
-								 
-							 </select>
-					    </div>
-					 </div>
-
-				    <div class="form-group">
-				    		<label class="col-sm-4 control-label" >City</label>
-				    	<div class="col-sm-5">
-				      		<input class="form-control" ng-model="center.city"/>
-				    	</div>
-				  	</div>
-
-				  	<div class="form-group">
-				    	<label class="col-sm-4 control-label" >State</label>
-				    	<div class="col-sm-5">
-				      		<input class="form-control"ng-model="center.state" />
-				    	</div>
-				  	</div>
-
-				  	<div class="form-group">
-				    	<label class="col-sm-4 control-label" >Country</label>
-				    	<div class="col-sm-5">
-				      		<input class="form-control" ng-model="center.country"/>
-				    	</div>
-				  	</div>
-				  	<div class="form-group">
-					    <label for="" class="col-sm-4 control-label">Active</label>
-					<div class="col-sm-5">
-						<div class="radio">
-					  	<label class="radio-inline">
-						  	<input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" ng-model='center.active' value='YES' checked> True
-						</label>
-						<label class="radio-inline">
-						  	<input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2" ng-model='center.active' value='NO' checked> False
-						</label>
+						<label class="col-sm-4 control-label">Center Name</label>
+						<div class="col-sm-5">
+							<input class="form-control" ng-model="center.center"/>
 						</div>
-					</div>		  
-  		</form>
+					</div>
+
+					<div class="form-group">
+						<label for="" class="col-sm-4 control-label">Center Type</label>
+						<div class="col-sm-5">
+							<select class="form-control" ng-model="center.type">	  
+								<option value="type">Visitor's Center</option>
+								<option value="type">Historical Site</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputPassword" class="col-sm-4 control-label">Select Reporter Profile</label>
+						<div class="col-sm-5">
+							<select class="form-control" ng-model="director" ng-options="user.username for user in directors">	  
+
+							</select>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label class="col-sm-4 control-label" >City</label>
+						<div class="col-sm-5">
+							<input class="form-control" ng-model="center.city"/>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label class="col-sm-4 control-label" >State</label>
+						<div class="col-sm-5">
+							<input class="form-control"ng-model="center.state" />
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label class="col-sm-4 control-label" >Country</label>
+						<div class="col-sm-5">
+							<input class="form-control" ng-model="center.country"/>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="" class="col-sm-4 control-label">Active</label>
+						<div class="col-sm-5">
+							<div class="radio">
+								<label class="radio-inline">
+									<input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" ng-model='center.active' value='YES' checked> True
+								</label>
+								<label class="radio-inline">
+									<input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2" ng-model='center.active' value='NO' checked> False
+								</label>
+							</div>
+						</div>		  
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary" ng-click="submitCenter()">Submit</button>
+				</div>
+			</div>
+		</div>
 	</div>
-		<div class="modal-footer">
-	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-	        <button type="button" class="btn btn-primary" ng-click="submitCenter()">Submit</button>
-      </div>
-    </div>
-  </div>
-</div>
 

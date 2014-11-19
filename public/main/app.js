@@ -1,4 +1,4 @@
-var app = angular.module('lds-report', ['ngRoute', 'nvd3ChartDirectives']);
+var app = angular.module('lds-report', ['ngRoute', 'nvd3ChartDirectives', 'nzSweetAlert']);
 
 app.config(['$routeProvider', function($routeProvider){
 	$routeProvider
@@ -18,7 +18,7 @@ app.config(['$routeProvider', function($routeProvider){
 		})
 		.when('/trends', {
 			templateUrl: '/views/trends/trends.html',
-			controller: 'trendsCtrl'
+			controller: 'trendsCtrl'	
 		})
 		.when('/manage', {
 			templateUrl: '/views/manage/manage.html',
