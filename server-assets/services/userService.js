@@ -38,7 +38,10 @@ function delUser(uData){
 };
 
 function getUser(username){
-	return Models.users.find({ where: { username: username } }, { raw: true });
+	return Models.users.find({ attributes: ['id', 'username', 'role', 'email'], where: { username: username }, include: [{ 
+  			model: Models.centers, 
+  			as: 'Centers'}]}, 
+  			{ raw: true });
 };
 
 function getUserById(id){
@@ -101,3 +104,7 @@ function getAllUsers(){
 		});
 	});
 };
+
+/*getUser().then(function(result){
+	console.log(result);
+})*/

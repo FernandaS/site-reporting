@@ -4,70 +4,70 @@ module.exports = function(sequelize, DataTypes) {
     date: {
       type: DataTypes.DATEONLY,
       allowNull: false, 
-      validation: {
+      validate: {
         isDate: true
       }
     },
     baptized: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      validation: {
+      validate: {
         isNumeric: true
       }
     },
     baptismal_date: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      validation: {
+      validate: {
         isNumeric: true
       }
     },
     sacrament_meeting: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      validation: {
+      validate: {
         isNumeric: true
       }
     },
     member_present_lessons: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      validation: {
+      validate: {
         isNumeric: true
       }
     },
     other_lessons: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      validation: {
+      validate: {
         isNumeric: true
       }
     },
     new_investigators: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      validation: {
+      validate: {
         isNumeric: true
       }
     },
     progressing_investigators: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      validation: {
+      validate: {
         isNumeric: true
       }
     },
     rc_la: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      validation: {
+      validate: {
         isNumeric: true
       }
     },
     referrals_sent: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      validation: {
+      validate: {
         isNumeric: true
       }
     }

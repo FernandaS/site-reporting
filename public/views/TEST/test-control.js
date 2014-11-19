@@ -106,22 +106,22 @@ but it's just too many lines to re-write right now.
   // userService.create(newUser).then(function(data){
   //   console.log(data);
   // })
-  // var newReport = {
-  //   date:"2013-12-01",
-  //   visitor_total:850,
-  //   visitor_tour:20,
-  //   visitor_tournonmember:18,
-  //   referral_cards:35,
-  //   referral_called:34,
-  //   referral_inbound:35,
-  //   referral_member:19,
-  //   comments:"Such month, so goooood!",
-  //   centerId: 1
-  // }
-  var change = {
-    visitor_total: 15
+  var newReport = {
+    date:"2014-05-01",
+    visitor_total:900,
+    visitor_tour:20,
+    visitor_tournonmember:18,
+    referral_cards:35,
+    referral_called:34,
+    referral_inbound:35,
+    referral_member:19,
+    comments:"Such month, so goooood!",
+    centerId: 1
   }
-  reportService.edit(2, change).then(function(data){
+  // var change = {
+  //   visitor_total: 15
+  // }
+  reportService.create(newReport).then(function(data){
     console.log(data);
   })
   // var centerChange = {
