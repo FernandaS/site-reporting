@@ -8,7 +8,19 @@ app.controller('trendsCtrl', function($scope, reportService, centerService){
 	var date = new Date();
 	$scope.year = date.getFullYear();
 	$scope.month = date.getMonth();
-
+	$scope.selectedCenters = [];
+	$scope.updateCenters= function(centers){
+		if($scope.selectedCenters.indexOf(centers) !== -1){
+			$scope.selectedCenters.splice($scope.selectedCenters.indexOf(centers), 1);
+		} else {
+			$scope.selectedCenters.push(centers);
+		}
+		$scope.displayCenters($scope.selectedCenters);
+	}
+	$scope.updateMetrics = function(metrics) {
+		$scope.generateChart('2013-01-01', '2014-12-31', metrics, $scope.selectedCenters)
+		console.log(metrics);
+	}
 	var start = new Date($scope.year - 1, $scope.month);
 	var end = date;
 	// reportService.getAllLFrom(start, end).then(function(data){
@@ -33,7 +45,9 @@ app.controller('trendsCtrl', function($scope, reportService, centerService){
 	$scope.generateChart = function generateChart(from, to, params, centers){
 		reportService.getAllFrom(from, to).then(function(data){
 			$scope.reportData = [];
+			$scope.chartData = [];
 			var reports = data.data;
+			var reportArray = [];
 			for (var i = reports.length - 1; i >= 0; i--) {
 				var toPush = {
 					"key": reports[i].center,
@@ -48,25 +62,28 @@ app.controller('trendsCtrl', function($scope, reportService, centerService){
 						reports[i].reports[j][params]
 						])
 				};
-				$scope.reportData.push(toPush);
+				reportArray.push(toPush);
 			};
-			for (var i = $scope.reportData.length - 1; i >= 0; i--) {
-				$scope.reportData[i].values.sort(compare);
+			for (var i = reportArray.length - 1; i >= 0; i--) {
+				reportArray[i].values.sort(compare);
 			};
+			$scope.reportData = reportArray;
 			$scope.displayCenters(centers);
 		})
 	}
 	$scope.displayCenters = function displayCenters(centers){
 		$scope.chartData = [];
-		if(!centers) {
+		if(!centers || centers.length < 1) {
 			$scope.chartData = $scope.reportData;
 			return;
 		}
+		var toPush = [];
 		for (var i = $scope.reportData.length - 1; i >= 0; i--) {
 			if(centers.indexOf($scope.reportData[i].key) > -1){
-				$scope.chartData.push($scope.reportData[i]);
+				toPush.push($scope.reportData[i]);
 			}
 		};
+		$scope.chartData = toPush;
 	}
 	$scope.generateChart('2013-01-01', '2014-12-31', 'visitor_total')
 });

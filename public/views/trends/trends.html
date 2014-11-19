@@ -1,37 +1,33 @@
-<div class="btn-group">
-  <button class="btn btn-default btn dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
-   Sites <span class="caret"></span>
-  </button>
-	  <ul class="dropdown-menu" role="menu">
-	    	<li><a href="#">Kirtland</a></li>
-	  </ul>
-</div>
-
 <div class='btn-group'>
 	<button class="btn btn-default btn dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
 		Visitor trends <span class="caret"></span>
 	</button>
 	<ul class="dropdown-menu" role="menu">
-		<li><a href="#">Visitor trends</a></li>
-		<li><a href="#">Referral trends</a></li>
-		<li><a href="#">Referral breakdown</a></li>
+		<li><a ng-click='updateMetrics("visitor_total")'>Total Visitors</a></li>
+		<li><a ng-click='updateMetrics("visitor_tour")'>Total Tours</a></li>
+		<li><a ng-click='updateMetrics("visitor_tournonmember")'>Total Non-Member Tours</a></li>
+		<li><a ng-click='updateMetrics("referral_cards")'>Total Referrals From Cards</a></li>
+		<li><a ng-click='updateMetrics("referral_called")'>Total Referrals From Outbound Calls</a></li>
+		<li><a ng-click='updateMetrics("referral_inbound")'>Total Referrals From Inbound Calls</a></li>
+		<li><a ng-click='updateMetrics("referral_member")'>Total Referrals From Members</a></li>
 	</ul>
 </div>
-<input type='checkbox' ng-repeat='center in centers'>{{center.center}}</input>
-
-<!-- <div class="radioTrends">
-	<label>Line<input type="radio" name="graphView" value="Line"/></label>
-	<label>Bar<input type="radio" name="graphView" value="Bar"/></label>
-</div> -->
-
-<div id='my-chart'>
-    <nvd3-line-chart
-        data="chartData"
-        showXAxis="true"
-        showYAxis="true"
-        tooltips="true"
-        interactive="true"
-        xAxisTickFormat='xAxisTickFormatFunction()'
-        objectEquality='true'>
-    </nvd3-line-chart>
+<div class='flex-box'>
+	<ul id='trends-center-select'>
+		Select Centers:
+		<li ng-repeat='center in centers'>
+		<input type='checkbox' ng-model='selectedCenters' ng-change='updateCenters(center.center)'>{{center.center}}
+		</li>
+	</ul>
+	<div id='my-chart'>
+	    <nvd3-line-chart
+	        data="chartData"
+	        showXAxis="true"
+	        showYAxis="true"
+	        tooltips="true"
+	        interactive="true"
+	        xAxisTickFormat='xAxisTickFormatFunction()'
+	        objectEquality='true'>
+	    </nvd3-line-chart>
+	</div>
 </div>
