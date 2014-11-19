@@ -106,24 +106,24 @@ but it's just too many lines to re-write right now.
   // userService.create(newUser).then(function(data){
   //   console.log(data);
   // })
-  var newReport = {
-    date:"2014-05-01",
-    visitor_total:900,
-    visitor_tour:20,
-    visitor_tournonmember:18,
-    referral_cards:35,
-    referral_called:34,
-    referral_inbound:35,
-    referral_member:19,
-    comments:"Such month, so goooood!",
-    centerId: 1
-  }
+  // var newReport = {
+  //   date:"2014-05-01",
+  //   visitor_total:900,
+  //   visitor_tour:20,
+  //   visitor_tournonmember:18,
+  //   referral_cards:35,
+  //   referral_called:34,
+  //   referral_inbound:35,
+  //   referral_member:19,
+  //   comments:"Such month, so goooood!",
+  //   centerId: 1
+  // }
   // var change = {
   //   visitor_total: 15
   // }
-  reportService.create(newReport).then(function(data){
-    console.log(data);
-  })
+  // reportService.create(newReport).then(function(data){
+  //   console.log(data);
+  // })
   // var centerChange = {
   //   city: 'Orem'
   // }
@@ -138,4 +138,24 @@ but it's just too many lines to re-write right now.
   // centerService.create(newCenter).then(function(data){
   //   console.log(data);
   // })
+  // var newKiReport = {
+  //   "date":"2014-01-01",
+  //   "baptized":3,
+  //   "baptismal_date":3,
+  //   "sacrament_meeting":12,
+  //   "member_present_lessons":33,
+  //   "other_lessons":45,
+  //   "new_investigators":15,
+  //   "progressing_investigators":33,
+  //   "rc_la":13,
+  //   "referrals_sent":45,
+  //   "centerId":1  
+  // }
+  // var change = {
+  //   "baptized":20
+  // }
+  // reportService.createKi(newKiReport).then(function(data){
+  //   console.log(data);
+  // })
+  
 }

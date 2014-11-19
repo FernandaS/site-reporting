@@ -4,56 +4,56 @@ module.exports = function(sequelize, DataTypes) {
     date: {
       type: DataTypes.DATEONLY,
       allowNull: false,
-      validation: {
+      validate: {
         isDate: true
       }
     },
     visitor_total: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      validation: {
+      validate: {
         isNumeric: true
       }
     },
     visitor_tour: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      validation: {
+      validate: {
         isNumeric: true
       }
     },
     visitor_tournonmember: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      validation: {
+      validate: {
         isNumeric: true
       }
     },
     referral_cards: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      validation: {
+      validate: {
         isNumeric: true
       }
     },
     referral_called: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      validation: {
+      validate: {
         isNumeric: true
       }
     },
     referral_inbound: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      validation: {
+      validate: {
         isNumeric: true
       }
     },
     referral_member: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      validation: {
+      validate: {
         isNumeric: true
       }
     },
