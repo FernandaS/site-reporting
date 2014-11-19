@@ -3,11 +3,91 @@ var app = angular.module('lds-report');
 app.controller('trendsCtrl', function($scope, reportService, centerService){
 
 	$scope.years = [2011, 2012, 2013, 2014];
-	$scope.months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
-
+	$scope.months = {
+	1: {
+		name:'January',
+		number: 1
+	},
+	2: {
+		name: 'February',
+		number: 2
+	}, 
+	3: {
+		name: 'March',
+		number: 3
+	},
+	4: {
+		name: 'April',
+		number: 4
+	},
+	5: {
+		name: 'May',
+		number: 5
+	},
+	6: {
+		name: 'June',
+		number: 6
+	},
+	7: {
+		name: 'July',
+		number: 7
+	},
+	8: {
+		name: 'August',
+		number: 8
+	},
+	9: {
+		name: 'September',
+		number: 9
+	},
+	10: {
+		name: 'October',
+		number: 10
+	},
+	11: {
+		name: 'November',
+		number: 11
+	},
+	12: {
+		name: 'December',
+		number: 12
+	}}
 	var date = new Date();
 	$scope.year = date.getFullYear();
-	$scope.month = date.getMonth();
+	$scope.month = date.getMonth() + 1;
+	$scope.lastYear = date.getFullYear() - 1;
+	$scope.lastMonth = date.getMonth() + 1;	
+	console.log($scope.month)
+	$scope.test = function(month){
+		console.log($scope.dates);
+	}
+
+
+	$scope.dates = {
+		to: {
+			month: Number($scope.month),
+			year: $scope.year,
+			setMonth: function(newMonth){
+				this.month = Number(newMonth)
+				console.log(this)
+			},
+			setYear: function(newYear){
+				this.year = Number(newYear)
+			}
+		},
+		from: {
+			month: Number($scope.lastMonth),
+			year: $scope.lastYear,
+			setMonth: function(newMonth){
+				this.month = Number(newMonth)
+				console.log(this)
+			},
+			setYear: function(newYear){
+				this.year = Number(newYear)
+			}
+		}
+	}
+	console.log($scope.dates);
 	$scope.selectedCenters = [];
 	$scope.updateCenters= function(centers){
 		if($scope.selectedCenters.indexOf(centers) !== -1){
@@ -17,19 +97,19 @@ app.controller('trendsCtrl', function($scope, reportService, centerService){
 		}
 		$scope.displayCenters($scope.selectedCenters);
 	}
+
+	$scope.metrics = 'visitor_total';
 	$scope.updateMetrics = function(metrics) {
-		$scope.generateChart('2013-01-01', '2014-12-31', metrics, $scope.selectedCenters)
-		console.log(metrics);
+		$scope.metrics = metrics;
+		$scope.generateChart()
 	}
-	var start = new Date($scope.year - 1, $scope.month);
-	var end = date;
-	// reportService.getAllLFrom(start, end).then(function(data){
-	// 	$scope.reports = data.data;
-	// })
+
 	centerService.getAll().then(function(data){
 		$scope.centers = data.data;
 		console.log($scope.centers)
 	})
+
+
 	$scope.xAxisTickFormatFunction = function(){
 		return function(d){
 	      return d3.time.format('%x')(new Date(d)); //uncomment for date format
@@ -42,7 +122,22 @@ app.controller('trendsCtrl', function($scope, reportService, centerService){
 			return 1;
 		return 0;
 	}
-	$scope.generateChart = function generateChart(from, to, params, centers){
+	$scope.generateChart = function generateChart(){
+		var dates = $scope.dates;
+		var from = [
+		dates.from.year,
+		dates.from.month,
+		01
+		]
+		from = from.join('-');
+		var to = [
+		dates.to.year,
+		dates.to.month,
+		01
+		]
+		var params = $scope.metrics;
+		var centers = $scope.selectedCenters;
+		to = to.join('-');
 		reportService.getAllFrom(from, to).then(function(data){
 			$scope.reportData = [];
 			$scope.chartData = [];
@@ -85,5 +180,6 @@ app.controller('trendsCtrl', function($scope, reportService, centerService){
 		};
 		$scope.chartData = toPush;
 	}
-	$scope.generateChart('2013-01-01', '2014-12-31', 'visitor_total')
+
+	$scope.generateChart();
 });
