@@ -4,14 +4,14 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: false,
       unique: true,
-      validation: {
+      validate: {
         isAlpha: true
       }
     },
     alias: {
       type: DataTypes.STRING,
       allowNull: true,
-      validation: {
+      validate: {
         isAlpha: true
       }
     },
@@ -28,21 +28,21 @@ module.exports = function(sequelize, DataTypes) {
     city: {
       type: DataTypes.STRING,
       allowNull: false,
-      validation: {
+      validate: {
         isAlpha: true
       }
     },
     state: {
       type: DataTypes.STRING,
       allowNull: false,
-      validation: {
+      validate: {
         isAlpha: true
       }
     },
     country: {
       type: DataTypes.STRING,
       allowNull: false,
-      validation: {
+      validate: {
         isAlpha: true
       }
     }
