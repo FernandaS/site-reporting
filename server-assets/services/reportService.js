@@ -134,8 +134,3 @@ function getAllByRange(rData){
     });
   });
 };
-
-
-getAllByMonth({date: '2014-11-01'}).then(function(results){
-  console.log(results);
-});

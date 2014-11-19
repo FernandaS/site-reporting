@@ -48,7 +48,7 @@ function getOneByMonth(rData){
 		where: {id: rData.id},
   		include: [{ 
   			model: Models.keyindicators, 
-  			as: 'Reports', 
+  			as: 'Indicators', 
   			where: { 'Reports.date': rData.date },
   			attributes: [
   			'id', 'date', 'baptized', 'baptismal_date', 'sacrament_meeting', 
@@ -64,7 +64,7 @@ function getAllByMonth(rData){
 	return Models.centers.findAll({
   		include: [{ 
   			model: Models.keyindicators, 
-  			as: 'Reports', 
+  			as: 'Indicators', 
   			where: { 'Reports.date': rData.date },
   			attributes: [
         'id', 'date', 'baptized', 'baptismal_date', 'sacrament_meeting', 
@@ -81,7 +81,7 @@ function getAllByRange(rData){
       Models.centers.findAll({
         include: [{ 
           model: Models.keyindicators, 
-          as: 'Reports', 
+          as: 'Indicators', 
           where: { 'Reports.date': { between: [rData.start, rData.end] } },
           attributes: [
             'id', 'date', 'baptized', 'baptismal_date', 'sacrament_meeting', 
