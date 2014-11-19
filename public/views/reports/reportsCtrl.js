@@ -13,7 +13,6 @@ app.controller('reportsCtrl', function($scope, reportService, centerService){
 		$scope.reportDate = $scope.selectedMonth + ' 1, ' + $scope.selectedYear
 		// reportService.getListBy($scope.updateSelectDate).then(function(data){
 		// 	$scope.reports = data.data;
-		console.log($scope.reportDate)
 		// })
 	}
 	
@@ -26,6 +25,19 @@ app.controller('reportsCtrl', function($scope, reportService, centerService){
 	}
 
 	getAllCenters();
+
+	$scope.getReportsByMonth = function(){
+		for(var i = 0; i < $scope.months.length; i++){
+			if($scope.months[i] === $scope.selectedMonth){
+				var newMonth = i;
+				var modifiedDate = $scope.selectedYear + "-" + newMonth + "-01";
+				reportService.getAllBy(modifiedDate)
+					.then(function(response){
+						console.log(response);
+					});
+			}					
+		}
+	}	 
 
 	$scope.viewSingleReport = function(id){
 		for(var i = 0; i < $scope.months.length; i++){

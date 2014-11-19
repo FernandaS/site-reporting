@@ -13,16 +13,19 @@ usersCtrl = require('./server-assets/controllers/usersCtrl'),
 reportsCtrl = require('./server-assets/controllers/reportsCtrl'),
 middleware = require('./server-assets/middleware/middleware'),
 authCtrl = require('./server-assets/controllers/authCtrl'),
-emailsCtrl = require('./server-assets/controllers/emailsCtrl');
-// bcrypt = require('bcrypt');
+emailsCtrl = require('./server-assets/controllers/emailsCtrl'),
+keyIndicatorCtrl = require('./server-assets/controllers/keyIndicatorCtrl')
+bcrypt = require('bcrypt');
 
 passport.use(new LocalStrategy(function(username, pass, done) {
 	userService.getUser(username).then(function (user) {
 		if (!user) {
+			console.log('Unknown user' + username);
 			return done(null, false, { message: 'Unknown user ' + username });
 		}
 		bcrypt.compare(pass, user.password, function(err, res) {
 			if (!res){
+				console.log('Invalid password');
 				return done(null, false, { message: 'Invalid password' });
 			}
 			return done(null, user);			
@@ -47,7 +50,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Center app
-app.get('/api/centers/:id'/*, middleware.requireAuth*/, centersCtrl.getCenter);
+
+app.get('/api/centers/:id'/*, middleware.requireAuth,*/, centersCtrl.getCenter);
 app.get('/api/centers/'/*, middleware.requireAuth, middleware.ensureAdmin*/, centersCtrl.getAll);
 app.post('/api/centers'/*, middleware.requireAuth, middleware.ensureAdmin*/, centersCtrl.addCenter);
 app.put('/api/centers/:id'/*, middleware.requireAuth, middleware.ensureAdmin*/, centersCtrl.putCenter);
@@ -64,13 +68,20 @@ app.put('/api/users/:id'/*, middleware.requireAuth*/, usersCtrl.putUser);
 app.delete('/api/users/:id'/*, middleware.requireAuth, middleware.ensureAdmin*/, usersCtrl.deleteUser);
 
 // Report apis, will add the apis with params after I figure it out. Or Aaron figures it out.
-
 app.get('/api/reports/allBy'/*, middleware.requireAuth, middleware.ensureAdmin*/, reportsCtrl.getAllBy); //month
 app.get('/api/reports/allFrom'/*, middleware.requireAuth, middleware.ensureAdmin*/, reportsCtrl.getAllFrom); //month
 app.get('/api/reports/oneBy/:id'/*, middleware.requireAuth*/, reportsCtrl.getOneBy); //center and month
 app.post('/api/reports'/*, middleware.requireAuth*/, reportsCtrl.addReport);
 app.put('/api/reports/:id'/*, middleware.requireAuth*/, reportsCtrl.editReport);
 app.delete('/api/reports/:id'/*, middleware.requireAuth, middleware.ensureAdmin*/, reportsCtrl.deleteReport);
+
+// key indicator apis
+app.get('/api/reports/ki/allBy'/*, middleware.requireAuth, middleware.ensureAdmin*/, keyIndicatorCtrl.getAllBy); //month
+app.get('/api/reports/ki/allFrom'/*, middleware.requireAuth, middleware.ensureAdmin*/, keyIndicatorCtrl.getAllFrom); //month
+app.get('/api/reports/ki/oneBy/:id'/*, middleware.requireAuth*/, keyIndicatorCtrl.getOneBy); //center and month
+app.post('/api/reports/ki'/*, middleware.requireAuth*/, keyIndicatorCtrl.addReport);
+app.put('/api/reports/ki/:id'/*, middleware.requireAuth*/, keyIndicatorCtrl.editReport);
+app.delete('/api/reports/ki/:id'/*, middleware.requireAuth, middleware.ensureAdmin*/, keyIndicatorCtrl.deleteReport);
 
 // Additional emails
 app.post('/api/addlEmails/:id', emailsCtrl.addEmail);
@@ -92,8 +103,12 @@ app.post('/api/logout', function(req, res){
 	req.logout();
 	res.redirect('#/login');
 });
-app.get('/download'/*, middleware.requireAuth, middleware.ensureAdmin*/, reportsCtrl.sendReport);
+
+// Download APIS
+app.get('/download/site/:date'/*, middleware.requireAuth, middleware.ensureAdmin*/, reportsCtrl.sendReport);
 //passport.use(new LocalStrategy());
+app.get('/download/ki/:date'/*, middleware.requireAuth, middleware.ensureAdmin*/, reportsCtrl.sendKiReport);
+
 app.listen(port, function(){
 	console.log('Listening at ' + port);
 });

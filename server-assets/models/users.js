@@ -1,4 +1,11 @@
+<<<<<<< HEAD
 var bcrypt = require('bcrypt');
+=======
+
+var bcrypt = require('bcrypt');
+
+
+>>>>>>> upstream/master
 module.exports = function(sequelize, DataTypes) {
   return sequelize.define('users', { 
     username: {
