@@ -109,8 +109,8 @@ function reportService($http){
 		})
 	}
 
-	this.deleteKi = function(id){ //WORKS BUT doesn't pass back data.
-		return $http({ //Assume it works on request for now.
+	this.deleteKi = function(id){ //WORKS
+		return $http({ 
 			method: 'DELETE',
 			url: '/api/reports/ki/' + id
 		})
