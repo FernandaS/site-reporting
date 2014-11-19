@@ -118,3 +118,7 @@ function getAllByRange(rData){
     });
   });
 };
+
+function getAllReportsByCenterId(id){
+  Models.reports.findAll({ where: { } })
+};
