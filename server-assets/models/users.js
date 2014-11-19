@@ -7,7 +7,8 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       unique: true,
       validate: {
-        isAlphanumeric: true
+        isAlphanumeric: true,
+        len: [1, 25]
       }
     },
     password: {
