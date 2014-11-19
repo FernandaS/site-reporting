@@ -194,8 +194,9 @@
 	    	     <h3 class="panel-title iconi">Email
 	    	     </h3>
 	         </div>
-	       	 <div class="panel-body iconi">
-	    		<p>{{}}<i class="fa fa-times iconi"></i></p>
+	       	 <div class="panel-body iconi" ng-repeat="email in director.secondaryEmails">
+	    		<p ng-hide="email.email == null">{{email.email}}<i class="fa fa-times iconi" ng-click="removeEmail(email)"></i></p>
+
 	  		  </div>
 		</div>
 
@@ -204,7 +205,7 @@
 				<div class="col-md-6 ">
 					<input type="email" class="form-control" id="inputEmail3" placeholder="Email" ng-model="newEmail">
 				</div>
-				<butteon type="button" class="btn btn-primary pull-right" ng-click="addDirectorEmail(addEmail)">Add Email</button>
+				<butteon type="button" class="btn btn-primary pull-right" ng-click="addDirectorEmail()">Add Email</button>
 			</div>
 		</div>	<br>
 

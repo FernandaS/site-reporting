@@ -28,6 +28,7 @@ var getAllAdmin = function(){
 		} else {
 			directors.push(response.data[i]);
 			$scope.directors = directors;
+			console.log($scope.directors)
 		}
 		
 	}

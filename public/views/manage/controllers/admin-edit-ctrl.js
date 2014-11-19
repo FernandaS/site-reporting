@@ -14,11 +14,13 @@ app.controller('adminEditCtrl', function($scope,userService){
 $scope.deleteAdmin = function(){
 		console.log($scope.admin.id)
 	userService.delete($scope.admin.id)
-	.then(function(res){
-		console.log(res)
+	.then(function(res, err){
+		if(res === ""){
+			
+		}
 	
 
-	})
+	});
 }
 
 $scope.editAdmin = function(){
@@ -26,8 +28,11 @@ $scope.editAdmin = function(){
 	userService.edit($scope.admin.id, $scope.admin)
 	.then(function(res){
 		
+		
 		//todo User feedback was the change saved successfully
 	});
 }
+
+
 
 });
