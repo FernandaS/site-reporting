@@ -1,33 +1,45 @@
 var app = angular.module('lds-report');
 
-app.controller('adminEditCtrl', function($scope,userService){
+app.controller('adminEditCtrl', function($scope, userService, nzSwal){
 
-// var getAllAdmin = function(){
-// 	userService.getAll()
-// 	.then(function(response){
-// 		$scope.administrators = response.data;
-// 	})
-// }	
-
-// getAllAdmin();
 
 $scope.deleteAdmin = function(){
-		console.log($scope.admin.id)
-	userService.delete($scope.admin.id)
+		nzSwal({  
+			title : "Are you sure?",   
+			text: "This action cannot be undone!",   
+			type: "warning",   
+			showCancelButton: true,   
+			confirmButtonColor: "#DD6B55",   
+			confirmButtonText: "Yes, delete it!",   
+			closeOnConfirm: false 
+		})
+		 .then(function(){   
+		 	nzSwal("Deleted!", "Admin has been deleted.", "success"); 
+		 	userService.delete($scope.admin.id)
+		})
+		 .catch(function(){
+		 	nzSwal('Cancelled');
+		})
+
+		
+}
+
+
+
+
+$scope.editAdmin = function(){
+	userService.edit($scope.admin.id, $scope.admin)
 	.then(function(res){
-		console.log(res)
-	
+	if(res.data.message){
+			$scope.error = res.data.message;
+		} else {
+			swal("Success!", "Admin profile has been modified!", "success")
+
+		}
 
 	})
 }
 
-$scope.editAdmin = function(){
-	console.log($scope.admin);
-	userService.edit($scope.admin.id, $scope.admin)
-	.then(function(res){
-		
-		//todo User feedback was the change saved successfully
-	});
-}
+
 
 });

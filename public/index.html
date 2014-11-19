@@ -6,6 +6,9 @@
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
   <link href='//fonts.googleapis.com/css?family=Roboto:100' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" type="text/css" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"></link>
+  <!-- sweet-alert -->
+  <link rel="stylesheet" type="text/css" href="assets/sweet-alert/sweet-alert.css">
+
   <link rel="stylesheet" type="text/css" href="styles/styles.css">
   <link rel='stylesheet' type='text/css' href='//cdnjs.cloudflare.com/ajax/libs/nvd3/1.1.15-beta/nv.d3.css'>
 
@@ -13,7 +16,7 @@
 
 </head>
 <body ng-controller="mainCtrl">
-  <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" ng-if='currentPath !== "/reports/2014-11-01"'>
+  <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation"ng-if='path !== "downloads"'>
     <div class="container-fluid">
       <div class="navbar-header">
 
@@ -31,7 +34,7 @@
 
   <div  class="container-fluid">
     <div class="row">
-      <div class="col-sm-3 col-md-2 sidebar" ng-if='currentPath !== "/reports/2014-11-01"'>
+      <div class="col-sm-3 col-md-2 sidebar" ng-if='path !== "downloads"'>
         <ul class="nav nav-sidebar">
           <ul>
             <li >
@@ -46,8 +49,8 @@
           </ul>
           <!--   <img class="logo-church" src="Logo_Church.svg.png"> -->
         </div>
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" >
-          <h1 class="page-header">Dashboard</h1>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+          <h1 class="page-header" ng-if='path !== "downloads"'>Dashboard</h1>
 
           <div ng-view>
           </div>
@@ -135,6 +138,9 @@
 
    <script src='views/TEST/test-control.js'></script>
 
+   <!-- Sweet_Alert-->
+   <script src="assets/sweet-alert/sweet-alert.min.js"></script> 
+   <script src="assets/sweet-alert/nzSweetAlert.js"></script> 
 
 
 

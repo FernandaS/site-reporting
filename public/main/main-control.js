@@ -10,7 +10,11 @@ function mainCtrl($scope, $location, authService){
 	}
 	updateUser();
 	$scope.$on('$routeChangeStart', function(next, current) {
-		$scope.currentPath = $location.path();
-		console.log($scope.currentPath);
+		var path = $location.path().split('/')
+		if((path.indexOf('reports') !== -1 && path.indexOf('site') !== -1) || (path.indexOf('reports') !== -1 && path.indexOf('key_indicators') !== -1)){
+			$scope.path = 'downloads';
+		} else {
+			$scope.path = 'normal';
+		}
 	 });
 }
