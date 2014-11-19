@@ -2,11 +2,13 @@ angular.module('lds-report')
 	.controller('mainCtrl', mainCtrl);
 
 function mainCtrl($scope, $location, authService){
+	$scope.admin = false;
 	function updateUser(){
 		authService.getCurrentUser().then(function(data){
 			$scope.user = data.data;
 			console.log($scope.user);
 			if($scope.user.role === 'ADMIN'){
+				$scope.admin = true;
 				$location.url('/reports');
 			} else if($scope.user.role === 'DIRECTOR'){
 				$location.url('/director');
