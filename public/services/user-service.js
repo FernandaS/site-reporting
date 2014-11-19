@@ -46,4 +46,25 @@ function userService($http){
 			url: '/api/users/' + id //Don't use.
 		})
 	}
+//this allow director to have addtional(secondary) emails. 
+
+	this.createEmail = function(email, id){
+		return $http({
+			method: 'POST',
+			url: '/api/addlEmails/' + id, 
+			data: {email: email}
+
+		})
+	}
+
+	this.deleteEmail = function(id){
+		return $http({
+			method: 'DELETE',
+			url: '/api/addlEmails/' + id
+		})
+	}
+
+	
+
+
 }
