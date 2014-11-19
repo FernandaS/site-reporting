@@ -347,16 +347,16 @@
 						<label for="" class="col-sm-4 control-label">Center Type</label>
 						<div class="col-sm-5">
 							<select class="form-control" ng-model="center.type">	  
-								<option value="type">Visitor's Center</option>
-								<option value="type">Historical Site</option>
+								<option value="CENTER">Visitor's Center</option>
+								<option value="SITE">Historical Site</option>
 							</select>
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="inputPassword" class="col-sm-4 control-label">Select Reporter Profile</label>
 						<div class="col-sm-5">
-							<select class="form-control" ng-model="director" ng-options="user.username for user in directors">	  
-
+							<select class="form-control" ng-model="center.userId">
+							<option ng-repeat="user in directors" ng-value='user.id'>{{user.username}}</option>
 							</select>
 						</div>
 					</div>
@@ -386,10 +386,10 @@
 						<div class="col-sm-5">
 							<div class="radio">
 								<label class="radio-inline">
-									<input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" ng-model='center.active' value='YES' checked> True
+									<input type="radio" name="inlineRadioOptions" id="inlineRadio1"  ng-model='center.active' value='YES' checked> True
 								</label>
 								<label class="radio-inline">
-									<input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2" ng-model='center.active' value='NO' checked> False
+									<input type="radio" name="inlineRadioOptions" id="inlineRadio2" ng-model='center.active' value='NO'> False
 								</label>
 							</div>
 						</div>		  
