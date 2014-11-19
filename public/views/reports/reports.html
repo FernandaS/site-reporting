@@ -8,7 +8,9 @@
       {{year}}
       {{month}} -->
       Select month: <select ng-init='selectedMonth = months[month]; updateSelectDate()' ng-options='value for value in months' ng-model='selectedMonth' ng-change="updateSelectDate()"></select>
-      <select ng-init='selectedYear = year' ng-options='value for value in years' ng-model='selectedYear' ng-change='updateSelectDate()'></select><br/>
+      <select ng-init='selectedYear = year' ng-options='value for value in years' ng-model='selectedYear' ng-change='updateSelectDate()'></select>
+       <button type="button" class="btn btn-xs" ng-click="getReportsByMonth()">Get reports</button>
+      <br/>
       <hr/>
       Individual reports for {{selectedMonth}}, {{selectedYear}}
 
@@ -36,10 +38,10 @@
         </div>
       </div>
 
-      <!-- Button trigger modal -->
-      <button type="button" class="btn btn-default" data-toggle="modal" data-target="#create">
+      <!-- Create Custom Report modal and three inner modals (Grand Totals, Breakdown by Year, Breakdown by Month) commented out -->
+      <!-- <button type="button" class="btn btn-default" data-toggle="modal" data-target="#create">
          Create Custom Report
-      </button>
+      </button> -->
 
       <!-- Button trigger modal -->
       <button type="button" class="btn btn-default" data-toggle="modal" data-target="#addSite">
@@ -47,7 +49,7 @@
       </button>
 
       <!-- Create Custom Modal -->
-      <div class="modal fade" id="create" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" ng-controller="reportCreateCustomCtrl">
+ <!--      <div class="modal fade" id="create" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" ng-controller="reportCreateCustomCtrl">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header list-group-item-info">
@@ -57,30 +59,22 @@
             <div class="modal-body">
               <div class="panel panel-default">
                 <div class="panel-body">
-                    Select sites to use in report:<br/>
+                    Select sites to use in report:<br/> -->
 
                     <!-- First site selection -->
-                     <select ng-init='selectedCenter1 = center' ng-options='center.center for center in $parent.centers' ng-model='selectedCenter1'></select>
+                     <!-- <select ng-init='selectedCenter1 = center' ng-options='center.center for center in $parent.centers' ng-model='selectedCenter1'></select> -->
 
                     <!-- Second site selection -->
-                      <select ng-init='selectedCenter2 = center' ng-options='center.center for center in $parent.centers' ng-model='selectedCenter2'></select>
+                      <!-- <select ng-init='selectedCenter2 = center' ng-options='center.center for center in $parent.centers' ng-model='selectedCenter2'></select> -->
 
 
                     <!-- Third site selection -->
-                   <select ng-init='selectedCenter3 = center' ng-options='center.center for center in $parent.centers' ng-model='selectedCenter3'></select>
+                   <!-- <select ng-init='selectedCenter3 = center' ng-options='center.center for center in $parent.centers' ng-model='selectedCenter3'></select>
 
                 </div>
 
-<!-- <select multiple ng-model="selectedValues" ng-change="testNgChange()">
-    <option value="Draft" ng-selected="">Draft</option>
-    <option value="Pending" ng-selected="">Pending</option>
-    <option value="Live" ng-selected="">Live</option>
-    <option value="Archived" ng-selected="">Archived</option>
-    <option value="Deleted" ng-selected="">Deleted</option>
-</select> {{selectedValues}} -->
-
-              </div>
-              <div class="panel panel-default">
+              </div> -->
+              <!-- <div class="panel panel-default">
                 <div class="panel-body">
                   Select metrics to support:
                     <select ng-init='selectedMetric1 = metrics[metric]' ng-options='metric for metric in metrics'ng-model='selectedMetric1'>
@@ -90,13 +84,12 @@
                     </select>
 
                 </div>
-              </div>
+              </div> -->
 
-              <div class="panel panel-default">
+              <!-- <div class="panel panel-default">
                  <div class="panel-body">
                   Select date range: <br/>
                   Start month
-                    <!-- Single button -->
                         <select class="selectpicker" ng-init='selectedMonthStart = months[month]' ng-options='value for value in months' ng-model='selectedMonthStart'></select>
                   Year:
                         <select class="selectpicker" ng-init='selectedYearStart = year' ng-options='value for value in years' ng-model='selectedYearStart'></select>
@@ -110,23 +103,23 @@
                          <select class="selectpicker" ng-init='selectedYearEnd = year' ng-options='value for value in years' ng-model='selectedYearEnd'></select>
                     </div>
                 </div>
-              </div>
-              <div class="customReportButtons">
+              </div> -->
+              <!-- <div class="customReportButtons">
                 <button type="button" class="btn btn-default" data-toggle="modal" data-target="#reportsByMonth" data-dismiss="modal">Grand totals</button>
                 <button type="button" class="btn btn-default" data-toggle="modal" data-target="#reportsGrandTotal" data-dismiss="modal">Breakdown by month</button>
                 <button type="button" class="btn btn-default" data-toggle="modal" data-target="#reportsByYear" data-dismiss="modal">Breakdown by year</button>
-            </div>    
-            <div class="modal-footer">
+            </div>   -->  
+            <!-- <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
               <button type="button" class="btn btn-primary">Export to Excel</button>
             </div>
           </div>     
         </div>
       </div>
-
+ -->
 
     <!-- Grand Totals Modal-->
-      <div class="modal fade" id="reportsGrandTotal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <!--   <div class="modal fade" id="reportsGrandTotal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
@@ -142,10 +135,10 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
 
  <!-- Breakdown By Month Modal-->
-     <div class="modal fade" id="reportsByMonth" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <!--  <div class="modal fade" id="reportsByMonth" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
@@ -162,9 +155,9 @@
           </div>
         </div>
       </div>    
-
+ -->
  <!-- Breakdown By Year Modal-->
-     <div class="modal fade" id="reportsByYear" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <!--  <div class="modal fade" id="reportsByYear" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
@@ -180,7 +173,7 @@
             </div>
           </div>
         </div>
-      </div>    
+      </div> -->    
 
       <!-- Add Site Modal -->
       <div class="modal fade" id="addSite" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" ng-controller="reportAddSiteCtrl">
@@ -193,15 +186,15 @@
             <div class="modal-body">
                 <div class="panel panel-default">
                 <div class="panel-heading">
-                  <h3 class="panel-title">Visitors Center and Historic Site Monthly Report for: </br> {{selectedCenter.center}} {{selectedMonth}} {{selectedYear}}</h3><br/>
+                  <h3 class="panel-title">Visitors Center and Historic Site Monthly Report for: {{selectedCenter.center}} </br>  {{selectedMonthAdd}} {{selectedYearAdd}}</h3><br/>
                       Choose site:
                       <select ng-init='selectedCenter = center' ng-options='center.center for center in $parent.centers' ng-model='selectedCenter'></select>
                        
                        Month:
-                      <select ng-init='selectedMonth = months[month]' ng-options='value for value in months' ng-model='selectedMonth'></select>
+                      <select ng-init='selectedMonth = months[month]' ng-options='value for value in months' ng-model='selectedMonthAdd'></select>
                   
                       Date:
-                      <select ng-init='selectedYear = year' ng-options='value for value in years' ng-model='selectedYear'></select>
+                      <select ng-init='selectedYear = year' ng-options='value for value in years' ng-model='selectedYearAdd'></select>
                       
                 </div>
                 <div class="panel-body">
@@ -333,7 +326,6 @@
                             <li>Those referring when called after visiting the site:<input class="inputFieldEdit" type="number" min="0" ng-model="report['Reports.referral_called']"></li>
                             <li>Those referring with inbound calls:<input class="inputFieldEdit" type="number" min="0" ng-model="report['Reports.referral_inbound']"></li>
                             <li>Those referring whose names came from members:<input class="inputFieldEdit" type="number" min="0" ng-model="report['Reports.referral_member']"></li>
-                           <!--  <li>Total referrals:<input class="inputFieldEdit" type="number" min="0"></li> -->
                         
                       </div>
                     </div>

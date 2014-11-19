@@ -1,6 +1,8 @@
-var app = angular.module('lds-report');
+//Controller for Grand Totals modal
 
-app.controller('reportGrandTotalsCtrl', function($scope, reportService, centerService){
+// var app = angular.module('lds-report');
+
+// app.controller('reportGrandTotalsCtrl', function($scope, reportService, centerService){
 
 
-});
+// });
