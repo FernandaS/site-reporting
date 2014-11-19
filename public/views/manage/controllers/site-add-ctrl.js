@@ -12,7 +12,7 @@ function submitReportCtrl($scope, centerService, userService){
 
 
 $scope.submitCenter = function(){
-	console.log($scope.director);
+	console.log($scope.center);
 	centerService.create($scope.center)
 	.then(function(res){
 		if (res.data.message){

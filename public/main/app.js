@@ -1,6 +1,7 @@
 var app = angular.module('lds-report', ['ngRoute', 'nvd3ChartDirectives', 'nzSweetAlert']);
 
-app.config(['$routeProvider', function($routeProvider){
+app.config(['$routeProvider', '$httpProvider', function($routeProvider, $httpProvider){
+	$httpProvider.responseInterceptors.push('responseObserver');
 	$routeProvider
 		.when('/login', {
 			templateUrl: '/views/login/login.html',
