@@ -19,7 +19,6 @@ module.exports = function(sequelize, DataTypes) {
             this.setDataValue('password', hash);
       },
       validate: {
-        len: [8, 20],
         notEmpty: true,
         isAlphanumeric: true
       }
