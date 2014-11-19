@@ -111,7 +111,3 @@ function getAllUsers(){
 			});
 		});
 };
-
-getUser('kkkkk').then(function(result){
-	console.log(result);
-})
