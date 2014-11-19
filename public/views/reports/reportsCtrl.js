@@ -29,28 +29,26 @@ app.controller('reportsCtrl', function($scope, reportService, centerService){
 	$scope.getReportsByMonth = function(){
 		for(var i = 0; i < $scope.months.length; i++){
 			if($scope.months[i] === $scope.selectedMonth){
-				var newMonth = i;
+				var newMonth = i + 1;
 				var modifiedDate = $scope.selectedYear + "-" + newMonth + "-01";
 				reportService.getAllBy(modifiedDate)
 					.then(function(response){
-						console.log(response);
+						$scope.reportsByMonth = response.data;
+						console.log($scope.reportsByMonth);
 					});
 			}					
 		}
 	}	 
 
-	$scope.viewSingleReport = function(id){
-		for(var i = 0; i < $scope.months.length; i++){
-			if($scope.months[i] === $scope.selectedMonth){
-				var newMonth = i;
-				var date = $scope.selectedYear + "-" + newMonth + "-01";
-				reportService.getOneBy(id, date)
-				.then(function(response){
-					$scope.report = response.data;
-					console.log($scope.report);
-				})
+	$scope.viewSingleReport = function(center){
+		$scope.report = '';
+		console.log(center);
+		for (var i = 0; i < $scope.reportsByMonth.length; i++){
+			if ($scope.reportsByMonth[i].id === center.id){
+				$scope.report = $scope.reportsByMonth[i];
+				console.log($scope.report);
 			}
-
 		}
 	}
+
 });

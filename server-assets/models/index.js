@@ -31,3 +31,4 @@ module.exports = {
 	models: models,
 	sequelize: sequelize
 };
+

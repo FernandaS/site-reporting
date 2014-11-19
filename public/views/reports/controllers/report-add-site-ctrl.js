@@ -5,8 +5,7 @@ app.controller('reportAddSiteCtrl', function($scope, reportService, centerServic
 	$scope.addNewSiteReport = function(){
 		for(var i = 0; i < $scope.months.length; i++){
 			if($scope.months[i] === $scope.selectedMonthAdd){
-				debugger
-				var newMonth = i;
+				var newMonth = i + 1;
 				var modifiedDate = $scope.selectedYearAdd + "-" + newMonth + "-01";
 				reportService.create({
 					date: modifiedDate,
@@ -33,9 +32,18 @@ app.controller('reportAddSiteCtrl', function($scope, reportService, centerServic
 					$scope.selectedMonth = " ";
 					$scope.selectedCenter = "";
 					reportService.getAllBy(modifiedDate)
+						.then(function(response){
+							debugger;
+							$scope.$parent.reportsByMonth = response.data;
+							console.log($scope.$parent.reportsByMonth);
+						})
 				});
 
 			}					
 		}
 	}	
 });
+
+
+
+
