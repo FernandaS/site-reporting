@@ -41,6 +41,17 @@
 				$scope.report['Reports.referral_inbound'] = "";
 				$scope.report['Reports.referral_member'] = "";
 				$scope.report['Reports.comments'] = "";
+				for(var i = 0; i < $scope.months.length; i++){
+					if($scope.months[i] === $scope.selectedMonth){
+						var newMonth = i + 1;
+						var modifiedDate = $scope.selectedYear + "-" + newMonth + "-01";
+						reportService.getAllBy(modifiedDate)
+						.then(function(response){
+							$scope.$parent.reportsByMonth = response.data;
+							console.log($scope.$parent.reportsByMonth);
+						})	
+					}					
+				}
 			});
 		}	 
-});
+	});

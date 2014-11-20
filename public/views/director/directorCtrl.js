@@ -5,20 +5,22 @@ app.controller('directorCtrl', function($scope, reportService, centerService){
 	$scope.years = [2011, 2012, 2013, 2014, 2015];
 	$scope.months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
+	// $scope.centers = $scope.user.centers;
+
 	// //gets all center reports on page load
 
-	// var getAllReports = function(){
-	// 	reportService.//////getAllReportsForCenter()/////
+	//ng-change
+
+	// $scope.updateSelectCenter = function(center.id)
+	// 	reportService.//////getAllReportsForCenter(center)/////
 	// 		.then(function(response){
 	// 			$scope.reports = response.data;
 	// 		})
-		// reportService.//////getAllKiReportsForCenter()/////
+		// reportService.//////getAllKiReportsForCenter(center.id)/////
 		// 	.then(function(response){
 		// 		$scope.reportsKi = response.data;
 		// 	})
 	// }
-
-	// getAllReports();
 
 	// //individual report info displayed in modal 
 
