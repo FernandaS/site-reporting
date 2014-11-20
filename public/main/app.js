@@ -14,8 +14,12 @@ app.config(['$routeProvider', '$httpProvider', function($routeProvider, $httpPro
 			controller: 'reportsCtrl'
 		})
 		.when('/reports/site/:month', {
-			templateUrl: '/views/reports/month-total/month-total-view.html',
-			controller: 'monthTotalCtrl'
+			templateUrl: '/views/reports/month-total/site-stats/month-total-view.html',
+			controller: 'siteStatsMonthTotalCtrl'
+		})
+		.when('/reports/ki/:month', {
+			templateUrl: '/views/reports/month-total/ki/month-total-view.html',
+			controller: 'kiMonthTotalCtrl'
 		})
 		.when('/trends', {
 			templateUrl: '/views/trends/trends.html',

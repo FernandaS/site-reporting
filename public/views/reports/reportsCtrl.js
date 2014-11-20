@@ -22,7 +22,6 @@ app.controller('reportsCtrl', function($scope, $timeout, reportService, centerSe
 		centerService.getAll()
 			.then(function(response){
 				$scope.centers = response.data;
-				console.log($scope.centers);
 			})
 	}
 
