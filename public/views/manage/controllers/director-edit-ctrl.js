@@ -16,7 +16,6 @@ $scope.deleteDirector = function(){
 		 .then(function(){  
 		  	userService.delete($scope.director.id)
 		  	.then(function(){
-		  		debugger;
 		  		for(var i = 0; i < $scope.directors.length; i++){
 		  			if($scope.directors[i].id ===  $scope.director.id){
 		  				$scope.directors.splice(i , 1);

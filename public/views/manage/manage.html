@@ -11,7 +11,7 @@
 			<div class="panel-body">
 				<div class="col-md-8">
 					<select class="form-control scroll-list" ng-model="center" ng-options="center.center for center in centers" >
-
+					<option value="" selected>Choose Center</option>
 
 					</select>
 				</div>
@@ -31,8 +31,8 @@
 			</div>
 			<div class="panel-body">
 				<div class="col-md-8">
-				<select class="form-control scroll-list" ng-model="director" ng-change="test(director)"ng-options="user.username for user in directors">
-
+				<select class="form-control scroll-list" ng-model="director" ng-change="test(director)"ng-options="user.username for user in directors" placeholder="Director">
+					<option value="" selected>Choose Director</option>
 
 					</select>
 				</div>
@@ -48,7 +48,7 @@
 			<div class="panel-body">
 				<div class="col-md-8">
 					<select class="form-control scroll-list" ng-model="admin" ng-options="user.username for user in administrators">
-
+					<option value="" selected>Choose Admin</option>
 
 					</select>
 				</div>
@@ -70,18 +70,19 @@
 				<h4 class="modal-title" id="myModalLabel">Edit Administrator</h4>
 			</div>
 			<div class="modal-body">
-				<form class="form-horizontal" role="form">
+				<form class="form-horizontal" role="form" name="adminEditForm" novalidate>
 					<div class="form-group">
 						<label for="username" class="col-sm-2 control-label">Username</label>
 						<div class="col-sm-6">
-							<input type="text" class="form-control" id="username" placeholder="Username" ng-model="admin.username">
+							<input type="text" class="form-control" id="username" placeholder="Username" ng-model="admin.username" name="username" required ng-maxlength= '25'>
+              				<p class="help-block" ng-show="adminEditForm.username.$error.maxlength">Username is too long</p>
 						</div>
 					</div>
 
 					<div class="form-group">
 						<label for="inputEmail3" class="col-sm-2 control-label">Email</label>
 						<div class="col-sm-6">
-							<input type="email" class="form-control" id="inputEmail3" ng-model="admin.email" placeholder="Email">
+							<input type="email" class="form-control" id="inputEmail3" ng-model="admin.email" placeholder="Email" required>
 						</div>
 					</div>
 					<strong> Leave blank if you do not wish to change password</strong><br />
@@ -89,16 +90,11 @@
 					<div class="form-group">
 						<label for="inputPassword3" class="col-sm-2 control-label">Change Password</label>
 						<div class="col-sm-6">
-							<input type="password" class="form-control" id="inputPassword3" placeholder="Password">
+							<input type="password" class="form-control" id="inputPassword3" placeholder="Password" ng-model="admin.password">
 						</div>
 					</div>
 
-					<div class="form-group">
-						<label for="inputPassword3" class="col-sm-2 control-label"></label>
-						<div class="col-sm-6">
-							<input type="password" class="form-control" id="inputPassword3" placeholder="Password">
-						</div>
-					</div>
+					
 				</form>
 
 			</div>
@@ -108,7 +104,7 @@
 			<div class="modal-footer">
 				<button type="button" class="btn btn-primary" ng-click="deleteAdmin(admin.id)" data-dismiss="modal" >Delete Admin</button>
 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				<button type="button" class="btn btn-primary" ng-click="editAdmin()" data-dismiss="modal">Save changes</button>
+				<button type="button" class="btn btn-primary" ng-click="editAdmin()" data-dismiss="modal" ng-disabled="adminEditForm.$invalid">Save changes</button>
 			</div>
 		</div>
 	</div>
@@ -124,12 +120,13 @@
 				<h4 class="modal-title" id="myModalLabel">New Administrator</h4>
 			</div>
 			<div class="modal-body">
-				<form class="form-horizontal" role="form">
+				<form class="form-horizontal" role="form" name="newAdminForm" novalidate>
 					<b ng-if="error">{{error}}</b>
 					<div class="form-group">
 						<label for="username" class="col-sm-2 control-label">Username</label>
 						<div class="col-sm-6">
-							<input type="usrname" class="form-control" id="username" placeholder="Username" ng-model="admin.username">
+							<input type="usrname" class="form-control" id="username" placeholder="Username" name='username'ng-model="admin.username" ng-maxlength= '25'>
+							<p class="help-block" ng-show="newAdminForm.username.$error.maxlength">Username is too long</p>
 						</div>
 					</div>
 					<div class="form-group">
@@ -142,7 +139,10 @@
 					<div class="form-group">
 						<label for="inputPassword3" class="col-sm-2 control-label">Password</label>
 						<div class="col-sm-6">
-							<input type="password" class="form-control" id="inputPassword3" placeholder="Password" ng-model="admin.password">
+							<input type="password" class="form-control" id="inputPassword3" placeholder="Password" name='password' ng-model="admin.password" required ng-minlength = '8' ng-maxlength= '20'>
+							<p class="help-block" ng-show="newAdminForm.password.$error.maxlength">Password is too long!</p>
+             				<p class="help-block" ng-show="newAdminForm.password.$error.minlength">Password is too short!</p>
+              
 						</div>
 					</div>
 				</form>
@@ -152,7 +152,7 @@
 
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				<button type="button" class="btn btn-primary" ng-click="createAdmin(admin)" data-dismiss="modal">Submit</button>
+				<button type="button" class="btn btn-primary" ng-click="createAdmin(admin)" data-dismiss="modal" ng-disabled="newAdminForm.$invalid">Submit</button>
 			</div>
 		</div>
 	</div>
@@ -167,17 +167,18 @@
 			</div>
 			<div class="modal-body">
 
-				<form class="form-horizontal" role="form">
+				<form class="form-horizontal" role="form" name="editDirectorForm">
 					<div class="form-group">
 						<label for="username" class="col-sm-2 control-label">Username</label>
 						<div class="col-sm-6">
-							<input type="username" class="form-control" id="username" placeholder="username" ng-model="director.username">
+							<input type="username" class="form-control" id="username" placeholder="username" ng-model="director.username" required name="username" required ng-maxlength= '25'>
+              				<p class="help-block" ng-show="editDirectorForm.username.$error.maxlength">Username is too long</p>
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="" class="col-sm-2 control-label">Email</label>
 						<div class="col-sm-6">
-							<input type="" class="form-control" id="" placeholder="Email" ng-model="director.email">
+							<input type="" class="form-control" id="" placeholder="Email" ng-model="director.email" required>
 						</div>
 					</div>
 
@@ -216,7 +217,7 @@
 				<div class="modal-footer">
 					<button type="button" class="btn btn-primary" ng-click="deleteDirector()" data-dismiss="modal">Delete Director</button>
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary" ng-click="editDirector()" data-dismiss="modal">Save changes</button>
+					<button type="button" class="btn btn-primary" ng-click="editDirector()" data-dismiss="modal" ng-disabled="editDirectorForm.$invalid">Save changes</button>
 				</div>
 			</div>
 		</div>
@@ -232,24 +233,28 @@
 				<h4 class="modal-title" id="myModalLabel">New Director</h4>
 			</div>
 			<div class="modal-body">
-				<form class="form-horizontal" role="form">
+				<form class="form-horizontal" role="form" name="newDirectorForm" novalidate>
 					<div class="form-group">
 						<label for="" class="col-sm-2 control-label">Username</label>
 						<div class="col-sm-6">
-							<input type="username" class="form-control" id="" placeholder="Username" ng-model="director.username">
+							<input type="username" class="form-control" id="" placeholder="Username" ng-model="director.username" required ng-maxlength= '25'>
+							<p class="help-block" ng-show="newDirectorForm.username.$error.maxlength">Username is too long</p>
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="inputEmail3" class="col-sm-2 control-label">Email</label>
 						<div class="col-sm-6">
-							<input type="email" class="form-control" id="inputEmail3" placeholder="Email" ng-model="director.email">
+							<input type="email" class="form-control" id="inputEmail3" placeholder="Email" ng-model="director.email" required>
 						</div>
 					</div>
 
 					<div class="form-group">
 						<label for="inputPassword3" class="col-sm-2 control-label">Password</label>
 						<div class="col-sm-6">
-							<input type="password" class="form-control" id="inputPassword3" placeholder="Password" ng-model="director.password">
+							<input type="password" class="form-control" id="inputPassword3" placeholder="Password" ng-model="director.password" required ng-minlength = '8' ng-maxlength= '20'>
+				             <p class="help-block" ng-show="newDirectorForm.password.$error.maxlength">Password is too long!</p>
+				             <p class="help-block" ng-show="newDirectorForm.password.$error.minlength">Password is too short!</p>
+              
 						</div>
 					</div>
 				</form>
@@ -259,7 +264,7 @@
 
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				<button type="button" class="btn btn-primary" ng-click="createDirector(director)" data-dismiss="modal">Submit</button>
+				<button type="button" class="btn btn-primary" ng-click="createDirector(director)" data-dismiss="modal" ng-disabled='newDirectorForm.$invalid'>Submit</button>
 			</div>
 		</div>
 	</div>
@@ -336,18 +341,18 @@
 				<h4 class="modal-title" id="myModalLabel">Add Center/Site</h4>
 			</div>
 			<div class="modal-body">
-				<form class="form-horizontal" role="form">
+				<form class="form-horizontal" role="form" name="addCenterForm">
 					<div class="form-group">
 						<label class="col-sm-4 control-label">Center Name</label>
 						<div class="col-sm-5">
-							<input class="form-control" ng-model="center.center"/>
+							<input class="form-control" ng-model="center.center" required>
 						</div>
 					</div>
 
 					<div class="form-group">
 						<label for="" class="col-sm-4 control-label">Center Type</label>
 						<div class="col-sm-5">
-							<select class="form-control" ng-model="center.type">	  
+							<select class="form-control" ng-model="center.type" required>	  
 								<option value="CENTER">Visitor's Center</option>
 								<option value="SITE">Historical Site</option>
 							</select>
@@ -357,29 +362,29 @@
 						<label for="inputPassword" class="col-sm-4 control-label">Select Reporter Profile</label>
 						<div class="col-sm-5">
 							<select class="form-control" ng-model="center.userId">
-							<option ng-repeat="user in directors" ng-value='user.id'>{{user.username}}</option>
+							<option ng-repeat="user in directors" ng-value='user.id' required>{{user.username}}</option>
 							</select>
 						</div>
 					</div>
 
 					<div class="form-group">
-						<label class="col-sm-4 control-label" >City</label>
+						<label class="col-sm-4 control-label">City</label>
 						<div class="col-sm-5">
-							<input class="form-control" ng-model="center.city"/>
+							<input class="form-control" ng-model="center.city" required>
 						</div>
 					</div>
 
 					<div class="form-group">
 						<label class="col-sm-4 control-label" >State</label>
 						<div class="col-sm-5">
-							<input class="form-control"ng-model="center.state" />
+							<input class="form-control"ng-model="center.state" required>
 						</div>
 					</div>
 
 					<div class="form-group">
 						<label class="col-sm-4 control-label" >Country</label>
 						<div class="col-sm-5">
-							<input class="form-control" ng-model="center.country"/>
+							<input class="form-control" ng-model="center.country" required>
 						</div>
 					</div>
 					<div class="form-group">
@@ -398,7 +403,7 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary" ng-click="submitCenter()" data-dismiss="modal">Submit</button>
+					<button type="button" class="btn btn-primary" ng-click="submitCenter()" data-dismiss="modal" ng-disabled="addCenterForm.$invalid">Submit</button>
 				</div>
 			</div>
 		</div>
