@@ -28,8 +28,7 @@ passport.use(new LocalStrategy(function(username, pass, done) {
 			if (!res){
 				console.log('Invalid password');
 				return done(null, false, { message: 'Invalid password' });
-			}
-			delete user.password;
+			}	
 			console.log(pass, user);	
 			return done(null, user);			
 		})
