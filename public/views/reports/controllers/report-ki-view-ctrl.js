@@ -1,7 +1,6 @@
 var app = angular.module('lds-report');
 
-	app.controller('reportKiViewCtrl', function($scope, reportService, centerService){
-
+app.controller('reportKiViewCtrl', function($scope, reportService, centerService){
 
 	$scope.deleteReportWarningAlert = false; 
 
@@ -12,17 +11,22 @@ var app = angular.module('lds-report');
 	// Refreshes page when modal closes
 
 	$scope.refreshModalClose = function(){
-		// $scope.stats = response.data;
-		$scope.deleteReportWarningAlert = false;
-		$scope.baptized = "";
-		$scope.baptismal_date = "",
-		$scope.sacrament_meeting = "",
-		$scope.member_present_lessons = "",
-		$scope.other_lessons = "",
-		$scope.new_investigators = "",
-		$scope.progressing_investigators = "",
-		$scope.rc_la = ""
-		$scope.referrals_sent = " ";
+		centerService.getAll()
+			.then(function(response){
+				$scope.centers = response.data;
+				// $scope.stats = response.data;
+				$scope.deleteReportWarningAlert = false;
+				$scope.baptized = "";
+				$scope.baptismal_date = "",
+				$scope.sacrament_meeting = "",
+				$scope.member_present_lessons = "",
+				$scope.other_lessons = "",
+				$scope.new_investigators = "",
+				$scope.progressing_investigators = "",
+				$scope.rc_la = ""
+				$scope.referrals_sent = " ";
+
+		})
 	}
 
 	$scope.deleteReportWarning = function(){
@@ -30,7 +34,12 @@ var app = angular.module('lds-report');
 	}
 
 	$scope.deleteSingleReport = function(id){
+		console.log(id);
 		reportService.deleteKi(id)
-		$scope.deleteReportWarningAlert = false;
+			.then(function(response){
+				console.log(response);
+					$scope.deleteReportWarningAlert = false;
+			})
+
 	}
 });

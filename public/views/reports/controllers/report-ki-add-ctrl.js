@@ -30,11 +30,10 @@ var app = angular.module('lds-report');
 					$scope.progressing_investigators = "",
 					$scope.rc_la = ""
 					$scope.referrals_sent = " ";
-					reportService.getAllBy(modifiedDate)
+					reportService.getAllKiBy(modifiedDate)
 						.then(function(response){
-							debugger;
-							$scope.$parent.reportsByMonth = response.data;
-							console.log($scope.$parent.reportsByMonth);
+							$scope.$parent.reportsKiByMonth = response.data;
+							console.log($scope.$parent.reportsKiByMonth);
 						})
 				});
 
