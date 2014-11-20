@@ -38,10 +38,11 @@ function delUser(uData){
 
 function getUser(username){
 	return new Promise(function(resolve, reject){
-		Models.users.findAll({ attributes: ['id', 'username', 'role', 'email'], where: { username: username }, include: [{ 
+		Models.users.findAll({ where: { username: username }, include: [{ 
 			model: Models.centers, 
 			as: 'Centers'}]}, 
 			{ raw: true }).then(function(result){
+				console.log(result);
 				newResult = Sequelize.Utils._.chain(result)
 				.groupBy('username').map(function(value, key){
 					return {
@@ -49,6 +50,7 @@ function getUser(username){
 						username: value[0].username, 
 						role: value[0].role, 
 						email: value[0].email,
+						password: value[0].password,
 						centers: Sequelize.Utils._.chain(value).map(function(value, key){
 							return {
 								id: value['Centers.id'],
@@ -63,11 +65,13 @@ function getUser(username){
 						}).value()
 					}
 				}).value();
-				if(!newResult[0].centers[0].id){
-					newResult[0].centers = null;
-					resolve(newResult[0]);
-				} else {
-					resolve(newResult[0]);
+				if(newResult[0]){
+					if(!newResult[0].centers[0].id){
+						newResult[0].centers = null;
+						resolve(newResult[0]);
+					} else {
+						resolve(newResult[0]);
+					}
 				}		
 			}, function(err){
 				reject(err);

@@ -8,7 +8,8 @@ var services = {
 	delReport: delReport,
 	getOneByMonth: getOneByMonth,
 	getAllByMonth: getAllByMonth,
-	getAllByRange: getAllByRange
+	getAllByRange: getAllByRange,
+  getAllReportsByCenterId: getAllReportsByCenterId
 };
 
 module.exports = services;
@@ -89,8 +90,8 @@ function getAllByRange(rData){
             'progressing_investigators', 'rc_la', 'referrals_sent',
             [Sequelize.fn('date_format', Sequelize.col('Indicators.date'), '%Y-%m-%d'), 'date']
           ]
-        }]
-    }, {raw: true}).then(function(reports){
+
+    }]}, {raw: true}).then(function(reports){
       var organizedReports = Sequelize.Utils._.chain(reports)
       .groupBy('center')
       .map(function(value, key){
@@ -120,5 +121,5 @@ function getAllByRange(rData){
 };
 
 function getAllReportsByCenterId(id){
-  Models.reports.findAll({ where: { } })
+  return Models.keyindicators.findAll({ where: { centerId: id } });
 };

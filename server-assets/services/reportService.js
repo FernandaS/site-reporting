@@ -8,7 +8,8 @@ var services = {
 	delReport: delReport,
 	getOneByMonth: getOneByMonth,
 	getAllByMonth: getAllByMonth,
-	getAllByRange: getAllByRange
+	getAllByRange: getAllByRange,
+  getAllReportsByCenterId: getAllReportsByCenterId
 };
 
 module.exports = services;
@@ -136,5 +137,5 @@ function getAllByRange(rData){
 };
 
 function getAllReportsByCenterId(id){
-
+  return Models.reports.findAll({ where: { centerId: id } });
 };

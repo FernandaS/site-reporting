@@ -1,6 +1,6 @@
 var app = angular.module('lds-report');
 
-app.controller('directorEditCtrl', function($scope, userService, nzSwal){
+app.controller('directorEditCtrl', function($scope, $timeout, userService, nzSwal, $route, $location){
 
 
 
@@ -13,9 +13,23 @@ $scope.deleteDirector = function(){
 			confirmButtonColor: "#DD6B55",   confirmButtonText: "Yes, delete it!",   
 			closeOnConfirm: false 
 		})
-		 .then(function(){   
+		 .then(function(){  
+		  	userService.delete($scope.director.id)
+		  	.then(function(){
+		  		debugger;
+		  		for(var i = 0; i < $scope.directors.length; i++){
+		  			if($scope.directors[i].id ===  $scope.director.id){
+		  				$scope.directors.splice(i , 1);
+		  				break;
+		  			}
+		  		}
+		  		$scope.getAllUsers()
+		  		.then(function(data){
+		  			$scope.directors = data.directors
+		  		})
+		  	})
 		 	nzSwal("Deleted!", "Director has been deleted.", "success"); 
-		 	userService.delete($scope.director.id);
+		 	
 		})
 		 .catch(function(){
 		 	nzSwal('Cancelled');
@@ -31,8 +45,12 @@ $scope.editDirector = function(){
 		if(res.data.message){
 			$scope.error = res.data.message;
 		} else {
-			swal("Success!", "Director profile has been modified!", "success")
+			$scope.getAllUsers()
+			.then(function(data){
+				$scope.directors = data.directors;
 
+			})
+			swal("Success!", "Director profile has been modified!", "success")
 		}
 
 	})
@@ -42,7 +60,17 @@ $scope.addDirectorEmail = function(){
 	console.log($scope.newEmail);
 	userService.createEmail($scope.newEmail, $scope.director.id)
 	.then(function(res){
-	 $scope.$parent.getAllUsers();
+		$scope.director.secondaryEmails.push({email: $scope.newEmail});
+		$scope.getAllUsers()
+			.then(function(data){
+				$scope.directors = data.directors;
+				$scope.administrators = data.administrators;
+				$scope.newEmail = '';
+			})
+		// swal("Success!", "Email has been modified!", "success")
+		
+		
+	 
 	})
 }
 
@@ -52,15 +80,23 @@ $scope.removeEmail = function(email){
 		if(res.data.message){
 			$scope.error = res.data.message;
 		} else {
-
-			nzSwal("You have successfully Deleted!", "success")
-			$scope.diretor = ''
+			for(var i = 0; i < $scope.director.secondaryEmails.length; i++){
+				if($scope.director.secondaryEmails[i].id === email.id){
+					$scope.director.secondaryEmails.splice(i, 1);
+				}
+			}
+			$scope.getAllUsers()
+				.then(function(data){
+					$scope.directors = data.directors;
+					
+				})
+			// nzSwal("You have successfully Deleted!", "success")
+			
 		}
-		console.log(res);
+		
 	})
 
 }
-
 
 
 
