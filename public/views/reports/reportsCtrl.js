@@ -3,7 +3,6 @@ var app = angular.module('lds-report');
 app.controller('reportsCtrl', function($scope, reportService, centerService){
 	$scope.reports = [];
 	
-
 	$scope.years = [2011, 2012, 2013, 2014, 2015];
 	$scope.months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 
@@ -14,7 +13,6 @@ app.controller('reportsCtrl', function($scope, reportService, centerService){
 		$scope.reportDate = $scope.selectedMonth + ' 1, ' + $scope.selectedYear
 		// reportService.getListBy($scope.updateSelectDate).then(function(data){
 		// 	$scope.reports = data.data;
-		console.log($scope.reportDate)
 		// })
 	}
 	
@@ -28,18 +26,29 @@ app.controller('reportsCtrl', function($scope, reportService, centerService){
 
 	getAllCenters();
 
-	$scope.viewSingleReport = function(id){
+	$scope.getReportsByMonth = function(){
 		for(var i = 0; i < $scope.months.length; i++){
 			if($scope.months[i] === $scope.selectedMonth){
-				var newMonth = i;
-				var date = $scope.selectedYear + "-" + newMonth + "-01";
-				reportService.getOneBy(id, date)
-				.then(function(response){
-					$scope.report = response.data;
-					console.log($scope.report);
-				})
-			}
+				var newMonth = i + 1;
+				var modifiedDate = $scope.selectedYear + "-" + newMonth + "-01";
+				reportService.getAllBy(modifiedDate)
+					.then(function(response){
+						$scope.reportsByMonth = response.data;
+						console.log($scope.reportsByMonth);
+					});
+			}					
+		}
+	}	 
 
+	$scope.viewSingleReport = function(center){
+		$scope.report = '';
+		console.log(center);
+		for (var i = 0; i < $scope.reportsByMonth.length; i++){
+			if ($scope.reportsByMonth[i].id === center.id){
+				$scope.report = $scope.reportsByMonth[i];
+				console.log($scope.report);
+			}
 		}
 	}
+
 });

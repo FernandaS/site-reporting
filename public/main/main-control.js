@@ -6,6 +6,11 @@ function mainCtrl($scope, $location, authService){
 		authService.getCurrentUser().then(function(data){
 			$scope.user = data.data;
 			console.log($scope.user);
+			if($scope.user.role === 'ADMIN'){
+				$location.url('/reports');
+			} else if($scope.user.role === 'DIRECTOR'){
+				$location.url('/director');
+			}
 		})
 	}
 	updateUser();

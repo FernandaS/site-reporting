@@ -48,13 +48,13 @@ function getOneByMonth(rData){
 		where: {id: rData.id},
   		include: [{ 
   			model: Models.keyindicators, 
-  			as: 'Reports', 
-  			where: { 'Reports.date': rData.date },
+  			as: 'Indicators', 
+  			where: { 'Indicators.date': rData.date },
   			attributes: [
   			'id', 'date', 'baptized', 'baptismal_date', 'sacrament_meeting', 
         'member_present_lessons', 'other_lessons', 'new_investigators',
         'progressing_investigators', 'rc_la', 'referrals_sent',
-  			[Sequelize.fn('date_format', Sequelize.col('Reports.date'), '%Y-%m-%d'), 'date']
+  			[Sequelize.fn('date_format', Sequelize.col('Indicators.date'), '%Y-%m-%d'), 'date']
   			]
   	  	}]
 	}, {raw: true});
@@ -64,13 +64,13 @@ function getAllByMonth(rData){
 	return Models.centers.findAll({
   		include: [{ 
   			model: Models.keyindicators, 
-  			as: 'Reports', 
-  			where: { 'Reports.date': rData.date },
+  			as: 'Indicators', 
+  			where: { 'Indicators.date': rData.date },
   			attributes: [
         'id', 'date', 'baptized', 'baptismal_date', 'sacrament_meeting', 
         'member_present_lessons', 'other_lessons', 'new_investigators',
         'progressing_investigators', 'rc_la', 'referrals_sent',
-        [Sequelize.fn('date_format', Sequelize.col('Reports.date'), '%Y-%m-%d'), 'date']
+        [Sequelize.fn('date_format', Sequelize.col('Indicators.date'), '%Y-%m-%d'), 'date']
         ]
   	  	}]
 	}, {raw: true});
@@ -81,14 +81,15 @@ function getAllByRange(rData){
       Models.centers.findAll({
         include: [{ 
           model: Models.keyindicators, 
-          as: 'Reports', 
-          where: { 'Reports.date': { between: [rData.start, rData.end] } },
+          as: 'Indicators', 
+          where: { 'Indicators.date': { between: [rData.start, rData.end] } },
           attributes: [
             'id', 'date', 'baptized', 'baptismal_date', 'sacrament_meeting', 
             'member_present_lessons', 'other_lessons', 'new_investigators',
             'progressing_investigators', 'rc_la', 'referrals_sent',
-            [Sequelize.fn('date_format', Sequelize.col('Reports.date'), '%Y-%m-%d'), 'date']
+            [Sequelize.fn('date_format', Sequelize.col('Indicators.date'), '%Y-%m-%d'), 'date']
           ]
+
     }]}, {raw: true}).then(function(reports){
       var organizedReports = Sequelize.Utils._.chain(reports)
       .groupBy('center')
@@ -96,17 +97,17 @@ function getAllByRange(rData){
         return {  center: key, 
                   reports:  Sequelize.Utils._.map(value, function(report){
                     return {
-                      id: report['Reports.id'],
-                      date: report['Reports.date'],
-                      baptized: report['Reports.baptized'],
-                      baptismal_date: report['Reports.baptismal_date'],
-                      sacrament_meeting: report['Reports.sacrament_meeting'],
-                      member_present_lessons: report['member_present_lessons'],
-                      other_lessons: report['other_lessons'],
-                      new_investigators: report['new_investigators'],
-                      progressing_investigators: report['progressing_investigators'],
-                      rc_la: report['rc_la'],
-                      referrals_sent: report['referrals_sent']
+                      id: report['Indicators.id'],
+                      date: report['Indicators.date'],
+                      baptized: report['Indicators.baptized'],
+                      baptismal_date: report['Indicators.baptismal_date'],
+                      sacrament_meeting: report['Indicators.sacrament_meeting'],
+                      member_present_lessons: report['Indicators.member_present_lessons'],
+                      other_lessons: report['Indicators.other_lessons'],
+                      new_investigators: report['Indicators.new_investigators'],
+                      progressing_investigators: report['Indicators.progressing_investigators'],
+                      rc_la: report['Indicators.rc_la'],
+                      referrals_sent: report['Indicators.referrals_sent']
                     }
                 })
                }
@@ -116,4 +117,8 @@ function getAllByRange(rData){
       reject(err);
     });
   });
+};
+
+function getAllReportsByCenterId(id){
+  Models.reports.findAll({ where: { } })
 };

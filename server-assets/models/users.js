@@ -1,13 +1,15 @@
-
 var bcrypt = require('bcrypt');
-
 
 module.exports = function(sequelize, DataTypes) {
   return sequelize.define('users', { 
     username: {
       type: DataTypes.STRING(25),
       allowNull: false,
-      unique: true
+      unique: true,
+      validate: {
+        isAlphanumeric: true,
+        len: [1, 25]
+      }
     },
     password: {
       type: DataTypes.STRING,
@@ -15,6 +17,10 @@ module.exports = function(sequelize, DataTypes) {
       set:  function(pass) {
             var hash = bcrypt.hashSync(pass, 10);
             this.setDataValue('password', hash);
+      },
+      validate: {
+        notEmpty: true,
+        isAlphanumeric: true
       }
     },
     role: {
@@ -23,7 +29,10 @@ module.exports = function(sequelize, DataTypes) {
     },
     email: {
       type: DataTypes.STRING(50),
-      allowNull: false
+      allowNull: false,
+      validate: {
+        isEmail: true
+      }
     }
   }, {
      instanceMethods: {

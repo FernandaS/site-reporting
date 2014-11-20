@@ -72,6 +72,10 @@
 	border-bottom: 10px solid gray;
 }
 
+.addReport {
+	width: 30%;
+}
+
 
 
 /**.logo-bar {
@@ -189,4 +193,16 @@ If it breaks anything, it's Jason's fault.
 }
 th {
 	text-align: center;
+}
+.flex-box {
+	display: flex;
+	justify-content: space-between;
+}
+#my-chart {
+	width: 100%;
+}
+#trends-center-select {
+	list-style-type: none;
+	padding: 0px;
+	width: 121px;
 }

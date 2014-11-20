@@ -1,6 +1,8 @@
-var app = angular.module('lds-report');
+//Controller for Breakdown By Month modal
 
-app.controller('reportBreakdownByMonthCtrl', function($scope, reportService, centerService){
+// var app = angular.module('lds-report');
+
+// app.controller('reportBreakdownByMonthCtrl', function($scope, reportService, centerService){
 
 
-});
+// });

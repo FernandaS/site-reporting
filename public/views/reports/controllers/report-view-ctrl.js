@@ -15,7 +15,17 @@ app.controller('reportViewCtrl', function($scope, reportService, centerService){
 		.then(function(response){
 			$scope.centers = response.data;
 			$scope.deleteReportWarningAlert = false;
-			console.log($scope.centers);
+			$scope.visitor_total = "";
+			$scope.visitor_tour = "",
+			$scope.visitor_tournonmember = "",
+			$scope.referral_cards = "",
+			$scope.referral_called = "",
+			$scope.referral_inbound = "",
+			$scope.referral_member = "",
+			$scope.comments = ""
+			$scope.selectedYear = " ";
+			$scope.selectedMonth = " ";
+			$scope.selectedCenter = "";	
 		})
 	}
 

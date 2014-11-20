@@ -2,12 +2,11 @@ var app = angular.module('lds-report');
 
 app.controller('reportAddSiteCtrl', function($scope, reportService, centerService){
 
-
 	$scope.addNewSiteReport = function(){
 		for(var i = 0; i < $scope.months.length; i++){
-			if($scope.months[i] === $scope.selectedMonth){
-				var newMonth = i;
-				var modifiedDate = $scope.selectedYear + "-" + newMonth + "-01";
+			if($scope.months[i] === $scope.selectedMonthAdd){
+				var newMonth = i + 1;
+				var modifiedDate = $scope.selectedYearAdd + "-" + newMonth + "-01";
 				reportService.create({
 					date: modifiedDate,
 					visitor_total: $scope.visitor_total,
@@ -29,12 +28,22 @@ app.controller('reportAddSiteCtrl', function($scope, reportService, centerServic
 					$scope.referral_inbound = "",
 					$scope.referral_member = "",
 					$scope.comments = ""
-					$scope.selectedYear = "";
-					$scope.selectedMonth = "";
+					$scope.selectedYear = " ";
+					$scope.selectedMonth = " ";
 					$scope.selectedCenter = "";
-				})
+					reportService.getAllBy(modifiedDate)
+						.then(function(response){
+							debugger;
+							$scope.$parent.reportsByMonth = response.data;
+							console.log($scope.$parent.reportsByMonth);
+						})
+				});
 
 			}					
 		}
 	}	
 });
+
+
+
+
