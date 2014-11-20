@@ -49,4 +49,16 @@ function centerService($http){
 			url: '/api/centers/' + id
 		})
 	}
+	this.getAllReports = function(id){
+		return $http({
+			method: 'GET',
+			url: '/api/reports/getAllReports/' + id
+		})
+	}
+	this.getAllKIReports = function(id){
+		return $http({
+			method: 'GET',
+			url: '/api/reports/ki/getAllReports/' + id
+		})
+	}
 }
