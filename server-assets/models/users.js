@@ -17,10 +17,6 @@ module.exports = function(sequelize, DataTypes) {
       set:  function(pass) {
             var hash = bcrypt.hashSync(pass, 10);
             this.setDataValue('password', hash);
-      },
-      validate: {
-        notEmpty: true,
-        isAlphanumeric: true
       }
     },
     role: {
@@ -34,13 +30,5 @@ module.exports = function(sequelize, DataTypes) {
         isEmail: true
       }
     }
-  }, {
-     instanceMethods: {
-        verifyPassword: function(password, done) {
-          return bcrypt.compare(password, this.password, function(err, res){
-            return done(err, res);
-          });
-        }
-     }
   });
 };
