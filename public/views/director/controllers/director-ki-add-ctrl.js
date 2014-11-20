@@ -31,10 +31,10 @@ app.controller('directorKiAddCtrl', function($scope, reportService, centerServic
 					$scope.rc_la = ""
 					$scope.referrals_sent = " ";
 					reportService.getAllKiBy(modifiedDate)
-						.then(function(response){
-							$scope.$parent.reportsKiByMonth = response.data;
-							console.log($scope.$parent.reportsKiByMonth);
-						})
+					.then(function(response){
+						$scope.$parent.reportsKiByMonth = response.data;
+						console.log($scope.$parent.reportsKiByMonth);
+					})
 				});
 
 			}					
