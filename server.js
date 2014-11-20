@@ -73,6 +73,7 @@ app.delete('/api/users/:id', /*middleware.requireAuth, middleware.ensureAdmin,*/
 app.get('/api/reports/allBy', /*middleware.requireAuth, middleware.ensureAdmin,*/ reportsCtrl.getAllBy); //month
 app.get('/api/reports/allFrom', /*middleware.requireAuth, middleware.ensureAdmin,*/ reportsCtrl.getAllFrom); //month
 app.get('/api/reports/oneBy/:id', /*middleware.requireAuth,*/ reportsCtrl.getOneBy); //center and month
+app.get('/api/reports/getAllReportsByCenterId/:id', reportsCtrl.getAllReportsByCenterId);
 app.post('/api/reports', /*middleware.requireAuth,*/ reportsCtrl.addReport); //this route is only protected from other directors by the fact that other directors don't know the center id's of other centers. Directors could potentially obtain reports from other centers if they had the center id.
 app.put('/api/reports/:id', /*middleware.requireAuth,*/ reportsCtrl.editReport);
 app.delete('/api/reports/:id', /*middleware.requireAuth, middleware.ensureAdmin,*/ reportsCtrl.deleteReport);
@@ -81,6 +82,7 @@ app.delete('/api/reports/:id', /*middleware.requireAuth, middleware.ensureAdmin,
 app.get('/api/reports/ki/allBy', /*middleware.requireAuth, middleware.ensureAdmin,*/ keyIndicatorCtrl.getAllBy); //month
 app.get('/api/reports/ki/allFrom', /*middleware.requireAuth, middleware.ensureAdmin,*/ keyIndicatorCtrl.getAllFrom); //month
 app.get('/api/reports/ki/oneBy/:id', /*middleware.requireAuth,*/ keyIndicatorCtrl.getOneBy); //center and month
+app.get('/api/reports/ki/getAllReportsByCenterId/:id', keyIndicatorCtrl.getAllReportsByCenterId);
 app.post('/api/reports/ki', /*middleware.requireAuth,*/ keyIndicatorCtrl.addReport);
 app.put('/api/reports/ki/:id', /*middleware.requireAuth,*/ keyIndicatorCtrl.editReport);
 app.delete('/api/reports/ki/:id', /*middleware.requireAuth, middleware.ensureAdmin,*/ keyIndicatorCtrl.deleteReport);
