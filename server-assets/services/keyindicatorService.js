@@ -8,7 +8,8 @@ var services = {
 	delReport: delReport,
 	getOneByMonth: getOneByMonth,
 	getAllByMonth: getAllByMonth,
-	getAllByRange: getAllByRange
+	getAllByRange: getAllByRange,
+  getAllReportsByCenterId: getAllReportsByCenterId
 };
 
 module.exports = services;
