@@ -40,6 +40,7 @@ app.controller('reportsCtrl', function($scope, $timeout, reportService, centerSe
 						$scope.reportsByMonth = response.data;
 						console.log($scope.reportsByMonth);
 					})
+
 				reportService.getAllKiBy(modifiedDate)
 					.then(function(response){
 						$scope.reportsKiByMonth = response.data;
@@ -63,11 +64,11 @@ app.controller('reportsCtrl', function($scope, $timeout, reportService, centerSe
 
 //Displays single key indicator report
 
-	$scope.viewSingleReport = function(center){
-		$scope.report = '';
+	$scope.viewSingleKiReport = function(center){
+		$scope.reportKi = '';
 		console.log(center);
 		for (var i = 0; i < $scope.reportsKiByMonth.length; i++){
-			if ($scope.rreportsKiByMonth[i].id === center.id){
+			if ($scope.reportsKiByMonth[i].id === center.id){
 				$scope.reportKi = $scope.reportsKiByMonth[i];
 				console.log($scope.reportKi);
 			}
