@@ -12,7 +12,7 @@ var app = angular.module('lds-report');
 	// Refreshes page when modal closes
 
 	$scope.refreshModalClose = function(){
-		$scope.stats = response.data;
+		// $scope.stats = response.data;
 		$scope.deleteReportWarningAlert = false;
 		$scope.baptized = "";
 		$scope.baptismal_date = "",

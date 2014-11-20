@@ -29,6 +29,7 @@ app.controller('reportsCtrl', function($scope, $timeout, reportService, centerSe
 
 	getAllCenters();
 
+//Gets Stats and Key Indicator reports for month
 	$scope.getReportsByMonth = function(){
 		for(var i = 0; i < $scope.months.length; i++){
 			if($scope.months[i] === $scope.selectedMonth){
@@ -38,11 +39,17 @@ app.controller('reportsCtrl', function($scope, $timeout, reportService, centerSe
 					.then(function(response){
 						$scope.reportsByMonth = response.data;
 						console.log($scope.reportsByMonth);
-					});
+					})
+				reportService.getAllKiBy(modifiedDate)
+					.then(function(response){
+						$scope.reportsKiByMonth = response.data;
+						console.log($scope.reportsKiByMonth);
+					})	
 			}					
 		}
 	}	 
 
+//Displays single stats report
 	$scope.viewSingleReport = function(center){
 		$scope.report = '';
 		console.log(center);
@@ -53,6 +60,19 @@ app.controller('reportsCtrl', function($scope, $timeout, reportService, centerSe
 			}
 		}
 	}
+
+//Displays single key indicator report
+
+	$scope.viewSingleReport = function(center){
+		$scope.report = '';
+		console.log(center);
+		for (var i = 0; i < $scope.reportsKiByMonth.length; i++){
+			if ($scope.rreportsKiByMonth[i].id === center.id){
+				$scope.reportKi = $scope.reportsKiByMonth[i];
+				console.log($scope.reportKi);
+			}
+		}
+	}	
 
 	// $scope.downloadSiteStats = function(){
 	// 	$scope.updateSelectDate()
