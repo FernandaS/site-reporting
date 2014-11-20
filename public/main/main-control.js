@@ -5,7 +5,6 @@ function mainCtrl($scope, $location, authService){
 	$scope.admin = false;
 	function updateUser(){
 		authService.getCurrentUser().then(function(data){
-			delete data.data.password;
 			$scope.user = data.data;
 			console.log($scope.user);
 			if($scope.user.role === 'ADMIN'){
