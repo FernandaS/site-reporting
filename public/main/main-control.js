@@ -17,7 +17,7 @@ function mainCtrl($scope, $location, authService){
 			}
 		})
 	}
-	// updateUser();
+	updateUser();
 	$scope.$on('updateUser', updateUser);
 	$scope.$on('$routeChangeStart', function(next, current) {
 		var path = $location.path().split('/')
