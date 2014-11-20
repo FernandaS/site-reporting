@@ -1,5 +1,15 @@
 <div class='btn-group'>
 	<button class="btn btn-default btn dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+		Report Type<span class="caret"></span>
+	</button>
+	<ul class="dropdown-menu" role="menu">
+		<li><a ng-click='updateType("site_stats")'>Site Statistics</a></li>
+		<li><a ng-click='updateType("key_indicators")'>Missionary Key Indicators</a></li>
+	</ul>
+</div>
+
+<div class='btn-group' ng-if='type === "site_stats"'>
+	<button class="btn btn-default btn dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
 		Metrics <span class="caret"></span>
 	</button>
 	<ul class="dropdown-menu" role="menu">
@@ -10,6 +20,22 @@
 		<li><a ng-click='updateMetrics("referral_called")'>Total Referrals From Outbound Calls</a></li>
 		<li><a ng-click='updateMetrics("referral_inbound")'>Total Referrals From Inbound Calls</a></li>
 		<li><a ng-click='updateMetrics("referral_member")'>Total Referrals From Members</a></li>
+	</ul>
+</div>
+<div class='btn-group' ng-if='type === "key_indicators"'>
+	<button class="btn btn-default btn dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+		Metrics <span class="caret"></span>
+	</button>
+	<ul class="dropdown-menu" role="menu">
+		<li><a ng-click='updateMetrics("baptized")'>Baptized</a></li>
+		<li><a ng-click='updateMetrics("baptismal_date")'>Baptismal Dates</a></li>
+		<li><a ng-click='updateMetrics("sacrament_meeting")'>Investigators at Sacrament Meeting</a></li>
+		<li><a ng-click='updateMetrics("member_present_lessons")'>Member Present Lessons</a></li>
+		<li><a ng-click='updateMetrics("other_lessons")'>Other Lessons</a></li>
+		<li><a ng-click='updateMetrics("new_investigators")'>New Investigators</a></li>
+		<li><a ng-click='updateMetrics("progressing_investigators")'>Progressing Investigators</a></li>
+		<li><a ng-click='updateMetrics("rc_la")'>Recent Convert and Less-Active Lessosn</a></li>
+		<li><a ng-click='updateMetrics("referrals_sent")'>Referrals Sent</a></li>
 	</ul>
 </div>
 From:

@@ -89,8 +89,8 @@ function getAllByRange(rData){
             'progressing_investigators', 'rc_la', 'referrals_sent',
             [Sequelize.fn('date_format', Sequelize.col('Indicators.date'), '%Y-%m-%d'), 'date']
           ]
-        }]
-    }, {raw: true}).then(function(reports){
+
+    }]}, {raw: true}).then(function(reports){
       var organizedReports = Sequelize.Utils._.chain(reports)
       .groupBy('center')
       .map(function(value, key){
@@ -117,4 +117,8 @@ function getAllByRange(rData){
       reject(err);
     });
   });
+};
+
+function getAllReportsByCenterId(id){
+  return Models.keyindicators.findAll({ where: { centerId: id } });
 };

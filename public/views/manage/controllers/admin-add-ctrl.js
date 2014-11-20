@@ -10,9 +10,14 @@ $scope.createAdmin = function(admin){
 		if(res.data.message){
 			$scope.error = res.data.message;
 		} else {
-			swal("Success!", "Admin profile has been created!", "success");
 			$scope.admin = '';
-		}
+			$scope.getAllUsers()
+				.then(function(data){
+					$scope.administrators = data.administrators;
+					nzSwal("Success!", "Admin profile has been created!", "success");
+				})
+			
+			}
 	})
 }
 

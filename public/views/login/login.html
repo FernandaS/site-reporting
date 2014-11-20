@@ -5,18 +5,22 @@
       <div class="panel-heading">
         <h3 class="panel-title">Login</h3>
       </div>
-      <form ng-submit="login()">
+      <form  class="form" name="loginForm" novalidate ng-submit="login()">
         <div class="panel-body">
           <div class="col-md-6">
-            <div class="form-group">
-              <label for="">Username</label>
-              <input type="" class="form-control" id="" placeholder="Username" ng-model='username'>
+            <div class="form-group" ng-class="{'has-error' : loginForm.usernmae.$invalid && loginForm.email.$dirty, 'has-success' : loginForm.username.$valid && loginForm.username.$dirty}">
+              <label for="" class="control-label">Username</label>
+              <input type="username" class="form-control" id="" placeholder="Username" ng-model='username'>
+              <p class="help-block" ng-show="loginForm.username.$invalid && loginForm.username.$dirty && !loginForm.username.$focused">
+              Wrong Username
             </div>
-            <div class="form-group">
+            <div class="form-group" ng-class="{'has-error' : loginForm.password.$invalid && loginForm.email.$dirty, 'has-success' : loginForm.password.$valid && loginForm.password.$dirty}">
              <label for="exampleInputPassword1">Password</label>
              <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" ng-model='password'>
+             <p class="help-block" ng-show="loginForm.password.$invalid && loginForm.password.$dirty && !loginForm.password.$focused">
+              Wrong password
             </div>
-            <button type="submit" class="btn btn-default">Submit</button>
+            <button type="submit" class="btn btn-default" ng-disabled="loginForm.$invalid">Submit</button>
           </div>
         </div>
       </form>

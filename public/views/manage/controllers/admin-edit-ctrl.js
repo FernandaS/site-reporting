@@ -13,9 +13,22 @@ $scope.deleteAdmin = function(){
 			confirmButtonText: "Yes, delete it!",   
 			closeOnConfirm: false 
 		})
-		 .then(function(){   
-		 	nzSwal("Deleted!", "Admin has been deleted.", "success"); 
+		 .then(function(){ 
 		 	userService.delete($scope.admin.id)
+		 	.then(function(){
+		 		for(var i = 0; i < $scope.administrators.length; i++){
+		 			if($scope.administrators[i].id === $scope.admin.id){
+		 				$scope.administrators.splice(i, 1);
+		 				break;
+		 			}
+		 		}
+		 		$scope.getAllUsers()
+		 		.then(function(data){
+		 			$scope.administrators = data.administrators
+		 		})
+		 	})  
+		 	nzSwal("Deleted!", "Admin has been deleted.", "success"); 
+		 	
 		})
 		 .catch(function(){
 		 	nzSwal('Cancelled');

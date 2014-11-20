@@ -9,8 +9,7 @@ var services = {
 	delUser: delUser,
 	getUser: getUser,
 	getUserById: getUserById,
-	getAllUsers: getAllUsers,
-	checkUser: checkUser
+	getAllUsers: getAllUsers
 };
 
 module.exports = services;
@@ -28,9 +27,9 @@ function addUser(uData){
 
 function putUser(uData){
 	return Models.users.update(uData.updatedValues,
- 	{
-    	where: { id: uData.id }
- 	});
+	{
+		where: { id: uData.id }
+	});
 };
 
 function delUser(uData){
@@ -38,73 +37,78 @@ function delUser(uData){
 };
 
 function getUser(username){
-	return Models.users.find({ attributes: ['id', 'username', 'role', 'email'], where: { username: username }, include: [{ 
-  			model: Models.centers, 
-  			as: 'Centers'}]}, 
-  			{ raw: true });
+	return new Promise(function(resolve, reject){
+		Models.users.findAll({ where: { username: username }, include: [{ 
+			model: Models.centers, 
+			as: 'Centers'}]}, 
+			{ raw: true }).then(function(result){
+				newResult = Sequelize.Utils._.chain(result)
+				.groupBy('username').map(function(value, key){
+					return {
+						id: value[0].id, 
+						username: value[0].username, 
+						role: value[0].role, 
+						email: value[0].email,
+						password: value[0].password,
+						centers: Sequelize.Utils._.chain(value).map(function(value, key){
+							return {
+								id: value['Centers.id'],
+								center: value['Centers.center'],
+								alias: value['Centers.alias'],
+								active: value['Centers.active'],
+								type: value['Centers.type'],
+								city: value['Centers.city'],
+								state: value['Centers.state'],
+								country: value['Centers.country']
+							}
+						}).value()
+					}
+				}).value();
+				if(!newResult[0].centers[0].id){
+					newResult[0].centers = null;
+					resolve(newResult[0]);
+				} else {
+					resolve(newResult[0]);
+				}		
+			}, function(err){
+				reject(err);
+			});
+
+		});
 };
 
 function getUserById(id){
 	return Models.users.find({where: { id: id }}, {raw: true});
 };
 
-function checkUser(uData){
-	return new Promise(function(resolve, reject){	
-		Models.users.find({ where: { username: uData.username } }).then(function(user){
-			if(user){
-				var done = function(err, res){
-					if(err) return reject(err);
-					else if(res !== undefined){
-						var obj = {
-							id: user.id,
-							role: user.role,
-							auth: res
-						};
-						return resolve(obj);
-					}
-				};
-				user.verifyPassword(uData.password, done);
-			} else {
-				resolve({id: null, role: null, auth: false});
-			}
-		}, function(err){
-			reject(err);
-		});
-	});
-};
-
 function getAllUsers(){
 	return new Promise(function(resolve, reject){
 		Models.users.findAll({ attributes: ['id', 'username', 'role', 'email'], 
-		include: [{ 
-  			model: Models.addl_emails, 
-  			as: 'secondaryEmails'
-		}]}, { raw: true }).then(function(users){
-			var organizedUsers = Sequelize.Utils._.chain(users).groupBy('username').map(function(value, key){
-			var emailArray = [];
-			emailArray.push(value[0].email || null);
-			Sequelize.Utils._.map(value, function(email){
-				var obj = {
-					id: email['secondaryEmails.id'],
-					email: email['secondaryEmails.email']
-				};
-				emailArray.push(obj);
+			include: [{ 
+				model: Models.addl_emails, 
+				as: 'secondaryEmails'
+			}]}, { raw: true }).then(function(users){
+				var organizedUsers = Sequelize.Utils._.chain(users).groupBy('username').map(function(value, key){
+					var emailArray = [];
+					emailArray.push(value[0].email || null);
+					Sequelize.Utils._.map(value, function(email){
+						var obj = {
+							id: email['secondaryEmails.id'],
+							email: email['secondaryEmails.email']
+						};
+						emailArray.push(obj);
+					});
+					return {
+						id: value[0].id,
+						username: value[0].username,
+						role: value[0].role,
+						email: value[0].email,
+						secondaryEmails: emailArray.slice(1)
+					}
+				}).value();
+				resolve(organizedUsers);
+			}, function(err){
+				reject(err);
 			});
-			return {
-				id: value[0].id,
-				username: value[0].username,
-				role: value[0].role,
-				email: value[0].email,
-				secondaryEmails: emailArray.slice(1)
-			}
-			}).value();
-			resolve(organizedUsers);
-		}, function(err){
-			reject(err);
 		});
-	});
 };
-
-/*getUser().then(function(result){
-	console.log(result);
-})*/
