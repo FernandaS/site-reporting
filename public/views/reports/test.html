@@ -1,0 +1,44 @@
+ 
+
+<!-- View Key Indicator Edit Modal -->
+      <div class="modalEdit fade" id="viewKeyIndicatorEdit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" ng-controller="reportKiEditCtrl">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header list-group-item-danger">
+              <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+              <h4 class="modal-title" id="myModalLabel">Edit Key Indicator Report</h4>
+            </div>
+            <div class="modal-body">
+                    <div class="modal-body">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h3 class="panel-title">Visitors Center and Historic Site Monthly Statistical Report for: {{report.center}} {{selectedMonth}}, {{selectedYear}} </h3>
+                </div>
+                <div class="panel-body">
+                    <div class="panel panel-default">
+                      <div class="panel-body monthlyReportBox">
+                        Key Indicator Summary:
+                       
+                          <li>Baptized:<input class="inputFieldEdit" min="0" type="number" ng-model="report.baptized"></li>
+                           <li>Baptismal date:<input class="inputFieldEdit" min="0" type="number" ng-model="report.baptismal_date"></li>
+                           <li>Sacrament meeting:<input class="inputFieldEdit" min="0" type="number" ng-model="report.sacrament_meeting"></li>
+                           <li>Member present lessons:<input class="inputFieldEdit" min="0" type="number" ng-model="report.member_present_lessons"></li>
+                           <li>Other lessons:<input class="inputFieldEdit" min="0" type="number" ng-model="report.other_lessons"></li> 
+                           <li>New investigators:<input class="inputFieldEdit" min="0" type="number" ng-model="report.new_investigators"></li>
+                           <li>Progressing investigators:<input class="inputFieldEdit" min="0" type="number" ng-model="report.progressing_investigators"></li> 
+                           <li>Recent convert/less active:<input class="inputFieldEdit" min="0" type="number" ng-model="report.rc_la"></li>
+                           <li>Referrals sent:<input class="inputFieldEdit" min="0" type="number" ng-model="report.referrals_sent"></li> 
+                        
+                      </div>
+                    </div>  
+                </div>
+              </div>        
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="editKeyIndicatorReport()">Save changes</button>
+            </div>
+          </div> <!--  End of modal body -->
+        </div> <!-- End of modal content -->
+      </div>
+    </div>  

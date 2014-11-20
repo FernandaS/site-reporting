@@ -25,7 +25,7 @@
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right">
 
-          <li><a href="#">Logout</a></li>
+          <li><a href="#" ng-click='logout()' ng-show="user">Logout</a></li>
         </ul>
 
       </div>
@@ -34,7 +34,7 @@
 
   <div  class="container-fluid">
     <div class="row">
-      <div class="col-sm-3 col-md-2 sidebar" ng-if='path !== "downloads"'>
+      <div class="col-sm-3 col-md-2 sidebar" ng-if='path !== "downloads"' ng-hide='!admin'>
         <ul class="nav nav-sidebar">
           <ul>
             <li >
@@ -137,6 +137,9 @@
   <script src="views/director/controllers/director-view-report-ctrl.js"></script>
   <script src="views/director/controllers/director-edit-report-ctrl.js"></script>
 
+  <script src="views/reports/controllers/report-ki-add-ctrl.js"></script>
+  <script src="views/reports/controllers/report-ki-edit-ctrl.js"></script>
+  <script src="views/reports/controllers/report-ki-view-ctrl.js"></script>
 
 <!--     // <script src="views/reports/controllers/report-grand-totals-ctrl.js"></script>
     // <script src="views/reports/controllers/report-breakdown-by-year-ctrl.js"></script> 
