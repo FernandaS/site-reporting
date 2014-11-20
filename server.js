@@ -25,9 +25,11 @@ passport.use(new LocalStrategy(function(username, pass, done) {
 		}
 		bcrypt.compare(pass, user.password, function(err, res) {
 			if (!res){
+				console.log(pass, user.password);
 				console.log('Invalid password');
 				return done(null, false, { message: 'Invalid password' });
 			}
+			delete user.password;
 			return done(null, user);			
 		})
 	});
