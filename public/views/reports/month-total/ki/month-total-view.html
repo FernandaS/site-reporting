@@ -7,9 +7,9 @@
 		<th colspan='3'>Member-Present Lessons</th>
 		<th colspan='3'>Other Lessons</th>
 		<th colspan='3'>New Investigators</th>
-		<th colspan='3'>Referrals from In-bound calls</th>
-		<th colspan='3'>Referrals from Members</th>
-		<th colspan='3'>Total Referrals</th>
+		<th colspan='3'>Progressing Investigators</th>
+		<th colspan='3'>Sacrament Meeting Attendance</th>
+		<th colspan='3'>Recent Conver/Less-Active Lessons</th>
 	</tr>
 	<tr class='table-header-3'>
 		<th>{{date | date: 'MMMM yyyy'}}</th>
@@ -54,42 +54,15 @@
 		<td>{{obj.thisYear.new_investigators}}</td>
 		<td>{{obj.lastYear.new_investigators}}</td>
 		<td>{{(obj.thisYear.new_investigators - obj.lastYear.new_investigators) / obj.thisYear.new_investigators * 100 | number: 0}}</td>
-		<td>{{obj.thisYear.referral_inbound}}</td>
-		<td>{{obj.lastYear.referral_inbound}}</td>
-		<td>{{(obj.thisYear.referral_inbound - obj.lastYear.referral_inbound) / obj.thisYear.referral_inbound * 100 | number: 0}}</td>
-		<td>{{obj.thisYear.referral_member}}</td>
-		<td>{{obj.lastYear.referral_member}}</td>
-		<td>{{(obj.thisYear.referral_member - obj.lastYear.referral_member) / obj.thisYear.referral_member * 100 | number: 0}}</td>
-		<td>{{
-		   obj.thisYear.other_lessons
-		 + obj.thisYear.new_investigators
-		 + obj.thisYear.referral_inbound
-		 + obj.thisYear.referral_member
-		 | number: 0
-		 }}</td>
-		<td>{{
-		   obj.lastYear.other_lessons
-		 + obj.lastYear.new_investigators
-		 + obj.lastYear.referral_inbound
-		 + obj.lastYear.referral_member
-		 | number: 0
-		 }}</td>
-		<td>{{
-		((obj.thisYear.other_lessons
-		 + obj.thisYear.new_investigators
-		 + obj.thisYear.referral_inbound
-		 + obj.thisYear.referral_member) - 
-		 (obj.lastYear.other_lessons
-		 + obj.lastYear.new_investigators
-		 + obj.lastYear.referral_inbound
-		 + obj.lastYear.referral_member)) /
-		 (obj.thisYear.other_lessons
-		 + obj.thisYear.new_investigators
-		 + obj.thisYear.referral_inbound
-		 + obj.thisYear.referral_member) 
-		  * 100
-		  | number: 0
-		}}</td>
+		<td>{{obj.thisYear.progressing_investigators}}</td>
+		<td>{{obj.lastYear.progressing_investigators}}</td>
+		<td>{{(obj.thisYear.progressing_investigators - obj.lastYear.progressing_investigators) / obj.thisYear.progressing_investigators * 100 | number: 0}}</td>
+		<td>{{obj.thisYear.sacrament_meeting}}</td>
+		<td>{{obj.lastYear.sacrament_meeting}}</td>
+		<td>{{(obj.thisYear.sacrament_meeting - obj.lastYear.sacrament_meeting) / obj.thisYear.sacrament_meeting * 100 | number: 0}}</td>
+		<td>{{obj.thisYear.rc_la}}</td>
+		<td>{{obj.lastYear.rc_la}}</td>
+		<td>{{(obj.thisYear.rc_la - obj.lastYear.rc_la) / obj.thisYear.rc_la * 100 | number: 0}}</td>
 	</tr>
 	<tr>
 		<td colspan='6'>Totals:</td>
@@ -108,38 +81,14 @@
 		<td>{{totals.thisYear.new_investigators}}</td>
 		<td>{{totals.lastYear.new_investigators}}</td>
 		<td>{{totals.change.new_investigators}}</td>
-		<td>{{totals.thisYear.referral_inbound}}</td>
-		<td>{{totals.lastYear.referral_inbound}}</td>
-		<td>{{totals.change.referral_inbound}}</td>
-		<td>{{totals.thisYear.referral_member}}</td>
-		<td>{{totals.lastYear.referral_member}}</td>
-		<td>{{totals.change.referral_member}}</td>
-		<td>{{
-		  totals.thisYear.other_lessons
-		+ totals.thisYear.new_investigators
-		+ totals.thisYear.referral_inbound
-		+ totals.thisYear.referral_member
-		}}</td>
-		<td>{{
-		  totals.lastYear.other_lessons
-		+ totals.lastYear.new_investigators
-		+ totals.lastYear.referral_inbound
-		+ totals.lastYear.referral_member			
-		}}</td>
-		<td>{{
-		((totals.thisYear.other_lessons
-		 + totals.thisYear.new_investigators
-		 + totals.thisYear.referral_inbound
-		 + totals.thisYear.referral_member) - 
-		 (totals.lastYear.other_lessons
-		 + totals.lastYear.new_investigators
-		 + totals.lastYear.referral_inbound
-		 + totals.lastYear.referral_member)) /
-		 (totals.thisYear.other_lessons
-		 + totals.thisYear.new_investigators
-		 + totals.thisYear.referral_inbound
-		 + totals.thisYear.referral_member) 
-		  * 100
-		}}</td>
+		<td>{{totals.thisYear.progressing_investigators}}</td>
+		<td>{{totals.lastYear.progressing_investigators}}</td>
+		<td>{{totals.change.progressing_investigators}}</td>
+		<td>{{totals.thisYear.sacrament_meeting}}</td>
+		<td>{{totals.lastYear.sacrament_meeting}}</td>
+		<td>{{totals.change.sacrament_meeting}}</td>
+		<td>{{totals.thisYear.rc_la}}</td>
+		<td>{{totals.lastYear.rc_la}}</td>
+		<td>{{totals.change.rc_la}}</td>
 	</tr>
 </table>
