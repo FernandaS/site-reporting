@@ -42,7 +42,7 @@ $scope.editDirector = function(){
 	userService.edit($scope.director.id, $scope.director)
 	.then(function(res){
 		if(res.data.message){
-			$scope.error = res.data.message;
+			swal("Oops!", "Changes was not saved!", "error");
 		} else {
 			$scope.getAllUsers()
 			.then(function(data){

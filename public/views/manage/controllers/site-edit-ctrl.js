@@ -22,7 +22,7 @@ $scope.deleteCenter = function(){
 		 				}
 		 			}
 		 			$scope.allCenters()
-		 				.then(function(data){
+		 			.then(function(data){
 		 					$scope.centers = data.centers
 		 				})
 		 		})  
@@ -40,9 +40,9 @@ $scope.editCenter = function(){
 	centerService.edit($scope.center.id, $scope.center)
 	.then(function(res){
 		if(res.data.message){
-			$scope.error = res.data.message;
+			swal("Oops!", "Changes was not saved!", "error")
 		} else {
-			swal("Success!", "Your center has been successfully modified!", "success")
+			nzSwal("Success!", "Your center has been successfully modified!", "success")
 
 		}
 	})
