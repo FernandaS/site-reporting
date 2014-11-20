@@ -114,5 +114,13 @@ function reportService($http){
 			method: 'DELETE',
 			url: '/api/reports/ki/' + id
 		})
-	}	
+	}
+
+	//DOWNLOADS
+	this.downloadSiteStats = function(){
+		return $http({
+			method: 'GET',
+			url: ''
+		})
+	}
 }

@@ -11,9 +11,6 @@ app.controller('reportsCtrl', function($scope, reportService, centerService){
 	$scope.month = date.getMonth();
 	$scope.updateSelectDate = function(){
 		$scope.reportDate = $scope.selectedMonth + ' 1, ' + $scope.selectedYear
-		// reportService.getListBy($scope.updateSelectDate).then(function(data){
-		// 	$scope.reports = data.data;
-		// })
 	}
 	
 	var getAllCenters = function(){
@@ -51,4 +48,10 @@ app.controller('reportsCtrl', function($scope, reportService, centerService){
 		}
 	}
 
+	$scope.downloadSiteStats = function(){
+		reportService.downloadSiteStats();
+	}
+	$scope.downloadKeyIndicators = function(){
+		reportService.downloadKeyIndicators();
+	}
 });

@@ -33,8 +33,16 @@
       <br/>
         
       <div class="panel panel-default">
-        <div class="panel-body globalReports">
-          Global reports:<p>{{selectedMonth}}</p><p>Year through {{selectedYear}}</p><p>Grand totals for {{selectedMonth}}</p>
+        <div class="panel-body globalReports flex-box">
+          <button type="button" class="btn btn-default" data-toggle="modal" data-target="#addSite">
+             Add Site Month Report
+          </button>
+          <button type="button" class="btn btn-default" ng-click='downloadSiteStats()'>
+             Site Statistics Grand Totals
+          </button>
+          <button type="button" class="btn btn-default" ng-click='downloadKeyIndicators()'>
+             Key Indicators Grand Totals
+          </button>       
         </div>
       </div>
 
@@ -44,9 +52,6 @@
       </button> -->
 
       <!-- Button trigger modal -->
-      <button type="button" class="btn btn-default" data-toggle="modal" data-target="#addSite">
-         Add Site Month Report
-      </button>
 
       <!-- Create Custom Modal -->
  <!--      <div class="modal fade" id="create" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" ng-controller="reportCreateCustomCtrl">
