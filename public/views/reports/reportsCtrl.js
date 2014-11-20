@@ -16,7 +16,6 @@ app.controller('reportsCtrl', function($scope, $timeout, reportService, centerSe
 		date[0] = date[2];
 		date[2] = 01;
 		$scope.reportDate = date.join('-');
-		console.log($scope.reportDate);
 	}
 	
 	var getAllCenters = function(){
@@ -73,32 +72,5 @@ app.controller('reportsCtrl', function($scope, $timeout, reportService, centerSe
 			}
 		}
 	}	
-
-	// $scope.downloadSiteStats = function(){
-	// 	$scope.updateSelectDate()
-	// 	var date = $scope.reportDate.split(',').join('').split(' ');
-	// 	date[0] = $scope.months.indexOf(date[0]) + 1;
-	// 	date = date.join('-');
-	// 	reportService.downloadSiteStats(date).then(function(data){
-	// 		File.save(data.data, function (content) {
-	// 		    var hiddenElement = document.createElement('a');
-
-	// 		    hiddenElement.href = 'data:attachment/pdf,' + encodeURI(content);
-	// 		    hiddenElement.target = '_blank';
-	// 		    hiddenElement.download = 'myFile.pdf';
-	// 		    hiddenElement.click();
-	// 		});
-	// 	});
-	// }
-	// $scope.downloadKeyIndicators = function(){
-	// 	$scope.updateSelectDate()
-	// 	var date = $scope.reportDate.split(',').join('').split(' ');
-	// 	date[0] = $scope.months.indexOf(date[0]) + 1;
-	// 	date = date.join('-');
-	// 	reportService.downloadKeyIndicators(date).then(function(data){
-	// 		console.log(data);
-	// 	});
-	// }
 	$scope.updateSelectDate()
-	console.log($scope.reportDate)
 });
