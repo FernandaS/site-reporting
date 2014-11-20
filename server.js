@@ -88,9 +88,9 @@ app.put('/api/reports/ki/:id', /*middleware.requireAuth,*/ keyIndicatorCtrl.edit
 app.delete('/api/reports/ki/:id',/* middleware.requireAuth, middleware.ensureAdmin,*/ keyIndicatorCtrl.deleteReport);
 
 // Additional emails
-app.post('/api/addlEmails/:id', emailsCtrl.addEmail);
-app.put('/api/addlEmails/:id', emailsCtrl.putAddlEmails);
-app.delete('/api/addlEmails/:id', emailsCtrl.delAddlEmail);
+app.post('/api/addlEmails/:id',/* middleware.requireAuth, middleware.ensureAdmin,*/ emailsCtrl.addEmail);
+app.put('/api/addlEmails/:id',/* middleware.requireAuth, middleware.ensureAdmin,*/ emailsCtrl.putAddlEmails);
+app.delete('/api/addlEmails/:id',/* middleware.requireAuth, middleware.ensureAdmin,*/ emailsCtrl.delAddlEmail);
 
 app.post('/api/test', function(req, res){
 	console.log(req.query.start, req.query.end);
