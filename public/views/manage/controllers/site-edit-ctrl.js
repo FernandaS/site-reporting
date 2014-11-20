@@ -12,9 +12,22 @@ $scope.deleteCenter = function(){
 			confirmButtonText: "Yes, delete it!",   
 			closeOnConfirm: false 
 		})
-		 .then(function(){   
-		 	nzSwal("Deleted!", "Center has been deleted.", "success");centerService.delete($scope.center.id);
-		 		$scope.center = '';
+		 .then(function(){ 
+		 	centerService.delete($scope.center.id)
+		 		.then(function(){
+		 			for(var i = 0; i < $scope.centers.length; i++){
+		 				if($scope.centers[i].id === $scope.center){
+		 					$scope.centers.splice(i, 1)
+		 					break;
+		 				}
+		 			}
+		 			$scope.allCenters()
+		 				.then(function(data){
+		 					$scope.centers = data.centers
+		 				})
+		 		})  
+		 	nzSwal("Deleted!", "Center has been deleted.", "success");
+		 		
 		})
 		 .catch(function(){
 		 	nzSwal('Cancelled');
