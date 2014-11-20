@@ -20,8 +20,11 @@
       <select ng-init='selectedMonth = months[month]' ng-options='value for value in months' ng-model='selectedMonth' g-init='selectedYear = year' ng-options='value for value in years' ng-model='selectedYear' ></select>
       <select ng-init='selectedYear = year' ng-options='value for value in years' ng-model='selectedYear' ng-change='updateSelectDate()'></select>
 
-       <button type="button" class="btn btn-xs" data-toggle="modal" data-target="#viewReport" ng-click="getReportByMonth()">Stats</button>  <!-- View Report modal trigger button-->
+    <!--  Add Stats report modal trigger -->
 
+       <button type="button" class="btn btn-xs" data-toggle="modal" data-target="#viewReport" ng-click="getReportByMonth()">Stats</button>  
+
+    <!-- Add Key indicator report modal trigger    -->
        <button type="button" class="btn btn-xs" data-toggle="modal" data-target="#viewKeyIndicator" ng-click="getReportByMonth()">Key Indicator</button>
 
       <br/>
@@ -40,30 +43,31 @@
             <div class="modal-body">
               <div class="panel panel-default">
                 <div class="panel-heading">
-                  <h3 class="panel-title">Visitors Center and Historic Site Monthly Statistical Report for: {{$parent.report.center}} <br/> {{$parent.selectedMonth}}, {{$parent.selectedYear}}</h3>
+                  <h3 class="panel-title">Visitors Center and Historic Site Monthly Statistical Report for: {{$parent.reportKi.center}} <br/> {{$parent.selectedMonth}}, {{$parent.selectedYear}}</h3>
                 </div>
                 <div class="panel-body">
                     <div class="panel panel-default">
                       <div class="panel-body monthlyReportBox">
                         Key Indicator Summary:
-                          <li>Baptized: {{}}</li>
-                          <li>Baptismal date: {{}}</li>
-                          <li>Sacrament meeting: {{}}<li>
-                          <li>Member present lessons: {{}}<li>
-                          <li>Other lessons: {{}}<li>  
-                          <li>New investigators: {{}}<li>
-                          <li>Progressing investigators: {{}}<li> 
-                          <li>Recent Convert/Less Active: {{}}<li> 
-                          <li>Referrals Sent: {{}}<li>  
+
+                          <li>Baptized: {{reportKi['Indicators.baptized']}}</li>
+                          <li>Baptismal date: {{reportKi['Indicators.baptismal_date']}}</li>
+                          <li>Sacrament meeting: {{reportKi['Indicators.sacrament_meeting']}}<li>
+                          <li>Member present lessons: {{reportKi['Indicators.member_present_lessons']}}<li>
+                          <li>Other lessons: {{reportKi['Indicators.other_lessons']}}<li>
+                          <li>New investigators: {{reportKi['Indicators.new_investigators']}}<li>
+                          <li>Progressing investigators: {{reportKi['Indicators.progressing_investigators']}}<li> 
+                          <li>Recent Convert/Less Active: {{reportKi['Indicators.rc_la']}}<li> 
+                          <li>Referrals Sent: {{reportKi['Indicators.referrals_sent']}}<li> 
                       
                       </div>
                     </div>
 
                       <button type="button" class="btn btn-default">Print</button>
-                      <button type="button" class="btn btn-default" data-toggle="modal" data-target="#viewKeyIndicatorEdit" data-dismiss="modal" ng-click="keyIndicatorEdit(report['Reports.id'])">Edit</button>
+                      <button type="button" class="btn btn-default" data-toggle="modal" data-target="#keyIndicatorEdit" data-dismiss="modal" ng-click="keyIndicatorEdit(reportKi['Reports.id'])">Edit</button>
                       <button type="button" class="btn btn-default" ng-click="deleteReportAlert()">Delete</button><br/>
                   
-                     <div class="alert alert-danger" role="alert" ng-show="deleteReportWarningAlert">Are you sure you want to delete this report? This action cannot be undone.<button type="button" class="btn btn-default" data-dismiss="modal" ng-click="deleteSingleReport(report['Reports.id'])">Yes, I want to delete this report</button><br/>
+                     <div class="alert alert-danger" role="alert" ng-show="deleteReportWarningAlert">Are you sure you want to delete this report? This action cannot be undone.<button type="button" class="btn btn-default" data-dismiss="modal" ng-click="deleteSingleReport(reportKi['Indicators.id'])">Yes, I want to delete this report</button><br/>
                      </div>    
                 </div>
               </div>   
@@ -126,8 +130,8 @@
 
  
 
-<!-- View Key Indicator Edit Modal -->
-      <div class="modalEdit fade" id="viewKeyIndicatorEdit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" ng-controller="directorKiEditCtrl">
+<!-- Key Indicator Edit Modal -->
+      <div class="modalEdit fade" id="keyIndicatorEdit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" ng-controller="directorKiEditCtrl">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header list-group-item-danger">
@@ -144,16 +148,16 @@
                     <div class="panel panel-default">
                       <div class="panel-body monthlyReportBox">
                         Key Indicator Summary:
-                       
-                          <li>Baptized:<input class="inputFieldEdit" min="0" type="number" ng-model="report.baptized"></li>
-                           <li>Baptismal date:<input class="inputFieldEdit" min="0" type="number" ng-model="report.baptismal_date"></li>
-                           <li>Sacrament meeting:<input class="inputFieldEdit" min="0" type="number" ng-model="report.sacrament_meeting"></li>
-                           <li>Member present lessons:<input class="inputFieldEdit" min="0" type="number" ng-model="report.member_present_lessons"></li>
-                           <li>Other lessons:<input class="inputFieldEdit" min="0" type="number" ng-model="report.other_lessons"></li> 
-                           <li>New investigators:<input class="inputFieldEdit" min="0" type="number" ng-model="report.new_investigators"></li>
-                           <li>Progressing investigators:<input class="inputFieldEdit" min="0" type="number" ng-model="report.progressing_investigators"></li> 
-                           <li>Recent convert/less active:<input class="inputFieldEdit" min="0" type="number" ng-model="report.rc_la"></li>
-                           <li>Referrals sent:<input class="inputFieldEdit" min="0" type="number" ng-model="report.referrals_sent"></li> 
+                          <li>Baptized:<input class="inputFieldEdit" min="0" type="number" ng-model="reportKi['Indicators.baptized']"></li>
+                          <li>Baptismal date:<input class="inputFieldEdit" min="0" type="number" ng-model="reportKi['Indicators.baptismal_date']"></li>
+                           <li>Sacrament meeting:<input class="inputFieldEdit" min="0" type="number" ng-model="reportKi['Indicators.sacrament_meeting']"></li>
+                           <li>Member present lessons:<input class="inputFieldEdit" min="0" type="number" ng-model="reportKi['Indicators.member_present_lessons']"></li>
+                           <li>Other lessons:<input class="inputFieldEdit" min="0" type="number" ng-model="reportKi['Indicators.other_lessons']"></li> 
+                           <li>New investigators:<input class="inputFieldEdit" min="0" type="number" ng-model="reportKi['Indicators.new_investigators']"></li>
+                           <li>Progressing investigators:<input class="inputFieldEdit" min="0" type="number" ng-model="reportKi['Indicators.progressing_investigators']"></li> 
+                           <li>Recent convert/less active:<input class="inputFieldEdit" min="0" type="number" ng-model="reportKi['Indicators.rc_la']"></li>
+                           <li>Referrals sent:<input class="inputFieldEdit" min="0" type="number" ng-model="reportKi['Indicators.referrals_sent']"></li>    
+                    
                         
                       </div>
                     </div>  

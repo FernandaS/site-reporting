@@ -12,6 +12,10 @@ app.controller('directorCtrl', function($scope, reportService, centerService){
 	// 		.then(function(response){
 	// 			$scope.reports = response.data;
 	// 		})
+		// reportService.//////getAllKiReportsForCenter()/////
+		// 	.then(function(response){
+		// 		$scope.reportsKi = response.data;
+		// 	})
 	// }
 
 	// getAllReports();
@@ -27,9 +31,15 @@ app.controller('directorCtrl', function($scope, reportService, centerService){
 	// 				if ($scope.reports[i].Reports.date === modifiedDate){
 	// 					$scope.report = $scope.reports[i];
 	// 				}
+	// 			}
+	// 			for(var i = 0; i < $scope.reportsKi.length; i++){
+	// 				if ($scope.reportsKi[i].Reports.date === modifiedDate){
+	// 					$scope.reportKi = $scope.reportsKi[i];
+	// 				}
 	// 			}	
 	// 		}
 	// 	}
+	// }	
 });
 
 

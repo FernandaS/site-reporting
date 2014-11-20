@@ -35,6 +35,32 @@ app.controller('reportViewCtrl', function($scope, reportService, centerService){
 
 	$scope.deleteSingleReport = function(id){
 		reportService.delete(id)
+
+//does not refresh upon delete		
+			// .then(function(response){
+			// 	reportService.getAllBy(modifiedDate)
+			// 		.then(function(response){
+			// 			$scope.reportsByMonth = response.data;
+			// 			console.log($scope.reportsByMonth);
+			// 		})
+
+			// 	reportService.getAllKiBy(modifiedDate)
+			// 		.then(function(response){
+			// 			$scope.reportsKiByMonth = response.data;
+			// 			console.log($scope.reportsKiByMonth);
+			// 		})
+			// $scope.visitor_total = "";
+			// $scope.visitor_tour = "",
+			// $scope.visitor_tournonmember = "",
+			// $scope.referral_cards = "",
+			// $scope.referral_called = "",
+			// $scope.referral_inbound = "",
+			// $scope.referral_member = "",
+			// $scope.comments = ""
+			// $scope.selectedYear = " ";
+			// $scope.selectedMonth = " ";
+			// $scope.selectedCenter = "";		
+
 		$scope.deleteReportWarningAlert = false;
 	}
 

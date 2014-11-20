@@ -121,5 +121,5 @@ function getAllByRange(rData){
 };
 
 function getAllReportsByCenterId(id){
-  return Models.keyindicators.findAll({ where: { centerId: id } });
+  return Models.keyindicators.findAll({ where: { centerId: id } }, {raw: true});
 };
