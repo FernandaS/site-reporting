@@ -14,7 +14,6 @@ app.controller('reportKiViewCtrl', function($scope, reportService, centerService
 		centerService.getAll()
 			.then(function(response){
 				$scope.centers = response.data;
-				// $scope.stats = response.data;
 				$scope.deleteReportWarningAlert = false;
 				$scope.baptized = "";
 				$scope.baptismal_date = "",
@@ -40,6 +39,6 @@ app.controller('reportKiViewCtrl', function($scope, reportService, centerService
 				console.log(response);
 					$scope.deleteReportWarningAlert = false;
 			})
-
 	}
+	
 });

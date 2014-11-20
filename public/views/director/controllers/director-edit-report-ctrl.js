@@ -23,7 +23,7 @@ app.controller('directorEditReportCtrl', function($scope, reportService, centerS
 				$scope.report['Reports.visitor_tournonmember'] = "";
 				$scope.report['Reports.referral_cards'] = "";
 				$scope.report['Reports.referral_called'] = "";
-				referral_inbound: $scope.report['Reports.referral_inbound'] = "";
+				$scope.report['Reports.referral_inbound'] = "";
 				$scope.report['Reports.referral_member'] = "";
 				$scope.report['Reports.comments'] = "";
 			});

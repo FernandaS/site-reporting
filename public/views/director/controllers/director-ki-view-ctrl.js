@@ -11,7 +11,7 @@ app.controller('directorKiViewCtrl', function($scope, reportService, centerServi
 	//Refreshes page when modal closes
 
 	$scope.refreshModalClose = function(){
-		$scope.stats = response.data;
+		// $scope.stats = response.data;
 		$scope.deleteReportWarningAlert = false;
 		$scope.baptized = "";
 		$scope.baptismal_date = "",
@@ -24,13 +24,12 @@ app.controller('directorKiViewCtrl', function($scope, reportService, centerServi
 		$scope.referrals_sent = " ";
 	}
 
-	// $scope.deleteReportWarning = function(){
-	// 	$scope.deleteReportWarningAlert = true;
-	// }
-
 	$scope.deleteSingleReport = function(id){
 		reportService.deleteKi(id)
-		$scope.deleteReportWarningAlert = false;
+			.then(function(response){
+				console.log(response);
+					$scope.deleteReportWarningAlert = false;
+			})
 	}
 
 });
