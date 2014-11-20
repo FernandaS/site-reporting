@@ -49,6 +49,7 @@ function getUser(username){
 						username: value[0].username, 
 						role: value[0].role, 
 						email: value[0].email,
+						password: value[0].password,
 						centers: Sequelize.Utils._.chain(value).map(function(value, key){
 							return {
 								id: value['Centers.id'],
