@@ -18,7 +18,7 @@ app.service('authService', function($http){
 	}
 	this.logout = function(){
 		return $http({
-			method: 'POST',
+			method: 'GET',
 			url: '/api/logout'
 		})
 	}

@@ -73,7 +73,7 @@ app.delete('/api/users/:id', middleware.requireAuth, middleware.ensureAdmin, use
 app.get('/api/reports/allBy', middleware.requireAuth, middleware.ensureAdmin, reportsCtrl.getAllBy); //month
 app.get('/api/reports/allFrom', middleware.requireAuth, middleware.ensureAdmin, reportsCtrl.getAllFrom); //month
 app.get('/api/reports/oneBy/:id', middleware.requireAuth, reportsCtrl.getOneBy); //center and month
-app.post('/api/reports', middleware.requireAuth, reportsCtrl.addReport);
+app.post('/api/reports', middleware.requireAuth, reportsCtrl.addReport); //this route is only protected from other directors by the fact that other directors don't know the center id's of other centers. Directors could potentially obtain reports from other centers if they had the center id.
 app.put('/api/reports/:id', middleware.requireAuth, reportsCtrl.editReport);
 app.delete('/api/reports/:id', middleware.requireAuth, middleware.ensureAdmin, reportsCtrl.deleteReport);
 
@@ -102,8 +102,10 @@ app.post('/api/test', function(req, res){
 app.post('/api/login', authCtrl.authenticateUser);
 // app.get('/api/user/me', authCtrl.getCurrentUser);
 app.get('/api/logout', function(req, res){
+	console.log('logging out');
 	req.logout();
-	res.redirect('#/login');
+	res.end();
+	// res.redirect('#/login');
 });
 
 // Download APIS

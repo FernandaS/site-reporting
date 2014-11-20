@@ -27,4 +27,11 @@ function mainCtrl($scope, $location, authService){
 			$scope.path = 'normal';
 		}
 	 });
+
+	$scope.logout = function() {
+		authService.logout().then(function(data){
+			console.log(data);
+			updateUser();
+		});
+	}
 }
