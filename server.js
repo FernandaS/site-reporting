@@ -82,7 +82,7 @@ app.delete('/api/reports/:id',/* middleware.requireAuth, middleware.ensureAdmin,
 app.get('/api/reports/ki/allBy',/* middleware.requireAuth, middleware.ensureAdmin,*/ keyIndicatorCtrl.getAllBy); //month
 app.get('/api/reports/ki/allFrom',/* middleware.requireAuth, middleware.ensureAdmin,*/ keyIndicatorCtrl.getAllFrom); //month
 app.get('/api/reports/ki/oneBy/:id', /*middleware.requireAuth,*/ keyIndicatorCtrl.getOneBy); //center and month
-app.get('/api/reports/ki/getAllReports/:id'/*, middleware.requireAuth,*/ keyIndicatorCtrl.getAllReportsByCenterId);
+app.get('/api/reports/ki/getAllReports/:id',/* middleware.requireAuth,*/ keyIndicatorCtrl.getAllReportsByCenterId);
 app.post('/api/reports/ki', /*middleware.requireAuth,*/ keyIndicatorCtrl.addReport);
 app.put('/api/reports/ki/:id', /*middleware.requireAuth,*/ keyIndicatorCtrl.editReport);
 app.delete('/api/reports/ki/:id',/* middleware.requireAuth, middleware.ensureAdmin,*/ keyIndicatorCtrl.deleteReport);
