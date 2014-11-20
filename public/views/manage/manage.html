@@ -106,9 +106,9 @@
 
 
 			<div class="modal-footer">
-				<button type="button" class="btn btn-primary" ng-click="deleteAdmin(admin.id)">Delete Admin</button>
+				<button type="button" class="btn btn-primary" ng-click="deleteAdmin(admin.id)" data-dismiss="modal" >Delete Admin</button>
 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				<button type="button" class="btn btn-primary" ng-click="editAdmin()">Save changes</button>
+				<button type="button" class="btn btn-primary" ng-click="editAdmin()" data-dismiss="modal">Save changes</button>
 			</div>
 		</div>
 	</div>
@@ -152,7 +152,7 @@
 
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				<button type="button" class="btn btn-primary" ng-click="createAdmin(admin)">Submit</button>
+				<button type="button" class="btn btn-primary" ng-click="createAdmin(admin)" data-dismiss="modal">Submit</button>
 			</div>
 		</div>
 	</div>
@@ -196,6 +196,7 @@
 					</div>
 					<div class="panel-body iconi" ng-repeat="email in director.secondaryEmails">
 						<p ng-hide="email.email == null">{{email.email}}<i class="fa fa-times iconi" ng-click="removeEmail(email)"></i></p>
+					
 
 					</div>
 				</div>
@@ -205,7 +206,7 @@
 						<div class="col-md-6 ">
 							<input type="email" class="form-control" id="inputEmail3" placeholder="Email" ng-model="newEmail">
 						</div>
-						<butteon type="button" class="btn btn-primary pull-right" ng-click="addDirectorEmail()">Add Email</button>
+						<button type="button" class="btn btn-primary pull-right" ng-click="addDirectorEmail()">Add Email</button>
 						</div>
 					</div>	<br>
 
@@ -213,9 +214,9 @@
 
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-primary" ng-click="deleteDirector()">Delete Director</button>
+					<button type="button" class="btn btn-primary" ng-click="deleteDirector()" data-dismiss="modal">Delete Director</button>
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary" ng-click="editDirector()">Save changes</button>
+					<button type="button" class="btn btn-primary" ng-click="editDirector()" data-dismiss="modal">Save changes</button>
 				</div>
 			</div>
 		</div>
@@ -258,7 +259,7 @@
 
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				<button type="button" class="btn btn-primary" ng-click="createDirector(director)">Submit</button>
+				<button type="button" class="btn btn-primary" ng-click="createDirector(director)" data-dismiss="modal">Submit</button>
 			</div>
 		</div>
 	</div>
@@ -313,9 +314,9 @@
 					</form>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-primary" ng-click="deleteCenter()">Delete Center</button>
+					<button type="button" class="btn btn-primary" ng-click="deleteCenter()" data-dismiss="modal">Delete Center</button>
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary" ng-click="editCenter()">Submit</button>
+					<button type="button" class="btn btn-primary" ng-click="editCenter()" data-dismiss="modal">Submit</button>
 				</div>
 			</div>
 		</div>
@@ -397,7 +398,7 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary" ng-click="submitCenter()">Submit</button>
+					<button type="button" class="btn btn-primary" ng-click="submitCenter()" data-dismiss="modal">Submit</button>
 				</div>
 			</div>
 		</div>

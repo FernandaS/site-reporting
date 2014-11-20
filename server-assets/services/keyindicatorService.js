@@ -89,7 +89,7 @@ function getAllByRange(rData){
             'progressing_investigators', 'rc_la', 'referrals_sent',
             [Sequelize.fn('date_format', Sequelize.col('Reports.date'), '%Y-%m-%d'), 'date']
           ]
-    }, {raw: true}).then(function(reports){
+    }]}, {raw: true}).then(function(reports){
       var organizedReports = Sequelize.Utils._.chain(reports)
       .groupBy('center')
       .map(function(value, key){

@@ -1,6 +1,6 @@
 var app = angular.module('lds-report');
 
-app.controller('manageCtrl', function($scope, centerService, userService, nzSwal){
+app.controller('manageCtrl', function($scope, $q, centerService, userService, nzSwal){
 
 var allCenters = function(){
 	centerService.getAll().
@@ -15,7 +15,9 @@ var administrators = [];
 var directors = [];
 
 $scope.getAllUsers = function(){
-	console.log("got here");
+	administrators = [];
+	directors = [];
+	var deferred = $q.defer();
 	userService.getAll()
 	.then(function(response){
 		for(var i = 0; i < response.data.length; i++){
@@ -32,7 +34,9 @@ $scope.getAllUsers = function(){
 		}
 		
 	}
+	deferred.resolve({directors: directors, administrators: administrators});
   })
+	return deferred.promise;
 }
 
 
