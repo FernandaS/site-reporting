@@ -5,7 +5,7 @@
   <div class="panel-body">
 
       Select month: <select ng-init='selectedMonth = months[month]; updateSelectDate()' ng-options='value for value in months' ng-model='selectedMonth' ng-change="updateSelectDate()"></select>
-      <select ng-init='selectedYear = year' ng-options='value for value in years' ng-model='selectedYear' ng-change='updateSelectDate()'></select>
+      <select ng-options='value for value in years' ng-model='selectedYear' ng-change='updateSelectDate()'></select>
        <button type="button" class="btn btn-xs" ng-click="getReportsByMonth()">Get reports</button>
       <br/>
       <hr/>
@@ -30,8 +30,20 @@
       <br/>
         
       <div class="panel panel-default">
-        <div class="panel-body globalReports">
-          Global reports:<p>{{selectedMonth}}</p><p>Year through {{selectedYear}}</p><p>Grand totals for {{selectedMonth}}</p>
+        <div class="panel-body globalReports flex-box">
+          <button type="button" class="btn btn-default" data-toggle="modal" data-target="#addSite">
+             Add Site Month Report
+          </button>
+          <button type="button" class="btn btn-default">
+            <a href='/api/download/site/{{reportDate}}'>
+               Site Statistics Grand Totals
+            </a>
+          </button>
+          <button type="button" class="btn btn-default">
+          <a href='/api/download/ki/{{reportDate}}'>
+             Key Indicators Grand Totals
+          </a>
+          </button>       
         </div>
       </div>
 
