@@ -76,6 +76,17 @@ module.exports = {
 			res.send(err);
 		});
 	},
+
+	getAllReportsByCenterId: function (req, res) {
+		reportService.getAllReportsByCenterId(req.params.id).then(function(data){
+			console.log('getAllReportsByCenterId worked');
+			res.status(200).send(data);
+		}, function(err){
+			console.log(err);
+			res.send(err);
+		});
+	},
+
 	sendReport: function (req, res) {
 		var filename = 'site-report_' + req.params.date + '.pdf'; //dynamically create filename based on request
 		res.setHeader('Content-disposition', 'attachment; filename=' + filename);

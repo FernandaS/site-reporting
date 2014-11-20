@@ -76,6 +76,16 @@ module.exports = {
 			res.send(err);
 		});
 	},
+
+	getAllReportsByCenterId: function (req, res) {
+		keyindicatorService.getAllReportsByCenterId(req.params.id).then(function(data){
+			console.log('getAllReportsByCenterId worked');
+			res.status(200).send(data);
+		}, function(err){
+			console.log(err);
+			res.send(err);
+		});
+	},
 	
 	sendReport: function (req, res) {
 		var filename = 'report'; //dynamically create filename based on request
