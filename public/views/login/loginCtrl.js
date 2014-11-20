@@ -12,11 +12,5 @@ app.controller('loginCtrl', function($scope, authService){
 
 
 
-	// $scope.login = function(){
-	// 	if($scope.loginForm.$valid){
-	// 		console.log('sending request to server')
-	// 	} else {
-	// 		$scope.loginForm.submitted = true;
-	// 	}
-	// };
+
 });
