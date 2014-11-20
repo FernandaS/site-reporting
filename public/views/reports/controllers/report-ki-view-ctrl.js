@@ -33,12 +33,21 @@ app.controller('reportKiViewCtrl', function($scope, reportService, centerService
 	}
 
 	$scope.deleteSingleReport = function(id){
-		console.log(id);
-		reportService.deleteKi(id)
-			.then(function(response){
-				console.log(response);
-					$scope.deleteReportWarningAlert = false;
-			})
+		reportService.deleteKi(id)	
+		.then(function(response){
+			$scope.deleteReportWarningAlert = false;
+			for(var i = 0; i < $scope.months.length; i++){
+				if($scope.months[i] === $scope.selectedMonth){
+					var newMonth = i + 1;
+					var modifiedDate = $scope.selectedYear + "-" + newMonth + "-01";
+					reportService.getAllKiBy(modifiedDate)
+					.then(function(response){
+						$scope.$parent.reportsKiByMonth = response.data;
+						console.log($scope.$parent.reportsKiByMonth);
+					})			
+				}
+			}
+		})
 	}
 	
 });

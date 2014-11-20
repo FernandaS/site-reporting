@@ -1,7 +1,7 @@
-var app = angular.module('lds-report');
+// var app = angular.module('lds-report');
 
-app.controller('reportCreateCustomCtrl', function($scope, reportService, centerService){
+// app.controller('reportCreateCustomCtrl', function($scope, reportService, centerService){
 
 
-});
+// });
 

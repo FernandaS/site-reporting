@@ -1,8 +1,8 @@
 var app = angular.module('lds-report');
 
-	app.controller('reportKiAddCtrl', function($scope, reportService, centerService){
+app.controller('reportKiAddCtrl', function($scope, reportService, centerService){
 
-		$scope.addNewKeyIndicatorReport = function(){
+	$scope.addNewKeyIndicatorReport = function(){
 		for(var i = 0; i < $scope.months.length; i++){
 			if($scope.months[i] === $scope.selectedMonthAdd){
 				var newMonth = i + 1;
@@ -31,10 +31,10 @@ var app = angular.module('lds-report');
 					$scope.rc_la = ""
 					$scope.referrals_sent = " ";
 					reportService.getAllKiBy(modifiedDate)
-						.then(function(response){
-							$scope.$parent.reportsKiByMonth = response.data;
-							console.log($scope.$parent.reportsKiByMonth);
-						})
+					.then(function(response){
+						$scope.$parent.reportsKiByMonth = response.data;
+						console.log($scope.$parent.reportsKiByMonth);
+					})
 				});
 
 			}					
