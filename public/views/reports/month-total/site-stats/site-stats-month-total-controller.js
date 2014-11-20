@@ -1,5 +1,5 @@
 angular.module('lds-report')
-	.controller('monthTotalCtrl', monthTotalCtrl);
+	.controller('siteStatsMonthTotalCtrl', monthTotalCtrl);
 
 function monthTotalCtrl($scope, $routeParams, reportService){
 

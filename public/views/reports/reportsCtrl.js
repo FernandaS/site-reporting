@@ -16,15 +16,13 @@ app.controller('reportsCtrl', function($scope, $timeout, reportService, centerSe
 		date[0] = date[2];
 		date[2] = 01;
 		$scope.reportDate = date.join('-');
-		console.log($scope.reportDate);
 	}
 	
 	var getAllCenters = function(){
 		centerService.getAll()
-		.then(function(response){
-			$scope.centers = response.data;
-			console.log($scope.centers);
-		})
+			.then(function(response){
+				$scope.centers = response.data;
+			})
 	}
 
 	getAllCenters();
@@ -71,6 +69,9 @@ $scope.viewSingleKiReport = function(center){
 			$scope.reportKi = $scope.reportsKiByMonth[i];
 			console.log($scope.reportKi);
 		}
+<<<<<<< HEAD
+	}	
+=======
 	}
 }	
 
@@ -99,6 +100,6 @@ $scope.viewSingleKiReport = function(center){
 	// 		console.log(data);
 	// 	});
 	// }
+>>>>>>> ca0049a5cf48262003e248e74686e5a216c76039
 	$scope.updateSelectDate()
-	console.log($scope.reportDate)
 });
