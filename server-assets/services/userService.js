@@ -42,7 +42,7 @@ function getUser(username){
 			model: Models.centers, 
 			as: 'Centers'}]}, 
 			{ raw: true }).then(function(result){
-				console.log(result);
+				if(result[0] === undefined) return resolve(null);
 				newResult = Sequelize.Utils._.chain(result)
 				.groupBy('username').map(function(value, key){
 					return {
