@@ -4,16 +4,10 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: false,
       unique: true,
-      validate: {
-        isAlpha: true
-      }
     },
     alias: {
       type: DataTypes.STRING,
-      allowNull: true,
-      validate: {
-        isAlpha: true
-      }
+      allowNull: true
     },
     active: {
       type: DataTypes.ENUM('YES','NO'),
@@ -27,24 +21,15 @@ module.exports = function(sequelize, DataTypes) {
     },
     city: {
       type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        isAlpha: true
-      }
+      allowNull: false
     },
     state: {
       type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        isAlpha: true
-      }
+      allowNull: false
     },
     country: {
       type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        isAlpha: true
-      }
+      allowNull: false
     }
   });
 };

@@ -42,7 +42,7 @@ function getUser(username){
 			model: Models.centers, 
 			as: 'Centers'}]}, 
 			{ raw: true }).then(function(result){
-				console.log(result);
+				if(result[0] === undefined) return resolve(null);
 				newResult = Sequelize.Utils._.chain(result)
 				.groupBy('username').map(function(value, key){
 					return {
@@ -81,7 +81,7 @@ function getUser(username){
 };
 
 function getUserById(id){
-	return Models.users.find({where: { id: id }}, {raw: true});
+	return Models.users.find({where: { id: id }, attributes: ['id', 'username', 'role', 'email']}, {raw: true});
 };
 
 function getAllUsers(){
