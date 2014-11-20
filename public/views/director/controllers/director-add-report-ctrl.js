@@ -33,7 +33,7 @@ app.controller('directorAddReportCtrl', function($scope, reportService, centerSe
 	// 				$scope.selectedCenter = "";
 	// 				reportService.//getAllReportsForCenter()
 	// 					.then(function(response){
-	// 						$scope.$parent.reports = response.data;;
+	// 						$scope.$parent.reportsByMonth = response.data;;
 	// 					})
 	// 			});
 

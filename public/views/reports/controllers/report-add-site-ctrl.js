@@ -33,9 +33,7 @@ app.controller('reportAddSiteCtrl', function($scope, reportService, centerServic
 					$scope.selectedCenter = "";
 					reportService.getAllBy(modifiedDate)
 						.then(function(response){
-							debugger;
 							$scope.$parent.reportsByMonth = response.data;
-							console.log($scope.$parent.reportsByMonth);
 						})
 				});
 

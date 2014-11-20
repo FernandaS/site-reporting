@@ -20,11 +20,10 @@ app.controller('directorViewReportCtrl', function($scope, reportService, centerS
 		$scope.referral_inbound = "",
 		$scope.referral_member = "",
 		$scope.comments = ""
-		$scope.selectedYear = " ";
-		$scope.selectedMonth = " ";	
+		$scope.selectedYear = "";
+		$scope.selectedMonth = "";	
 	}
 	
-
 	$scope.deleteReportWarning = function(){
 		$scope.deleteReportWarningAlert = true;
 	}
