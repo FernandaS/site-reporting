@@ -38,7 +38,7 @@ function delUser(uData){
 
 function getUser(username){
 	return new Promise(function(resolve, reject){
-		Models.users.findAll({ attributes: ['id', 'username', 'role', 'email'], where: { username: username }, include: [{ 
+		Models.users.findAll({ where: { username: username }, include: [{ 
 			model: Models.centers, 
 			as: 'Centers'}]}, 
 			{ raw: true }).then(function(result){
