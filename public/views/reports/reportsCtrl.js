@@ -1,16 +1,22 @@
 var app = angular.module('lds-report');
 
-app.controller('reportsCtrl', function($scope, reportService, centerService){
+app.controller('reportsCtrl', function($scope, $timeout, reportService, centerService){
 	$scope.reports = [];
 	
 	$scope.years = [2011, 2012, 2013, 2014, 2015];
 	$scope.months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 
 	var date = new Date();
-	$scope.year = date.getFullYear();
+	$scope.selectedYear = date.getFullYear();
 	$scope.month = date.getMonth();
 	$scope.updateSelectDate = function(){
 		$scope.reportDate = $scope.selectedMonth + ' 1, ' + $scope.selectedYear
+		var date = $scope.reportDate.split(',').join('').split(' ');
+		date[1] = $scope.months.indexOf(date[0]) + 1;
+		date[0] = date[2];
+		date[2] = 01;
+		$scope.reportDate = date.join('-');
+		console.log($scope.reportDate);
 	}
 	
 	var getAllCenters = function(){
@@ -48,10 +54,31 @@ app.controller('reportsCtrl', function($scope, reportService, centerService){
 		}
 	}
 
-	$scope.downloadSiteStats = function(){
-		reportService.downloadSiteStats();
-	}
-	$scope.downloadKeyIndicators = function(){
-		reportService.downloadKeyIndicators();
-	}
+	// $scope.downloadSiteStats = function(){
+	// 	$scope.updateSelectDate()
+	// 	var date = $scope.reportDate.split(',').join('').split(' ');
+	// 	date[0] = $scope.months.indexOf(date[0]) + 1;
+	// 	date = date.join('-');
+	// 	reportService.downloadSiteStats(date).then(function(data){
+	// 		File.save(data.data, function (content) {
+	// 		    var hiddenElement = document.createElement('a');
+
+	// 		    hiddenElement.href = 'data:attachment/pdf,' + encodeURI(content);
+	// 		    hiddenElement.target = '_blank';
+	// 		    hiddenElement.download = 'myFile.pdf';
+	// 		    hiddenElement.click();
+	// 		});
+	// 	});
+	// }
+	// $scope.downloadKeyIndicators = function(){
+	// 	$scope.updateSelectDate()
+	// 	var date = $scope.reportDate.split(',').join('').split(' ');
+	// 	date[0] = $scope.months.indexOf(date[0]) + 1;
+	// 	date = date.join('-');
+	// 	reportService.downloadKeyIndicators(date).then(function(data){
+	// 		console.log(data);
+	// 	});
+	// }
+	$scope.updateSelectDate()
+	console.log($scope.reportDate)
 });

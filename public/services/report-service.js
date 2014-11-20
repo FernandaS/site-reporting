@@ -117,10 +117,16 @@ function reportService($http){
 	}
 
 	//DOWNLOADS
-	this.downloadSiteStats = function(){
+	this.downloadSiteStats = function(date){
 		return $http({
 			method: 'GET',
-			url: ''
+			url: '/api/download/site/' + date
+		})
+	}
+	this.downloadKeyIndicators = function(date){
+		return $http({
+			method: 'GET',
+			url: '/api/download/ki/' + date
 		})
 	}
 }
