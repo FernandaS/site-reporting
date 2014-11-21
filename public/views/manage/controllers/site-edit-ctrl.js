@@ -22,11 +22,14 @@ $scope.deleteCenter = function(){
 		 				}
 		 			}
 		 			$scope.allCenters()
-		 				.then(function(data){
+		 			.then(function(data){
 		 					$scope.centers = data.centers
 		 				})
 		 		})  
 		 	nzSwal("Deleted!", "Center has been deleted.", "success");
+		 	$scope.center.center ="";
+		 	$scope.center.active = "";
+
 		 		
 		})
 		 .catch(function(){
@@ -37,12 +40,15 @@ $scope.deleteCenter = function(){
 }
 
 $scope.editCenter = function(){
+	console.log($scope.center);
 	centerService.edit($scope.center.id, $scope.center)
 	.then(function(res){
 		if(res.data.message){
-			$scope.error = res.data.message;
+			swal("Oops!", "Changes was not saved!", "error")
 		} else {
-			swal("Success!", "Your center has been successfully modified!", "success")
+			nzSwal("Success!", "Your center has been successfully modified!", "success")
+			$scope.center.center ="";
+			$scope.center.active = "";
 
 		}
 	})

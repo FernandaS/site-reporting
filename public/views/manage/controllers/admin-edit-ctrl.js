@@ -28,6 +28,10 @@ $scope.deleteAdmin = function(){
 		 		})
 		 	})  
 		 	nzSwal("Deleted!", "Admin has been deleted.", "success"); 
+		 	$scope.admin.email = '';
+		 	$scope.admin.username = '';
+
+
 		 	
 		})
 		 .catch(function(){
@@ -43,8 +47,9 @@ $scope.deleteAdmin = function(){
 $scope.editAdmin = function(){
 	userService.edit($scope.admin.id, $scope.admin)
 	.then(function(res){
+		console.log(res);
 	if(res.data.message){
-			$scope.error = res.data.message;
+			swal("Oops!", "Changes was not saved!", "error")
 		} else {
 			swal("Success!", "Admin profile has been modified!", "success")
 

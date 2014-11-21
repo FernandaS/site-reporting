@@ -17,7 +17,8 @@ function monthTotalCtrl($scope, $routeParams, reportService){
 				sacrament_meeting: 0,
 				progressing_investigators: 0,
 				other_lessons: 0,
-				rc_la: 0
+				rc_la: 0,
+				referrals_sent: 0
 			},
 			lastYear: {
 				baptismal_date: 0,
@@ -27,7 +28,8 @@ function monthTotalCtrl($scope, $routeParams, reportService){
 				sacrament_meeting: 0,
 				progressing_investigators: 0,
 				other_lessons: 0,
-				rc_la: 0
+				rc_la: 0,
+				referrals_sent: 0
 			}
 		}
 		$scope.thisYearReports = data.data;
@@ -45,7 +47,8 @@ function monthTotalCtrl($scope, $routeParams, reportService){
 					baptismal_date: $scope.thisYearReports[i]['Indicators.baptismal_date'],
 					baptized: $scope.thisYearReports[i]['Indicators.baptized'],
 					member_present_lessons: $scope.thisYearReports[i]['Indicators.member_present_lessons'],
-					rc_la: $scope.thisYearReports[i]['Indicators.rc_la']
+					rc_la: $scope.thisYearReports[i]['Indicators.rc_la'],
+					referrals_sent: $scope.thisYearReports[i]['Indicators.referrals_sent']
 				}
 			};
 				$scope.totals.thisYear.baptismal_date += $scope.thisYearReports[i]['Indicators.baptismal_date']; //Adding to grand total for this year
@@ -56,6 +59,7 @@ function monthTotalCtrl($scope, $routeParams, reportService){
 				$scope.totals.thisYear.other_lessons += $scope.thisYearReports[i]['Indicators.other_lessons'];
 				$scope.totals.thisYear.new_investigators += $scope.thisYearReports[i]['Indicators.new_investigators'];
 				$scope.totals.thisYear.rc_la += $scope.thisYearReports[i]['Indicators.rc_la'];
+				$scope.totals.thisYear.referrals_sent += $scope.thisYearReports[i]['Indicators.referrals_sent'];
 		};
 		var lastYear = $routeParams.month.split('-');
 		lastYear[0] -= 1;
@@ -74,7 +78,8 @@ function monthTotalCtrl($scope, $routeParams, reportService){
 					baptismal_date: $scope.lastYearReports[i]['Indicators.baptismal_date'],
 					baptized: $scope.lastYearReports[i]['Indicators.baptized'],
 					member_present_lessons: $scope.lastYearReports[i]['Indicators.member_present_lessons'],
-					rc_la: $scope.lastYearReports[i]['Indicators.rc_la']
+					rc_la: $scope.lastYearReports[i]['Indicators.rc_la'],
+					referrals_sent: $scope.lastYearReports[i]['Indicators.referrals_sent']
 				}
 				$scope.totals.lastYear.baptismal_date += $scope.lastYearReports[i]['Indicators.baptismal_date']; //Adding to grandtotal for this year.
 				$scope.totals.lastYear.baptized += $scope.lastYearReports[i]['Indicators.baptized'];
@@ -84,6 +89,7 @@ function monthTotalCtrl($scope, $routeParams, reportService){
 				$scope.totals.lastYear.other_lessons += $scope.lastYearReports[i]['Indicators.other_lessons'];
 				$scope.totals.lastYear.new_investigators += $scope.lastYearReports[i]['Indicators.new_investigators'];
 				$scope.totals.lastYear.rc_la += $scope.lastYearReports[i]['Indicators.rc_la'];
+				$scope.totals.lastYear.referrals_sent += $scope.lastYearReports[i]['Indicators.referrals_sent'];
 			};
 			console.log($scope.reports);
 			$scope.totals.change = {
@@ -94,7 +100,8 @@ function monthTotalCtrl($scope, $routeParams, reportService){
 				progressing_investigators: Math.round(($scope.totals.thisYear.progressing_investigators - $scope.totals.lastYear.progressing_investigators) / $scope.totals.thisYear.progressing_investigators * 100),
 				other_lessons: Math.round(($scope.totals.thisYear.other_lessons - $scope.totals.lastYear.other_lessons) / $scope.totals.thisYear.other_lessons * 100),
 				new_investigators: Math.round(($scope.totals.thisYear.new_investigators - $scope.totals.lastYear.new_investigators) / $scope.totals.thisYear.new_investigators * 100),
-				rc_la: Math.round(($scope.totals.thisYear.rc_la - $scope.totals.lastYear.rc_la) / $scope.totals.thisYear.rc_la * 100)
+				rc_la: Math.round(($scope.totals.thisYear.rc_la - $scope.totals.lastYear.rc_la) / $scope.totals.thisYear.rc_la * 100),
+				referrals_sent: Math.round(($scope.totals.thisYear.referrals_sent - $scope.totals.lastYear.referrals_sent) / $scope.totals.thisYear.referrals_sent * 100)
 			}
 			console.log($scope.totals);
 		})

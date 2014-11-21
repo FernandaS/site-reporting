@@ -20,89 +20,55 @@ app.controller('reportsCtrl', function($scope, $timeout, reportService, centerSe
 	
 	var getAllCenters = function(){
 		centerService.getAll()
-			.then(function(response){
-				$scope.centers = response.data;
-			})
+		.then(function(response){
+			$scope.centers = response.data;
+		})
 	}
 
 	getAllCenters();
+	//Gets Stats and Key Indicator reports for month
+	$scope.getReportsByMonth = function(){
+		for(var i = 0; i < $scope.months.length; i++){
+			if($scope.months[i] === $scope.selectedMonth){
+				var newMonth = i + 1;
+				var modifiedDate = $scope.selectedYear + "-" + newMonth + "-01";
+				reportService.getAllBy(modifiedDate)
+				.then(function(response){
+					$scope.reportsByMonth = response.data;
+					console.log($scope.reportsByMonth);
+				})
 
-//Gets Stats and Key Indicator reports for month
-$scope.getReportsByMonth = function(){
-	for(var i = 0; i < $scope.months.length; i++){
-		if($scope.months[i] === $scope.selectedMonth){
-			var newMonth = i + 1;
-			var modifiedDate = $scope.selectedYear + "-" + newMonth + "-01";
-			reportService.getAllBy(modifiedDate)
-			.then(function(response){
-				$scope.reportsByMonth = response.data;
-				console.log($scope.reportsByMonth);
-			})
+				reportService.getAllKiBy(modifiedDate)
+				.then(function(response){
+					$scope.reportsKiByMonth = response.data;
+					console.log($scope.reportsKiByMonth);
+				})	
+			}					
+		}
+	}	 
 
-			reportService.getAllKiBy(modifiedDate)
-			.then(function(response){
-				$scope.reportsKiByMonth = response.data;
-				console.log($scope.reportsKiByMonth);
-			})	
-		}					
-	}
-}	 
-
-// Displays single stats report
-$scope.viewSingleReport = function(center){
-	$scope.report = '';
-	for (var i = 0; i < $scope.reportsByMonth.length; i++){
-		if ($scope.reportsByMonth[i].id === center.id){
-			$scope.report = $scope.reportsByMonth[i];
-			console.log($scope.report);
+	//Displays single stats report
+	$scope.viewSingleReport = function(center){
+		$scope.report = '';
+		for (var i = 0; i < $scope.reportsByMonth.length; i++){
+			if ($scope.reportsByMonth[i].id === center.id){
+				$scope.report = $scope.reportsByMonth[i];
+				console.log($scope.report);
+			}
 		}
 	}
-}
 
-// find a way to deactivate the modal if report is available
+	//Displays single key indicator report
 
-
-//Displays single key indicator report
-
-$scope.viewSingleKiReport = function(center){
-	$scope.reportKi = '';
-	console.log(center);
-	for (var i = 0; i < $scope.reportsKiByMonth.length; i++){
-		if ($scope.reportsKiByMonth[i].id === center.id){
-			$scope.reportKi = $scope.reportsKiByMonth[i];
-			console.log($scope.reportKi);
+	$scope.viewSingleKiReport = function(center){
+		$scope.reportKi = '';
+		console.log(center);
+		for (var i = 0; i < $scope.reportsKiByMonth.length; i++){
+			if ($scope.reportsKiByMonth[i].id === center.id){
+				$scope.reportKi = $scope.reportsKiByMonth[i];
+				console.log($scope.reportKi);
+			}
 		}
-
 	}	
-
-	}
-// }	
-
-	// $scope.downloadSiteStats = function(){
-	// 	$scope.updateSelectDate()
-	// 	var date = $scope.reportDate.split(',').join('').split(' ');
-	// 	date[0] = $scope.months.indexOf(date[0]) + 1;
-	// 	date = date.join('-');
-	// 	reportService.downloadSiteStats(date).then(function(data){
-	// 		File.save(data.data, function (content) {
-	// 		    var hiddenElement = document.createElement('a');
-
-	// 		    hiddenElement.href = 'data:attachment/pdf,' + encodeURI(content);
-	// 		    hiddenElement.target = '_blank';
-	// 		    hiddenElement.download = 'myFile.pdf';
-	// 		    hiddenElement.click();
-	// 		});
-	// 	});
-	// }
-	// $scope.downloadKeyIndicators = function(){
-	// 	$scope.updateSelectDate()
-	// 	var date = $scope.reportDate.split(',').join('').split(' ');
-	// 	date[0] = $scope.months.indexOf(date[0]) + 1;
-	// 	date = date.join('-');
-	// 	reportService.downloadKeyIndicators(date).then(function(data){
-	// 		console.log(data);
-	// 	});
-	// }
-
-	// $scope.updateSelectDate()
+	$scope.updateSelectDate()
 });
