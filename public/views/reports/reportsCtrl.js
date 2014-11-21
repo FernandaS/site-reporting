@@ -20,12 +20,13 @@ app.controller('reportsCtrl', function($scope, $timeout, reportService, centerSe
 	
 	var getAllCenters = function(){
 		centerService.getAll()
-			.then(function(response){
-				$scope.centers = response.data;
-			})
+		.then(function(response){
+			$scope.centers = response.data;
+		})
 	}
 
 	getAllCenters();
+	
 	//Gets Stats and Key Indicator reports for month
 	$scope.getReportsByMonth = function(){
 		for(var i = 0; i < $scope.months.length; i++){
