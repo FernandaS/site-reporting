@@ -9,9 +9,13 @@
 		<th colspan='3'>New Investigators</th>
 		<th colspan='3'>Progressing Investigators</th>
 		<th colspan='3'>Sacrament Meeting Attendance</th>
-		<th colspan='3'>Recent Conver/Less-Active Lessons</th>
+		<th colspan='3'>Recent Convert/Less-Active Lessons</th>
+		<th colspan='3'>Referrals Sent</th>
 	</tr>
 	<tr class='table-header-3'>
+		<th>{{date | date: 'MMMM yyyy'}}</th>
+		<th>{{lastYear | date: 'MMMM yyyy'}}</th>
+		<th>% Change</th>
 		<th>{{date | date: 'MMMM yyyy'}}</th>
 		<th>{{lastYear | date: 'MMMM yyyy'}}</th>
 		<th>% Change</th>
@@ -63,6 +67,9 @@
 		<td>{{obj.thisYear.rc_la}}</td>
 		<td>{{obj.lastYear.rc_la}}</td>
 		<td>{{(obj.thisYear.rc_la - obj.lastYear.rc_la) / obj.thisYear.rc_la * 100 | number: 0}}</td>
+		<td>{{obj.thisYear.referrals_sent}}</td>
+		<td>{{obj.lastYear.referrals_sent}}</td>
+		<td>{{(obj.thisYear.referrals_sent - obj.lastYear.referrals_sent) / obj.thisYear.referrals_sent * 100 | number: 0}}</td>
 	</tr>
 	<tr>
 		<td colspan='6'>Totals:</td>
@@ -90,5 +97,8 @@
 		<td>{{totals.thisYear.rc_la}}</td>
 		<td>{{totals.lastYear.rc_la}}</td>
 		<td>{{totals.change.rc_la}}</td>
+		<td>{{totals.thisYear.referrals_sent}}</td>
+		<td>{{totals.lastYear.referrals_sent}}</td>
+		<td>{{totals.change.referrals_sent}}</td>
 	</tr>
 </table>
