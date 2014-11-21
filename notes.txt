@@ -1,0 +1,36 @@
+-noticed reports, total was getting NaN in tables
+
+-noticed Not reported not working
+
+-Get reports on change of date or force user to hit get reports?
+
+-noticed on trends, sometimes when selecting a center it would show all center trend data with No data available overlayed on it
+
+-add cursor pointer to those areas that are clickable?
+
+-noticed edit dialog box is thrown to bottom of page. set higher zindex and just overlay it over the view of the report? or close other modal dialog when edit is used?
+
+-Occasionally getting this error on reports view for KIreports (only happens if reports are not retrieved or nothing is returned):
+
+
+It is due to this line. Possibly introduce if statement to check if variable is undefined before checking for length variable:
+
+for (var i = 0; i < $scope.reportsKiByMonth.length; i++){
+			if ($scope.reportsKiByMonth[i].id === center.id){
+				$scope.reportKi = $scope.reportsKiByMonth[i];
+				console.log($scope.reportKi);
+			}
+		}
+
+
+TypeError: Cannot read property 'length' of undefined
+    at Scope.$scope.viewSingleKiReport (http://localhost:9001/views/reports/reportsCtrl.js:66:46)
+    at http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.js:10773:21
+    at http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.js:18981:17
+    at Scope.$eval (http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.js:12608:28)
+    at Scope.$apply (http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.js:12706:23)
+    at HTMLButtonElement.<anonymous> (http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.js:18980:21)
+    at http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.js:2823:10
+    at Array.forEach (native)
+    at forEach (http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.js:325:11)
+    at HTMLButtonElement.eventHandler (http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.js:2822:5) 
