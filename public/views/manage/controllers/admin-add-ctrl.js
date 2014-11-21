@@ -8,7 +8,7 @@ $scope.createAdmin = function(admin){
 	admin.role = "ADMIN";
 	userService.create(admin).then(function(res){
 		if(res.data.message){
-			$scope.error = res.data.message;
+			swal("Oops!", "Admin was not saved!", "error")
 		} else {
 			$scope.admin = '';
 			$scope.getAllUsers()
