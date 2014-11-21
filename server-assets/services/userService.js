@@ -155,7 +155,3 @@ function getAllUsers(){
 			});
 		});
 };
-
-getUserById(8).then(function(result){
-	console.log(result);
-})
