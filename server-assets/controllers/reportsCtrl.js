@@ -93,12 +93,5 @@ module.exports = {
 		res.type("application/pdf");
 		render('http://localhost:9001/#/reports/site/' + req.params.date, {format:'pdf', width: '100px', margin: '30px', orientation: 'landscape'})
 		.pipe(res) || res.status(500).end();
-	}, 
-	sendKiReport: function (req, res) {
-		var filename  = 'ki-report_' + req.params.date + '.pdf';
-		res.setHeader('Content-disposition', 'attachment; filename=' + filename);
-		res.type("application/pdf");
-		render('http://localhost:9001/#/reports/ki/' + req.params.date, {format:'pdf', width: '100px', margin: '30px', orientation: 'landscape'})
-		.pipe(res) || res.status(500).end();
 	}
 };

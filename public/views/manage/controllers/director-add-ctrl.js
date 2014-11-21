@@ -5,10 +5,11 @@ $scope.director = '';
 $scope.createDirector = function(director){
 	$scope.error = '';
 	director.role = "DIRECTOR";
-	userService.create(director).then(function(res){
+	userService.create(director)
+		.then(function(res){
 		console.log(res);
 		if(res.data.message){
-			$scope.error = res.data.message;
+			swal("Oops!", "Director was not saved!", "error")
 		} else {
 			$scope.director = '';
 			$scope.getAllUsers()

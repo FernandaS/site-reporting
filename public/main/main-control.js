@@ -17,7 +17,9 @@ function mainCtrl($scope, $location, authService){
 			}
 		})
 	}
-	updateUser();
+	if($location.path().split('/')[2] !== 'ki' && $location.path().split('/')[2] !== 'site'){ //This is temporary hackery.  Ugly as all getout.
+		updateUser();  //Future solution: move the phantom PDF download to the front-end.
+	}
 	$scope.$on('updateUser', updateUser);
 	$scope.$on('$routeChangeStart', function(next, current) {
 		var path = $location.path().split('/')

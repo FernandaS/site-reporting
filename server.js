@@ -113,7 +113,7 @@ app.get('/api/logout', function(req, res){
 // Download APIS
 app.get('/api/download/site/:date'/*, middleware.requireAuth, middleware.ensureAdmin*/, reportsCtrl.sendReport);
 //passport.use(new LocalStrategy());
-app.get('/api/download/ki/:date'/*, middleware.requireAuth, middleware.ensureAdmin*/, reportsCtrl.sendKiReport);
+app.get('/api/download/ki/:date'/*, middleware.requireAuth, middleware.ensureAdmin*/, keyIndicatorCtrl.sendReport);
 
 app.listen(port, function(){
 	console.log('Listening at ' + port);
