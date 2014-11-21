@@ -15,18 +15,17 @@ middleware = require('./server-assets/middleware/middleware'),
 authCtrl = require('./server-assets/controllers/authCtrl'),
 emailsCtrl = require('./server-assets/controllers/emailsCtrl'),
 keyIndicatorCtrl = require('./server-assets/controllers/keyIndicatorCtrl'),
-// flash = require('connect-flash'),
 bcrypt = require('bcrypt');
 
 passport.use(new LocalStrategy(function(username, pass, done) {
 	userService.getUser(username).then(function (user) {
 		if (!user) {
-			console.log('Unknown user' + username);
+			// console.log('Unknown user' + username);
 			return done(null, false, { message: 'Unknown user ' + username });
 		}
 		bcrypt.compare(pass, user.password, function(err, res) {
 			if (!res){
-				console.log('Invalid password');
+				// console.log('Invalid password');
 				return done(null, false, { message: 'Invalid password' });
 			}	
 			console.log(pass, user);	
@@ -88,9 +87,9 @@ app.put('/api/reports/ki/:id', /*middleware.requireAuth,*/ keyIndicatorCtrl.edit
 app.delete('/api/reports/ki/:id',/* middleware.requireAuth, middleware.ensureAdmin,*/ keyIndicatorCtrl.deleteReport);
 
 // Additional emails
-app.post('/api/addlEmails/:id', emailsCtrl.addEmail);
-app.put('/api/addlEmails/:id', emailsCtrl.putAddlEmails);
-app.delete('/api/addlEmails/:id', emailsCtrl.delAddlEmail);
+app.post('/api/addlEmails/:id',/* middleware.requireAuth, middleware.ensureAdmin,*/ emailsCtrl.addEmail);
+app.put('/api/addlEmails/:id',/* middleware.requireAuth, middleware.ensureAdmin,*/ emailsCtrl.putAddlEmails);
+app.delete('/api/addlEmails/:id',/* middleware.requireAuth, middleware.ensureAdmin,*/ emailsCtrl.delAddlEmail);
 
 app.post('/api/test', function(req, res){
 	console.log(req.query.start, req.query.end);

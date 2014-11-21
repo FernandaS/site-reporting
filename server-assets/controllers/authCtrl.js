@@ -31,6 +31,10 @@ module.exports = {
 	  	req.logout();
 	  }
 	  passport.authenticate('local', function(err, user, info) {
+	    if (err) {
+	    	console.log(err);
+	    	res.send(err);
+	    }
 	    if (!user) {
 	      return res.status(401).end();
 	    }
