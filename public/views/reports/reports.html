@@ -15,7 +15,7 @@
 
       <div class="listGroupSiteNames">
         <ul class="list-group">
-          <li class="list-group-item" ng-repeat='center in centers' ng-model='selectedCenter'>{{center.center}}<button class="btn btn-default listGroupSiteNamesButton" data-toggle="modal" data-target="#viewKeyIndicator" ng-click="viewSingleKiReport(center)">Key Indicator</button><button class="btn btn-default listGroupSiteNamesButton" data-toggle="modal" data-target="#viewButtonModal" ng-click="viewSingleReport(center)">Stats</button></li>
+          <li class="list-group-item" ng-repeat='center in centers' ng-model='selectedCenter'><p ng-show="test">TEST<p/>{{center.center}}<button class="btn btn-default listGroupSiteNamesButton" data-toggle="modal" data-target="#viewKeyIndicator" ng-click="viewSingleKiReport(center)">Key Indicator</button><button class="btn btn-default listGroupSiteNamesButton" data-toggle="modal" data-target="#viewButtonModal" ng-click="viewSingleReport(center)">Stats</button></li>
         </ul>
       </div> 
 

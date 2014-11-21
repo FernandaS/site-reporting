@@ -48,7 +48,7 @@ $scope.getReportsByMonth = function(){
 	}
 }	 
 
-//Displays single stats report
+// Displays single stats report
 $scope.viewSingleReport = function(center){
 	$scope.report = '';
 	for (var i = 0; i < $scope.reportsByMonth.length; i++){
@@ -58,6 +58,9 @@ $scope.viewSingleReport = function(center){
 		}
 	}
 }
+
+// find a way to deactivate the modal if report is available
+
 
 //Displays single key indicator report
 
@@ -69,11 +72,11 @@ $scope.viewSingleKiReport = function(center){
 			$scope.reportKi = $scope.reportsKiByMonth[i];
 			console.log($scope.reportKi);
 		}
-<<<<<<< HEAD
+
 	}	
-=======
+
 	}
-}	
+// }	
 
 	// $scope.downloadSiteStats = function(){
 	// 	$scope.updateSelectDate()
@@ -100,6 +103,6 @@ $scope.viewSingleKiReport = function(center){
 	// 		console.log(data);
 	// 	});
 	// }
->>>>>>> ca0049a5cf48262003e248e74686e5a216c76039
-	$scope.updateSelectDate()
+
+	// $scope.updateSelectDate()
 });
