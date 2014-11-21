@@ -4,18 +4,22 @@
   </div>
   <div class="panel-body">
 
-      Select month: <select ng-init='selectedMonth = months[month]; updateSelectDate()' ng-options='value for value in months' ng-model='selectedMonth' ng-change="updateSelectDate()"></select>
-      <select ng-options='value for value in years' ng-model='selectedYear' ng-change='updateSelectDate()'></select>
-       <button type="button" class="btn btn-xs" ng-click="getReportsByMonth()">Get reports</button>
-      <br/>
-      <hr/>
-      Individual reports for {{selectedMonth}}, {{selectedYear}}
+    Select month: <select ng-init='selectedMonth = months[month]; updateSelectDate()' ng-options='value for value in months' ng-model='selectedMonth' ng-change="updateSelectDate()"></select>
+    <select ng-options='value for value in years' ng-model='selectedYear' ng-change='updateSelectDate()'></select>
+    <button type="button" class="btn btn-xs" ng-click="getReportsByMonth()">Get reports</button>
+    <br/>
+    <hr/>
+    Individual reports for {{selectedMonth}}, {{selectedYear}}
 
-      <br>
+    <br>
 
-      <div class="listGroupSiteNames">
-        <ul class="list-group">
-          <li class="list-group-item" ng-repeat='center in centers' ng-model='selectedCenter'><p ng-show="test">TEST<p/>{{center.center}}<button class="btn btn-default listGroupSiteNamesButton" data-toggle="modal" data-target="#viewKeyIndicator" ng-click="viewSingleKiReport(center)">Key Indicator</button><button class="btn btn-default listGroupSiteNamesButton" data-toggle="modal" data-target="#viewButtonModal" ng-click="viewSingleReport(center)">Stats</button></li>
+    <div class="listGroupSiteNames">
+      <ul class="list-group">
+        <li class="list-group-item" ng-repeat='center in centers' ng-model='selectedCenter'>{{center.center}} 
+
+          <button class="btn btn-default listGroupSiteNamesButton" data-toggle="modal" data-target="#viewKeyIndicator" ng-click="viewSingleKiReport(center)">Key Indicator</button>
+
+          <button class="btn btn-default listGroupSiteNamesButton" data-toggle="modal" data-target="#viewButtonModal" ng-click="viewSingleReport(center)">Statistics</button></li>
         </ul>
       </div> 
 
@@ -24,45 +28,45 @@
       <span ng-repeat='center in centers'>
         <span ng-show='!reports[center.name]'>Not Reported</span>
         <span ng-show='reports[center.name]'><a ng-href='/reports/{{reports[center.name][_id]}}'>Reported</a></span>
-         | {{center.name}}
+        | {{center.name}}
       </span>
       
       <br/>
-        
+      
       <div class="panel panel-default">
         <div class="panel-body globalReports flex-box">
           <button type="button" class="btn btn-default" data-toggle="modal" data-target="#addSite">
-             Add Site Month Report
-          </button>
-          <button type="button" class="btn btn-default">
-            <a href='/api/download/site/{{reportDate}}'>
-               Site Statistics Grand Totals
-            </a>
-          </button>
-          <button type="button" class="btn btn-default">
-          <a href='/api/download/ki/{{reportDate}}'>
-             Key Indicators Grand Totals
-          </a>
-          </button>       
-        </div>
-      </div>
+           Add Site Month Report
+         </button>
+         <button type="button" class="btn btn-default">
+          <a href='/api/download/site/{{reportDate}}'>
+           Site Statistics Grand Totals
+         </a>
+       </button>
+       <button type="button" class="btn btn-default">
+        <a href='/api/download/ki/{{reportDate}}'>
+         Key Indicators Grand Totals
+       </a>
+     </button>       
+   </div>
+ </div>
 
-      <!-- Create Custom Report modal and three inner modals (Grand Totals, Breakdown by Year, Breakdown by Month) commented out -->
+ <!-- Create Custom Report modal and three inner modals (Grand Totals, Breakdown by Year, Breakdown by Month) commented out -->
       <!-- <button type="button" class="btn btn-default" data-toggle="modal" data-target="#create">
          Create Custom Report
-      </button> -->
+       </button> -->
 
-      <!-- Button trigger modal -->
-      <button type="button" class="btn btn-default" data-toggle="modal" data-target="#addSite">
+       <!-- Button trigger modal -->
+       <button type="button" class="btn btn-default" data-toggle="modal" data-target="#addSite">
          Add Statistics Report
-      </button>
+       </button>
 
-      <!-- Button trigger modal -->
-      <button type="button" class="btn btn-default" data-toggle="modal" data-target="#addKeyIndicatorReport">
+       <!-- Button trigger modal -->
+       <button type="button" class="btn btn-default" data-toggle="modal" data-target="#addKeyIndicatorReport">
          Add Key Indicator Report
-      </button>
+       </button>
 
-      <!-- Create Custom Modal -->
+       <!-- Create Custom Modal -->
  <!--      <div class="modal fade" id="create" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" ng-controller="reportCreateCustomCtrl">
         <div class="modal-dialog">
           <div class="modal-content">
@@ -73,16 +77,16 @@
             <div class="modal-body">
               <div class="panel panel-default">
                 <div class="panel-body">
-                    Select sites to use in report:<br/> -->
+                  Select sites to use in report:<br/> -->
 
-                    <!-- First site selection -->
-                     <!-- <select ng-init='selectedCenter1 = center' ng-options='center.center for center in $parent.centers' ng-model='selectedCenter1'></select> -->
+                  <!-- First site selection -->
+                  <!-- <select ng-init='selectedCenter1 = center' ng-options='center.center for center in $parent.centers' ng-model='selectedCenter1'></select> -->
 
-                    <!-- Second site selection -->
-                      <!-- <select ng-init='selectedCenter2 = center' ng-options='center.center for center in $parent.centers' ng-model='selectedCenter2'></select> -->
+                  <!-- Second site selection -->
+                  <!-- <select ng-init='selectedCenter2 = center' ng-options='center.center for center in $parent.centers' ng-model='selectedCenter2'></select> -->
 
 
-                    <!-- Third site selection -->
+                  <!-- Third site selection -->
                    <!-- <select ng-init='selectedCenter3 = center' ng-options='center.center for center in $parent.centers' ng-model='selectedCenter3'></select>
 
                 </div>
@@ -122,7 +126,7 @@
                 <button type="button" class="btn btn-default" data-toggle="modal" data-target="#reportsByMonth" data-dismiss="modal">Grand totals</button>
                 <button type="button" class="btn btn-default" data-toggle="modal" data-target="#reportsGrandTotal" data-dismiss="modal">Breakdown by month</button>
                 <button type="button" class="btn btn-default" data-toggle="modal" data-target="#reportsByYear" data-dismiss="modal">Breakdown by year</button>
-            </div>   -->  
+              </div>   -->  
             <!-- <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
               <button type="button" class="btn btn-primary">Export to Excel</button>
@@ -130,7 +134,7 @@
           </div>     
         </div>
       </div>
- -->
+    -->
 
     <!-- Grand Totals Modal-->
     <!--   <div class="modal fade" id="reportsGrandTotal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -151,7 +155,7 @@
         </div>
       </div> -->
 
- <!-- Breakdown By Month Modal-->
+      <!-- Breakdown By Month Modal-->
     <!--  <div class="modal fade" id="reportsByMonth" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
@@ -169,8 +173,8 @@
           </div>
         </div>
       </div>    
- -->
- <!-- Breakdown By Year Modal-->
+    -->
+    <!-- Breakdown By Year Modal-->
     <!--  <div class="modal fade" id="reportsByYear" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
@@ -191,9 +195,9 @@
 
 
 
-<!-- Key Indicator modals begin here -->
+      <!-- Key Indicator modals begin here -->
 
-     <!-- Add Key Indicator Report Modal -->
+      <!-- Add Key Indicator Report Modal -->
       <div class="modal fade" id="addKeyIndicatorReport" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" ng-controller="reportKiAddCtrl">
         <div class="modal-dialog">
           <div class="modal-content">
@@ -202,126 +206,128 @@
               <h4 class="modal-title" id="myModalLabel">Add Key Indicator Report</h4>
             </div>
             <div class="modal-body">
-                <div class="panel panel-default">
-                <div class="panel-heading">
-                  <h3 class="panel-title">Visitors Center and Historic Site Monthly Report for: {{selectedCenter.center}} </br>  {{selectedMonthAdd}} {{selectedYearAdd}}</h3><br/>
-                      Choose site:
-                      <select ng-init='selectedCenter = center' ng-options='center.center for center in $parent.centers' ng-model='selectedCenter'></select>
-                       
-                       Month:
-                      <select ng-init='selectedMonth = months[month]' ng-options='value for value in months' ng-model='selectedMonthAdd'></select>
-                  
-                      Date:
-                      <select ng-init='selectedYear = year' ng-options='value for value in years' ng-model='selectedYearAdd'></select>
-                      
-                </div>
-                <div class="panel-body">
-                    <div class="panel panel-default">
-                      <div class="panel-body monthlyReportBox">
-                       Key Indicator Summary:
-                       
-                          <li>Baptized:<input class="inputFieldAdd" min="0" type="number" ng-model="baptized"></li>
-                           <li>Baptismal date:<input class="inputFieldAdd" min="0" type="number" ng-model="baptismal_date"></li>
-                           <li>Sacrament meeting:<input class="inputFieldAdd" min="0" type="number" ng-model="sacrament_meeting"></li>
-                           <li>Member present lessons:<input class="inputFieldAdd" min="0" type="number" ng-model="member_present_lessons"></li>
-                           <li>Other lessons:<input class="inputFieldAdd" min="0" type="number" ng-model="other_lessons"></li> 
-                           <li>New investigators:<input class="inputFieldAdd" min="0" type="number" ng-model="new_investigators"></li>
-                           <li>Progressing investigators:<input class="inputFieldAdd" min="0" type="number" ng-model="progressing_investigators"></li> 
-                           <li>Recent convert/less active:<input class="inputFieldAdd" min="0" type="number" ng-model="rc_la"></li>
-                           <li>Referrals sent:<input class="inputFieldAdd" min="0" type="number" ng-model="referrals_sent"></li> 
-                      </div>
-                    </div>
-                </div>               
-              </div>  
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="addNewKeyIndicatorReport()">Save changes</button>
-            </div>
-          </div>
-        </div>
-      </div>
-
- <!-- View Key Indicator Modal -->
-      <div class="modal fade" id="viewKeyIndicator" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" ng-controller="reportKiViewCtrl">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header list-group-item-info">
-              <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
-              </button>
-              <h4 class="modal-title" id="myModalLabel">View Single Key Indicator Report</h4>
-            </div>
-            <div class="modal-body">
               <div class="panel panel-default">
                 <div class="panel-heading">
-                  <h3 class="panel-title">Visitors Center and Historic Site Monthly Statistical Report for: {{$parent.reportKi.center}} <br/> {{$parent.selectedMonth}}, {{$parent.selectedYear}}</h3>
+                  <h3 class="panel-title">Visitors Center and Historic Site Monthly Report for: <br/>{{selectedCenter.center}} {{selectedMonthAdd}} {{selectedYearAdd}}</h3><br/>
+                  Choose site:
+                  <select ng-init='selectedCenter = center' ng-options='center.center for center in $parent.centers' ng-model='selectedCenter'></select>
+
+                  <br/>
+
+                  Month:
+                  <select ng-init='selectedMonth = months[month]' ng-options='value for value in months' ng-model='selectedMonthAdd'></select>
+                  
+                  Date:
+                  <select ng-init='selectedYear = year' ng-options='value for value in years' ng-model='selectedYearAdd'></select>
+                  
                 </div>
                 <div class="panel-body">
-                    <div class="panel panel-default">
-                      <div class="panel-body monthlyReportBox">
-                        Key Indicator Summary:
-                        
-                          <li>Baptized: {{reportKi['Indicators.baptized']}}</li>
-                          <li>Baptismal date: {{reportKi['Indicators.baptismal_date']}}</li>
-                          <li>Sacrament meeting: {{reportKi['Indicators.sacrament_meeting']}}<li>
-                          <li>Member present lessons: {{reportKi['Indicators.member_present_lessons']}}<li>
-                          <li>Other lessons: {{reportKi['Indicators.other_lessons']}}<li>
-                          <li>New investigators: {{reportKi['Indicators.new_investigators']}}<li>
-                          <li>Progressing investigators: {{reportKi['Indicators.progressing_investigators']}}<li> 
-                          <li>Recent Convert/Less Active: {{reportKi['Indicators.rc_la']}}<li> 
-                          <li>Referrals Sent: {{reportKi['Indicators.referrals_sent']}}<li>  
-                      
-                      </div>
-                    </div>
-
-                      <button type="button" class="btn btn-default">Print</button>
-                      <button type="button" class="btn btn-default" data-toggle="modal" data-target="#viewKeyIndicatorEdit" data-dismiss="modal" ng-click="keyIndicatorEdit(report['Reports.id'])">Edit</button>
-                      <button type="button" class="btn btn-default" ng-click="deleteReportWarning()">Delete</button><br/>
-                  
-                     <div class="alert alert-danger" role="alert" ng-show="deleteReportWarningAlert">Are you sure you want to delete this report? This action cannot be undone.<button type="button" class="btn btn-default" data-dismiss="modal" ng-click="deleteSingleReport(reportKi['Indicators.id'])">Yes, I want to delete this report</button><br/>
-                     </div>    
-                </div>
-              </div>   
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="refreshModalClose()">Close</button>
-            </div>
+                  <div class="panel panel-default">
+                    <div class="panel-body monthlyReportBox">
+                     Key Indicator Summary:
+                     
+                     <li>Baptized:<input class="inputFieldEdit" min="0" type="number" ng-model="baptized"></li>
+                     <li>Baptismal date:<input class="inputFieldEdit" min="0" type="number" ng-model="baptismal_date"></li>
+                     <li>Sacrament meeting:<input class="inputFieldEdit" min="0" type="number" ng-model="sacrament_meeting"></li>
+                     <li>Member present lessons:<input class="inputFieldEdit" min="0" type="number" ng-model="member_present_lessons"></li>
+                     <li>Other lessons:<input class="inputFieldEdit" min="0" type="number" ng-model="other_lessons"></li> 
+                     <li>New investigators:<input class="inputFieldEdit" min="0" type="number" ng-model="new_investigators"></li>
+                     <li>Progressing investigators:<input class="inputFieldEdit" min="0" type="number" ng-model="progressing_investigators"></li> 
+                     <li>Recent convert/less active:<input class="inputFieldEdit" min="0" type="number" ng-model="rc_la"></li>
+                     <li>Referrals sent:<input class="inputFieldEdit" min="0" type="number" ng-model="referrals_sent"></li> 
+                   </div>
+                 </div>
+               </div>               
+             </div>  
+           </div>
+           <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="addNewKeyIndicatorReport()">Save changes</button>
           </div>
         </div>
       </div>
+    </div>
+
+    <!-- View Key Indicator Modal -->
+    <div class="modal fade" id="viewKeyIndicator" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" ng-controller="reportKiViewCtrl">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header list-group-item-info">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+            </button>
+            <h4 class="modal-title" id="myModalLabel">View Key Indicator Report</h4>
+          </div>
+          <div class="modal-body">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title">Visitors Center and Historic Site Monthly Statistical Report for: {{$parent.reportKi.center}} <br/> {{$parent.selectedMonth}}, {{$parent.selectedYear}}</h3>
+              </div>
+              <div class="panel-body">
+                <div class="panel panel-default">
+                  <div class="panel-body monthlyReportBox display">
+                    Key Indicator Summary:
+                    
+                    <li>Baptized:{{reportKi['Indicators.baptized']}}</li>
+                    <li>Baptismal date:{{reportKi['Indicators.baptismal_date']}}</li>
+                    <li>Sacrament meeting: {{reportKi['Indicators.sacrament_meeting']}}</li>
+                    <li>Member present lessons: {{reportKi['Indicators.member_present_lessons']}}</li>
+                    <li>Other lessons: {{reportKi['Indicators.other_lessons']}}</li>
+                    <li>New investigators: {{reportKi['Indicators.new_investigators']}}</li>
+                    <li>Progressing investigators: {{reportKi['Indicators.progressing_investigators']}}</li> 
+                    <li>Recent Convert/Less Active: {{reportKi['Indicators.rc_la']}}</li> 
+                    <li>Referrals Sent: {{reportKi['Indicators.referrals_sent']}}</li>  
+                    
+                  </div>
+                </div>
+
+                <button type="button" class="btn btn-default">Print</button>
+                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#viewKeyIndicatorEdit" data-dismiss="modal" ng-click="keyIndicatorEdit(report['Reports.id'])">Edit</button>
+                <button type="button" class="btn btn-default" ng-click="deleteReportWarning()">Delete</button><br/>
+                
+                <div class="alert alert-danger" role="alert" ng-show="deleteReportWarningAlert">Are you sure you want to delete this report? This action cannot be undone.<button type="button" class="btn btn-default" data-dismiss="modal" ng-click="deleteSingleReport(reportKi['Indicators.id'])">Yes, I want to delete this report</button><br/>
+                </div>    
+              </div>
+            </div>   
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="refreshModalClose()">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
 
-      <!-- View Key Indicator Edit Modal -->
-      <div class="modalEdit fade" id="viewKeyIndicatorEdit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" ng-controller="reportKiEditCtrl">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header list-group-item-danger">
-              <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-              <h4 class="modal-title" id="myModalLabel">Edit Key Indicator Report</h4>
-            </div>
+    <!-- View Key Indicator Edit Modal -->
+    <div class="modalEdit fade" id="viewKeyIndicatorEdit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" ng-controller="reportKiEditCtrl">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header list-group-item-danger">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <h4 class="modal-title" id="myModalLabel">Edit Key Indicator Report</h4>
+          </div>
+          <div class="modal-body">
             <div class="modal-body">
-                    <div class="modal-body">
               <div class="panel panel-default">
                 <div class="panel-heading">
                   <h3 class="panel-title">Visitors Center and Historic Site Monthly Statistical Report for: {{report.center}} {{selectedMonth}}, {{selectedYear}} </h3>
                 </div>
                 <div class="panel-body">
-                    <div class="panel panel-default">
-                      <div class="panel-body monthlyReportBox">
-                        Key Indicator Summary:
-                                
-                          <li>Baptized:<input class="inputFieldEdit" min="0" type="number" ng-model="reportKi['Indicators.baptized']"></li>
-                           <li>Baptismal date:<input class="inputFieldEdit" min="0" type="number" ng-model="reportKi['Indicators.baptismal_date']"></li>
-                           <li>Sacrament meeting:<input class="inputFieldEdit" min="0" type="number" ng-model="reportKi['Indicators.sacrament_meeting']"></li>
-                           <li>Member present lessons:<input class="inputFieldEdit" min="0" type="number" ng-model="reportKi['Indicators.member_present_lessons']"></li>
-                           <li>Other lessons:<input class="inputFieldEdit" min="0" type="number" ng-model="reportKi['Indicators.other_lessons']"></li> 
-                           <li>New investigators:<input class="inputFieldEdit" min="0" type="number" ng-model="reportKi['Indicators.new_investigators']"></li>
-                           <li>Progressing investigators:<input class="inputFieldEdit" min="0" type="number" ng-model="reportKi['Indicators.progressing_investigators']"></li> 
-                           <li>Recent convert/less active:<input class="inputFieldEdit" min="0" type="number" ng-model="reportKi['Indicators.rc_la']"></li>
-                           <li>Referrals sent:<input class="inputFieldEdit" min="0" type="number" ng-model="reportKi['Indicators.referrals_sent']"></li> 
-                        
-                      </div>
-                    </div>  
+                  <div class="panel panel-default">
+                    <div class="panel-body monthlyReportBox">
+                      Key Indicator Summary:
+                      
+                      <li>Baptized:<input class="inputFieldEdit" min="0" type="number" ng-model="reportKi['Indicators.baptized']"></li>
+                      <li>Baptismal date:<input class="inputFieldEdit" min="0" type="number" ng-model="reportKi['Indicators.baptismal_date']"></li>
+                      <li>Sacrament meeting:<input class="inputFieldEdit" min="0" type="number" ng-model="reportKi['Indicators.sacrament_meeting']"></li>
+                      <li>Member present lessons:<input class="inputFieldEdit" min="0" type="number" ng-model="reportKi['Indicators.member_present_lessons']"></li>
+                      <li>Other lessons:<input class="inputFieldEdit" min="0" type="number" ng-model="reportKi['Indicators.other_lessons']"></li> 
+                      <li>New investigators:<input class="inputFieldEdit" min="0" type="number" ng-model="reportKi['Indicators.new_investigators']"></li>
+                      <li>Progressing investigators:<input class="inputFieldEdit" min="0" type="number" ng-model="reportKi['Indicators.progressing_investigators']"></li> 
+                      <li>Recent convert/less active:<input class="inputFieldEdit" min="0" type="number" ng-model="reportKi['Indicators.rc_la']"></li>
+                      <li>Referrals sent:<input class="inputFieldEdit" min="0" type="number" ng-model="reportKi['Indicators.referrals_sent']"></li> 
+                      
+                    </div>
+                  </div>  
                 </div>
               </div>        
             </div>
@@ -334,114 +340,116 @@
       </div>
     </div>  
 
-<!-- Statistics report modals begin here -->
+    <!-- Statistics report modals begin here -->
 
-      <!-- Add Statistics Report Modal -->
-      <div class="modal fade" id="addSite" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" ng-controller="reportAddSiteCtrl">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header list-group-item-info">
-              <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-              <h4 class="modal-title" id="myModalLabel">Add Site Month Report</h4>
-            </div>
-            <div class="modal-body">
+    <!-- Add Statistics Report Modal -->
+    <div class="modal fade" id="addSite" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" ng-controller="reportAddSiteCtrl">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header list-group-item-info">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <h4 class="modal-title" id="myModalLabel">Add Statistics Report</h4>
+          </div>
+          <div class="modal-body">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title">Visitors Center and Historic Site Monthly Report for: <br/>{{selectedCenter.center}}  {{selectedMonthAdd}} {{selectedYearAdd}}</h3><br/>
+                Choose site:
+                <select ng-init='selectedCenter = center' ng-options='center.center for center in $parent.centers' ng-model='selectedCenter'></select>
+                
+                <br/>
+
+                Month:
+                <select ng-init='selectedMonth = months[month]' ng-options='value for value in months' ng-model='selectedMonthAdd'></select>
+                
+                Date:
+                <select ng-init='selectedYear = year' ng-options='value for value in years' ng-model='selectedYearAdd'></select>
+                
+              </div>
+              <div class="panel-body">
                 <div class="panel panel-default">
-                <div class="panel-heading">
-                  <h3 class="panel-title">Visitors Center and Historic Site Monthly Report for: {{selectedCenter.center}} </br>  {{selectedMonthAdd}} {{selectedYearAdd}}</h3><br/>
-                      Choose site:
-                      <select ng-init='selectedCenter = center' ng-options='center.center for center in $parent.centers' ng-model='selectedCenter'></select>
-                       
-                       Month:
-                      <select ng-init='selectedMonth = months[month]' ng-options='value for value in months' ng-model='selectedMonthAdd'></select>
-                  
-                      Date:
-                      <select ng-init='selectedYear = year' ng-options='value for value in years' ng-model='selectedYearAdd'></select>
-                      
+                  <div class="panel-body monthlyReportBox">
+                    Visitors Summary
+                    
+                    <li>Total number of meaningful contacts:<input class="inputFieldEdit" min="0" type="number" ng-model="visitor_total"></li>
+                    <li>Total number of people who took tours:<input class="inputFieldEdit" min="0" type="number" ng-model="visitor_tour"></li>
+                    <li>Total number of non-members who took tours:<input class="inputFieldEdit" min="0" type="number" ng-model="visitor_tournonmember"></li>
+                    
+                  </div>
                 </div>
-                <div class="panel-body">
-                    <div class="panel panel-default">
-                      <div class="panel-body monthlyReportBox">
-                        Visitors Summary
-                       
-                          <li>Total number of meaningful contacts:<input class="inputFieldEdit" min="0" type="number" ng-model="visitor_total"></li>
-                          <li>Total number of people who took tours:<input class="inputFieldEdit" min="0" type="number" ng-model="visitor_tour"></li>
-                          <li>Total number of non-members who took tours:<input class="inputFieldEdit" min="0" type="number" ng-model="visitor_tournonmember"></li>
-                        
-                      </div>
-                    </div>
-                    <div class="panel panel-default">
-                      <div class="panel-body monthlyReportBox">
-                        Referrals Summary
-                         
-                            <li>Those referring at the site:<input class="inputFieldEdit" type="number" min="0" ng-model="referral_cards"></li>
-                            <li>Those referring when called after visiting the site:<input class="inputFieldEdit" type="number" min="0" ng-model="referral_called"></li>
-                            <li>Those referring with inbound calls:<input class="inputFieldEdit" type="number" min="0" ng-model="referral_inbound"></li>
-                            <li>Those referring whose names came from members:<input class="inputFieldEdit" type="number" min="0" ng-model="referral_member"></li>
-                      </div>
-                    </div>
-                    <div class="panel panel-default">
-                      <div class="panel-body">
-                        Comments:<textarea class="form-control inputFieldEditComments" rows="3" ng-model="comments"></textarea>
-                      </div>
-                    </div>   
+                <div class="panel panel-default">
+                  <div class="panel-body monthlyReportBox">
+                    Referrals Summary
+                    
+                    <li>Those referring at the site:<input class="inputFieldEdit" type="number" min="0" ng-model="referral_cards"></li>
+                    <li>Those referring when called after visiting the site:<input class="inputFieldEdit" type="number" min="0" ng-model="referral_called"></li>
+                    <li>Those referring with inbound calls:<input class="inputFieldEdit" type="number" min="0" ng-model="referral_inbound"></li>
+                    <li>Those referring whose names came from members:<input class="inputFieldEdit" type="number" min="0" ng-model="referral_member"></li>
+                  </div>
                 </div>
-              </div>  
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="addNewSiteReport()">Save changes</button>
-            </div>
+                <div class="panel panel-default">
+                  <div class="panel-body">
+                    Comments:<textarea class="form-control inputFieldEditComments" rows="3" ng-model="comments"></textarea>
+                  </div>
+                </div>   
+              </div>
+            </div>  
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="addNewSiteReport()">Save changes</button>
           </div>
         </div>
       </div>
+    </div>
 
-      <!-- View Statistics Report Modal -->
-      <div class="modal fade" id="viewButtonModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" ng-controller="reportViewCtrl">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header list-group-item-info">
-              <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
-              </button>
-              <h4 class="modal-title" id="myModalLabel">View Single Report</h4>
-            </div>
-            <div class="modal-body">
-              <div class="panel panel-default">
-                <div class="panel-heading">
-                  <h3 class="panel-title">Visitors Center and Historic Site Monthly Report for: {{$parent.report.center}} <br/> {{$parent.selectedMonth}}, {{$parent.selectedYear}}</h3>
-                </div>
-                <div class="panel-body">
-                    <div class="panel panel-default">
-                      <div class="panel-body monthlyReportBox">
-                        Visitors Summary
-   
-                          <li>Total number of meaningful contacts: {{report['Reports.visitor_total']}}</li>
-                          <li>Total number of people who took tours: {{report['Reports.visitor_tour']}}</li>
-                          <li>Total number of non-members who took tours: {{report['Reports.visitor_tournonmember']}}<li>
+    <!-- View Statistics Report Modal -->
+    <div class="modal fade" id="viewButtonModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" ng-controller="reportViewCtrl">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header list-group-item-info">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+            </button>
+            <h4 class="modal-title" id="myModalLabel">View Statistics Report</h4>
+          </div>
+          <div class="modal-body">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title">Visitors Center and Historic Site Monthly Report for: <br/>{{$parent.report.center}} <br/> {{$parent.selectedMonth}}, {{$parent.selectedYear}}</h3>
+              </div>
+              <div class="panel-body">
+                <div class="panel panel-default">
+                  <div class="panel-body monthlyReportBox">
+                    Visitors Summary
+                    
+                    <li>Total number of meaningful contacts: {{report['Reports.visitor_total']}}</li>
+                    <li>Total number of people who took tours: {{report['Reports.visitor_tour']}}</li>
+                    <li>Total number of non-members who took tours: {{report['Reports.visitor_tournonmember']}}<li>
                       
-                      </div>
                     </div>
-                    <div class="panel panel-default">
-                      <div class="panel-body monthlyReportBox">
-                        Referrals Summary
-                            <li>Those referring at the site: {{report['Reports.referral_cards']}}</li>
-                            <li>Those referring when called after visiting the site: {{report['Reports.referral_called']}}</li>
-                            <li>Those referring with inbound calls: {{report['Reports.referral_inbound']}}</li>
-                            <li>Those referring whose names came from members: {{report['Reports.referral_member']}}</li>
-                          <!--   <li>Total referrals:</li> -->
-                       
-                      </div>
+                  </div>
+                  <div class="panel panel-default">
+                    <div class="panel-body monthlyReportBox">
+                      Referrals Summary
+                      <li>Those referring at the site: {{report['Reports.referral_cards']}}</li>
+                      <li>Those referring when called after visiting the site: {{report['Reports.referral_called']}}</li>
+                      <li>Those referring with inbound calls: {{report['Reports.referral_inbound']}}</li>
+                      <li>Those referring whose names came from members: {{report['Reports.referral_member']}}</li>
+                      <!--   <li>Total referrals:</li> -->
+                      
                     </div>
-                    <div class="panel panel-default">
-                      <div class="panel-body">
-                        Comments: {{report['Reports.comments']}}
-                      </div>
-                    </div> 
-                      <button type="button" class="btn btn-default">Print</button>
-                      <button type="button" class="btn btn-default" data-toggle="modal" data-target="#viewButtonModalEdit" data-dismiss="modal" ng-click="getSingleReportEdit(report['Reports.id'])">Edit</button>
-                      <button type="button" class="btn btn-default" ng-click="deleteReportWarning()">Delete</button><br/>
+                  </div>
+                  <div class="panel panel-default">
+                    <div class="panel-body">
+                      Comments: {{report['Reports.comments']}}
+                    </div>
+                  </div> 
+                  <button type="button" class="btn btn-default">Print</button>
+                  <button type="button" class="btn btn-default" data-toggle="modal" data-target="#viewButtonModalEdit" data-dismiss="modal" ng-click="getSingleReportEdit(report['Reports.id'])">Edit</button>
+                  <button type="button" class="btn btn-default" ng-click="deleteReportWarning()">Delete</button><br/>
                   
-                     <div class="alert alert-danger" role="alert" ng-show="deleteReportWarningAlert">Are you sure you want to delete this report? This action cannot be undone.<button type="button" class="btn btn-default" data-dismiss="modal" ng-click="deleteSingleReport(report['Reports.id'])">Yes, I want to delete this report</button><br/>
-                     </div>    
+                  <div class="alert alert-danger" role="alert" ng-show="deleteReportWarningAlert">Are you sure you want to delete this report? This action cannot be undone.<button type="button" class="btn btn-default" data-dismiss="modal" ng-click="deleteSingleReport(report['Reports.id'])">Yes, I want to delete this report</button><br/>
+                  </div>    
                 </div>
               </div>   
             </div>
@@ -458,33 +466,33 @@
           <div class="modal-content">
             <div class="modal-header list-group-item-danger">
               <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-              <h4 class="modal-title" id="myModalLabel">Edit Report</h4>
+              <h4 class="modal-title" id="myModalLabel">Edit Statistics Report</h4>
             </div>
             <div class="modal-body">
-                    <div class="modal-body">
-              <div class="panel panel-default">
-                <div class="panel-heading">
-                  <h3 class="panel-title">Visitors Center and Historic Site Monthly Report for: {{report.center}} {{selectedMonth}}, {{selectedYear}} </h3>
-                </div>
-                <div class="panel-body">
+              <div class="modal-body">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h3 class="panel-title">Visitors Center and Historic Site Monthly Report for: {{report.center}} {{selectedMonth}}, {{selectedYear}} </h3>
+                  </div>
+                  <div class="panel-body">
                     <div class="panel panel-default">
                       <div class="panel-body monthlyReportBox">
                         Visitors Summary
-                       
-                          <li>Total number of meaningful contacts:<input class="inputFieldEdit" min="0" type="number" ng-model="report['Reports.visitor_total']"></li>
-                          <li>Total number of people who took tours:<input class="inputFieldEdit" min="0" type="number" ng-model="report['Reports.visitor_tour']"></li>
-                          <li>Total number of non-members who took tours:<input class="inputFieldEdit" min="0" type="number" ng-model="report['Reports.visitor_tournonmember']"></li>
+                        
+                        <li>Total number of meaningful contacts:<input class="inputFieldEdit" min="0" type="number" ng-model="report['Reports.visitor_total']"></li>
+                        <li>Total number of people who took tours:<input class="inputFieldEdit" min="0" type="number" ng-model="report['Reports.visitor_tour']"></li>
+                        <li>Total number of non-members who took tours:<input class="inputFieldEdit" min="0" type="number" ng-model="report['Reports.visitor_tournonmember']"></li>
                         
                       </div>
                     </div>
                     <div class="panel panel-default">
                       <div class="panel-body monthlyReportBox">
                         Referrals Summary
-                         
-                            <li>Those referring at the site:<input class="inputFieldEdit" type="number" min="0" ng-model="report['Reports.referral_cards']"></li>
-                            <li>Those referring when called after visiting the site:<input class="inputFieldEdit" type="number" min="0" ng-model="report['Reports.referral_called']"></li>
-                            <li>Those referring with inbound calls:<input class="inputFieldEdit" type="number" min="0" ng-model="report['Reports.referral_inbound']"></li>
-                            <li>Those referring whose names came from members:<input class="inputFieldEdit" type="number" min="0" ng-model="report['Reports.referral_member']"></li>
+                        
+                        <li>Those referring at the site:<input class="inputFieldEdit" type="number" min="0" ng-model="report['Reports.referral_cards']"></li>
+                        <li>Those referring when called after visiting the site:<input class="inputFieldEdit" type="number" min="0" ng-model="report['Reports.referral_called']"></li>
+                        <li>Those referring with inbound calls:<input class="inputFieldEdit" type="number" min="0" ng-model="report['Reports.referral_inbound']"></li>
+                        <li>Those referring whose names came from members:<input class="inputFieldEdit" type="number" min="0" ng-model="report['Reports.referral_member']"></li>
                         
                       </div>
                     </div>
@@ -493,14 +501,14 @@
                         Comments:<textarea class="form-control inputFieldEditComments" rows="3" ng-model="report['Reports.comments']"></textarea>
                       </div>
                     </div>   
-                </div>
-              </div>        
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="editSingleReport()">Save changes</button>
-            </div>
+                  </div>
+                </div>        
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="editSingleReport()">Save changes</button>
+              </div>
+            </div> 
           </div> 
-        </div> 
-      </div>
-    </div>  
+        </div>
+      </div>  

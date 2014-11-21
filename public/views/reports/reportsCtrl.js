@@ -26,6 +26,7 @@ app.controller('reportsCtrl', function($scope, $timeout, reportService, centerSe
 	}
 
 	getAllCenters();
+	
 	//Gets Stats and Key Indicator reports for month
 	$scope.getReportsByMonth = function(){
 		for(var i = 0; i < $scope.months.length; i++){
