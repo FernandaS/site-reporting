@@ -76,6 +76,10 @@
 	width: 30%;
 }
 
+.display: {
+	display: inline-block !important;
+}
+
 
 
 /**.logo-bar {
