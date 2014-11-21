@@ -137,5 +137,19 @@ function getAllByRange(rData){
 };
 
 function getAllReportsByCenterId(id){
-  return Models.reports.findAll({ where: { centerId: id } }, {raw: true});
+  return Models.reports.findAll({ where: { centerId: id },
+  attributes: [
+          'id', 
+          'visitor_total', 
+          'visitor_tour', 
+          'visitor_tournonmember', 
+          'referral_cards', 
+          'referral_called', 
+          'referral_inbound', 
+          'referral_member',
+          'comments',
+          [Sequelize.fn('date_format', Sequelize.col('date'), '%Y-%m-%d'), 'date']
+        ]
+   }, {raw: true});
 };
+

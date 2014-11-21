@@ -32,6 +32,7 @@
     "sequelize-import": "^1.2.1"
   },
   "devDependencies": {
+    "faker": "^2.1.0",
     "sequelize-auto": "0.0.7"
   }
 }

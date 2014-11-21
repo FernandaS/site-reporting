@@ -121,5 +121,12 @@ function getAllByRange(rData){
 };
 
 function getAllReportsByCenterId(id){
-  return Models.keyindicators.findAll({ where: { centerId: id } }, {raw: true});
+  return Models.keyindicators.findAll({ where: { centerId: id },
+  attributes: [
+            'id', 'date', 'baptized', 'baptismal_date', 'sacrament_meeting', 
+            'member_present_lessons', 'other_lessons', 'new_investigators',
+            'progressing_investigators', 'rc_la', 'referrals_sent',
+            [Sequelize.fn('date_format', Sequelize.col('date'), '%Y-%m-%d'), 'date']
+          ]
+   }, {raw: true});
 };
