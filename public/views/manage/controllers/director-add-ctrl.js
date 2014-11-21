@@ -9,7 +9,7 @@ $scope.createDirector = function(director){
 		.then(function(res){
 		console.log(res);
 		if(res.data.message){
-			swal("Oops!", "Director was not saved!", "error")
+			nzSwal("Oops!", "Director was not saved!", "error")
 		} else {
 			$scope.director = '';
 			$scope.getAllUsers()

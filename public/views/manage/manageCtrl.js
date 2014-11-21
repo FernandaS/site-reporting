@@ -43,9 +43,6 @@ $scope.getAllUsers = function(){
 
 $scope.getAllUsers();
 
-$scope.test = function(director){
- 	console.log(director);
-}
 
 });
 

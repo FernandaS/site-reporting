@@ -28,6 +28,10 @@ $scope.deleteAdmin = function(){
 		 		})
 		 	})  
 		 	nzSwal("Deleted!", "Admin has been deleted.", "success"); 
+		 	$scope.admin.email = '';
+		 	$scope.admin.username = '';
+
+
 		 	
 		})
 		 .catch(function(){

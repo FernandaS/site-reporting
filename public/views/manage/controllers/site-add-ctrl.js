@@ -16,11 +16,11 @@ $scope.submitCenter = function(){
 	centerService.create($scope.center)
 	.then(function(res){
 		if (res.data.message){
-			swal("Oops!", "Center was not saved!", "error")
+			nzSwal("Oops!", "Center was not saved!", "error")
 		} else {
 			$scope.center = '';
 			$scope.allCenters()
-			swal("Success!", "Your center has been created!", "success");				
+			nzSwal("Success!", "Your center has been created!", "success");				
 		}
 	})
 }

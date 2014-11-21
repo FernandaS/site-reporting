@@ -28,7 +28,8 @@ $scope.deleteDirector = function(){
 		  		})
 		  	})
 		 	nzSwal("Deleted!", "Director has been deleted.", "success"); 
-		 	
+		 	$scope.director.username = '';
+		 	$scope.director.email = '';
 		})
 		 .catch(function(){
 		 	nzSwal('Cancelled');
