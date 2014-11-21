@@ -81,7 +81,47 @@ function getUser(username){
 };
 
 function getUserById(id){
-	return Models.users.find({where: { id: id }, attributes: ['id', 'username', 'role', 'email']}, {raw: true});
+	return new Promise(function(resolve, reject){
+		Models.users.findAll({ where: { id: id }, include: [{ 
+			model: Models.centers, 
+			as: 'Centers'}]}, 
+			{ raw: true }).then(function(result){
+				if(result[0] === undefined) return resolve(null);
+				newResult = Sequelize.Utils._.chain(result)
+				.groupBy('username').map(function(value, key){
+					return {
+						id: value[0].id, 
+						username: value[0].username, 
+						role: value[0].role, 
+						email: value[0].email,
+						password: value[0].password,
+						centers: Sequelize.Utils._.chain(value).map(function(value, key){
+							return {
+								id: value['Centers.id'],
+								center: value['Centers.center'],
+								alias: value['Centers.alias'],
+								active: value['Centers.active'],
+								type: value['Centers.type'],
+								city: value['Centers.city'],
+								state: value['Centers.state'],
+								country: value['Centers.country']
+							}
+						}).value()
+					}
+				}).value();
+				if(newResult[0]){
+					if(!newResult[0].centers[0].id){
+						newResult[0].centers = null;
+						resolve(newResult[0]);
+					} else {
+						resolve(newResult[0]);
+					}
+				}		
+			}, function(err){
+				reject(err);
+			});
+
+		});
 };
 
 function getAllUsers(){
@@ -115,3 +155,7 @@ function getAllUsers(){
 			});
 		});
 };
+
+getUserById(8).then(function(result){
+	console.log(result);
+})
