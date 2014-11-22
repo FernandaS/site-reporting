@@ -201,6 +201,8 @@
                 {{selectedCenter.center}} <br/>
                 {{selectedMonthAdd}} {{selectedYearAdd}}</h3>
 
+                <select ng-init='selectedCenter = center' ng-options='center.center for center in $parent.centers' ng-model='selectedCenter'></select>
+
                 <br/>
 
                 Month:
