@@ -80,6 +80,17 @@
 	display: inline-block !important;
 }
 
+.downloadLink {
+	color: #000;
+	text-decoration: none;
+}
+
+.downloadLink:hover {
+	color: #000;
+	text-decoration: none;
+}
+
+
 
 
 /**.logo-bar {

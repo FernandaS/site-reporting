@@ -15,7 +15,7 @@ app.controller('directorCtrl', function($scope, reportService, centerService){
 		centerService.getAllReports($scope.selectedCenter.id)
 			.then(function(response){
 				$scope.reports = response.data;
-				// console.log($scope.reports);
+				console.log($scope.reports);
 			})
 		centerService.getAllKIReports($scope.selectedCenter.id)
 			.then(function(response){
@@ -35,15 +35,12 @@ app.controller('directorCtrl', function($scope, reportService, centerService){
 		
 				for(var i = 0; i < $scope.reports.length; i++){
 					if ($scope.reports[i].date === modifiedDate){
-						$scope.report = $scope.reports[i];
-						console.log($scope.report);
-	
+						$scope.report = $scope.reports[i];	
 					}
 				}
 				for(var i = 0; i < $scope.reportsKi.length; i++){
 					if ($scope.reportsKi[i].date === modifiedDate){
 						$scope.reportKi = $scope.reportsKi[i];
-						// console.log($scope.reportKi);
 					}
 				}	
 			}

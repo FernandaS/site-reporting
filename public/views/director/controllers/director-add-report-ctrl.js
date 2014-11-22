@@ -2,8 +2,6 @@ var app = angular.module('lds-report');
 
 app.controller('directorAddReportCtrl', function($scope, reportService, centerService){
 	
-	// $scope.centers = $scope.$parent.centers;
-
 	$scope.addReport = function(){
 		for(var i = 0; i < $scope.months.length; i++){
 			if($scope.months[i] === $scope.selectedMonthAdd){
@@ -30,13 +28,9 @@ app.controller('directorAddReportCtrl', function($scope, reportService, centerSe
 					$scope.referral_inbound = "",
 					$scope.referral_member = "",
 					$scope.comments = ""
-					$scope.selectedYear = " ";
-					$scope.selectedMonth = " ";
-					$scope.selectedCenter = "";
 					centerService.getAllReports($scope.selectedCenter.id)
 					.then(function(response){
 						$scope.$parent.reports = response.data;
-						console.log($scope.$parent.reports);
 					})	
 				})
 
