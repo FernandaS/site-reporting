@@ -25,29 +25,38 @@
 
       <br/>
       
-      <span ng-repeat='center in centers'>
-        <span ng-show='!reports[center.name]'>Not Reported</span>
-        <span ng-show='reports[center.name]'><a ng-href='/reports/{{reports[center.name][_id]}}'>Reported</a></span>
-        | {{center.name}}
-      </span>
+<!--       <span ng-repeat='center in centers'>
+        <span ng-show='!reports[center.center]'>Not Reported</span>
+        <span ng-show='reports[center.center]'><a ng-href='/reports/{{reports[center.center][_id]}}'>Reported</a></span>
+        | {{center.center}}
+      </span> -->
       
       <br/>
       
       <div class="panel panel-default">
         <div class="panel-body globalReports flex-box">
-          <button type="button" class="btn btn-default" data-toggle="modal" data-target="#addSite">
-           Add Site Month Report
+         <!-- Button trigger Add Statistics modal -->
+         <button type="button" class="btn btn-default" data-toggle="modal" data-target="#addSite">
+           Add Statistics Report
          </button>
+
+         <!-- Button trigger Add Key Indicator modal -->
+         <button type="button" class="btn btn-default" data-toggle="modal" data-target="#addKeyIndicatorReport">
+           Add Key Indicator Report
+         </button>
+
          <button type="button" class="btn btn-default">
-          <a href='/api/download/site/{{reportDate}}'>
+          <a class="downloadLink" href='/api/download/site/{{reportDate}}'>
            Site Statistics Grand Totals
          </a>
        </button>
+
        <button type="button" class="btn btn-default">
-        <a href='/api/download/ki/{{reportDate}}'>
+        <a class="downloadLink" href='/api/download/ki/{{reportDate}}'>
          Key Indicators Grand Totals
        </a>
-     </button>       
+     </button>  
+
    </div>
  </div>
 
@@ -55,16 +64,6 @@
       <!-- <button type="button" class="btn btn-default" data-toggle="modal" data-target="#create">
          Create Custom Report
        </button> -->
-
-       <!-- Button trigger modal -->
-       <button type="button" class="btn btn-default" data-toggle="modal" data-target="#addSite">
-         Add Statistics Report
-       </button>
-
-       <!-- Button trigger modal -->
-       <button type="button" class="btn btn-default" data-toggle="modal" data-target="#addKeyIndicatorReport">
-         Add Key Indicator Report
-       </button>
 
        <!-- Create Custom Modal -->
  <!--      <div class="modal fade" id="create" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" ng-controller="reportCreateCustomCtrl">
@@ -260,15 +259,15 @@
           <div class="modal-body">
             <div class="panel panel-default">
               <div class="panel-heading">
-                <h3 class="panel-title">Visitors Center and Historic Site Monthly Statistical Report for: {{$parent.reportKi.center}} <br/> {{$parent.selectedMonth}}, {{$parent.selectedYear}}</h3>
+                <h3 class="panel-title">Visitors Center and Historic Site Monthly Statistical Report for: <br/>{{$parent.reportKi.center}} {{$parent.selectedMonth}} {{$parent.selectedYear}}</h3>
               </div>
               <div class="panel-body">
                 <div class="panel panel-default">
                   <div class="panel-body monthlyReportBox display">
                     Key Indicator Summary:
                     
-                    <li>Baptized:{{reportKi['Indicators.baptized']}}</li>
-                    <li>Baptismal date:{{reportKi['Indicators.baptismal_date']}}</li>
+                    <li>Baptized: {{reportKi['Indicators.baptized']}}</li>
+                    <li>Baptismal date: {{reportKi['Indicators.baptismal_date']}}</li>
                     <li>Sacrament meeting: {{reportKi['Indicators.sacrament_meeting']}}</li>
                     <li>Member present lessons: {{reportKi['Indicators.member_present_lessons']}}</li>
                     <li>Other lessons: {{reportKi['Indicators.other_lessons']}}</li>
@@ -309,7 +308,7 @@
             <div class="modal-body">
               <div class="panel panel-default">
                 <div class="panel-heading">
-                  <h3 class="panel-title">Visitors Center and Historic Site Monthly Statistical Report for: {{report.center}} {{selectedMonth}}, {{selectedYear}} </h3>
+                  <h3 class="panel-title">Visitors Center and Historic Site Monthly Statistical Report for: <br/>{{report.center}} {{selectedMonth}} {{selectedYear}} </h3>
                 </div>
                 <div class="panel-body">
                   <div class="panel panel-default">
@@ -415,7 +414,8 @@
           <div class="modal-body">
             <div class="panel panel-default">
               <div class="panel-heading">
-                <h3 class="panel-title">Visitors Center and Historic Site Monthly Report for: <br/>{{$parent.report.center}} <br/> {{$parent.selectedMonth}}, {{$parent.selectedYear}}</h3>
+                <h3 class="panel-title">Visitors Center and Historic Site Monthly Report for: <br/>
+                  {{$parent.report.center}} {{$parent.selectedMonth}} {{$parent.selectedYear}}</h3>
               </div>
               <div class="panel-body">
                 <div class="panel panel-default">
@@ -435,8 +435,7 @@
                       <li>Those referring when called after visiting the site: {{report['Reports.referral_called']}}</li>
                       <li>Those referring with inbound calls: {{report['Reports.referral_inbound']}}</li>
                       <li>Those referring whose names came from members: {{report['Reports.referral_member']}}</li>
-                      <!--   <li>Total referrals:</li> -->
-                      
+     
                     </div>
                   </div>
                   <div class="panel panel-default">
@@ -472,7 +471,8 @@
               <div class="modal-body">
                 <div class="panel panel-default">
                   <div class="panel-heading">
-                    <h3 class="panel-title">Visitors Center and Historic Site Monthly Report for: {{report.center}} {{selectedMonth}}, {{selectedYear}} </h3>
+                    <h3 class="panel-title">Visitors Center and Historic Site Monthly Report for: <br/>
+                      {{report.center}} {{selectedMonth}} {{selectedYear}} </h3>
                   </div>
                   <div class="panel-body">
                     <div class="panel panel-default">
