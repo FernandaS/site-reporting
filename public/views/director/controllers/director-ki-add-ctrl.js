@@ -6,7 +6,7 @@ app.controller('directorKiAddCtrl', function($scope, reportService, centerServic
 		for(var i = 0; i < $scope.months.length; i++){
 			if($scope.months[i] === $scope.selectedMonthAdd){
 				var newMonth = i + 1;
-				var modifiedDate = $scope.selectedYearAdd + "-" + newMonth + "-01";
+				var modifiedDate = $scope.selectedYearAdd + "-" + "0" + newMonth + "-01";
 				reportService.createKi({
 					date: modifiedDate,
 					baptized: $scope.baptized,
@@ -30,12 +30,12 @@ app.controller('directorKiAddCtrl', function($scope, reportService, centerServic
 					$scope.progressing_investigators = "",
 					$scope.rc_la = ""
 					$scope.referrals_sent = " ";
-					reportService.getAllKiBy(modifiedDate)
+					centerService.getAllKIReports($scope.selectedCenter.id)
 					.then(function(response){
-						$scope.$parent.reportsKiByMonth = response.data;
-						console.log($scope.$parent.reportsKiByMonth);
-					})
-				});
+						$scope.$parent.reportsKi = response.data;
+						console.log($scope.$parent.reportsKi);
+					})	
+				})
 
 			}					
 		}

@@ -11,7 +11,6 @@ app.controller('directorKiViewCtrl', function($scope, reportService, centerServi
 	//Refreshes page when modal closes
 
 	$scope.refreshModalClose = function(){
-		// $scope.stats = response.data;
 		$scope.deleteReportWarningAlert = false;
 		$scope.baptized = "";
 		$scope.baptismal_date = "",
@@ -28,17 +27,10 @@ app.controller('directorKiViewCtrl', function($scope, reportService, centerServi
 		reportService.deleteKi(id)	
 		.then(function(response){
 			$scope.deleteReportWarningAlert = false;
-			for(var i = 0; i < $scope.months.length; i++){
-				if($scope.months[i] === $scope.selectedMonth){
-					var newMonth = i + 1;
-					var modifiedDate = $scope.selectedYear + "-" + newMonth + "-01";
-					reportService.getAllKiBy(modifiedDate)
-					.then(function(response){
-						$scope.$parent.reportsKiByMonth = response.data;
-						console.log($scope.$parent.reportsKiByMonth);
-					})			
-				}
-			}
+			centerService.getAllKIReports($scope.selectedCenter.id)
+			.then(function(response){
+				$scope.$parent.reportsKi = response.data;
+			})			
 		})
 	}
 
